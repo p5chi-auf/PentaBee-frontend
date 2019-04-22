@@ -1,1 +1,1 @@
-# PentaBee-vuejs
+# PentaBee-frontend
