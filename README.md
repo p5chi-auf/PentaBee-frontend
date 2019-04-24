@@ -1,4 +1,4 @@
 # PentaBee-frontend
 # Made by Ignatiuc Arina && Gherman Adrian
-Test1
-Notre premier conflict
+# Ce site est créé par l'équipe KillerBees
+# Notre premier conflict
