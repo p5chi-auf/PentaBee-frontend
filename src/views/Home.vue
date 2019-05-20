@@ -1,5 +1,5 @@
 <template>
-  <p>
-    Main Page
-  </p>
+	<p>
+		Main Page
+	</p>
 </template>

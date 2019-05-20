@@ -1,7 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Second from "@/views/Second";
-import Footer from "@/views/Footer";
 import Home from "@/views/Home";
 import Login from "@/views/Login";
 
@@ -15,16 +13,6 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
-    },
-    {
-      path: "/second",
-      name: "second",
-      component: Second
-    },
-    {
-      path: "/footer",
-      name: "footer",
-      component: Footer
     },
     {
       path: "/login",
