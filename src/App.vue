@@ -1,15 +1,25 @@
 <template>
   <div id="app">
+    <!--    Header-->
     <b-navbar class="navbar" toggleable="lg" type="dark">
-      <b-navbar-brand to="/"><img src="/all.png"/></b-navbar-brand>
+      <b-navbar-brand to="/"><img src="/img/logo.png"/></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/second">Second page</b-nav-item>
-          <b-nav-item to="/footer">Footer</b-nav-item>
+          <b-nav-item to="/">
+            Home
+          </b-nav-item>
+          <b-nav-item to="/second">
+            Second page
+          </b-nav-item>
+          <b-nav-item to="/footer">
+            Footer
+          </b-nav-item>
+          <b-nav-item to="/login">
+            Login
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -25,24 +35,27 @@
               size="sm"
               class="my-2 my-sm-0"
               type="submit"
-              >Search</b-button
             >
+              Search
+            </b-button>
           </b-nav-form>
-
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">FR</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">RO</b-dropdown-item>
-          </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template slot="button-content"
-              ><em>User</em></template
+              ><em>
+                User
+              </em></template
             >
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item href="#">
+              Profile
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              Settings
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              Logout
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -60,6 +73,7 @@
     <!--    /5 color bar-->
     <br />
     <router-view />
+    <!--    /Header-->
     <!--    Footer-->
     <footer toggleable="lg" type="dark">
       <div class="footer">

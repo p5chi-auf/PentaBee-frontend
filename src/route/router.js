@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Second from "@/views/Second";
 import Footer from "@/views/Footer";
 import Home from "@/views/Home";
+import Login from "@/views/Login";
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: "/footer",
       name: "footer",
       component: Footer
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login
     }
   ]
 });
