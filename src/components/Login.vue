@@ -1,21 +1,25 @@
 <template>
-  <div id="app">
-    <b-container>
+  <div>
+    <b-container class="backgound">
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr />
+            <hr color="#5ca0ca" />
           </h4>
-          <br />
           <b-form @submit="onSubmit" v-if="show">
             <b-form-group id="input-group-1" label-for="input-1">
               <b-form-input
                 id="input-1"
                 v-model="form.email"
+                v-validate="email"
+                data-vv-rules="required|email"
                 type="email"
                 placeholder="Username"
-              ></b-form-input>
+                name="email"
+              >
+              </b-form-input>
+              <p v-if="errors.has('email')">{{ errors.first("email") }}</p>
             </b-form-group>
 
             <b-form-group id="input-group-2" label-for="input-2">
@@ -29,8 +33,7 @@
             </b-form-group>
 
             <p align="right">
-              <b-button type="submit" href="/" variant="primary">
-                Login </b-button
+              <b-button type="submit" to="/" variant="primary"> Login </b-button
               >&nbsp;
             </p>
           </b-form>
@@ -42,8 +45,7 @@
 
 <script>
 export default {
-  name: "app",
-  components: {},
+  name: "login",
   data() {
     return {
       showDismissibleAlert: false,
@@ -78,15 +80,21 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
 div {
-  /*background-color: #eef1f4;*/
   font-family: "Lato", sans-serif;
 }
 
 b-container {
-  position: fixed;
+  /*position: fixed;*/
 }
 
 h4 {
   color: #5ca0ca;
+}
+.backgound {
+  /*position: absolute;*/
+  /*background-color: #4e4e4b;*/
+  /*margin-top: -25px;*/
+  height: 100%;
+  /*margin: 0 auto;*/
 }
 </style>
