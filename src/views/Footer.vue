@@ -1,5 +1,4 @@
 <template>
-  <!--    Footer-->
   <footer toggleable="lg" type="dark">
     <div class="footer">
       <p>
@@ -8,7 +7,6 @@
       </p>
     </div>
   </footer>
-  <!--    /Footer-->
 </template>
 <style>
 .footer {

@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <b-container class="backgound">
+  <div class="background">
+    <b-container>
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
             <hr color="#5ca0ca" />
           </h4>
-          <b-form @submit="onSubmit" v-if="show">
+
+          <b-form @submit="onReset">
             <b-form-group id="input-group-1" label-for="input-1">
               <b-form-input
                 id="input-1"
@@ -19,23 +20,22 @@
                 name="email"
               >
               </b-form-input>
+
               <p v-if="errors.has('email')">{{ errors.first("email") }}</p>
             </b-form-group>
-
             <b-form-group id="input-group-2" label-for="input-2">
               <b-form-input
                 id="input-2"
                 type="password"
                 v-model="form.password"
-                required
                 placeholder="Password"
-              ></b-form-input>
+							>
+              </b-form-input>
             </b-form-group>
 
-            <p align="right">
-              <b-button type="submit" to="/" variant="primary"> Login </b-button
-              >&nbsp;
-            </p>
+            <b-button type="submit" variant="primary">
+              Login
+            </b-button>
           </b-form>
         </b-card>
       </b-row>
@@ -48,29 +48,18 @@ export default {
   name: "login",
   data() {
     return {
-      showDismissibleAlert: false,
       form: {
-        email: "",
+        email: '',
         password: ""
-      },
-      show: true
+      }
     };
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form));
-    },
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
       this.form.email = "";
       this.form.name = "";
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
     }
   }
 };
@@ -83,18 +72,18 @@ div {
   font-family: "Lato", sans-serif;
 }
 
-b-container {
-  /*position: fixed;*/
+login {
+  position: center;
 }
 
 h4 {
   color: #5ca0ca;
 }
-.backgound {
-  /*position: absolute;*/
-  /*background-color: #4e4e4b;*/
-  /*margin-top: -25px;*/
+
+.background {
+  background-color: #202223;
+  position: absolute;
   height: 100%;
-  /*margin: 0 auto;*/
+  width: 100%;
 }
 </style>

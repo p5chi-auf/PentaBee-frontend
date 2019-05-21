@@ -5,7 +5,6 @@ import store from "./store";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import "./registerServiceWorker";
 import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
