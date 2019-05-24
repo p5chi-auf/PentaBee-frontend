@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!--    <font-awesome-icon icon="user" />-->
-    <!--    <font-awesome-icon icon="lock" />-->
-    <!--    <span class="block input-icon input-icon-right">-->
-    <!--      <font-awesome-icon icon="user" />-->
-    <!--    </span>-->
-
     <h1 align="center">Main Page</h1>
 
     <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
@@ -25,28 +19,5 @@
         within the larger container.
       </p>
     </b-jumbotron>
-    <input
-      v-validate="'required'"
-      name="password"
-      type="password"
-      :class="{ 'is-danger': errors.has('password') }"
-      placeholder="Password"
-      ref="password"
-    />
-    <span v-show="errors.has('password')" class="help is-danger">{{
-      errors.first("password")
-    }}</span>
-
-    <input
-      v-validate="'required|confirmed:password'"
-      name="password_confirmation"
-      type="password"
-      :class="{ 'is-danger': errors.has('password_confirmation') }"
-      placeholder="Password, Again"
-      data-vv-as="password"
-    />
-    <span v-show="errors.has('password_confirmation')" class="help is-danger">{{
-      errors.first("password_confirmation")
-    }}</span>
   </div>
 </template>

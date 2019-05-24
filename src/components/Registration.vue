@@ -9,7 +9,6 @@
           </h4>
 
           <b-form @submit="onSubmit">
-            <!--            First input username-->
             <b-form-group id="input-group-1" label-for="input-1">
               <b-form-input
                 id="input-1"
@@ -20,11 +19,10 @@
                 name="username"
               >
               </b-form-input>
-              <p v-if="errors.has('username')" class="validateP">
+              <p v-if="errors.has('username')" class="f-validations">
                 {{ errors.first("username") }}
               </p>
             </b-form-group>
-            <!--            Second input name-->
             <b-form-group id="input-group-2" label-for="input-2">
               <b-form-input
                 id="input-2"
@@ -35,11 +33,10 @@
                 name="name"
               >
               </b-form-input>
-              <p v-if="errors.has('name')" class="validateP">
+              <p v-if="errors.has('name')" class="f-validations">
                 {{ errors.first("name") }}
               </p>
             </b-form-group>
-            <!--            Third input surname-->
             <b-form-group id="input-group-3" label-for="input-3">
               <b-form-input
                 id="input-3"
@@ -50,11 +47,10 @@
                 name="surname"
               >
               </b-form-input>
-              <p v-if="errors.has('surname')" class="validateP">
+              <p v-if="errors.has('surname')" class="f-validations">
                 {{ errors.first("surname") }}
               </p>
             </b-form-group>
-            <!--          email  -->
             <b-form-group id="input-group-4" label-for="input-4">
               <b-form-input
                 id="input-4"
@@ -66,11 +62,10 @@
                 name="email"
               >
               </b-form-input>
-              <p v-if="errors.has('email')" class="validateP">
+              <p v-if="errors.has('email')" class="f-validations">
                 {{ errors.first("email") }}
               </p>
             </b-form-group>
-            <!--             input password-->
             <b-form-group id="input-group-5" label-for="input-5">
               <b-input
                 v-validate="'required'"
@@ -83,11 +78,10 @@
               </b-input>
               <span
                 v-show="errors.has('password')"
-                class="validateP help is-danger"
+                class="f-validations help is-danger"
                 >{{ errors.first("password") }}</span
               >
             </b-form-group>
-            <!--             input confirm password-->
             <b-form-group id="input-group-6" label-for="input-6">
               <b-input
                 v-validate="'required|confirmed:password'"
@@ -100,29 +94,14 @@
               </b-input>
               <span
                 v-show="errors.has('password_confirmation')"
-                class="validateP help is-danger"
+                class="f-validations help is-danger"
                 >{{ errors.first("password_confirmation") }}</span
               >
             </b-form-group>
-
             <b-button to="/login" type="submit" pill block variant="primary">
               Create your account
             </b-button>
             <br />
-            <b-form-checkbox
-              align="left"
-              id="checkbox-1"
-              v-model="status"
-              name="checkbox-1"
-              value="Accepted"
-              unchecked-value="Not accepted"
-            >
-              I accept the terms and use
-            </b-form-checkbox>
-            <div>
-              State: <strong>{{ status }}</strong>
-            </div>
-
             <p align="center">
               Already have a <b-link to="/">PentaBee</b-link> account?
               <b-link to="/login">Log in</b-link>
@@ -183,7 +162,7 @@ h4 {
   height: 100%;
   width: 100%;
 }
-.validateP {
+.f-validations {
   color: rgb(255, 106, 106);
   position: relative;
 }

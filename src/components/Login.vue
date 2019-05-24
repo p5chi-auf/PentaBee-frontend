@@ -19,7 +19,7 @@
                 name="username"
               >
               </b-form-input>
-              <p v-if="errors.has('username')" class="validateP">
+              <p v-if="errors.has('username')" class="f-validations">
                 {{ errors.first("username") }}
               </p>
             </b-form-group>
@@ -30,9 +30,10 @@
                 v-validate.continues="'required|min:5'"
                 name="password"
                 placeholder="Password"
+                type="password"
               >
               </b-form-input>
-              <p v-if="errors.has('password')" class="validateP">
+              <p v-if="errors.has('password')" class="f-validations">
                 {{ errors.first("password") }}
               </p>
             </b-form-group>
@@ -95,7 +96,7 @@ h4 {
   width: 100%;
 }
 
-.validateP {
+.f-validations {
   color: rgb(255, 106, 106);
   position: relative;
 }

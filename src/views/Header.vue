@@ -55,7 +55,6 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
-      <!--    5 color bar-->
       <div class="top-bar">
         <div class="inner">
           <div class="top-bar-orange"></div>
@@ -65,7 +64,6 @@
           <div class="top-bar-bluesky"></div>
         </div>
       </div>
-      <!--    /5 color bar-->
     </div>
   </header>
 </template>
@@ -128,7 +126,5 @@ img {
 
 .img:hover {
   opacity: 0.3;
-  /*background: rgba(255, 218, 0, 0.5);*/
-  /*border-radius: 50%;*/
 }
 </style>
