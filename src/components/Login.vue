@@ -30,6 +30,7 @@
                 v-validate.continues="'required|min:5'"
                 name="password"
                 placeholder="Password"
+                type="password"
               >
               </b-form-input>
               <p v-if="errors.has('password')" class="validateP">
