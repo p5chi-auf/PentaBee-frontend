@@ -2,7 +2,9 @@
   <header>
     <div>
       <b-navbar class="navbar" toggleable="lg" type="dark">
-        <b-navbar-brand to="/"><img src="../assets/logo.png"/></b-navbar-brand>
+        <b-navbar-brand to="/">
+          <img class="img" src="../assets/logo.png" />
+        </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -114,5 +116,18 @@ img {
 }
 .navbar {
   background: #1b1d1e;
+}
+.img {
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.img:hover {
+  opacity: 0.3;
+  /*background: rgba(255, 218, 0, 0.5);*/
+  /*border-radius: 50%;*/
 }
 </style>
