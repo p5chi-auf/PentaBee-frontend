@@ -9,7 +9,19 @@ import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
 import VeeValidate from "vee-validate";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+library.add(faUser);
+library.add(faCog);
+library.add(faPowerOff);
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
 
@@ -23,5 +35,6 @@ new Vue({
   store,
   BootstrapVue,
   VeeValidate,
+  FontAwesomeIcon,
   render: h => h(App)
 }).$mount("#app");

@@ -2,7 +2,9 @@
   <header>
     <div>
       <b-navbar class="navbar" toggleable="lg" type="dark">
-        <b-navbar-brand to="/"><img src="../assets/logo.png"/></b-navbar-brand>
+        <b-navbar-brand to="/">
+          <img class="img" src="../../public/img/logo.png" />
+        </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -34,19 +36,20 @@
             </b-nav-form>
 
             <b-nav-item-dropdown right>
-              <template slot="button-content"
-                ><em>
-                  User
-                </em></template
-              >
-              <b-dropdown-item href="#">
-                Profile
+              <template slot="button-content">
+                User
+              </template>
+              <b-dropdown-item to="/profile">
+                <font-awesome-icon icon="user" />
+                &nbsp;Profile
               </b-dropdown-item>
-              <b-dropdown-item href="#">
-                Settings
+              <b-dropdown-item to="/settings">
+                <font-awesome-icon icon="cog" />
+                &nbsp;Settings
               </b-dropdown-item>
-              <b-dropdown-item href="#">
-                Logout
+              <b-dropdown-item to="/login">
+                <font-awesome-icon icon="power-off" />
+                &nbsp;Logout
               </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
@@ -114,5 +117,18 @@ img {
 }
 .navbar {
   background: #1b1d1e;
+}
+.img {
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.img:hover {
+  opacity: 0.3;
+  /*background: rgba(255, 218, 0, 0.5);*/
+  /*border-radius: 50%;*/
 }
 </style>
