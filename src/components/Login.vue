@@ -1,8 +1,8 @@
 <template>
   <div class="background">
-    <b-container>
+    <b-container fluid>
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3  col-sm-5">
+        <b-card class="p-3  ">
           <h4>
             Please Enter Your Information
             <hr color="#5ca0ca" />
@@ -19,7 +19,7 @@
                 name="username"
               >
               </b-form-input>
-              <p v-if="errors.has('username')" class="validateP">
+              <p v-if="errors.has('username')" class="f-validations">
                 {{ errors.first("username") }}
               </p>
             </b-form-group>
@@ -33,13 +33,18 @@
                 type="password"
               >
               </b-form-input>
-              <p v-if="errors.has('password')" class="validateP">
+              <p v-if="errors.has('password')" class="f-validations">
                 {{ errors.first("password") }}
               </p>
             </b-form-group>
-            <b-button to="/" class="col-md-12" type="submit" variant="primary">
+            <b-btn to="/" type="submit" pill block variant="primary">
               Login
-            </b-button>
+            </b-btn>
+            <br />
+            <p align="center">
+              Haven't got an account?
+              <b-link to="/registration">Sign up</b-link>
+            </p>
           </b-form>
         </b-card>
       </b-row>
@@ -53,6 +58,7 @@ export default {
   data() {
     return {
       form: {
+        email: "",
         username: "",
         password: ""
       }
@@ -74,9 +80,11 @@ export default {
 div {
   font-family: "Lato", sans-serif;
 }
+
 login {
   position: center;
 }
+
 h4 {
   color: #5ca0ca;
 }
@@ -87,8 +95,17 @@ h4 {
   height: 100%;
   width: 100%;
 }
-.validateP {
+
+.f-validations {
   color: rgb(255, 106, 106);
   position: relative;
+}
+
+p {
+  color: #565554;
+}
+
+b-form-group {
+  position: fixed;
 }
 </style>

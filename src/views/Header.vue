@@ -3,7 +3,7 @@
     <div>
       <b-navbar class="navbar" toggleable="lg" type="dark">
         <b-navbar-brand to="/">
-          <img class="img" src="../assets/logo.png" />
+          <img class="img" src="../../public/img/logo.png" />
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -36,25 +36,25 @@
             </b-nav-form>
 
             <b-nav-item-dropdown right>
-              <template slot="button-content"
-                ><em>
-                  User
-                </em></template
-              >
-              <b-dropdown-item href="#">
-                Profile
+              <template slot="button-content">
+                User
+              </template>
+              <b-dropdown-item to="/profile">
+                <font-awesome-icon icon="user" />
+                &nbsp;Profile
               </b-dropdown-item>
-              <b-dropdown-item href="#">
-                Settings
+              <b-dropdown-item to="/settings">
+                <font-awesome-icon icon="cog" />
+                &nbsp;Settings
               </b-dropdown-item>
-              <b-dropdown-item href="#">
-                Logout
+              <b-dropdown-item to="/login">
+                <font-awesome-icon icon="power-off" />
+                &nbsp;Logout
               </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
-      <!--    5 color bar-->
       <div class="top-bar">
         <div class="inner">
           <div class="top-bar-orange"></div>
@@ -64,7 +64,6 @@
           <div class="top-bar-bluesky"></div>
         </div>
       </div>
-      <!--    /5 color bar-->
     </div>
   </header>
 </template>
@@ -127,7 +126,5 @@ img {
 
 .img:hover {
   opacity: 0.3;
-  /*background: rgba(255, 218, 0, 0.5);*/
-  /*border-radius: 50%;*/
 }
 </style>
