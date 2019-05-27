@@ -1,8 +1,8 @@
 <template>
   <div class="background">
-    <b-container>
+    <b-container fluid>
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3  ">
+        <b-card>
           <h4>
             Create an account and find out what's going on inside
             <hr color="#5ca0ca" />
@@ -13,7 +13,7 @@
               <b-form-input
                 id="input-1"
                 v-model="form.username"
-                v-validate.continues="'required|min:5'"
+                v-validate.continues="'alpha|required|min:5|max:20'"
                 type="username"
                 placeholder="Username"
                 name="username"
@@ -27,7 +27,7 @@
               <b-form-input
                 id="input-2"
                 v-model="form.name"
-                v-validate.continues="'required|min:3'"
+                v-validate.continues="'required|min:3|max:20'"
                 type="name"
                 placeholder="First Name"
                 name="name"
@@ -41,7 +41,7 @@
               <b-form-input
                 id="input-3"
                 v-model="form.surname"
-                v-validate.continues="'required|min:5'"
+                v-validate.continues="'required|min:3|max:20'"
                 type="surname"
                 placeholder="Last Name"
                 name="surname"
@@ -55,8 +55,7 @@
               <b-form-input
                 id="input-4"
                 v-model="form.email"
-                v-validate="'email'"
-                v-validate.continues="'required'"
+                v-validate="'required|email'"
                 type="email"
                 placeholder="Email"
                 name="email"
@@ -67,15 +66,15 @@
               </p>
             </b-form-group>
             <b-form-group id="input-group-5" label-for="input-5">
-              <b-input
-                v-validate="'required'"
+              <input
+                class="form-control"
+                v-validate="'required|verify_password'"
                 name="password"
                 type="password"
                 :class="{ 'is-danger': errors.has('password') }"
                 placeholder="Password"
                 ref="password"
-              >
-              </b-input>
+              />
               <span
                 v-show="errors.has('password')"
                 class="f-validations help is-danger"
@@ -83,15 +82,15 @@
               >
             </b-form-group>
             <b-form-group id="input-group-6" label-for="input-6">
-              <b-input
+              <input
+                class="form-control"
                 v-validate="'required|confirmed:password'"
                 name="password_confirmation"
                 type="password"
                 :class="{ 'is-danger': errors.has('password_confirmation') }"
                 placeholder="Confirm Password"
                 data-vv-as="password"
-              >
-              </b-input>
+              />
               <span
                 v-show="errors.has('password_confirmation')"
                 class="f-validations help is-danger"
@@ -115,7 +114,6 @@
 
 <script>
 export default {
-  name: "login",
   data() {
     return {
       status: "Not accepted",
@@ -164,7 +162,9 @@ h4 {
 }
 .f-validations {
   color: rgb(255, 106, 106);
-  position: relative;
+  width: 90%;
+  word-wrap: break-word;
+  display: inline-block;
 }
 p {
   color: #565554;

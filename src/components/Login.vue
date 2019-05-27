@@ -13,7 +13,7 @@
               <b-form-input
                 id="input-1"
                 v-model="form.username"
-                v-validate.continues="'required|min:5'"
+                v-validate.continues="'required: true|regexp'"
                 type="username"
                 placeholder="Username"
                 name="username"
@@ -27,7 +27,7 @@
               <b-form-input
                 id="input-2"
                 v-model="form.password"
-                v-validate.continues="'required|min:5'"
+                v-validate.continues="'required'"
                 name="password"
                 placeholder="Password"
                 type="password"
