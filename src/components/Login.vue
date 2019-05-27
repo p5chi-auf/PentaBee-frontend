@@ -13,7 +13,7 @@
               <b-form-input
                 id="input-1"
                 v-model="form.username"
-                v-validate.continues="'required|min:5'"
+                v-validate.continues="'required'"
                 type="username"
                 placeholder="Username"
                 name="username"
