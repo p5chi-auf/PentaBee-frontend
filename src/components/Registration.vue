@@ -3,13 +3,17 @@
     <b-container>
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3  ">
-          <h4>
-            Create an account and find out what's going on inside
+          <h4 class="text-center">
+            Create an PentaBee account
             <hr color="#5ca0ca" />
           </h4>
 
-          <b-form @submit="onSubmit">
-            <b-form-group id="input-group-1" label-for="input-1">
+          <b-form @submit="onSubmit" class="row">
+            <b-form-group
+              id="input-group-1"
+              label-for="input-1"
+              class="col-md-6"
+            >
               <b-form-input
                 id="input-1"
                 v-model="form.username"
@@ -23,7 +27,11 @@
                 {{ errors.first("username") }}
               </p>
             </b-form-group>
-            <b-form-group id="input-group-2" label-for="input-2">
+            <b-form-group
+              id="input-group-2"
+              label-for="input-2"
+              class="col-md-6"
+            >
               <b-form-input
                 id="input-2"
                 v-model="form.name"
@@ -37,7 +45,11 @@
                 {{ errors.first("name") }}
               </p>
             </b-form-group>
-            <b-form-group id="input-group-3" label-for="input-3">
+            <b-form-group
+              id="input-group-3"
+              label-for="input-3"
+              class="col-md-6"
+            >
               <b-form-input
                 id="input-3"
                 v-model="form.surname"
@@ -51,7 +63,11 @@
                 {{ errors.first("surname") }}
               </p>
             </b-form-group>
-            <b-form-group id="input-group-4" label-for="input-4">
+            <b-form-group
+              id="input-group-4"
+              label-for="input-4"
+              class="col-md-6"
+            >
               <b-form-input
                 id="input-4"
                 v-model="form.email"
@@ -66,7 +82,11 @@
                 {{ errors.first("email") }}
               </p>
             </b-form-group>
-            <b-form-group id="input-group-5" label-for="input-5">
+            <b-form-group
+              id="input-group-5"
+              label-for="input-5"
+              class="col-md-6"
+            >
               <b-input
                 v-validate="'required'"
                 name="password"
@@ -82,7 +102,11 @@
                 >{{ errors.first("password") }}</span
               >
             </b-form-group>
-            <b-form-group id="input-group-6" label-for="input-6">
+            <b-form-group
+              id="input-group-6"
+              label-for="input-6"
+              class="col-md-6"
+            >
               <b-input
                 v-validate="'required|confirmed:password'"
                 name="password_confirmation"
@@ -98,15 +122,24 @@
                 >{{ errors.first("password_confirmation") }}</span
               >
             </b-form-group>
-            <b-button to="/login" type="submit" pill block variant="primary">
+          </b-form>
+          <div class="text-center">
+            <b-button
+              to="/login"
+              type="submit"
+              pill
+              block
+              variant="primary"
+              class="col-md-6 float-none d-inline-block"
+            >
               Create your account
             </b-button>
-            <br />
-            <p align="center">
-              Already have a <b-link to="/">PentaBee</b-link> account?
-              <b-link to="/login">Log in</b-link>
-            </p>
-          </b-form>
+          </div>
+          <br />
+          <p class="text-center">
+            Already have a <b-link to="/">PentaBee</b-link> account?
+            <b-link to="/login">Log in</b-link>
+          </p>
         </b-card>
       </b-row>
     </b-container>
