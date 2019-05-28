@@ -8,103 +8,151 @@
             <hr color="#5ca0ca" />
           </h4>
 
-          <b-form @submit="onSubmit">
+          <b-form @submit.prevent="handleSubmit">
             <b-form-group id="input-group-1" label-for="input-1">
+              <label for="username">Username</label>
               <b-form-input
-                id="input-1"
-                v-model="form.username"
-                v-validate.continues="'alpha|required|min:5|max:20'"
-                type="username"
+                type="text"
+                v-model="user.username"
+                v-validate="'alpha|required|min:5|max:20'"
                 placeholder="Username"
+                id="username"
                 name="username"
+                class="form-control"
+                :class="{
+                  'is-invalid': submitted && errors.has('username')
+                }"
               >
               </b-form-input>
-              <p v-if="errors.has('username')" class="f-validations">
+              <p
+                v-if="submitted && errors.has('username')"
+                class="invalid-feedback f-validations"
+              >
                 {{ errors.first("username") }}
               </p>
             </b-form-group>
+
             <b-form-group id="input-group-2" label-for="input-2">
+              <label for="firstName">First Name</label>
               <b-form-input
-                id="input-2"
-                v-model="form.name"
-                v-validate.continues="'required|min:3|max:20'"
-                type="name"
+                type="text"
+                v-model="user.firstName"
+                v-validate="'required|min:3|max:20'"
                 placeholder="First Name"
-                name="name"
+                name="firstName"
+                id="firstName"
+                class="form-control"
+                :class="{
+                  'is-invalid': submitted && errors.has('firstName')
+                }"
               >
               </b-form-input>
-              <p v-if="errors.has('name')" class="f-validations">
-                {{ errors.first("name") }}
+              <p
+                v-if="submitted && errors.has('firstName')"
+                class="invalid-feedback f-validations"
+              >
+                {{ errors.first("firstName") }}
               </p>
             </b-form-group>
+
             <b-form-group id="input-group-3" label-for="input-3">
+              <label for="lastName">Last Name</label>
               <b-form-input
-                id="input-3"
-                v-model="form.surname"
-                v-validate.continues="'required|min:3|max:20'"
-                type="surname"
+                type="text"
+                v-model="user.lastName"
+                v-validate="'required|min:3|max:20'"
                 placeholder="Last Name"
-                name="surname"
+                id="lastName"
+                name="lastName"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('lastName') }"
               >
               </b-form-input>
-              <p v-if="errors.has('surname')" class="f-validations">
-                {{ errors.first("surname") }}
+              <p
+                v-if="submitted && errors.has('lastName')"
+                class="invalid-feedback f-validations"
+              >
+                {{ errors.first("lastName") }}
               </p>
             </b-form-group>
+
             <b-form-group id="input-group-4" label-for="input-4">
+              <label for="email">Email</label>
               <b-form-input
-                id="input-4"
-                v-model="form.email"
-                v-validate="'required|email'"
                 type="email"
+                v-model="user.email"
+                v-validate="'required|email'"
                 placeholder="Email"
+                id="email"
                 name="email"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('email') }"
               >
               </b-form-input>
-              <p v-if="errors.has('email')" class="f-validations">
+              <p
+                v-if="submitted && errors.has('email')"
+                class="invalid-feedback f-validations"
+              >
                 {{ errors.first("email") }}
               </p>
             </b-form-group>
+
             <b-form-group id="input-group-5" label-for="input-5">
+              <label for="password">Password</label>
               <input
                 class="form-control"
-                v-validate="'required|verify_password'"
-                name="password"
                 type="password"
-                :class="{ 'is-danger': errors.has('password') }"
+                v-model="user.password"
+                v-validate="'required|verify_password'"
+                id="password"
+                name="password"
+                :class="{ 'is-invalid': submitted && errors.has('password') }"
                 placeholder="Password"
                 ref="password"
               />
               <span
-                v-show="errors.has('password')"
-                class="f-validations help is-danger"
+                v-if="submitted && errors.has('password')"
+                class="invalid-feedback f-validations"
                 >{{ errors.first("password") }}</span
               >
             </b-form-group>
             <b-form-group id="input-group-6" label-for="input-6">
+              <label for="confirmpassword">Confirm Password</label>
               <input
                 class="form-control"
-                v-validate="'required|confirmed:password'"
-                name="password_confirmation"
                 type="password"
-                :class="{ 'is-danger': errors.has('password_confirmation') }"
+                v-model="user.confirmpassword"
+                v-validate="'required|confirmed:password'"
+                id="confirmpassword"
+                name="confirmpassword"
+                :class="{
+                  'is-invalid': submitted && errors.has('confirmpassword')
+                }"
                 placeholder="Confirm Password"
                 data-vv-as="password"
               />
               <span
-                v-show="errors.has('password_confirmation')"
-                class="f-validations help is-danger"
-                >{{ errors.first("password_confirmation") }}</span
+                v-if="submitted && errors.has('confirmpassword')"
+                class="invalid-feedback f-validations"
+                >{{ errors.first("confirmpassword") }}</span
               >
             </b-form-group>
-            <b-button to="/login" type="submit" pill block variant="primary">
-              Create your account
-            </b-button>
-            <br />
-            <p align="center">
-              Already have a <b-link to="/">PentaBee</b-link> account?
-              <b-link to="/login">Log in</b-link>
-            </p>
+
+            <div class="form-group">
+              <b-button
+                pill
+                block
+                variant="primary"
+                class="btn btn-primary"
+                @click="handleSubmit"
+              >
+                Register
+              </b-button>
+              <p align="center">
+                Already have a <b-link to="/">PentaBee</b-link> account?
+                <b-link to="/login">Log in</b-link>
+              </p>
+            </div>
           </b-form>
         </b-card>
       </b-row>
@@ -116,26 +164,25 @@
 export default {
   data() {
     return {
-      status: "Not accepted",
-      form: {
+      user: {
         username: "",
-        name: "",
-        surname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmpassword: ""
-      }
+      },
+      submitted: false
     };
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      this.form.username = "";
-      this.form.name = "";
-      this.form.surname = "";
-      this.form.email = "";
-      this.form.password = "";
-      this.form.confirmpassword = "";
+    handleSubmit() {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+        }
+      });
     }
   }
 };
