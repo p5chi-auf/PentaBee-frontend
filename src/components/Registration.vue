@@ -1,15 +1,19 @@
 <template>
   <div class="background">
-    <b-container fluid>
+    <b-container class="col-md-9">
       <b-row align-h="center" class="mt-5">
-        <b-card>
-          <h4>
-            Create an account and find out what's going on inside
+        <b-card class="p-3">
+          <h4 class="text-center">
+            Create an PentaBee account
             <hr color="#5ca0ca" />
           </h4>
 
-          <b-form @submit.prevent="handleSubmit">
-            <b-form-group id="input-group-1" label-for="input-1">
+          <b-form @submit.prevent="handleSubmit" class="row">
+            <b-form-group
+              id="input-group-1"
+              label-for="input-1"
+              class="col-md-6"
+            >
               <label for="username">Username</label>
               <b-form-input
                 type="text"
@@ -32,8 +36,13 @@
               </p>
             </b-form-group>
 
-            <b-form-group id="input-group-2" label-for="input-2">
+            <b-form-group
+              id="input-group-2"
+              label-for="input-2"
+              class="col-md-6"
+            >
               <label for="firstName">First Name</label>
+
               <b-form-input
                 type="text"
                 v-model="user.firstName"
@@ -55,7 +64,11 @@
               </p>
             </b-form-group>
 
-            <b-form-group id="input-group-3" label-for="input-3">
+            <b-form-group
+              id="input-group-3"
+              label-for="input-3"
+              class="col-md-6"
+            >
               <label for="lastName">Last Name</label>
               <b-form-input
                 type="text"
@@ -76,7 +89,11 @@
               </p>
             </b-form-group>
 
-            <b-form-group id="input-group-4" label-for="input-4">
+            <b-form-group
+              id="input-group-4"
+              label-for="input-4"
+              class="col-md-6"
+            >
               <label for="email">Email</label>
               <b-form-input
                 type="email"
@@ -97,7 +114,11 @@
               </p>
             </b-form-group>
 
-            <b-form-group id="input-group-5" label-for="input-5">
+            <b-form-group
+              id="input-group-5"
+              label-for="input-5"
+              class="col-md-6"
+            >
               <label for="password">Password</label>
               <input
                 class="form-control"
@@ -116,7 +137,11 @@
                 >{{ errors.first("password") }}</span
               >
             </b-form-group>
-            <b-form-group id="input-group-6" label-for="input-6">
+            <b-form-group
+              id="input-group-6"
+              label-for="input-6"
+              class="col-md-6"
+            >
               <label for="confirmpassword">Confirm Password</label>
               <input
                 class="form-control"
@@ -137,23 +162,23 @@
                 >{{ errors.first("confirmpassword") }}</span
               >
             </b-form-group>
-
-            <div class="form-group">
-              <b-button
-                pill
-                block
-                variant="primary"
-                class="btn btn-primary"
-                @click="handleSubmit"
-              >
-                Register
-              </b-button>
-              <p align="center">
-                Already have a <b-link to="/">PentaBee</b-link> account?
-                <b-link to="/login">Log in</b-link>
-              </p>
-            </div>
           </b-form>
+          <div class="text-center space">
+            <b-button
+              pill
+              block
+              type="submit"
+              variant="primary"
+              class="col-md-3 float-none d-inline-block"
+              @click="handleSubmit"
+            >
+              Create your account
+            </b-button>
+          </div>
+          <p class="text-center">
+            Already have a <b-link to="/">PentaBee</b-link> account?
+            <b-link to="/login">Log in</b-link>
+          </p>
         </b-card>
       </b-row>
     </b-container>
@@ -215,5 +240,8 @@ h4 {
 }
 p {
   color: #565554;
+}
+.space {
+  padding: 7px;
 }
 </style>
