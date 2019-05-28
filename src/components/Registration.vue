@@ -12,14 +12,14 @@
             <b-form-group
               id="input-group-1"
               label-for="input-1"
-              class="col-md-6"
+              class="col-md-6 first_group"
             >
-              <label for="username">Username</label>
+              <span for="username" class="ml-2">Username</span>
+
               <b-form-input
                 type="text"
                 v-model="user.username"
                 v-validate="'alpha|required|min:5|max:20'"
-                placeholder="Username"
                 id="username"
                 name="username"
                 class="form-control"
@@ -28,12 +28,12 @@
                 }"
               >
               </b-form-input>
-              <p
+              <span
                 v-if="submitted && errors.has('username')"
                 class="invalid-feedback f-validations"
               >
                 {{ errors.first("username") }}
-              </p>
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -41,13 +41,12 @@
               label-for="input-2"
               class="col-md-6"
             >
-              <label for="firstName">First Name</label>
+              <span for="firstName" class="ml-2">First Name</span>
 
               <b-form-input
                 type="text"
                 v-model="user.firstName"
                 v-validate="'required|min:3|max:20'"
-                placeholder="First Name"
                 name="firstName"
                 id="firstName"
                 class="form-control"
@@ -56,12 +55,13 @@
                 }"
               >
               </b-form-input>
-              <p
+
+              <span
                 v-if="submitted && errors.has('firstName')"
                 class="invalid-feedback f-validations"
               >
                 {{ errors.first("firstName") }}
-              </p>
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -69,24 +69,24 @@
               label-for="input-3"
               class="col-md-6"
             >
-              <label for="lastName">Last Name</label>
+              <span for="lastName" class="ml-2">Last Name</span>
+
               <b-form-input
                 type="text"
                 v-model="user.lastName"
                 v-validate="'required|min:3|max:20'"
-                placeholder="Last Name"
                 id="lastName"
                 name="lastName"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('lastName') }"
               >
               </b-form-input>
-              <p
+              <span
                 v-if="submitted && errors.has('lastName')"
                 class="invalid-feedback f-validations"
               >
                 {{ errors.first("lastName") }}
-              </p>
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -94,24 +94,23 @@
               label-for="input-4"
               class="col-md-6"
             >
-              <label for="email">Email</label>
+              <span for="email" class="ml-2">Email</span>
               <b-form-input
                 type="email"
                 v-model="user.email"
                 v-validate="'required|email'"
-                placeholder="Email"
                 id="email"
                 name="email"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('email') }"
               >
               </b-form-input>
-              <p
+              <span
                 v-if="submitted && errors.has('email')"
                 class="invalid-feedback f-validations"
               >
                 {{ errors.first("email") }}
-              </p>
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -119,7 +118,7 @@
               label-for="input-5"
               class="col-md-6"
             >
-              <label for="password">Password</label>
+              <span for="password" class="ml-2">Password</span>
               <input
                 class="form-control"
                 type="password"
@@ -128,39 +127,39 @@
                 id="password"
                 name="password"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
-                placeholder="Password"
                 ref="password"
               />
               <span
                 v-if="submitted && errors.has('password')"
                 class="invalid-feedback f-validations"
-                >{{ errors.first("password") }}</span
               >
+                {{ errors.first("password") }}
+              </span>
             </b-form-group>
             <b-form-group
               id="input-group-6"
               label-for="input-6"
               class="col-md-6"
             >
-              <label for="confirmpassword">Confirm Password</label>
+              <span for="confirmPassword" class="ml-2">Confirm Password</span>
               <input
                 class="form-control"
                 type="password"
-                v-model="user.confirmpassword"
+                v-model="user.confirmPassword"
                 v-validate="'required|confirmed:password'"
-                id="confirmpassword"
-                name="confirmpassword"
+                id="confirmPassword"
+                name="confirmPassword"
                 :class="{
-                  'is-invalid': submitted && errors.has('confirmpassword')
+                  'is-invalid': submitted && errors.has('confirmPassword')
                 }"
-                placeholder="Confirm Password"
                 data-vv-as="password"
               />
               <span
-                v-if="submitted && errors.has('confirmpassword')"
+                v-if="submitted && errors.has('confirmPassword')"
                 class="invalid-feedback f-validations"
-                >{{ errors.first("confirmpassword") }}</span
               >
+                {{ errors.first("confirmPassword") }}
+              </span>
             </b-form-group>
           </b-form>
           <div class="text-center space">
@@ -195,7 +194,7 @@ export default {
         lastName: "",
         email: "",
         password: "",
-        confirmpassword: ""
+        confirmPassword: ""
       },
       submitted: false
     };

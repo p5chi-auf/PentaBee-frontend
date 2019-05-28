@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import Registration from "./store/registration";
 import router from "./route";
 import store from "./store";
 import BootstrapVue from "bootstrap-vue";
@@ -8,7 +9,6 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
-import VeeValidate from "vee-validate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
@@ -23,18 +23,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate);
 
-VeeValidate.Validator.extend("verify_password", {
-  // eslint-disable-next-line no-unused-vars
-  getMessage: field => `Password should be more complex`,
-  validate: value => {
-    var strongRegex = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,16})"
-    );
-    return strongRegex.test(value);
-  }
-});
 Vue.component("component-header", HeaderComponent);
 Vue.component("component-footer", FooterComponent);
 Vue.component("component-layout", LayoutComponent);
@@ -44,7 +33,7 @@ new Vue({
   router,
   store,
   BootstrapVue,
-  VeeValidate,
   FontAwesomeIcon,
+  Registration,
   render: h => h(App)
 }).$mount("#app");
