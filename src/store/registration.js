@@ -2,7 +2,7 @@ import VeeValidate from "vee-validate";
 import Vue from "vue";
 Vue.use(VeeValidate);
 
-VeeValidate.Validator.extend("verify_password", {
+VeeValidate.Validator.extend("verifyPassword", {
   // eslint-disable-next-line no-unused-vars
   getMessage: field =>
     `The password should contain Minimum 6 and Maximum 12 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.`,

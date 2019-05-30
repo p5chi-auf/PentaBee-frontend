@@ -31,8 +31,10 @@
                 {{ errors.first("username") }}
               </span>
             </b-form-group>
+
             <b-form-group id="input-group-2" label-for="input-2">
               <span for="password" class="ml-2">Password</span>
+
               <input
                 class="form-control"
                 type="password"
@@ -108,6 +110,7 @@ div {
 login {
   position: center;
 }
+
 .background {
   background-color: #2d2d2d;
   position: absolute;

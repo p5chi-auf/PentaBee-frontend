@@ -1,7 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Registration from "./store/index";
+import Registration from "./store/registration";
 import router from "./route";
+
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";

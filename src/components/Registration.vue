@@ -12,7 +12,7 @@
             <b-form-group
               id="input-group-1"
               label-for="input-1"
-              class="col-md-6 first_group"
+              class="col-md-6"
             >
               <span for="username" class="ml-2">Username</span>
 
@@ -95,6 +95,7 @@
               class="col-md-6"
             >
               <span for="email" class="ml-2">Email</span>
+
               <b-form-input
                 type="email"
                 v-model="user.email"
@@ -119,11 +120,12 @@
               class="col-md-6"
             >
               <span for="password" class="ml-2">Password</span>
+
               <input
                 class="form-control"
                 type="password"
                 v-model="user.password"
-                v-validate="'required|verify_password'"
+                v-validate="'required|verifyPassword'"
                 id="password"
                 name="password"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
@@ -136,12 +138,14 @@
                 {{ errors.first("password") }}
               </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-6"
               label-for="input-6"
               class="col-md-6"
             >
               <span for="confirmPassword" class="ml-2">Confirm Password</span>
+
               <input
                 class="form-control"
                 type="password"
