@@ -1,144 +1,187 @@
 <template>
   <div class="background">
-    <b-container>
+    <b-container class="col-md-9">
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3  ">
+        <b-card class="p-3">
           <h4 class="text-center">
             Create an PentaBee account
-            <hr color="#5ca0ca" />
+            <hr />
           </h4>
 
-          <b-form @submit="onSubmit" class="row">
+          <b-form @submit.prevent="handleSubmit" class="row">
             <b-form-group
               id="input-group-1"
               label-for="input-1"
               class="col-md-6"
             >
+              <span for="username" class="ml-2">Username</span>
+
               <b-form-input
-                id="input-1"
-                v-model="form.username"
-                v-validate.continues="'required|min:5'"
-                type="username"
-                placeholder="Username"
+                type="text"
+                v-model="user.username"
+                v-validate="'alpha|required|min:5|max:20'"
+                id="username"
                 name="username"
+                class="form-control"
+                :class="{
+                  'is-invalid': submitted && errors.has('username')
+                }"
               >
               </b-form-input>
-              <p v-if="errors.has('username')" class="f-validations">
+              <span
+                v-if="submitted && errors.has('username')"
+                class="invalid-feedback "
+              >
                 {{ errors.first("username") }}
-              </p>
+              </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-2"
               label-for="input-2"
               class="col-md-6"
             >
+              <span for="firstName" class="ml-2">First Name</span>
+
               <b-form-input
-                id="input-2"
-                v-model="form.name"
-                v-validate.continues="'required|min:3'"
-                type="name"
-                placeholder="First Name"
-                name="name"
+                type="text"
+                v-model="user.firstName"
+                v-validate="'required|min:3|max:20'"
+                name="firstName"
+                id="firstName"
+                class="form-control"
+                :class="{
+                  'is-invalid': submitted && errors.has('firstName')
+                }"
               >
               </b-form-input>
-              <p v-if="errors.has('name')" class="f-validations">
-                {{ errors.first("name") }}
-              </p>
+
+              <span
+                v-if="submitted && errors.has('firstName')"
+                class="invalid-feedback "
+              >
+                {{ errors.first("firstName") }}
+              </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-3"
               label-for="input-3"
               class="col-md-6"
             >
+              <span for="lastName" class="ml-2">Last Name</span>
+
               <b-form-input
-                id="input-3"
-                v-model="form.surname"
-                v-validate.continues="'required|min:5'"
-                type="surname"
-                placeholder="Last Name"
-                name="surname"
+                type="text"
+                v-model="user.lastName"
+                v-validate="'required|min:3|max:20'"
+                id="lastName"
+                name="lastName"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('lastName') }"
               >
               </b-form-input>
-              <p v-if="errors.has('surname')" class="f-validations">
-                {{ errors.first("surname") }}
-              </p>
+              <span
+                v-if="submitted && errors.has('lastName')"
+                class="invalid-feedback "
+              >
+                {{ errors.first("lastName") }}
+              </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-4"
               label-for="input-4"
               class="col-md-6"
             >
+              <span for="email" class="ml-2">Email</span>
+
               <b-form-input
-                id="input-4"
-                v-model="form.email"
-                v-validate="'email'"
-                v-validate.continues="'required'"
                 type="email"
-                placeholder="Email"
+                v-model="user.email"
+                v-validate="'required|email'"
+                id="email"
                 name="email"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('email') }"
               >
               </b-form-input>
-              <p v-if="errors.has('email')" class="f-validations">
+              <span
+                v-if="submitted && errors.has('email')"
+                class="invalid-feedback "
+              >
                 {{ errors.first("email") }}
-              </p>
+              </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-5"
               label-for="input-5"
               class="col-md-6"
             >
-              <b-input
-                v-validate="'required'"
-                name="password"
+              <span for="password" class="ml-2">Password</span>
+
+              <input
+                class="form-control"
                 type="password"
-                :class="{ 'is-danger': errors.has('password') }"
-                placeholder="Password"
+                v-model="user.password"
+                v-validate="'required|verifyPassword'"
+                id="password"
+                name="password"
+                :class="{ 'is-invalid': submitted && errors.has('password') }"
                 ref="password"
-              >
-              </b-input>
+              />
               <span
-                v-show="errors.has('password')"
-                class="f-validations help is-danger"
-                >{{ errors.first("password") }}</span
+                v-if="submitted && errors.has('password')"
+                class="invalid-feedback "
               >
+                {{ errors.first("password") }}
+              </span>
             </b-form-group>
+
             <b-form-group
               id="input-group-6"
               label-for="input-6"
               class="col-md-6"
             >
-              <b-input
-                v-validate="'required|confirmed:password'"
-                name="password_confirmation"
+              <span for="confirmPassword" class="ml-2">Confirm Password</span>
+
+              <input
+                class="form-control"
                 type="password"
-                :class="{ 'is-danger': errors.has('password_confirmation') }"
-                placeholder="Confirm Password"
+                v-model="user.confirmPassword"
+                v-validate="'required|confirmed:password'"
+                id="confirmPassword"
+                name="confirmPassword"
+                :class="{
+                  'is-invalid': submitted && errors.has('confirmPassword')
+                }"
                 data-vv-as="password"
-              >
-              </b-input>
+              />
               <span
-                v-show="errors.has('password_confirmation')"
-                class="f-validations help is-danger"
-                >{{ errors.first("password_confirmation") }}</span
+                v-if="submitted && errors.has('confirmPassword')"
+                class="invalid-feedback "
               >
+                {{ errors.first("confirmPassword") }}
+              </span>
             </b-form-group>
           </b-form>
-          <div class="text-center">
-            <b-button
-              to="/login"
-              type="submit"
+          <div class="text-center space">
+            <b-btn
               pill
               block
-              variant="primary"
-              class="col-md-6 float-none d-inline-block"
+              type="submit"
+              variant="outline-warning"
+              class="col-md-5 float-none d-inline-block"
+              @click="handleSubmit"
             >
               Create your account
-            </b-button>
+            </b-btn>
           </div>
-          <br />
           <p class="text-center">
-            Already have a <b-link to="/">PentaBee</b-link> account?
-            <b-link to="/login">Log in</b-link>
+            Already have a
+            <b-link class="link" to="/">PentaBee</b-link> account?
+            <b-link class="link" to="/login">Log in</b-link>
           </p>
         </b-card>
       </b-row>
@@ -148,29 +191,27 @@
 
 <script>
 export default {
-  name: "login",
   data() {
     return {
-      status: "Not accepted",
-      form: {
+      user: {
         username: "",
-        name: "",
-        surname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
-        confirmpassword: ""
-      }
+        confirmPassword: ""
+      },
+      submitted: false
     };
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      this.form.username = "";
-      this.form.name = "";
-      this.form.surname = "";
-      this.form.email = "";
-      this.form.password = "";
-      this.form.confirmpassword = "";
+    handleSubmit() {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+        }
+      });
     }
   }
 };
@@ -186,7 +227,7 @@ login {
   position: center;
 }
 h4 {
-  color: #5ca0ca;
+  color: #ffbc1d;
 }
 
 .background {
@@ -195,11 +236,17 @@ h4 {
   height: 100%;
   width: 100%;
 }
-.f-validations {
-  color: rgb(255, 106, 106);
-  position: relative;
-}
+
 p {
   color: #565554;
+}
+.space {
+  padding: 7px;
+}
+.ml-2 {
+  color: #434747;
+}
+.link {
+  color: #ffbc1d;
 }
 </style>
