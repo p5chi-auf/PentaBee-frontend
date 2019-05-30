@@ -5,7 +5,7 @@
         <b-card class="p-3">
           <h4 class="text-center">
             Create an PentaBee account
-            <hr color="#5ca0ca" />
+            <hr />
           </h4>
 
           <b-form @submit.prevent="handleSubmit" class="row">
@@ -30,7 +30,7 @@
               </b-form-input>
               <span
                 v-if="submitted && errors.has('username')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("username") }}
               </span>
@@ -58,7 +58,7 @@
 
               <span
                 v-if="submitted && errors.has('firstName')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("firstName") }}
               </span>
@@ -83,7 +83,7 @@
               </b-form-input>
               <span
                 v-if="submitted && errors.has('lastName')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("lastName") }}
               </span>
@@ -107,7 +107,7 @@
               </b-form-input>
               <span
                 v-if="submitted && errors.has('email')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("email") }}
               </span>
@@ -131,7 +131,7 @@
               />
               <span
                 v-if="submitted && errors.has('password')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("password") }}
               </span>
@@ -156,27 +156,28 @@
               />
               <span
                 v-if="submitted && errors.has('confirmPassword')"
-                class="invalid-feedback f-validations"
+                class="invalid-feedback "
               >
                 {{ errors.first("confirmPassword") }}
               </span>
             </b-form-group>
           </b-form>
           <div class="text-center space">
-            <b-button
+            <b-btn
               pill
               block
               type="submit"
-              variant="primary"
-              class="col-md-3 float-none d-inline-block"
+              variant="outline-warning"
+              class="col-md-5 float-none d-inline-block"
               @click="handleSubmit"
             >
               Create your account
-            </b-button>
+            </b-btn>
           </div>
           <p class="text-center">
-            Already have a <b-link to="/">PentaBee</b-link> account?
-            <b-link to="/login">Log in</b-link>
+            Already have a
+            <b-link class="link" to="/">PentaBee</b-link> account?
+            <b-link class="link" to="/login">Log in</b-link>
           </p>
         </b-card>
       </b-row>
@@ -222,7 +223,7 @@ login {
   position: center;
 }
 h4 {
-  color: #5ca0ca;
+  color: #ffbc1d;
 }
 
 .background {
@@ -231,16 +232,17 @@ h4 {
   height: 100%;
   width: 100%;
 }
-.f-validations {
-  color: rgb(255, 106, 106);
-  width: 90%;
-  word-wrap: break-word;
-  display: inline-block;
-}
+
 p {
   color: #565554;
 }
 .space {
   padding: 7px;
+}
+.ml-2 {
+  color: #434747;
+}
+.link {
+  color: #ffbc1d;
 }
 </style>
