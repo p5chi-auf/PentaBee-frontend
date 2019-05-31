@@ -37,7 +37,6 @@
                 Search
               </b-button>
             </b-nav-form>
-
             <b-nav-item-dropdown right>
               <template slot="button-content">
                 User
@@ -117,7 +116,7 @@ img {
   background: #9bd6e7;
 }
 .navbar {
-  background: #1b1d1e;
+  background: #2e2e2d;
 }
 .img {
   opacity: 1;
@@ -128,6 +127,6 @@ img {
 }
 
 .img:hover {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 </style>

@@ -125,7 +125,10 @@
                 class="form-control"
                 type="password"
                 v-model="user.password"
-                v-validate="'required|verifyPassword'"
+                v-validate="{
+                  required: true,
+                  regex: /\^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,16})/
+                }"
                 id="password"
                 name="password"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
@@ -133,9 +136,9 @@
               />
               <span
                 v-if="submitted && errors.has('password')"
-                class="invalid-feedback "
-              >
-                {{ errors.first("password") }}
+                class="invalid-feedback ">
+                {{ errors.first("password")
+                }}
               </span>
             </b-form-group>
 
