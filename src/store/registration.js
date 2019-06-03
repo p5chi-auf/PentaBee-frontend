@@ -13,3 +13,4 @@ VeeValidate.Validator.extend("verifyPassword", {
     return strongRegex.test(value);
   }
 });
+export default "./registration"

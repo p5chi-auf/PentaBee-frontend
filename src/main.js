@@ -1,8 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Registration from "./store/registration";
 import router from "./route";
-
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -14,6 +12,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import "./assets/main.css";
+import Registration from "./store/registration";
 
 library.add(faUser);
 library.add(faCog);
