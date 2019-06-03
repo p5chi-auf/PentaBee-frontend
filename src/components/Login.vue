@@ -2,10 +2,10 @@
   <div class="background">
     <b-container fluid>
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3  ">
+        <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr />
+            <hr/>
           </h4>
 
           <b-form @submit.prevent="handleSubmit">
@@ -19,9 +19,7 @@
                 id="username"
                 name="username"
                 class="form-control"
-                :class="{
-                  'is-invalid': submitted && errors.has('username')
-                }"
+                :class="{'is-invalid': submitted && errors.has('username')}"
               >
               </b-form-input>
               <span
@@ -61,12 +59,14 @@
                 variant="outline-warning"
                 @click="handleSubmit"
               >
+                <span class="ajax-loader"></span>
                 Login
               </b-btn>
             </div>
             <p class="text-center">
               Haven't got a
-              <b-link class="link" to="/">PentaBee</b-link> account?
+              <b-link class="link" to="/">PentaBee</b-link>
+              account?
               <b-link class="link" to="/registration">Sign up</b-link>
             </p>
           </b-form>
