@@ -7,7 +7,6 @@
             Create an PentaBee account
             <hr />
           </h4>
-
           <b-form @submit.prevent="handleSubmit" class="row">
             <b-form-group
               id="input-group-1"
@@ -133,7 +132,7 @@
               />
               <span
                 v-if="submitted && errors.has('password')"
-                class="invalid-feedback "
+                class="invalid-feedback"
               >
                 {{ errors.first("password") }}
               </span>
