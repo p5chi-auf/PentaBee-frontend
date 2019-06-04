@@ -13,36 +13,44 @@
             <b-nav-item to="/">
               Home
             </b-nav-item>
+            
             <b-nav-item to="/login">
               Login
             </b-nav-item>
+            
             <b-nav-item to="/registration">
               Registration
             </b-nav-item>
           </b-navbar-nav>
+          
           <b-navbar-nav class="ml-auto">
             <b-nav-form>
               <b-form-input size="sm" class="mr-sm-2" placeholder="Search">
               </b-form-input>
+              
               <b-button variant="outline-warning" size="sm" class="my-2 my-sm-0" type="submit">
                 Search
               </b-button>
             </b-nav-form>
+            
             <b-nav-item-dropdown right>
               <template slot="button-content">
                 User
               </template>
-                <b-dropdown-item to="/profile">
-                  <font-awesome-icon icon="user"/>
-                     &nbsp;Profile
-                 </b-dropdown-item>
+              
+              <b-dropdown-item to="/profile">
+                <font-awesome-icon icon="user"/>
+                &nbsp;Profile
+              </b-dropdown-item>
+              
               <b-dropdown-item to="/settings">
                 <font-awesome-icon icon="cog"/>
-                  &nbsp;Settings
+                &nbsp;Settings
               </b-dropdown-item>
+              
               <b-dropdown-item to="/login">
                 <font-awesome-icon icon="power-off"/>
-                  &nbsp;Logout
+                &nbsp;Logout
               </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>

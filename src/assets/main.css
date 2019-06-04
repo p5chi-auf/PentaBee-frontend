@@ -1,10 +1,11 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
-div {
-  font-family: "Lato", sans-serif;
-}
+body {
+  font-family: "Lato", sans-serif;}
 
-login {
+.login {
   position: center;
 }
 
@@ -23,7 +24,7 @@ p {
   color: #565554;
 }
 
-.ButtonPadding{
+.button-padding {
   padding: 7px;
 }
 
@@ -34,3 +35,4 @@ p {
 .LinkRedirect {
   color: #ffbc1d;
 }
+
