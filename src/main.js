@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
+import AsideComponent from "./views/Aside";
 
 Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
@@ -28,6 +29,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("component-header", HeaderComponent);
 Vue.component("component-footer", FooterComponent);
 Vue.component("component-layout", LayoutComponent);
+Vue.component("component-aside", AsideComponent);
 
 
 VeeValidate.Validator.extend("verifyPassword", {

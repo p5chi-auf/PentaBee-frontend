@@ -22,31 +22,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    tag: {
-      type: String,
-      default: "li"
-    },
-    title: String,
-    icon: String,
-    titleClasses: [String, Object, Array]
-  },
-  data() {
-    return {
-      isOpen: false
-    };
-  },
-  methods: {
-    toggleDropDown() {
-      this.isOpen = !this.isOpen;
-      this.$emit("change", this.isOpen);
-    },
-    closeDropDown() {
-      this.isOpen = false;
-      this.$emit("change", false);
-    }
-  }
-};
-</script>

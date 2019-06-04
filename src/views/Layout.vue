@@ -1,4 +1,4 @@
 <template>
-  <router-view />
+  <router-view class="col-md-10"/>
 </template>
-<script></script>
+
