@@ -1,4 +1,4 @@
 <template>
-  <router-view class="col-md-10"/>
+  <router-view/>
 </template>
 

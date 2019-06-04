@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-md-10">
     <h1 align="center">Main Page</h1>
 
     <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">

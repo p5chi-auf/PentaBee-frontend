@@ -17,6 +17,7 @@ import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
 import AsideComponent from "./views/Aside";
+import "./assets/main.css";
 
 Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
