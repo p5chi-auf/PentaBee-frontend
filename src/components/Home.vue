@@ -12,7 +12,7 @@
         calling extra attention to featured content or information.
       </template>
 
-      <hr class="my-4" />
+      <hr class="my-4"/>
 
       <p>
         It uses utility classes for typography and spacing to space content out

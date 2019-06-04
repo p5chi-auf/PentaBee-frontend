@@ -12,30 +12,25 @@ h4 {
   color: #5ca0ca;
 }
 
-.background {
+.LoginRegistrationBackground {
   background-color: #2d2d2d;
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.f-validations {
-  color: rgb(255, 106, 106);
-  position: relative;
-}
-
 p {
   color: #565554;
 }
 
-.space {
+.ButtonPadding{
   padding: 7px;
 }
 
-.ml-2 {
+.TextForm {
   color: #434747;
 }
 
-.link {
+.LinkRedirect {
   color: #ffbc1d;
 }
