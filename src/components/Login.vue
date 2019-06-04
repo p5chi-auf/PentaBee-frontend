@@ -33,8 +33,7 @@
             <b-form-group id="input-group-2" label-for="input-2">
               <span for="password" class="ml-2">Password</span>
 
-              <input
-                class="form-control"
+              <input  class="form-control"
                 type="password"
                 v-model="user.password"
                 v-validate="'required'"
@@ -101,27 +100,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
-div {
-  font-family: "Lato", sans-serif;
-}
-
-login {
-  position: center;
-}
-
-.background {
-  background-color: #2d2d2d;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-p {
-  color: #565554;
-}
-
 b-form-group {
   position: fixed;
 }

@@ -217,35 +217,5 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
-div {
-  font-family: "Lato", sans-serif;
-}
-login {
-  position: center;
-}
-h4 {
-  color: #ffbc1d;
-}
-
-.background {
-  background-color: #2d2d2d;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-p {
-  color: #565554;
-}
-.space {
-  padding: 7px;
-}
-.ml-2 {
-  color: #434747;
-}
-.link {
-  color: #ffbc1d;
-}
 </style>
