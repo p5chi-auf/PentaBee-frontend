@@ -10,7 +10,7 @@
 
 					<b-form @submit.prevent="handleSubmit">
 						<b-form-group id="input-group-1" label-for="input-1">
-							<span class="ml-2" for="username">Username</span>
+							<label class="ml-2" for="username">Username</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('username')}"
@@ -19,16 +19,16 @@
 								name="username"
 								type="text"
 								v-model="user.username"
-								v-validate="'required'"
-							>
+								v-validate="'required'">
 							</b-form-input>
+
 							<span class="invalid-feedback" v-if="submitted && errors.has('username')">
                 {{ errors.first("username") }}
               </span>
 						</b-form-group>
 
 						<b-form-group id="input-group-2" label-for="input-2">
-							<span class="ml-2" for="password">Password</span>
+							<label class="ml-2" for="password">Password</label>
 
 							<input :class="{'is-invalid': submitted && errors.has('password')}"
 										 class="form-control"
@@ -37,8 +37,8 @@
 										 ref="password"
 										 type="password"
 										 v-model="user.password"
-										 v-validate="'required'"
-							/>
+										 v-validate="'required'"/>
+
 							<span class="invalid-feedback " v-if="submitted && errors.has('password')">
                 {{ errors.first("password") }}
               </span>
@@ -50,11 +50,11 @@
 								block
 								pill
 								type="submit"
-								variant="outline-warning"
-							>
+								variant="outline-warning">
 								Login
 							</b-btn>
 						</div>
+
 						<p class="text-center">
 							Haven't got a
 							<b-link class="link" to="/">PentaBee</b-link>
@@ -85,11 +85,10 @@
         this.submitted = true;
         this.$validator.validate().then(valid => {
           if (valid) {
-            alert("Your data are submited\n\n" + JSON.stringify(this.user));
+            alert("Your data are submit\n\n" + JSON.stringify(this.user));
           }
         });
       }
     }
   };
 </script>
-
