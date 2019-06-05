@@ -9,7 +9,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import "./assets/main.css";
+import "./assets/main.scss";
 
 import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";

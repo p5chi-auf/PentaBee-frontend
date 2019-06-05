@@ -1,5 +1,5 @@
 <template>
-  <div class="LoginRegistrationBackground">
+  <div class="login-registration-background">
     <b-container class="col-md-9">
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3">
@@ -13,7 +13,7 @@
               label-for="input-1"
               class="col-md-6"
             >
-              <span for="username" class="ml-2 TextForm">Username</span>
+              <span for="username" class="ml-2 text-form">Username</span>
 
               <b-form-input
                 type="text"
@@ -40,7 +40,7 @@
               label-for="input-2"
               class="col-md-6"
             >
-              <span for="firstName" class="ml-2 TextForm">First Name</span>
+              <span for="firstName" class="ml-2 text-form">First Name</span>
 
               <b-form-input
                 type="text"
@@ -68,7 +68,7 @@
               label-for="input-3"
               class="col-md-6"
             >
-              <span for="lastName" class="ml-2 TextForm">Last Name</span>
+              <span for="lastName" class="ml-2 text-form">Last Name</span>
 
               <b-form-input
                 type="text"
@@ -93,7 +93,7 @@
               label-for="input-4"
               class="col-md-6"
             >
-              <span for="email" class="ml-2 TextForm">Email</span>
+              <span for="email" class="ml-2 text-form">Email</span>
 
               <b-form-input
                 type="email"
@@ -118,7 +118,7 @@
               label-for="input-5"
               class="col-md-6"
             >
-              <span for="password" class="ml-2 TextForm">Password</span>
+              <span for="password" class="ml-2 text-form">Password</span>
 
               <input
                 class="form-control"
@@ -143,7 +143,7 @@
               label-for="input-6"
               class="col-md-6"
             >
-              <span for="confirmPassword" class="ml-2 TextForm">Confirm Password</span>
+              <span for="confirmPassword" class="ml-2 text-form">Confirm Password</span>
 
               <input
                 class="form-control"
@@ -179,8 +179,8 @@
           </div>
           <p class="text-center">
             Already have a
-            <b-link class="LinkRedirect" to="/">PentaBee</b-link> account?
-            <b-link class="LinkRedirect" to="/login">Log in</b-link>
+            <b-link class="link-redirect" to="/">PentaBee</b-link> account?
+            <b-link class="link-redirect" to="/login">Log in</b-link>
           </p>
         </b-card>
       </b-row>

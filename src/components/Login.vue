@@ -1,5 +1,5 @@
 <template>
-  <div class="LoginRegistrationBackground">
+  <div class="login-registration-background">
     <b-container fluid>
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3">
@@ -10,7 +10,7 @@
 
           <b-form @submit.prevent="handleSubmit">
             <b-form-group id="input-group-1" label-for="input-1">
-              <span for="username" class="ml-2 TextForm">Username</span>
+              <span for="username" class="ml-2 text-form">Username</span>
 
               <b-form-input
                 type="text"
@@ -31,7 +31,7 @@
             </b-form-group>
 
             <b-form-group id="input-group-2" label-for="input-2">
-              <span for="password" class="ml-2 TextForm">Password</span>
+              <span for="password" class="ml-2 text-form">Password</span>
 
               <input  class="form-control"
                 type="password"
@@ -50,7 +50,7 @@
               </span>
             </b-form-group>
 
-            <div class="text-center ButtonPadding">
+            <div class="text-center button-padding">
               <b-btn
                 pill
                 block
@@ -64,9 +64,9 @@
             </div>
             <p class="text-center">
               Haven't got a
-              <b-link class="LinkRedirect" to="/">PentaBee</b-link>
+              <b-link class="link-redirect" to="/">PentaBee</b-link>
               account?
-              <b-link class="LinkRedirect" to="/registration">Sign up</b-link>
+              <b-link class="link-redirect" to="/registration">Sign up</b-link>
             </p>
           </b-form>
         </b-card>
