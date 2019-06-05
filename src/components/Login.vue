@@ -10,7 +10,7 @@
 
           <b-form @submit.prevent="handleSubmit">
             <b-form-group id="input-group-1" label-for="input-1">
-              <span for="username" class="ml-2 text-form">Username</span>
+              <label for="username" class="ml-2 text-form">Username</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('username')}"
