@@ -1,5 +1,5 @@
 <template>
-	<div class="background">
+	<div class="login-registration-background">
 		<b-container fluid>
 			<b-row align-h="center" class="mt-5">
 				<b-card class="p-3">
@@ -8,9 +8,9 @@
 						<hr/>
 					</h4>
 
-					<b-form @submit.prevent="handleSubmit">
-						<b-form-group id="input-group-1" label-for="input-1">
-							<label class="ml-2" for="username">Username</label>
+          <b-form @submit.prevent="handleSubmit">
+            <b-form-group id="input-group-1" label-for="input-1">
+              <label for="username" class="ml-2 text-form">Username</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('username')}"
@@ -26,9 +26,9 @@
                 {{ errors.first("username") }}
               </span>
 						</b-form-group>
-
+      
 						<b-form-group id="input-group-2" label-for="input-2">
-							<label class="ml-2" for="password">Password</label>
+							<label class="ml-2 text-form" for="password">Password</label>
 
 							<input :class="{'is-invalid': submitted && errors.has('password')}"
 										 class="form-control"
@@ -44,7 +44,7 @@
               </span>
 						</b-form-group>
 
-						<div class="text-center space">
+						<div class="text-center button-padding">
 							<b-btn
 								@click="handleSubmit"
 								block
@@ -57,10 +57,10 @@
 
 						<p class="text-center">
 							Haven't got a
-							<b-link class="link" to="/">PentaBee</b-link>
+							<b-link class="link-redirect" to="/">PentaBee</b-link>
 							account?
 
-							<b-link class="link" to="/registration">Sign up</b-link>
+							<b-link class="link-redirect" to="/registration">Sign up</b-link>
 						</p>
 					</b-form>
 				</b-card>

@@ -1,5 +1,5 @@
 <template>
-	<div class="background">
+	<div class="login-registration-background">
 		<b-container class="col-md-9">
 			<b-row align-h="center" class="mt-5">
 				<b-card class="p-3">
@@ -10,7 +10,7 @@
 
 					<b-form @submit.prevent="handleSubmit" class="row">
 						<b-form-group class="col-md-6" id="input-group-1" label-for="input-1">
-							<label class="ml-2" for="username">Username</label>
+							<label class="ml-2 text-form" for="username">Username</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('username')}"
@@ -28,7 +28,7 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-2" label-for="input-2">
-							<label class="ml-2" for="firstName">First Name</label>
+							<label class="ml-2 text-form" for="firstName">First Name</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('firstName')}"
@@ -46,7 +46,7 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-3" label-for="input-3">
-							<label class="ml-2" for="lastName">Last Name</label>
+							<label class="ml-2 text-form" for="lastName">Last Name</label>
 
 							<b-form-input
 								:class="{ 'is-invalid': submitted && errors.has('lastName') }"
@@ -64,7 +64,7 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-4" label-for="input-4">
-							<label class="ml-2" for="email">Email</label>
+							<label class="ml-2 text-form" for="email">Email</label>
 
 							<b-form-input
 								:class="{ 'is-invalid': submitted && errors.has('email') }"
@@ -82,7 +82,7 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-5" label-for="input-5">
-							<label class="ml-2" for="password">Password</label>
+							<label class="ml-2 text-form" for="password">Password</label>
 
 							<input
 								:class="{ 'is-invalid': submitted && errors.has('password') }"
@@ -103,7 +103,7 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-6" label-for="input-6">
-							<label class="ml-2" for="confirmPassword">Confirm Password</label>
+							<label class="ml-2 text-form" for="confirmPassword">Confirm Password</label>
 
 							<input
 								:class="{'is-invalid': submitted && errors.has('confirmPassword')}"
@@ -135,10 +135,10 @@
 
 					<p class="text-center">
 						Already have a
-						<b-link class="link" to="/">PentaBee</b-link>
+						<b-link class="link-redirect" to="/">PentaBee</b-link>
 						account?
 
-						<b-link class="link" to="/login">Log in</b-link>
+						<b-link class="link-redirect" to="/login">Log in</b-link>
 					</p>
 				</b-card>
 			</b-row>
