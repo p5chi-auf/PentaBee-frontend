@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="col-md-10">
     <h1 align="center">Main Page</h1>
 
     <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
-      <template slot="header"
-        >BootstrapVue</template
-      >
+      <template slot="header">
+        BootstrapVue
+      </template>
 
       <template slot="lead">
         This is a simple hero unit, a simple jumbotron-style component for
@@ -21,3 +21,4 @@
     </b-jumbotron>
   </div>
 </template>
+

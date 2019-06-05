@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <component-header></component-header>
-    <component-layout></component-layout>
+    <div class="row">
+      <component-aside></component-aside>
+      <component-layout></component-layout>
+    </div>
     <component-footer></component-footer>
   </div>
 </template>

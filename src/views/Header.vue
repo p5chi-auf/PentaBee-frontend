@@ -1,6 +1,5 @@
 <template>
   <header>
-    <div>
       <b-navbar class="navbar" toggleable="lg" type="dark">
         <b-navbar-brand to="/">
           <img class="img" src="../../public/img/logo.png"/>
@@ -66,7 +65,6 @@
           <div class="top-bar-bluesky"></div>
         </div>
       </div>
-    </div>
   </header>
 </template>
 
