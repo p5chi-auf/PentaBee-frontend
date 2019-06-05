@@ -1,20 +1,19 @@
 <template>
-	<aside class="col-md-2">
-		<div class="aside">
-			<b-nav vertical class="w-25">
-				<b-nav-item active>Active</b-nav-item>
-				<b-nav-item>Link</b-nav-item>
-				<b-nav-item>Another Link</b-nav-item>
-				<b-nav-item disabled>Disabled</b-nav-item>
-			</b-nav>
-		</div>
-	</aside>
+	<div class="aside">
+		<b-nav vertical class="w-25">
+			<b-nav-item active>Active</b-nav-item>
+			<b-nav-item>Link</b-nav-item>
+			<b-nav-item>Another Link</b-nav-item>
+			<b-nav-item disabled>Disabled</b-nav-item>
+		</b-nav>
+	</div>
 </template>
 
 <style>
-	.aside{
-		background: #2e2e2d;
-		position: absolute;
-	}
+.aside{
+	background: #2e2e2d;
+	position: absolute;
+	float: left;
+	height: 1000px;
+}
 </style>
-tool-bar
