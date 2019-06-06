@@ -8,23 +8,19 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faUser, faCog, faPowerOff, faHome, faSignInAlt} from "@fortawesome/free-solid-svg-icons";
 
 import HeaderComponent from "./views/Header";
 import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
 import AsideComponent from "./views/Aside";
-import "./assets/main.css";
+import "./assets/main.scss";
 
 Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
 
-library.add(faUser);
-library.add(faCog);
-library.add(faPowerOff);
+library.add(faUser, faCog, faPowerOff, faHome, faSignInAlt);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("component-header", HeaderComponent);

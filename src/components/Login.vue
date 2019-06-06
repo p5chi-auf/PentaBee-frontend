@@ -85,7 +85,7 @@
         this.submitted = true;
         this.$validator.validate().then(valid => {
           if (valid) {
-            alert("Your data are submit\n\n" + JSON.stringify(this.user));
+            alert("Your data are submitted\n\n" + JSON.stringify(this.user));
           }
         });
       }
