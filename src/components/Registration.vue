@@ -94,11 +94,11 @@
 								v-model="user.password"
 								v-validate="{
                   required: true,
-                  regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,16})/
+                  regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/
                 }"/>
 
 							<span class="invalid-feedback" v-if="submitted && errors.has('password')">
-                {{ errors.first("password") }}
+                {{ 'The password should contain Minimum 6 and Maximum 12 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'}}
               </span>
 						</b-form-group>
 

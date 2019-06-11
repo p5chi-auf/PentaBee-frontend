@@ -1,13 +1,9 @@
 <template>
-	<header>
-		<b-navbar class="navbar" toggleable="lg" type="dark">
+	<header class="header-atributes">
+		<b-navbar toggleable="lg" type="dark">
 			<b-navbar-brand to="/">
-				<img class="img" src="../../public/img/logo.png" />
+				<img class="logo-icon" src="../../public/img/logo.png" alt="Responsive image"/>
 			</b-navbar-brand>
-
-			<!--        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>-->
-
-			<!--        <b-collapse id="nav-collapse" is-nav>-->
 
 			<b-navbar-nav class="ml-auto">
 				<b-nav-item-dropdown right>
@@ -18,17 +14,19 @@
 						<font-awesome-icon icon="user" />
 						&nbsp;Profile
 					</b-dropdown-item>
+
 					<b-dropdown-item to="/settings">
 						<font-awesome-icon icon="cog" />
 						&nbsp;Settings
 					</b-dropdown-item>
+					<b-dropdown-divider></b-dropdown-divider>
+
 					<b-dropdown-item to="/login">
 						<font-awesome-icon icon="power-off" />
 						&nbsp;Logout
 					</b-dropdown-item>
 				</b-nav-item-dropdown>
 			</b-navbar-nav>
-			<!--        </b-collapse>-->
 		</b-navbar>
 		<div class="top-bar">
 			<div class="inner">
