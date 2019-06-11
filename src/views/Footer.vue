@@ -1,5 +1,5 @@
 <template>
-	<footer toggleable="lg" type="dark">
+	<footer type="dark">
 		<div class="footer">
 			<div class="bottom-bar">
 				<div class="inner">
@@ -14,23 +14,4 @@
 	</footer>
 </template>
 
-<style>
-	.bottom-bar {
-		width: 100%;
-		height: 2px;
-	}
-	.inner {
-		width: 100%;
-		overflow: hidden;
-		height: inherit;
-	}
 
-	.inner .bottom-bar-yellow {
-		width: 100%;
-		height: inherit;
-	}
-
-	.bottom-bar-yellow {
-		background: #ffda00;
-	}
-</style>

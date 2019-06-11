@@ -4,12 +4,23 @@ div {
   font-family: "Lato", sans-serif;
 }
 
-login {
-  position: center;
+h4 {
+  color: #ffbc1d;
 }
 
-h4 {
-  color: #5ca0ca;
+p {
+  color: #565554;
+}
+
+.logo-icon {
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+  width: 100px;
+  padding: 1px;
+  position: center;
 }
 
 .background {
@@ -17,11 +28,6 @@ h4 {
   position: absolute;
   height: 100%;
   width: 100%;
-}
-
-
-p {
-  color: #565554;
 }
 
 .space {
@@ -45,15 +51,11 @@ p {
   background: #161616;
 }
 
- img {
-   width: 100px;
-   padding: 1px;
-   position: center;
- }
 .top-bar {
   width: 100%;
   height: 7px;
 }
+
 .inner {
   width: 100%;
   overflow: hidden;
@@ -89,18 +91,30 @@ p {
 .top-bar-bluesky {
   background: #9bd6e7;
 }
-.navbar {
+.header-atributes {
   background: #2e2e2d;
-}
-.img {
-  opacity: 1;
-  display: block;
-  height: auto;
-  transition: 0.5s ease;
-  backface-visibility: hidden;
 }
 
 .img:hover {
   opacity: 0.5;
 }
 
+.bottom-bar {
+ width: 100%;
+ height: 2px;
+}
+
+.inner {
+  width: 100%;
+  overflow: hidden;
+  height: inherit;
+}
+
+.inner .bottom-bar-yellow {
+  width: 100%;
+  height: inherit;
+}
+
+.bottom-bar-yellow {
+  background: #ffda00;
+}
