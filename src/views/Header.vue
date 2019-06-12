@@ -7,9 +7,8 @@
 
 			<div class="ml-auto">
 				<div class="ml-auto">
-					<b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret right>
-						<template slot="button-content">	&#x1F464;<span class="sr-only">Search</span></template>
-<!--					<b-dropdown variant="outline-warning" text="User" right>-->
+					<b-dropdown size="lg" variant="link" toggle-class="text-decoration-none" no-caret right>
+						<template slot="button-content">&#x1F464;<span class="user-dropdown">User</span></template>
 						<b-dropdown-item to="/profile">
 							<font-awesome-icon icon="user" />
 							&nbsp;Profile
@@ -98,5 +97,9 @@
 	}
 	.header-atributes {
 		background: #2e2e2d;
+	}
+	.user-dropdown{
+		color: #fff !important;
+		font-size: 80%;
 	}
 </style>
