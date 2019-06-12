@@ -20,7 +20,7 @@ export default new Router({
       component: Login
     },
     {
-      path: "/api/register",
+      path: "/registration",
       name: "registration",
       component: Registration
     }

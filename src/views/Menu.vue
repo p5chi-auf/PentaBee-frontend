@@ -20,7 +20,7 @@
 					<hr>
 				</b-nav-item>
 
-				<b-nav-item class="menu-items" to="/api/register">
+				<b-nav-item class="menu-items" to="/registration">
 					<span>
 						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
 						&nbsp;Registration
