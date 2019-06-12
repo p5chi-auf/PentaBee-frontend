@@ -1,5 +1,5 @@
 <template>
-<div class="menu">	<b-btn  @click="isActive= !isActive" class="button-position"><font-awesome-icon class="fa-lg" icon="arrows-alt-h"/></b-btn>
+<div class="menu">
 		<div v-if="isActive " class=" col-md-12 menu">
       <b-navbar toggleable="lg" type="dark">
         <b-nav vertical>
@@ -32,6 +32,7 @@
         </b-nav>
       </b-navbar>
 		</div>
+  <b-btn  @click="isActive= !isActive" class="button-position" ><font-awesome-icon class="fa-lg" icon="arrows-alt-h"/></b-btn>
 </div>
 </template>
 
@@ -41,11 +42,14 @@
     background-color: #323231;
     height: auto;
 		width: auto;
+    top: 0;
+    left:0;
+  
 }
 
   .button-position{
     position: relative;
-    bottom: 0;
+    top: 0%;
     left: 0;
     width: 100%;
   }
