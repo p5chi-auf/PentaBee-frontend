@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <component-header></component-header>
-    <div class="row">
-      <component-aside></component-aside>
-      <component-layout></component-layout>
-    </div>
-    <component-footer></component-footer>
-  </div>
+	<div id="app">
+		<component-header></component-header>
+		<component-menu></component-menu>
+		<component-layout></component-layout>
+		<component-footer></component-footer>
+	</div>
 </template>

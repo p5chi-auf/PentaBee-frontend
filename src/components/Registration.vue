@@ -98,8 +98,8 @@
                 }"/>
 
 							<span class="invalid-feedback" v-if="submitted && errors.has('password')">
-                {{ errors.first("password") }}
-              </span>
+              {{ 'The password should contain Minimum 6 and Maximum 12 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'}}
+							</span>
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-6" label-for="input-6">
