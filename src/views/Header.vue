@@ -40,3 +40,62 @@
 	</header>
 </template>
 
+<style>
+  .logo-icon {
+    opacity: 1;
+    display: block;
+    height: auto;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+    width: 100px;
+    padding: 1px;
+    position: center;
+  }
+  .logo-icon:hover {
+    opacity: 0.5;
+  }
+  .top-bar {
+    width: 100%;
+    height: 7px;
+  }
+
+  .inner {
+    width: 100%;
+    overflow: hidden;
+    height: inherit;
+  }
+
+  .inner .top-bar-orange,
+  .inner .top-bar-violet,
+  .inner .top-bar-blue,
+  .inner .top-bar-green,
+  .inner .top-bar-bluesky {
+    width: 20%;
+    float: left;
+    height: inherit;
+  }
+
+  .top-bar-orange {
+    background: #f4835b;
+  }
+
+  .top-bar-violet {
+    background: #555464;
+  }
+
+  .top-bar-blue {
+    background: #69cde9;
+  }
+
+  .top-bar-green {
+    background: #aabcbd;
+  }
+
+  .top-bar-bluesky {
+    background: #9bd6e7;
+  }
+  .header-atributes {
+    background: #2e2e2d;
+  }
+
+</style>
