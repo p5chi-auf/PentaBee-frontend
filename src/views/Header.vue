@@ -5,28 +5,30 @@
 				<img class="logo-icon" src="../../public/img/logo.png" alt="Responsive image"/>
 			</b-navbar-brand>
 
-			<b-navbar-nav class="ml-auto">
-				<b-nav-item-dropdown right>
-					<template slot="button-content">
-						User
-					</template>
-					<b-dropdown-item to="/profile">
-						<font-awesome-icon icon="user" />
-						&nbsp;Profile
-					</b-dropdown-item>
+			<div class="ml-auto">
+				<div class="ml-auto">
+					<b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret right>
+						<template slot="button-content">	&#x1F464;<span class="sr-only">Search</span></template>
+<!--					<b-dropdown variant="outline-warning" text="User" right>-->
+						<b-dropdown-item to="/profile">
+							<font-awesome-icon icon="user" />
+							&nbsp;Profile
+						</b-dropdown-item>
 
-					<b-dropdown-item to="/settings">
-						<font-awesome-icon icon="cog" />
-						&nbsp;Settings
-					</b-dropdown-item>
-					<b-dropdown-divider></b-dropdown-divider>
+						<b-dropdown-item to="/settings">
+							<font-awesome-icon icon="cog" />
+							&nbsp;Settings
+						</b-dropdown-item>
 
-					<b-dropdown-item to="/login">
-						<font-awesome-icon icon="power-off" />
-						&nbsp;Logout
-					</b-dropdown-item>
-				</b-nav-item-dropdown>
-			</b-navbar-nav>
+						<b-dropdown-divider></b-dropdown-divider>
+
+						<b-dropdown-item to="/login">
+							<font-awesome-icon icon="power-off" />
+							&nbsp;Logout
+						</b-dropdown-item>
+					</b-dropdown>
+				</div>
+			</div>
 		</b-navbar>
 		<div class="top-bar">
 			<div class="inner">
