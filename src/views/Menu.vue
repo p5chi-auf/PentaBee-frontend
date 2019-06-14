@@ -9,6 +9,28 @@
 				<b-nav-item to="/">
 					<span class="menu-items">
 						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
+					</span>
+				</b-nav-item>
+
+				<b-nav-item to="/login">
+					<span class="menu-items">
+						<font-awesome-icon class="fa-lg menu-icons" icon="sign-in-alt"/>
+					</span>
+				</b-nav-item>
+
+				<b-nav-item to="/registration">
+					<span class="menu-items">
+						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
+					</span>
+				</b-nav-item>
+			</b-nav>
+		</div>
+
+		<div v-else="!isActive" class="col-md-12 menu">
+			<b-nav vertical>
+				<b-nav-item to="/">
+					<span class="menu-items">
+						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
 						&nbsp;Home
 					</span>
 				</b-nav-item>
@@ -24,28 +46,6 @@
 					<span class="menu-items">
 						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
 						&nbsp;Registration
-					</span>
-				</b-nav-item>
-			</b-nav>
-		</div>
-
-		<div v-else="!isActive" class="col-md-12 menu">
-			<b-nav vertical>
-				<b-nav-item to="/">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
-					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/login">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="sign-in-alt"/>
-					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/registration">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
 					</span>
 				</b-nav-item>
 			</b-nav>
@@ -83,7 +83,7 @@
   export default {
     data: function(){
       return{
-        isActive:false
+        isActive: true
       }
     }
   }

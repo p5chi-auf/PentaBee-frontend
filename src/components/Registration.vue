@@ -168,7 +168,7 @@
         this.submitted = true;
         this.$validator.validate().then(valid => {
           if (valid) {
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+            alert("User successfully created!\n\n" + JSON.stringify(this.user));
           }
         });
       }
