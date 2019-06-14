@@ -28,12 +28,12 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-2" label-for="input-2">
-							<label class="ml-2 text-form" for="name">First Name</label>
+							<label class="ml-2 text-form" for="firstName">First Name</label>
 
 							<b-form-input
 								:class="{'is-invalid': submitted && errors.has('name')}"
 								class="form-control"
-								id="name"
+								id="firstName"
 								name="name"
 								type="text"
 								v-model="user.name"
@@ -44,7 +44,6 @@
                 {{ errors.first("name") }}
               </span>
 						</b-form-group>
-
 
 
 						<b-form-group class="col-md-6" id="input-group-4" label-for="input-4">
@@ -66,12 +65,12 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-3" label-for="input-3">
-							<label class="ml-2 text-form" for="surname">Last Name</label>
+							<label class="ml-2 text-form" for="lastName">Last Name</label>
 
 							<b-form-input
 								:class="{ 'is-invalid': submitted && errors.has('surname') }"
 								class="form-control"
-								id="surname"
+								id="lastName"
 								name="surname"
 								type="text"
 								v-model="user.surname"
@@ -105,19 +104,19 @@
 						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-6" label-for="input-6">
-							<label class="ml-2 text-form" for="confirm_password">Confirm Password</label>
+							<label class="ml-2 text-form" for="confirmPassword">Confirm Password</label>
 
 							<input
 								:class="{'is-invalid': submitted && errors.has('confirm_password')}"
 								class="form-control"
 								data-vv-as="password"
-								id="confirm_password"
+								id="confirmPassword"
 								name="confirm_password"
 								type="password"
 								v-model="user.confirm_password"
 								v-validate="'required|confirmed:password'"/>
 
-							<span class="invalid-feedback " v-if="submitted && errors.has('confirm_password')">
+							<span class="invalid-feedback" v-if="submitted && errors.has('confirm_password')">
                 {{ errors.first("confirm_password") }}
               </span>
 						</b-form-group>

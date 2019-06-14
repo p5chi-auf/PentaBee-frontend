@@ -1,10 +1,10 @@
 <template>
 	<div class="menu-position">
-		<b-btn  @click="isActive= !isActive" class="button-position">
+		<b-btn @click="isActive= !isActive" class="button-position">
 			<font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
 		</b-btn>
 
-		<div v-if="isActive" class="col-md-12 menu">
+		<div class="col-md-12 menu" v-if="isActive">
 			<b-nav vertical>
 				<b-nav-item to="/">
 					<span class="menu-items">
@@ -26,7 +26,7 @@
 			</b-nav>
 		</div>
 
-		<div v-else="!isActive" class="col-md-12 menu">
+		<div class="col-md-12 menu" v-else="!isActive">
 			<b-nav vertical>
 				<b-nav-item to="/">
 					<span class="menu-items">
@@ -55,23 +55,27 @@
 
 <style>
 
-	.menu-position{
+	.menu-position {
 		background-color: #323231;
 		height: auto;
 		width: auto;
 	}
-	.button-position{
+
+	.button-position {
 		position: relative;
 		bottom: 0;
 		left: 0;
 		width: 100%;
 	}
+
 	.menu-items {
 		color: white;
 	}
+
 	.menu-items:hover {
 		opacity: 0.5;
 	}
+
 	.menu {
 		height: 100%;
 		position: fixed;
@@ -81,8 +85,8 @@
 
 <script>
   export default {
-    data: function(){
-      return{
+    data: function () {
+      return {
         isActive: true
       }
     }
