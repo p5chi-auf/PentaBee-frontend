@@ -26,7 +26,7 @@
                 {{ errors.first("username") }}
               </span>
 						</b-form-group>
-      
+
 						<b-form-group id="input-group-2" label-for="input-2">
 							<label class="ml-2 text-form" for="password">Password</label>
 

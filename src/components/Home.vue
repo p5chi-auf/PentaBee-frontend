@@ -47,5 +47,3 @@
 		padding: 1%;
 	}
 </style>
-
-
