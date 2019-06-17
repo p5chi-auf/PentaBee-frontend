@@ -19,7 +19,7 @@
 								name="username"
 								type="text"
 								v-model="user.username"
-								v-validate="'alpha|required|min:5|max:20'">
+								v-validate="'alpha_dash|required|min:5|max:20'">
 							</b-form-input>
 
 							<span class="invalid-feedback" v-if="submitted && errors.has('username')">
@@ -31,37 +31,20 @@
 							<label class="ml-2 text-form" for="firstName">First Name</label>
 
 							<b-form-input
-								:class="{'is-invalid': submitted && errors.has('firstName')}"
+								:class="{'is-invalid': submitted && errors.has('name')}"
 								class="form-control"
 								id="firstName"
-								name="firstName"
+								name="name"
 								type="text"
-								v-model="user.firstName"
+								v-model="user.name"
 								v-validate="'required|min:3|max:20'">
 							</b-form-input>
 
-							<span class="invalid-feedback" v-if="submitted && errors.has('firstName')">
-                {{ errors.first("firstName") }}
+							<span class="invalid-feedback" v-if="submitted && errors.has('name')">
+                {{ errors.first("name") }}
               </span>
 						</b-form-group>
 
-						<b-form-group class="col-md-6" id="input-group-3" label-for="input-3">
-							<label class="ml-2 text-form" for="lastName">Last Name</label>
-
-							<b-form-input
-								:class="{ 'is-invalid': submitted && errors.has('lastName') }"
-								class="form-control"
-								id="lastName"
-								name="lastName"
-								type="text"
-								v-model="user.lastName"
-								v-validate="'required|min:3|max:20'">
-							</b-form-input>
-
-							<span class="invalid-feedback" v-if="submitted && errors.has('lastName')">
-                {{ errors.first("lastName") }}
-              </span>
-						</b-form-group>
 
 						<b-form-group class="col-md-6" id="input-group-4" label-for="input-4">
 							<label class="ml-2 text-form" for="email">Email</label>
@@ -78,6 +61,24 @@
 
 							<span class="invalid-feedback" v-if="submitted && errors.has('email')">
                 {{ errors.first("email") }}
+              </span>
+						</b-form-group>
+
+						<b-form-group class="col-md-6" id="input-group-3" label-for="input-3">
+							<label class="ml-2 text-form" for="lastName">Last Name</label>
+
+							<b-form-input
+								:class="{ 'is-invalid': submitted && errors.has('surname') }"
+								class="form-control"
+								id="lastName"
+								name="surname"
+								type="text"
+								v-model="user.surname"
+								v-validate="'required|min:3|max:20'">
+							</b-form-input>
+
+							<span class="invalid-feedback" v-if="submitted && errors.has('surname')">
+                {{ errors.first("surname") }}
               </span>
 						</b-form-group>
 
@@ -106,17 +107,17 @@
 							<label class="ml-2 text-form" for="confirmPassword">Confirm Password</label>
 
 							<input
-								:class="{'is-invalid': submitted && errors.has('confirmPassword')}"
+								:class="{'is-invalid': submitted && errors.has('confirm_password')}"
 								class="form-control"
 								data-vv-as="password"
 								id="confirmPassword"
-								name="confirmPassword"
+								name="confirm_password"
 								type="password"
-								v-model="user.confirmPassword"
+								v-model="user.confirm_password"
 								v-validate="'required|confirmed:password'"/>
 
-							<span class="invalid-feedback " v-if="submitted && errors.has('confirmPassword')">
-                {{ errors.first("confirmPassword") }}
+							<span class="invalid-feedback" v-if="submitted && errors.has('confirm_password')">
+                {{ errors.first("confirm_password") }}
               </span>
 						</b-form-group>
 					</b-form>
@@ -152,11 +153,11 @@
       return {
         user: {
           username: "",
-          firstName: "",
-          lastName: "",
+          name: "",
+          surname: "",
           email: "",
           password: "",
-          confirmPassword: ""
+          confirm_password: ""
         },
         submitted: false
       };
@@ -166,7 +167,7 @@
         this.submitted = true;
         this.$validator.validate().then(valid => {
           if (valid) {
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+            alert("User successfully created!\n\n" + JSON.stringify(this.user));
           }
         });
       }
