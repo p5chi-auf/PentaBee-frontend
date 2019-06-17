@@ -1,72 +1,121 @@
 <template>
-<div class="menu">
-		<div v-if="isActive " class=" col-md-12 menu">
-      <b-navbar toggleable="lg" type="dark">
-        <b-nav vertical>
-          <b-nav-item class="menu-items" to="/">
-					<span>
-						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
+  <div id="menu" >
+    <b-nav vertical id="show-element">
+      <b-nav-item to="/">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="home"/>
+        <span class="menu-items">
 						&nbsp;Home
 					</span>
-            
-            <hr>
-          </b-nav-item>
-          
-          <b-nav-item class="menu-items" to="/login">
-					<span>
-						<font-awesome-icon class="fa-lg menu-icons" icon="sign-in-alt"/>
+      </b-nav-item>
+      
+      <b-nav-item to="/login">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="sign-in-alt"/>
+        <span class=" menu-items">
 						&nbsp;Login
 					</span>
-            
-            <hr>
-          </b-nav-item>
-          
-          <b-nav-item class="menu-items" to="/registration">
-					<span>
-						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
+      </b-nav-item>
+      
+      <b-nav-item to="/registration">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="pencil-alt"/>
+        <span class="menu-items">
 						&nbsp;Registration
 					</span>
-            
-            <hr>
-          </b-nav-item>
-        </b-nav>
-      </b-navbar>
-		</div>
-  <b-btn  @click="isActive= !isActive" class="button-position" ><font-awesome-icon class="fa-lg" icon="arrows-alt-h"/></b-btn>
-</div>
+      </b-nav-item>
+    </b-nav>
+    <div class="display-button1">
+    <b-btn @click="isActive = !isActive"  class="col-md-12 ">
+      <font-awesome-icon class="fa-lg  " icon="arrows-alt-h"/>
+    </b-btn>
+    </div>
+    <div class="display-button2">
+      <b-btn @click="showMenuMobile()"  class="col-md-12 ">
+        <font-awesome-icon class="fa-lg  " icon="arrows-alt-h"/>
+      </b-btn>
+    </div>
+  </div>
 </template>
 
 <style>
-  
-  .menu{
-    background-color: #323231;
-    height: auto;
-		width: auto;
-    top: 0;
-    left:0;
-  
-}
-
-  .button-position{
-    position: relative;
-    top: 0%;
-    left: 0;
-    width: 100%;
+  @media screen  and (min-width: 601px) {
+    
+    #menu {
+      background-color: #323231;
+      width: auto;
+    }
+    
+    #show-element {
+      display: block;
+    }
+    
+    .menu-items {
+      color: white;
+    }
+    
+    .menu-items:hover {
+      opacity: 0.5;
+    }
+    
+    .display-button1{
+        display: block;
+      }
+    
+    .display-button2{
+      display: none;
+    }
   }
-
-  span {
-    color: white;
-  }
-  span:hover {
-    opacity: 0.5;
+  
+  @media screen  and (max-width: 600px) {
+    #menu {
+      background-color: #323231;
+      width: 100%;
+    }
+  
+    #show-element {
+      display: block;
+    }
+    
+    .menu-items {
+      color: white;
+    }
+    
+    .menu-items:hover {
+      opacity: 0.5;
+    }
+    
+    .display-button1{
+      display: none;
+    }
+  
+    .display-button2{
+      display: block;
+    }
   }
 </style>
+
 <script>
-	export default {
-	data: function(){
-		return{
-			isActive:true
-		}
-	}
-	}
+    export default {
+        data: function () {
+            return {
+                isActive: true,
+                showMenu: true
+            }
+        },
+        
+        methods:{
+            forStart : function(){
+                this.isActive =  true;
+            },
+            showMenuMobile : function(){
+                this.isActive = true;
+            let menu = document.getElementById("show-element");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+            }
+            else {
+                menu.style.display = "none";
+            }
+            
+            }
+        }
+    }
 </script>
