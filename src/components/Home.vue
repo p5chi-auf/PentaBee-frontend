@@ -33,17 +33,16 @@
 </template>
 
 <style>
-	.position-row{
-		position: absolute;
-		height: 100%;
-		width: 100%;
+.position-row {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 
-	}
-
-	.div-position-home{
-		background-color: rgba(67, 71, 71, 0);
-		height: available;
-		text-align: center;
-		padding: 1%;
-	}
+.div-position-home {
+  background-color: rgba(67, 71, 71, 0);
+  height: available;
+  text-align: center;
+  padding: 1%;
+}
 </style>
