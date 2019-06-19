@@ -109,12 +109,9 @@
                 if (menu.style.display === "none") {
                     this.isActive = true;
                     menu.style.display = "block";
-
                 } else {
                     menu.style.display = "none";
-
                 }
-
             }
         }
     }
