@@ -1,29 +1,29 @@
 <template>
   <div id="menu" >
-    <b-nav vertical id="show-element">
+    <b-nav  id="show-element">
       <b-nav-item to="/">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="home"/>
-        <span class="menu-items">
+        <span v-if="isActive"  class=" menu-items">
 						&nbsp;Home
 					</span>
       </b-nav-item>
       
       <b-nav-item to="/login">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="sign-in-alt"/>
-        <span class=" menu-items">
+        <span v-if="isActive"  class="menu-items-more menu-items">
 						&nbsp;Login
 					</span>
       </b-nav-item>
       
       <b-nav-item to="/registration">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="pencil-alt"/>
-        <span class="menu-items">
+        <span v-if="isActive"  class="menu-items">
 						&nbsp;Registration
 					</span>
       </b-nav-item>
     </b-nav>
     <div class="display-button1">
-    <b-btn @click="isActive = !isActive"  class="col-md-12 ">
+    <b-btn @click="isActive = !isActive"  class="col-md-12">
       <font-awesome-icon class="fa-lg  " icon="arrows-alt-h"/>
     </b-btn>
     </div>
@@ -49,6 +49,7 @@
     
     .menu-items {
       color: white;
+      display: inline;
     }
     
     .menu-items:hover {
@@ -71,11 +72,12 @@
     }
   
     #show-element {
-      display: block;
+      display: none;
+      
     }
-    
     .menu-items {
       color: white;
+      display: inline;
     }
     
     .menu-items:hover {
@@ -102,17 +104,17 @@
         },
         
         methods:{
-            forStart : function(){
-                this.isActive =  true;
-            },
             showMenuMobile : function(){
-                this.isActive = true;
             let menu = document.getElementById("show-element");
+            
             if (menu.style.display === "none") {
+                this.isActive = true;
                 menu.style.display = "block";
+                
             }
             else {
                 menu.style.display = "none";
+                
             }
             
             }
