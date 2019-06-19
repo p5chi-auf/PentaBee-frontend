@@ -4,9 +4,6 @@ import router from "./route";
 import VeeValidate from "vee-validate";
 import BootstrapVue from "bootstrap-vue";
 
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -19,10 +16,10 @@ import {
   faArrowsAltH
 } from "@fortawesome/free-solid-svg-icons";
 
-import HeaderComponent from "./views/Header";
-import FooterComponent from "./views/Footer";
-import LayoutComponent from "./views/Layout";
-import MenuComponent from "./views/Menu";
+import HeaderComponent from "./components/VHeader";
+import FooterComponent from "./components/VFooter";
+import LayoutComponent from "./components/VLayout";
+import MenuComponent from "./components/VMenu";
 import "./assets/main.scss";
 
 Vue.use(BootstrapVue);

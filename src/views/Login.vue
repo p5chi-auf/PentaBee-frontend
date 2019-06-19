@@ -9,16 +9,14 @@
 					</h4>
 
           <b-form @submit.prevent="handleSubmit">
-            <b-form-group id="input-group-1" label-for="input-1">
-              <label for="username" class="ml-2 text-form">Username</label>
-
+            <b-form-group id="input-group-1" label="Username:" label-for="username">
 							<b-form-input
-								:class="{'is-invalid': submitted && errors.has('username')}"
-								class="form-control"
 								id="username"
 								name="username"
-								type="text"
 								v-model="user.username"
+								type="text"
+								class="form-control"
+								:class="{'is-invalid': submitted && errors.has('username')}"
 								v-validate="'required'">
 							</b-form-input>
 
@@ -27,17 +25,17 @@
               </span>
 						</b-form-group>
 
-						<b-form-group id="input-group-2" label-for="input-2">
-							<label class="ml-2 text-form" for="password">Password</label>
-
-							<input :class="{'is-invalid': submitted && errors.has('password')}"
-										 class="form-control"
-										 id="password"
-										 name="password"
-										 ref="password"
-										 type="password"
-										 v-model="user.password"
-										 v-validate="'required'"/>
+						<b-form-group id="input-group-2" label="Password:" label-for="password">
+							<b-form-input
+								id="password"
+								name="password"
+								v-model="user.password"
+								type="password"
+								ref="password"
+								class="form-control"
+								:class="{'is-invalid': submitted && errors.has('password')}"
+								v-validate="'required'"
+							></b-form-input>
 
 							<span class="invalid-feedback " v-if="submitted && errors.has('password')">
                 {{ errors.first("password") }}
@@ -47,10 +45,12 @@
 						<div class="text-center button-padding">
 							<b-btn
 								@click="handleSubmit"
+
+								type="submit"
+								variant="outline-warning"
 								block
 								pill
-								type="submit"
-								variant="outline-warning">
+							>
 								Login
 							</b-btn>
 						</div>
@@ -70,25 +70,25 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        user: {
-          username: "",
-          password: ""
-        },
-        submitted: false
-      };
-    },
-    methods: {
-      handleSubmit() {
-        this.submitted = true;
-        this.$validator.validate().then(valid => {
-          if (valid) {
-            alert("Your data are submit\n\n" + JSON.stringify(this.user));
-          }
-        });
-      }
+export default {
+  data() {
+    return {
+      user: {
+        username: "",
+        password: ""
+      },
+      submitted: false
+    };
+  },
+  methods: {
+    handleSubmit() {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          alert("Your data are submit\n\n" + JSON.stringify(this.user));
+        }
+      });
     }
-  };
+  }
+};
 </script>
