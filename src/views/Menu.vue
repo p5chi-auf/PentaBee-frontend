@@ -98,7 +98,7 @@
     export default {
         data: function () {
             return {
-                isActive: true,
+                isActive: false,
                 showMenu: true
             }
         },
