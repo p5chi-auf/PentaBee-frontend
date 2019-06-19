@@ -23,9 +23,9 @@
       </b-nav-item>
     </b-nav>
     <div class="display-button1">
-    <b-btn @click="isActive = !isActive"  class="col-md-12">
-      <font-awesome-icon class="fa-lg  " icon="arrows-alt-h"/>
-    </b-btn>
+      <b-btn @click="isActive = !isActive"  class="col-md-12">
+        <font-awesome-icon class="fa-lg  " icon="arrows-alt-h"/>
+      </b-btn>
     </div>
     <div class="display-button2">
       <b-btn @click="showMenuMobile()"  class="col-md-12 ">
@@ -57,8 +57,8 @@
     }
     
     .display-button1{
-        display: block;
-      }
+      display: block;
+    }
     
     .display-button2{
       display: none;
@@ -70,7 +70,7 @@
       background-color: #323231;
       width: 100%;
     }
-  
+    
     #show-element {
       display: none;
       
@@ -87,7 +87,7 @@
     .display-button1{
       display: none;
     }
-  
+    
     .display-button2{
       display: block;
     }
@@ -102,21 +102,21 @@
                 showMenu: true
             }
         },
-        
+
         methods:{
             showMenuMobile : function(){
-            let menu = document.getElementById("show-element");
-            
-            if (menu.style.display === "none") {
-                this.isActive = true;
-                menu.style.display = "block";
-                
-            }
-            else {
-                menu.style.display = "none";
-                
-            }
-            
+                let menu = document.getElementById("show-element");
+
+                if (menu.style.display === "none") {
+                    this.isActive = true;
+                    menu.style.display = "block";
+
+                }
+                else {
+                    menu.style.display = "none";
+
+                }
+
             }
         }
     }
