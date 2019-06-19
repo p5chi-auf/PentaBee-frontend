@@ -1,36 +1,36 @@
 <template>
-  <div id="menu" >
-    <b-nav  id="show-element">
+  <div id="menu">
+    <b-nav id="show-element">
       <b-nav-item to="/">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="home"/>
-          <span v-if="isActive"  class=" menu-items">
+        <span v-if="isActive" class=" menu-items">
 						&nbsp;Home
 					</span>
       </b-nav-item>
       
       <b-nav-item to="/login">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="sign-in-alt"/>
-          <span v-if="isActive"  class="menu-items-more menu-items">
+        <span v-if="isActive" class="menu-items-more menu-items">
 						&nbsp;Login
 					</span>
       </b-nav-item>
       
       <b-nav-item to="/registration">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="pencil-alt"/>
-          <span v-if="isActive"  class="menu-items">
+        <span v-if="isActive" class="menu-items">
 						&nbsp;Registration
 					</span>
       </b-nav-item>
     </b-nav>
-
+    
     <div class="display-desktop">
-      <b-btn @click="isActive = !isActive"  class="col-md-12">
+      <b-btn @click="isActive = !isActive" class="col-md-12">
         <font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
       </b-btn>
     </div>
-
+    
     <div class="display-mobile">
-      <b-btn @click="showMenuMobile()"  class="col-md-12 ">
+      <b-btn @click="showMenuMobile()" class="col-md-12">
         <font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
       </b-btn>
     </div>
@@ -58,11 +58,11 @@
       opacity: 0.5;
     }
     
-    .display-desktop{
+    .display-desktop {
       display: block;
     }
     
-    .display-mobile{
+    .display-mobile {
       display: none;
     }
   }
@@ -77,17 +77,17 @@
       display: none;
       
     }
-  
+    
     .menu-items {
       color: white;
       display: inline;
     }
     
-    .display-desktop{
+    .display-desktop {
       display: none;
     }
     
-    .display-mobile{
+    .display-mobile {
       display: block;
     }
   }
@@ -102,16 +102,15 @@
             }
         },
 
-        methods:{
-            showMenuMobile : function(){
+        methods: {
+            showMenuMobile: function () {
                 let menu = document.getElementById("show-element");
 
                 if (menu.style.display === "none") {
                     this.isActive = true;
                     menu.style.display = "block";
 
-                }
-                else {
+                } else {
                     menu.style.display = "none";
 
                 }
