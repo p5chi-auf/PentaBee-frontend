@@ -3,11 +3,6 @@ import App from "./App.vue";
 import router from "./route";
 import VeeValidate from "vee-validate";
 import BootstrapVue from "bootstrap-vue";
-import Bootstrap from  "bootstrap";
-
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -33,7 +28,6 @@ Vue.component("component-menu", MenuComponent);
 new Vue({
   router,
   BootstrapVue,
-  Bootstrap,
   FontAwesomeIcon,
   render: h => h(App)
 }).$mount("#app");
