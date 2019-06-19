@@ -3,7 +3,7 @@
     <b-nav id="show-element">
       <b-nav-item to="/">
         <font-awesome-icon class="menu-items fa-lg menu-icons" icon="home"/>
-        <span v-if="isActive" class=" menu-items">
+        <span v-if="isActive" class="menu-items">
 						&nbsp;Home
 					</span>
       </b-nav-item>
@@ -38,6 +38,19 @@
 </template>
 
 <style>
+  #menu {
+    background-color: #323231;
+  }
+  
+  .menu-items {
+    color: white;
+    display: inline;
+  }
+
+  .menu-items:hover {
+    opacity: 0.5;
+  }
+  
   @media screen  and (min-width: 601px) {
     
     #menu {
@@ -47,15 +60,6 @@
     
     #show-element {
       display: block;
-    }
-    
-    .menu-items {
-      color: white;
-      display: inline;
-    }
-    
-    .menu-items:hover {
-      opacity: 0.5;
     }
     
     .display-desktop {
@@ -69,18 +73,12 @@
   
   @media screen  and (max-width: 600px) {
     #menu {
-      background-color: #323231;
       width: 100%;
     }
     
     #show-element {
       display: none;
       
-    }
-    
-    .menu-items {
-      color: white;
-      display: inline;
     }
     
     .display-desktop {
@@ -94,25 +92,25 @@
 </style>
 
 <script>
-    export default {
-        data: function () {
-            return {
-                isActive: false,
-                showMenu: true
-            }
-        },
+  export default {
+    data () {
+      return {
+        isActive: false,
+        showMenu: true
+      }
+    },
 
-        methods: {
-            showMenuMobile: function () {
-                let menu = document.getElementById("show-element");
-
-                if (menu.style.display === "none") {
-                    this.isActive = true;
-                    menu.style.display = "block";
-                } else {
-                    menu.style.display = "none";
-                }
-            }
+    methods: {
+      showMenuMobile() {
+        let menu = document.getElementById ("show-element");
+        
+        if (menu.style.display === "none") {
+          this.isActive = true;
+          menu.style.display = "block";
+        } else {
+          menu.style.display = "none";
         }
+      }
     }
+  }
 </script>
