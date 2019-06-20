@@ -1,95 +1,116 @@
 <template>
-	<div class="menu-position">
-		<b-btn @click="isActive= !isActive" class="button-position">
-			<font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
-		</b-btn>
-
-		<div class="col-md-12 menu" v-if="isActive">
-			<b-nav vertical>
-				<b-nav-item to="/">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
-					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/login">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="sign-in-alt"/>
-					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/registration">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
-					</span>
-				</b-nav-item>
-			</b-nav>
-		</div>
-
-		<div class="col-md-12 menu" v-else="!isActive">
-			<b-nav vertical>
-				<b-nav-item to="/">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="home"/>
+  <div id="menu">
+    <b-nav id="show-element">
+      <b-nav-item to="/">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="home"/>
+        <span v-if="isActive" class="menu-items">
 						&nbsp;Home
 					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/login">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="sign-in-alt"/>
+      </b-nav-item>
+      
+      <b-nav-item to="/login">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="sign-in-alt"/>
+        <span v-if="isActive" class="menu-items-more menu-items">
 						&nbsp;Login
 					</span>
-				</b-nav-item>
-
-				<b-nav-item to="/registration">
-					<span class="menu-items">
-						<font-awesome-icon class="fa-lg menu-icons" icon="pencil-alt"/>
+      </b-nav-item>
+      
+      <b-nav-item to="/registration">
+        <font-awesome-icon class="menu-items fa-lg menu-icons" icon="pencil-alt"/>
+        <span v-if="isActive" class="menu-items">
 						&nbsp;Registration
 					</span>
-				</b-nav-item>
-			</b-nav>
-		</div>
-	</div>
+      </b-nav-item>
+    </b-nav>
+    
+    <div class="display-desktop">
+      <b-btn @click="isActive = !isActive" class="col-md-12">
+        <font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
+      </b-btn>
+    </div>
+    
+    <div class="display-mobile">
+      <b-btn @click="showMenuMobile()" class="col-md-12">
+        <font-awesome-icon class="fa-lg" icon="arrows-alt-h"/>
+      </b-btn>
+    </div>
+  </div>
 </template>
 
 <style>
+  #menu {
+    background-color: #323231;
+  }
+  
+  .menu-items {
+    color: white;
+    display: inline;
+  }
 
-	.menu-position {
-		background-color: #323231;
-		height: auto;
-		width: auto;
-	}
-
-	.button-position {
-		position: relative;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-	}
-
-	.menu-items {
-		color: white;
-	}
-
-	.menu-items:hover {
-		opacity: 0.5;
-	}
-
-	.menu {
-		height: 100%;
-		position: fixed;
-		background: #2e2e2d;
-	}
+  .menu-items:hover {
+    opacity: 0.5;
+  }
+  
+  @media screen  and (min-width: 601px) {
+    
+    #menu {
+      background-color: #323231;
+      width: auto;
+    }
+    
+    #show-element {
+      display: block;
+    }
+    
+    .display-desktop {
+      display: block;
+    }
+    
+    .display-mobile {
+      display: none;
+    }
+  }
+  
+  @media screen  and (max-width: 600px) {
+    #menu {
+      width: 100%;
+    }
+    
+    #show-element {
+      display: none;
+      
+    }
+    
+    .display-desktop {
+      display: none;
+    }
+    
+    .display-mobile {
+      display: block;
+    }
+  }
 </style>
 
 <script>
   export default {
-    data: function () {
+    data () {
       return {
-        isActive: true
+        isActive: false,
+        showMenu: true
+      }
+    },
+
+    methods: {
+      showMenuMobile() {
+        let menu = document.getElementById ("show-element");
+        
+        if (menu.style.display === "none") {
+          this.isActive = true;
+          menu.style.display = "block";
+        } else {
+          menu.style.display = "none";
+        }
       }
     }
   }
 </script>
-
