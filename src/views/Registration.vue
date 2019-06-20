@@ -41,7 +41,7 @@
               </span>
 						</b-form-group>
 
-						<b-form-group id="input-group-3" class="col-md-6"  label="Email:" label-for="email">
+						<b-form-group id="input-group-3" class="col-md-6" label="Email:" label-for="email">
 							<b-form-input
 								id="email"
 								name="email"
@@ -57,7 +57,7 @@
               </span>
 						</b-form-group>
 
-						<b-form-group id="input-group-4" class="col-md-6"  label="Last Name:" label-for="lastName">
+						<b-form-group id="input-group-4" class="col-md-6" label="Last Name:" label-for="lastName">
 							<b-form-input
 								id="lastName"
 								name="surname"
@@ -141,11 +141,11 @@ export default {
     return {
       user: {
         username: "",
-        name: "",
-        surname: "",
-        email: "",
         password: "",
-        confirm_password: ""
+        confirm_password: "",
+        email: "",
+        name: "",
+        surname: ""
       },
       submitted: false
     };
