@@ -1,8 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <component-menu></component-menu>
-      <div class="div-position-home col">
+
+      <div class="div-position-home">
         <b-card-group deck>
           <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
             <b-card-text>
@@ -34,17 +32,16 @@
           </b-card>
         </b-card-group>
       </div>
-    </div>
-  </div>
 </template>
 
 <style>
   
   .div-position-home {
     background-color: rgba(67, 71, 71, 0);
-    height: available;
+    height: 100%;
     text-align: center;
-    padding: 1%;
+    padding: 10px;
+
   }
 </style>
 

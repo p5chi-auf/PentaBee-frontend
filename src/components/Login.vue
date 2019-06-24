@@ -8,12 +8,12 @@
 						<hr/>
 					</h4>
 
-          <b-form @submit.prevent="handleSubmit">
+          <b-form @submit="this.loginIt()">
             <b-form-group id="input-group-1" label-for="input-1">
-              <label for="username" class="ml-2 text-form">Username</label>
+              <label class="ml-2 text-form">Username</label>
 
 							<b-form-input
-								:class="{'is-invalid': submitted && errors.has('username')}"
+								:class="{'is-invalid':errors.has('username')}"
 								class="form-control"
 								id="username"
 								name="username"
@@ -22,7 +22,7 @@
 								v-validate="'required'">
 							</b-form-input>
 
-							<span class="invalid-feedback" v-if="submitted && errors.has('username')">
+							<span class="invalid-feedback" v-if="errors.has('username')">
                 {{ errors.first("username") }}
               </span>
 						</b-form-group>
@@ -30,7 +30,7 @@
 						<b-form-group id="input-group-2" label-for="input-2">
 							<label class="ml-2 text-form" for="password">Password</label>
 
-							<input :class="{'is-invalid': submitted && errors.has('password')}"
+							<input :class="{'is-invalid': errors.has('password')}"
 										 class="form-control"
 										 id="password"
 										 name="password"
@@ -39,16 +39,17 @@
 										 v-model="user.password"
 										 v-validate="'required'"/>
 
-							<span class="invalid-feedback " v-if="submitted && errors.has('password')">
+							<span class="invalid-feedback " v-if="errors.has('password')">
                 {{ errors.first("password") }}
               </span>
 						</b-form-group>
 
 						<div class="text-center button-padding">
 							<b-btn
-								@click="handleSubmit"
 								block
+								@click="this.loginIt()"
 								pill
+								success
 								type="submit"
 								variant="outline-warning">
 								Login
@@ -61,6 +62,7 @@
 							account?
 
 							<b-link class="link-redirect" to="/registration">Sign up</b-link>
+							<b-link @click="this.presed()">xxxxxxxx</b-link>
 						</p>
 					</b-form>
 				</b-card>
@@ -70,25 +72,5 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        user: {
-          username: "",
-          password: ""
-        },
-        submitted: false
-      };
-    },
-    methods: {
-      handleSubmit() {
-        this.submitted = true;
-        this.$validator.validate().then(valid => {
-          if (valid) {
-            alert("Your data are submit\n\n" + JSON.stringify(this.user));
-          }
-        });
-      }
-    }
-  };
+
 </script>

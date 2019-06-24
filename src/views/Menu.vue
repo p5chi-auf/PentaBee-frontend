@@ -40,6 +40,7 @@
 <style>
   #menu {
     background-color: #323231;
+    height: available;
   }
   
   .menu-items {

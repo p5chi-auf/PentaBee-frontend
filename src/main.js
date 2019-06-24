@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./route";
 import VeeValidate from "vee-validate";
 import BootstrapVue from "bootstrap-vue";
+import Axios from 'axios';
+import VueAxios from 'vue-axios'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -13,9 +15,11 @@ import FooterComponent from "./views/Footer";
 import LayoutComponent from "./views/Layout";
 import MenuComponent from "./views/Menu";
 import "./assets/main.scss";
+import "axios";
 
 Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
+Vue.use(VueAxios, Axios);
 
 library.add(faUser, faCog, faPowerOff, faHome, faSignInAlt, faPencilAlt, faArrowsAltH);
 
