@@ -20,7 +20,7 @@ export default {
     menu: () => [
       {
         header: true,
-        title: 'Main Navigation',
+        title: 'PentaBee Navigation',
       },
       {
         href: '/',
