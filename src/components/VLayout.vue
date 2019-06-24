@@ -15,6 +15,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .main--active {
   padding-left: 265px;

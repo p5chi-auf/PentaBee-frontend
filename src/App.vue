@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import VHeader from '@/components/VHeader';
-import VFooter from '@/components/VFooter';
+import VHeader from '@/views/VHeader';
+import VFooter from '@/views/VFooter';
 import VSidebar from '@/components/VSidebar';
 import VLayout from '@/components/VLayout';
 
