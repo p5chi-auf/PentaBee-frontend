@@ -20,7 +20,7 @@ library.add(
   faSignInAlt,
   faPencilAlt,
   faArrowsAltH,
-  faArrowsAltV
+  faArrowsAltV,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
