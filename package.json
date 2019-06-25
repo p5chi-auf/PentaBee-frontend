@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
@@ -14,22 +15,36 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.24",
     "core-js": "^2.6.5",
+    "css-loader": "^3.0.0",
+    "custom": "^0.0.0",
+    "html": "^1.0.0",
     "jquery": "^3.4.1",
-    "popper.js": "^1.14.7",
-    "portal-vue": "^2.1.5",
+    "popper.js": "^1.15.0",
+    "rebuild": "^0.1.2",
+    "tags": "^2.0.10",
+    "to": "^0.2.9",
     "vee-validate": "^2.2.7",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.3",
+    "vue-sidebar-menu": "^3.9.1",
     "vuex": "^3.0.1",
-    "webpack": "^3.0.0"
+    "webpack": "x.x.x",
+    "x": "^0.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-plugin-pwa": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
-    "node-sass": "^4.9.0",
+    "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12",
+    "prettier": "1.18.2",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.6.10"
   }
 }

@@ -1,0 +1,54 @@
+<template>
+  <header class="header-attributes">
+    <b-navbar toggleable="lg" type="dark">
+      <b-navbar-brand to="/">
+        <img
+          class="logo-icon"
+          src="../../public/img/logo.png"
+          alt="Responsive image"
+        >
+      </b-navbar-brand>
+
+      <b-navbar-nav small>
+        <b-nav-item href="#">version 1.0.0</b-nav-item>
+      </b-navbar-nav>
+
+      <div class="ml-auto">
+        <b-dropdown
+          size="lg"
+          variant="link"
+          toggle-class="text-decoration-none"
+          no-caret
+          right
+        >
+          <template slot="button-content">
+            &#x1F464;
+            <span class="user-dropdown">User</span>
+          </template>
+          <b-dropdown-item to="/profile">
+            <font-awesome-icon icon="user" />Profile
+          </b-dropdown-item>
+
+          <b-dropdown-item to="/settings">
+            <font-awesome-icon icon="cog" />Settings
+          </b-dropdown-item>
+
+          <b-dropdown-divider/>
+
+          <b-dropdown-item to="/login">
+            <font-awesome-icon icon="power-off" />Logout
+          </b-dropdown-item>
+        </b-dropdown>
+      </div>
+    </b-navbar>
+    <div class="top-bar">
+      <div class="inner">
+        <div class="top-bar-orange"/>
+        <div class="top-bar-violet"/>
+        <div class="top-bar-blue"/>
+        <div class="top-bar-green"/>
+        <div class="top-bar-bluesky"/>
+      </div>
+    </div>
+  </header>
+</template>

@@ -1,19 +1,24 @@
 <template>
-	<div id="app">
-		<component-header></component-header>
-		<div class="container-fluid">
-		<div class="row row-position">
-		<component-menu class="menu.content"></component-menu>
-		<component-layout class="col"></component-layout>
-		</div>
-		</div>
-		<component-footer></component-footer>
-	</div>
+  <div id="app">
+    <v-header />
+    <v-sidebar />
+    <v-layout/>
+    <v-footer />
+  </div>
 </template>
-<style>
-	.row-position{
-		position: absolute;
-		height: 100%;
-		width: 100%;
-	}
-	</style>
+
+<script>
+import VHeader from '@/views/VHeader';
+import VFooter from '@/views/VFooter';
+import VSidebar from '@/components/VSidebar';
+import VLayout from '@/components/VLayout';
+
+export default {
+  components: {
+    VHeader,
+    VFooter,
+    VSidebar,
+    VLayout,
+  },
+};
+</script>

@@ -1,0 +1,10 @@
+.v-sidebar-menu {
+  height: calc(100vh - 122px);
+  top: 81px;
+}
+
+@media screen and (max-width: 414px) {
+  .v-sidebar-menu {
+    height: calc(100vh - 147px);
+  }
+}
