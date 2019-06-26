@@ -5,10 +5,10 @@
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr >
+            <hr>
           </h4>
-
-          <b-form @submit.prevent="handleSubmit">
+          
+          <b-form @submit.prevent="login()">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -16,20 +16,20 @@
             >
               <b-form-input
                 id="username"
-                v-model="user.username"
+                v-model="requestBody.username"
                 v-validate="'required'"
                 name="username"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('username') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('username')"
                 class="invalid-feedback"
               >{{ errors.first('username') }}</span>
             </b-form-group>
-
+            
             <b-form-group
               id="input-group-2"
               label="Password:"
@@ -38,33 +38,35 @@
               <b-form-input
                 id="password"
                 ref="password"
-                v-model="user.password"
+                v-model="requestBody.password"
                 v-validate="'required'"
                 name="password"
                 type="password"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('password')"
                 class="invalid-feedback"
               >{{ errors.first('password') }}</span>
             </b-form-group>
-
+            
             <div class="text-center button-padding">
               <b-btn
                 type="submit"
                 variant="outline-warning"
                 block
                 pill
-                @click="handleSubmit"
-              >Login</b-btn>
+                @click="login()"
+              >Login
+              </b-btn>
             </div>
-
+            
             <p class="text-center">
               Haven't got a
-              <b-link class="link-redirect" to="/">PentaBee</b-link>account?
+              <b-link class="link-redirect" to="/">PentaBee</b-link>
+              account?
               <b-link class="link-redirect" to="/registration">Sign up</b-link>
             </p>
           </b-form>
@@ -73,27 +75,32 @@
     </b-container>
   </div>
 </template>
-
 <script>
-export default {
-  data() {
-    return {
-      user: {
-        username: '',
-        password: '',
-      },
-      submitted: false,
-    };
-  },
-  methods: {
-    handleSubmit() {
-      this.submitted = true;
-      this.$validator.validate().then(valid => {
-        if (valid) {
-          alert('Your data are submit\n\n' + JSON.stringify(this.user));
-        }
-      });
+  import LoginService from '../../services/loginApi';
+  export default {
+    data () {
+      return {
+        requestBody: {
+          username: '',
+          password: ''
+        },
+        submitted: false,
+        beforeLogin: false
+
+      }
     },
-  },
-};
+    methods: {
+      login () {
+        this.submitted = true;
+        LoginService.login (this.requestBody).then ((response) => {
+          self.response_key = response.data.result;
+          this.$router.push ('/');
+          return (this.beforeLogin = true);
+        }).catch ((error) => {
+          alert ("Wrong user or password");
+          console.log (error.response.this.requestBody);
+        });
+      }
+    }
+  };
 </script>

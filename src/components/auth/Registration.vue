@@ -7,8 +7,8 @@
             Create an PentaBee account
             <hr>
           </h4>
-
-          <b-form class="row" @submit.prevent="handleSubmit">
+          
+          <b-form class="row" @submit.prevent="register()">
             <b-form-group
               id="input-group-1"
               class="col-md-6"
@@ -17,20 +17,20 @@
             >
               <b-form-input
                 id="username"
-                v-model="user.username"
+                v-model="requestBody.username"
                 v-validate="'alpha_dash|required|min:5|max:20'"
                 name="username"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('username') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('username')"
                 class="invalid-feedback"
               >{{ errors.first('username') }}</span>
             </b-form-group>
-
+            
             <b-form-group
               id="input-group-2"
               class="col-md-6"
@@ -39,37 +39,37 @@
             >
               <b-form-input
                 id="firstName"
-                v-model="user.name"
+                v-model="requestBody.name"
                 v-validate="'required|min:3|max:20'"
                 name="name"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('name') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('name')"
                 class="invalid-feedback"
               >{{ errors.first('name') }}</span>
             </b-form-group>
-
+            
             <b-form-group id="input-group-3" class="col-md-6" label="Email:" label-for="email">
               <b-form-input
                 id="email"
-                v-model="user.email"
+                v-model="requestBody.email"
                 v-validate="'required|email'"
                 name="email"
                 type="email"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('email') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('email')"
                 class="invalid-feedback"
               >{{ errors.first('email') }}</span>
             </b-form-group>
-
+            
             <b-form-group
               id="input-group-4"
               class="col-md-6"
@@ -78,20 +78,20 @@
             >
               <b-form-input
                 id="lastName"
-                v-model="user.surname"
+                v-model="requestBody.surname"
                 v-validate="'required|min:3|max:20'"
                 name="surname"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('surname') }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('surname')"
                 class="invalid-feedback"
               >{{ errors.first('surname') }}</span>
             </b-form-group>
-
+            
             <b-form-group
               id="input-group-5"
               class="col-md-6"
@@ -101,24 +101,24 @@
               <b-form-input
                 id="password"
                 ref="password"
-                v-model="user.password"
+                v-model="requestBody.password"
                 v-validate="{
                   required: true,
-                  regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,16})/,
+                  regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
                 }"
                 name="password"
                 type="password"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
               />
-
+              
               <span v-if="submitted && errors.has('password')" class="invalid-feedback">
                 {{
-                  'The password should contain Minimum 8 and Maximum 12 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'
+                  'The password should contain Minimum 8, at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'
                 }}
               </span>
             </b-form-group>
-
+            
             <b-form-group
               id="input-group-6"
               class="col-md-6"
@@ -127,7 +127,7 @@
             >
               <b-form-input
                 id="confirmPassword"
-                v-model="user.confirm_password"
+                v-model="requestBody.confirm_password"
                 v-validate="'required|confirmed:password'"
                 name="confirm_password"
                 type="password"
@@ -137,14 +137,14 @@
                   'is-invalid': submitted && errors.has('confirm_password'),
                 }"
               />
-
+              
               <span
                 v-if="submitted && errors.has('confirm_password')"
                 class="invalid-feedback"
               >{{ errors.first('confirm_password') }}</span>
             </b-form-group>
           </b-form>
-
+          
           <div class="text-center space">
             <b-btn
               class="col-md-5 float-none d-inline-block"
@@ -152,13 +152,15 @@
               variant="outline-warning"
               block
               pill
-              @click="handleSubmit"
-            >Create your account</b-btn>
+              @click="register()"
+            >Create your account
+            </b-btn>
           </div>
-
+          
           <p class="text-center">
             Already have a
-            <b-link class="link-redirect" to="/">PentaBee</b-link>account?
+            <b-link class="link-redirect" to="/">PentaBee</b-link>
+            account?
             <b-link class="link-redirect" to="/login">Log in</b-link>
           </p>
         </b-card>
@@ -168,29 +170,31 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      user: {
-        username: '',
-        password: '',
-        confirm_password: '',
-        email: '',
-        name: '',
-        surname: '',
-      },
-      submitted: false,
-    };
-  },
-  methods: {
-    handleSubmit() {
-      this.submitted = true;
-      this.$validator.validate().then(valid => {
-        if (valid) {
-          alert('User successfully created!\n\n' + JSON.stringify(this.user));
-        }
-      });
+  import RegisterService from '../../services/registerApi.js';
+
+  export default {
+    data () {
+      return {
+        requestBody: {
+          username: '',
+          password: '',
+          confirm_password: '',
+          email: '',
+          name: '',
+          surname: ''
+        },
+        submitted: false,
+      };
     },
-  },
-};
+    methods: {
+      register () {
+        RegisterService.register (this.requestBody).then ((response) => {
+          console.log (response.this.requestBody);
+        }).catch ((error) => {
+          console.log (error.response.this.requestBody);
+        });
+      }
+
+    }
+  }
 </script>
