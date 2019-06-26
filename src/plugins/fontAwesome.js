@@ -10,6 +10,7 @@ import {
   faPencilAlt,
   faArrowsAltH,
   faArrowsAltV,
+  faUserEdit,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -21,6 +22,7 @@ library.add(
   faPencilAlt,
   faArrowsAltH,
   faArrowsAltV,
+  faUserEdit,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

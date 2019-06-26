@@ -44,6 +44,7 @@
                 </div>
               </div>
             </div>
+            <component-edit/>
           </div>
         </div>
       </section>
