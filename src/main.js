@@ -3,7 +3,9 @@ import App from './App.vue';
 import router from './route';
 import store from './store';
 import './plugins';
+
 import './assets/main.scss';
+
 new Vue({
   router,
   store,

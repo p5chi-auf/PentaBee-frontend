@@ -8,7 +8,7 @@
             <hr>
           </h4>
           
-          <b-form @submit.prevent="">
+          <b-form @submit.prevent="login()">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -58,7 +58,7 @@
                 variant="outline-warning"
                 block
                 pill
-                @click="submit()"
+                @click="login()"
               >Login
               </b-btn>
             </div>
@@ -76,35 +76,31 @@
   </div>
 </template>
 <script>
-  
   import LoginService from '../../services/loginApi';
-  
-export default {
-  data () {
-    return {
-      requestBody : {
-        username: "",
-        password: ""
-      },
-      submitted: false,
-      router: this.$router,
-      response: '',
-      beforeLogin: false
-      
+  export default {
+    data () {
+      return {
+        requestBody: {
+          username: '',
+          password: ''
+        },
+        submitted: false,
+        beforeLogin: false
+
+      }
+    },
+    methods: {
+      login () {
+        this.submitted = true;
+        LoginService.login (this.requestBody).then ((response) => {
+          self.response_key = response.data.result;
+          this.$router.push ('/');
+          return (this.beforeLogin = true);
+        }).catch ((error) => {
+          alert ("Wrong user or password");
+          console.log (error.response.this.requestBody);
+        });
+      }
     }
-  },
-  methods: {
-    submit () {
-      this.submitted = true;
-      LoginService.login(this.requestBody).then((response) => {
-        self.response_key = response.data.result;
-        this.$router.push('/');
-       return( this.beforeLogin = true);
-      }).catch ((error) => {
-        alert("Wrong user or password");
-        console.log (error.response.this.requestBody);
-      });
-    }
-  }
-};
+  };
 </script>

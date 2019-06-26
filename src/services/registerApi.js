@@ -1,9 +1,9 @@
 import Axios from 'axios';
-const API_LOGIN_RESOURCE = 'http://api.pentabee.local/api/register';
+const API_REGISTER_RESOURCE = 'http://api.pentabee.local/api/register';
 
 export default {
 
   register(data) {
-    return Axios.post(API_LOGIN_RESOURCE, data);
+    return Axios.post(API_REGISTER_RESOURCE, data);
   }
 };

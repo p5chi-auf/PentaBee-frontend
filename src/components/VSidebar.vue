@@ -1,4 +1,4 @@
-<template >
+<template>
   <sidebar-menu :menu="menu" width="200px" @collapse="triggerSidebar"/>
 </template>
 
