@@ -2,7 +2,7 @@
   <div id="app">
     <v-header />
     <v-sidebar />
-    <v-layout/>
+    <v-layout />
     <v-footer />
   </div>
 </template>

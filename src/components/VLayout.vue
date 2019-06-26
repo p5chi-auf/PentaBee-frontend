@@ -18,6 +18,6 @@ export default {
 
 <style scoped>
 .main--active {
-  padding-left: 210px;
+  padding-left: 180px;
 }
 </style>

@@ -22,21 +22,21 @@
           right
         >
           <template slot="button-content">
-            &#x1F464;
-            <span class="user-dropdown">User</span>
+            <img class="user" src="../../public/img/person1.jpg" alt="">
+            <span class="user-dropdown">Evan You</span>
           </template>
           <b-dropdown-item to="/profile">
-            <font-awesome-icon icon="user" />Profile
+            <font-awesome-icon icon="user" /> Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/settings">
-            <font-awesome-icon icon="cog" />Settings
+            <font-awesome-icon icon="cog" /> Settings
           </b-dropdown-item>
 
           <b-dropdown-divider/>
 
           <b-dropdown-item to="/login">
-            <font-awesome-icon icon="power-off" />Logout
+            <font-awesome-icon icon="power-off" /> Logout
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -52,3 +52,9 @@
     </div>
   </header>
 </template>
+<style scoped>
+  .user{
+    width: 30px;
+    border-radius: 15px;
+  }
+</style>

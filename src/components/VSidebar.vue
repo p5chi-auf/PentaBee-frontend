@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu :menu="menu" width="200px" @collapse="triggerSidebar"/>
+  <sidebar-menu :menu="menu" width="175px" @collapse="triggerSidebar"/>
 </template>
 
 <script>
