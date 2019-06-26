@@ -8,7 +8,7 @@
             <hr>
           </h4>
           
-          <b-form @submit.prevent="submit()">
+          <b-form @submit.prevent="">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -22,7 +22,7 @@
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('username') }"
-              ></b-form-input>
+              />
               
               <span
                 v-if="submitted && errors.has('username')"
@@ -44,7 +44,7 @@
                 type="password"
                 class="form-control"
                 :class="{ 'is-invalid': submitted && errors.has('password') }"
-              > </b-form-input>
+              />
               
               <span
                 v-if="submitted && errors.has('password')"
@@ -77,7 +77,7 @@
 </template>
 <script>
   
-  import LoginService from '../../services/loginAxios';
+  import LoginService from '../../services/loginApi';
   
 export default {
   data () {
@@ -88,18 +88,23 @@ export default {
       },
       submitted: false,
       router: this.$router,
+      response: '',
+      beforeLogin: false
+      
     }
   },
   methods: {
     submit () {
       this.submitted = true;
-      LoginService.login(this.requestBody).then ((response) => {
-        console.log (response.this.requestBody);
+      LoginService.login(this.requestBody).then((response) => {
+        self.response_key = response.data.result;
+        this.$router.push('/');
+       return( this.beforeLogin = true);
       }).catch ((error) => {
+        alert("Wrong user or password");
         console.log (error.response.this.requestBody);
       });
     }
   }
 };
 </script>
-

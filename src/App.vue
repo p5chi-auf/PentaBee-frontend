@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-header />
-    <v-sidebar />
+    <v-sidebar/>
     <v-layout/>
     <v-footer />
   </div>
