@@ -16,7 +16,7 @@
             >
               <b-form-input
                 id="username"
-                v-model="requestBody.username"
+                v-model="form.username"
                 v-validate.continues="'alpha_dash|required|min:5|max:20'"
                 name="username"
                 type="text"
@@ -37,7 +37,7 @@
             >
               <b-form-input
                 id="firstName"
-                v-model="requestBody.name"
+                v-model="form.name"
                 v-validate.continues="'required|min:3|max:20'"
                 name="name"
                 type="text"
@@ -58,7 +58,7 @@
             >
               <b-form-input
                 id="email"
-                v-model="requestBody.email"
+                v-model="form.email"
                 v-validate.continues="'required|email'"
                 name="email"
                 type="email"
@@ -77,7 +77,7 @@
             >
               <b-form-input
                 id="lastName"
-                v-model="requestBody.surname"
+                v-model="form.surname"
                 v-validate.continues="'required|min:3|max:20'"
                 name="surname"
                 type="text"
@@ -99,7 +99,7 @@
               <b-form-input
                 id="password"
                 ref="password"
-                v-model="requestBody.password"
+                v-model="form.password"
                 v-validate.continues="{
                   required: true,
                   regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
@@ -125,7 +125,7 @@
             >
               <b-form-input
                 id="confirmPassword"
-                v-model="requestBody.confirm_password"
+                v-model="form.confirm_password"
                 v-validate="'required|confirmed:password'"
                 name="confirm_password"
                 type="password"
@@ -172,7 +172,7 @@ import RegisterService from '../../services/registerApi.js';
 export default {
   data() {
     return {
-      requestBody: {
+      form: {
         username: '',
         password: '',
         confirm_password: '',
@@ -186,7 +186,7 @@ export default {
   methods: {
     registerIt() {
       this.submitted = true;
-      RegisterService.register(this.requestBody)
+      RegisterService.register(this.form)
         .then(response => {
           this.$router.push('/login');
           console.log(response);

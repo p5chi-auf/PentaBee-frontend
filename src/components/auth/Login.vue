@@ -16,7 +16,7 @@
             >
               <b-form-input
                 id="username"
-                v-model="requestBody.username"
+                v-model="form.username"
                 v-validate="'required'"
                 name="username"
                 type="text"
@@ -38,7 +38,7 @@
               <b-form-input
                 id="password"
                 ref="password"
-                v-model="requestBody.password"
+                v-model="form.password"
                 v-validate="'required'"
                 name="password"
                 type="password"
@@ -80,7 +80,7 @@ import LoginService from '../../services/loginApi';
 export default {
   data() {
     return {
-      requestBody: {
+      form: {
         username: '',
         password: '',
       },
@@ -91,15 +91,15 @@ export default {
   methods: {
     login() {
       this.submitted = true;
-      LoginService.login(this.requestBody)
+      LoginService.login(this.form)
         .then(response => {
           self.response_key = response.data.result;
           this.$router.push('/');
           return (this.beforeLogin = true);
         })
         .catch(error => {
-          alert('Wrong user or password');
-          console.log(error.response.this.requestBody);
+          alert('Bad credentials');
+          console.log(error.response.this.form);
         });
     },
   },

@@ -43,7 +43,6 @@
               </div>
             </div>
           </div>
-          <component-edit class="col"/>
         </div>
       </div>
     </section>

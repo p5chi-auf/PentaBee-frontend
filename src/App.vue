@@ -3,20 +3,20 @@
     <div>
       <v-header
         v-if="
-          this.$route.name !== 'login' && this.$route.name !== 'registration'
+          $route.name !== 'login' && $route.name !== 'registration'
         "
       />
       <v-sidebar
         v-if="
-          this.$route.name !== 'login' && this.$route.name !== 'registration'
+          $route.name !== 'login' && $route.name !== 'registration'
         "
       />
       <router-view
-        v-if="this.$route.name !== 'home' && this.$route.name !== 'profile'"
+        v-if="$route.name !== 'home' && $route.name !== 'profile'"
       />
       <v-layout
         v-if="
-          this.$route.name !== 'login' && this.$route.name !== 'registration'
+          $route.name !== 'login' && $route.name !== 'registration'
         "
       />
       <v-footer />
