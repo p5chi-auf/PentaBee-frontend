@@ -1,26 +1,41 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <div>
-      <v-header/>
-      <v-sidebar v-if="this.$route.name !== 'login' && this.$route.name !== 'registration'"/>
-      <v-layout/>
-      <v-footer/>
+      <v-header
+        v-if="
+          this.$route.name !== 'login' && this.$route.name !== 'registration'
+        "
+      />
+      <v-sidebar
+        v-if="
+          this.$route.name !== 'login' && this.$route.name !== 'registration'
+        "
+      />
+      <router-view
+        v-if="this.$route.name !== 'home' && this.$route.name !== 'profile'"
+      />
+      <v-layout
+        v-if="
+          this.$route.name !== 'login' && this.$route.name !== 'registration'
+        "
+      />
+      <v-footer />
     </div>
   </div>
 </template>
 
 <script>
-  import VHeader from '@/views/VHeader';
-  import VFooter from '@/views/VFooter';
-  import VSidebar from '@/components/VSidebar';
-  import VLayout from '@/components/VLayout';
+import VHeader from '@/views/VHeader';
+import VFooter from '@/views/VFooter';
+import VSidebar from '@/components/VSidebar';
+import VLayout from '@/components/VLayout';
 
-  export default {
-    components: {
-      VHeader,
-      VFooter,
-      VSidebar,
-      VLayout,
-    },
-  };
+export default {
+  components: {
+    VHeader,
+    VFooter,
+    VSidebar,
+    VLayout,
+  },
+};
 </script>

@@ -1,5 +1,9 @@
 <template>
   <div class="col home-content">
+    <b-alert show class="text-center" variant="success" dismissible fade>
+      <b>Well done!</b> You successfully logged in to this website.
+      <br >Welcome <b>Evan You</b>
+    </b-alert>
     <b-card-group deck>
       <b-card
         title="Title"
@@ -8,8 +12,8 @@
         img-top
       >
         <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in to
-          additional content. This content is a little bit longer.
+          This is a wider card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
         </b-card-text>
         <div slot="footer">
           <small class="text-muted">Last updated 3 mins ago</small>
@@ -38,9 +42,9 @@
         img-top
       >
         <b-card-text class="testt">
-          This is a wider card with supporting text below as a natural lead-in to
-          additional content. This card has even longer content than the first to
-          show that equal height action.
+          This is a wider card with supporting text below as a natural lead-in
+          to additional content. This card has even longer content than the
+          first to show that equal height action.
         </b-card-text>
         <div slot="footer">
           <small class="text-muted">Last updated 3 mins ago</small>

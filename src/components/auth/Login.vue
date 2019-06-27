@@ -5,7 +5,7 @@
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr>
+            <hr >
           </h4>
 
           <b-form @submit.prevent="login()">
@@ -76,31 +76,32 @@
   </div>
 </template>
 <script>
-  import LoginService from '../../services/loginApi';
-  export default {
-    data () {
-      return {
-        requestBody: {
-          username: '',
-          password: ''
-        },
-        submitted: false,
-        beforeLogin: false
-
-      }
-    },
-    methods: {
-      login () {
-        this.submitted = true;
-        LoginService.login (this.requestBody).then ((response) => {
+import LoginService from '../../services/loginApi';
+export default {
+  data() {
+    return {
+      requestBody: {
+        username: '',
+        password: '',
+      },
+      submitted: false,
+      beforeLogin: false,
+    };
+  },
+  methods: {
+    login() {
+      this.submitted = true;
+      LoginService.login(this.requestBody)
+        .then(response => {
           self.response_key = response.data.result;
-          this.$router.push ('/');
+          this.$router.push('/');
           return (this.beforeLogin = true);
-        }).catch ((error) => {
-          alert ("Wrong user or password");
-          console.log (error.response.this.requestBody);
+        })
+        .catch(error => {
+          alert('Wrong user or password');
+          console.log(error.response.this.requestBody);
         });
-      }
-    }
-  };
+    },
+  },
+};
 </script>

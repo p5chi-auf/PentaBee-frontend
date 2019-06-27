@@ -7,10 +7,6 @@ body {
     transition: all 0.5s;
   }
 
-  .login {
-    position: center;
-  }
-
   h4 {
     color: #ffbc1d;
   }
@@ -20,6 +16,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
+    padding-bottom: 1000px;
   }
 
   p {
