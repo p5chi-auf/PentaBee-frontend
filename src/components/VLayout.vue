@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container-fluid main"
+    class="main container-fluid"
     :class="{ 'main--active': !sideBarIsActive }"
   >
     <router-view />
@@ -18,6 +18,6 @@ export default {
 
 <style scoped>
 .main--active {
-  padding-left: 210px;
+  padding-left: 200px;
 }
 </style>
