@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <v-header />
-    <v-sidebar />
-    <v-layout />
-    <v-footer />
+  <div id="app" >
+    <div>
+      <v-header/>
+      <v-sidebar v-if="this.$route.name !== 'login' && this.$route.name !== 'registration'"/>
+      <v-layout/>
+      <v-footer/>
+    </div>
   </div>
 </template>
 
