@@ -23,7 +23,7 @@
         >
           <template slot="button-content">
             <img class="user" src="../../public/img/person1.jpg" alt="">
-            <span class="user-dropdown">Evan You</span>
+            <span class="user-dropdown"> Evan You</span>
           </template>
           <b-dropdown-item to="/profile">
             <i class="fas fa-user"/> Profile
@@ -58,7 +58,12 @@
 </template>
 <style scoped>
   .user{
-    width: 30px;
-    border-radius: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    border: 2px solid white;
   }
 </style>

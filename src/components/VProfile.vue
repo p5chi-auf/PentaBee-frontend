@@ -20,8 +20,8 @@
                   </div>
                 </div>
                 <h3>Evan You</h3>
-                <h5>Independent software developer</h5>
-                <p>Creator and project lead of Vue.js. I design, code and sometimes dream about making art.</p>
+                <h5>General user activity</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
                 <div class="d-flex flex-row justify-content-center">
                   <div class="p-4">
                     <a href="https://www.linkedin.com/in/evanyou/">

@@ -2,22 +2,20 @@
   <div id="app">
     <div>
       <v-header
-        v-if="
-          $route.name !== 'login' && $route.name !== 'registration'
-        "
+        v-if="$route.name !== 'login' && $route.name !== 'registration'"
       />
       <v-sidebar
-        v-if="
-          $route.name !== 'login' && $route.name !== 'registration'
-        "
+        v-if="$route.name !== 'login' && $route.name !== 'registration'"
       />
       <router-view
-        v-if="$route.name !== 'home' && $route.name !== 'profile'"
+        v-if="
+          $route.name !== 'home' &&
+            $route.name !== 'profile' &&
+            $route.name !== 'edit'
+        "
       />
       <v-layout
-        v-if="
-          $route.name !== 'login' && $route.name !== 'registration'
-        "
+        v-if="$route.name !== 'login' && $route.name !== 'registration'"
       />
       <v-footer />
     </div>

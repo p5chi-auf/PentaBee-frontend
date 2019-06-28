@@ -1,111 +1,194 @@
 <template>
   <div class="profile home-content">
-    <h2 class="text-center">Edit Profile</h2>
+    <b-container>
+      <b-card
+        border-variant="warning"
+        title="Edit Profile"
+        header-tag="header"
+        header-bg-variant="transparent"
+        footer-border-variant="dark"
+      >
+        <b-col>
+          <b-alert show class="text-center" variant="warning" dismissible fade>
+            <i class="fas fa-smile-wink"/>
+            Add more information about yourself
+          </b-alert>
+          <b-container class="row">
+            <b-tabs active-nav-item-class="font-weight-bold text-uppercase text-warning"
+                    active-tab-class="font-weight-bold text-warning"
+                    content-class="mt-3"
+                    class="row col-12"
+            >
+              <b-tab title="General" active/>
+              <br><br>
+            </b-tabs>
+          </b-container>
+          <h6 class="text-left" style="color: #2d2d2d;">General</h6>
+          <h6 class="text-left">Setup your general profile details.</h6><br>
+          <b-form class="row">
+            <b-form-group
+              class="col-md-6"
+              label="First Name"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="Evan"
+              />
+            </b-form-group>
+
+            <b-form-group
+              class="col-md-6"
+              label="Last Name"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="Evan"
+              />
+
+            </b-form-group>
+
+            <b-form-group
+              class="col-md-6"
+              label="Location"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="CHI"
+              />
+            </b-form-group>
+            <b-form-group
+              class="col-md-6"
+              label="Position"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="Developer"
+              />
+            </b-form-group>
+            <b-form-group
+              class="col-md-6"
+              label="Email"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="myemail@gmail.com"
+              />
+            </b-form-group>
+            <b-form-group
+              class="col-md-6"
+              label="Seniority"
+            >
+              <b-form-input
+                type="text"
+                class="form-control"
+                value="Junior"
+              />
+            </b-form-group>
+
+          </b-form>
+
+          <br>
+          <hr>
+          <h6 class="text-left" style="color: #2d2d2d;">Social</h6>
+          <h6 class="text-left">Setup your social profiles info.</h6><br>
+          <b-form class="row">
+            <b-input-group
+              class="col-md-3"
+            >
+              <b-input-group-prepend>
+                <span class="input-group-text"><i class="fab fa-facebook-f"/></span>
+              </b-input-group-prepend>
+              <b-form-input size="xs"/>
+            </b-input-group>
+
+            <b-input-group
+              class="col-md-3"
+            >
+              <b-input-group-prepend>
+                <span class="input-group-text"><i class="fab fa-twitter"/></span>
+              </b-input-group-prepend>
+              <b-form-input size="xs"/>
+            </b-input-group>
+            <b-input-group
+              class="col-md-3"
+            >
+              <b-input-group-prepend>
+                <span class="input-group-text"><i class="fab fa-github"/></span>
+              </b-input-group-prepend>
+              <b-form-input size="xs"/>
+            </b-input-group>
+
+            <b-input-group
+              class="col-md-3"
+            >
+              <b-input-group-prepend>
+                <span class="input-group-text"><i class="fab fa-slack-hash"/></span>
+              </b-input-group-prepend>
+              <b-form-input size="xs"/>
+            </b-input-group>
+          </b-form>
+          <br>
+          <hr>
+          <h6 class="text-left" style="color: #2d2d2d;">Change Password</h6>
+          <h6 class="text-left">Change your current password.</h6><br>
+          <b-form class="row">
+            <b-form-group
+              class="col-md-3"
+              label="Old Password"
+            >
+              <b-form-input
+                type="password"
+                class="form-control"
+                value="11111111"
+              />
+            </b-form-group>
+
+            <b-form-group
+              class="col-md-3"
+              label="New Password"
+            >
+              <b-form-input
+                type="password"
+                class="form-control"
+                value="11111111"
+              />
+
+            </b-form-group>
+
+            <b-form-group
+              class="col-md-3"
+              label="Repeat New Password"
+            >
+              <b-form-input
+                type="password"
+                class="form-control"
+                value="11111111"
+              />
+            </b-form-group>
+          </b-form>
+
+          <div class="text-center space">
+            <b-btn
+              class="col-md-5 float-none d-inline-block"
+              variant="warning"
+              block
+              pill
+            >Save Changes
+            </b-btn>
+          </div>
+
+
+        </b-col>
+      </b-card>
+    </b-container>
   </div>
 </template>
-<!--<template>-->
-<!--  <div class="profile home-content">-->
-<!--    <div class="col editProfile">-->
-<!--      <div no-body class="edit-card overflow-hidden" style="max-width: 540px;">-->
-<!--        <b-row no-gutters>-->
-<!--          <b-col md="12">-->
-<!--            <h3 class="text-center">-->
-<!--              <font-awesome-icon size="xs" icon="user-edit" />-->
-<!--              Edit Profile-->
-<!--              <hr >-->
-<!--            </h3>-->
 
-<!--            <div class="container">-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-12 personal-info">-->
-<!--                  <div class="alert alert-info alert-dismissable">-->
-<!--                    <a class="panel-close close" data-dismiss="alert">×</a>-->
-<!--                    <i class="fas fa-smile-wink"/>-->
-<!--                    Add more information about yourself-->
-<!--                  </div>-->
-<!--                  <h3>Personal info</h3>-->
+<style scoped>
 
-<!--                  <form class="form-horizontal" role="form">-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">First name:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="text" value="Evan"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Last name:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="text" value="You"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Company:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="text" value="Vue Technology LLC"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Email:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="text" value="e******@meteor.com"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Time Zone:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <div class="ui-select">-->
-<!--                          <b-form-select id="user_time_zone" class="form-control">-->
-<!--                            <option value="Hawaii">(GMT-10:00) Hawaii</option>-->
-<!--                            <option value="Alaska">(GMT-09:00) Alaska</option>-->
-<!--                            <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>-->
-<!--                            <option value="Arizona">(GMT-07:00) Arizona</option>-->
-<!--                            <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>-->
-<!--                            <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>-->
-<!--                            <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>-->
-<!--                            <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>-->
-<!--                          </b-form-select>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Username:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="text" value="youyuxi"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Current Password:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="password" value="11122333"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">New Password:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="password" value="11sss111122333"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label">Confirm password:</label>-->
-<!--                      <div class="col-lg-12">-->
-<!--                        <b-input class="form-control" type="password" value="111sss11122333"/>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label class="control-label"/>-->
-<!--                      <div class="col-md-12">-->
-<!--                        <b-button pill variant="outline-warning">Save Changes</b-button>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </form>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </b-col>-->
-<!--        </b-row>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
-
-
+</style>
