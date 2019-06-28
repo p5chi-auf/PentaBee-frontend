@@ -9,8 +9,7 @@
       border-variant="warning"
     >
       <b-card-text>
-        This card has supporting text below as a natural lead-in to additional
-        content.
+        Trello/JIRA look alike website for project-management
       </b-card-text>
       <div slot="footer" >
         <small class="text-muted">Last updated 3 mins ago</small>
@@ -27,8 +26,7 @@
       border-variant="warning"
     >
       <b-card-text>
-        This card has supporting text below as a natural lead-in to additional
-        content.
+        Website for interconnection of all software developers, who need help or who can help with activities.
       </b-card-text>
       <div slot="footer">
         <small class="text-muted">Last updated 3 mins ago</small>
@@ -45,8 +43,7 @@
       border-variant="warning"
     >
       <b-card-text>
-        This card has supporting text below as a natural lead-in to additional
-        content.
+        Website for tracking in 2D all the equipment on each floor.
       </b-card-text>
       <div slot="footer">
         <small class="text-muted">Last updated 3 mins ago</small>
