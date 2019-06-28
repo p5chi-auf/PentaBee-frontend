@@ -146,7 +146,6 @@
           <div class="text-center space">
             <b-btn
               class="col-md-5 float-none d-inline-block"
-              type="submit"
               variant="outline-warning"
               block
               pill
@@ -180,12 +179,10 @@ export default {
         name: '',
         surname: '',
       },
-      submitted: false,
     };
   },
   methods: {
     registerIt() {
-      this.submitted = true;
       RegisterService.register(this.form)
         .then(response => {
           this.$router.push('/login');

@@ -6,49 +6,54 @@
     </b-alert>
     <b-card-group deck>
       <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
+        title="ScarletMine"
+        :img-src="require('../assets/images/scarlet.png')"
         img-alt="Image"
         img-top
+        bg-variant="light"
+        border-variant="warning"
       >
         <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
+          Trello/JIRA look alike website for project-management
         </b-card-text>
-        <div slot="footer">
+        <div slot="footer" >
           <small class="text-muted">Last updated 3 mins ago</small>
         </div>
+        <b-textarea> Need help</b-textarea>
       </b-card>
 
       <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
+        title="PentaBee"
+        :img-src="require('../assets/images/pentabee.png')"
         img-alt="Image"
         img-top
+        bg-variant="light"
+        border-variant="warning"
       >
         <b-card-text>
-          This card has supporting text below as a natural lead-in to additional
-          content.
+          Website for interconnection of all software developers, who need help or who can help with activities.
         </b-card-text>
         <div slot="footer">
           <small class="text-muted">Last updated 3 mins ago</small>
         </div>
+        <b-textarea>need help</b-textarea>
       </b-card>
 
       <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
+        title="Vesta"
+        :img-src="require('../assets/images/vesta.png')"
         img-alt="Image"
         img-top
+        bg-variant="light"
+        border-variant="warning"
       >
-        <b-card-text class="testt">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This card has even longer content than the
-          first to show that equal height action.
+        <b-card-text>
+          Website for tracking in 2D all the equipment on each floor.
         </b-card-text>
         <div slot="footer">
           <small class="text-muted">Last updated 3 mins ago</small>
         </div>
+        <b-textarea> Need help</b-textarea>
       </b-card>
     </b-card-group>
   </div>

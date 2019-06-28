@@ -54,7 +54,6 @@
 
             <div class="text-center button-padding">
               <b-btn
-                type="submit"
                 variant="outline-warning"
                 block
                 pill
@@ -84,18 +83,14 @@ export default {
         username: '',
         password: '',
       },
-      submitted: false,
-      beforeLogin: false,
     };
   },
   methods: {
     login() {
-      this.submitted = true;
       LoginService.login(this.form)
         .then(response => {
           self.response_key = response.data.result;
           this.$router.push('/');
-          return (this.beforeLogin = true);
         })
         .catch(error => {
           alert('Bad credentials');
