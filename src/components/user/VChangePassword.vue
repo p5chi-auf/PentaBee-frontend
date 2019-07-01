@@ -4,7 +4,7 @@
     <h6 class="text-left">Change your current password.</h6><br>
     <b-form class="row">
       <b-form-group
-        class="col-md-3"
+        class="col-md-4"
         label="Old Password"
       >
         <b-form-input
@@ -14,7 +14,7 @@
       </b-form-group>
 
       <b-form-group
-        class="col-md-3"
+        class="col-md-4"
         label="New Password"
       >
         <b-form-input
@@ -25,7 +25,7 @@
       </b-form-group>
 
       <b-form-group
-        class="col-md-3"
+        class="col-md-4"
         label="Repeat New Password"
       >
         <b-form-input
@@ -33,6 +33,8 @@
           class="form-control"
         />
       </b-form-group>
+
+
     </b-form>
   </div>
 </template>
