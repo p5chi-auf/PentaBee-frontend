@@ -22,9 +22,6 @@
               <b-tab title="General" active>
                 <v-general-vue/>
               </b-tab>
-              <b-tab title="Social">
-                <v-social-vue/>
-              </b-tab>
               <b-tab title="Change password">
                 <v-change-password-vue/>
               </b-tab>
@@ -48,9 +45,8 @@
 
 <script>
   import VGeneralVue from './VGeneral';
-  import VSocialVue from './VSocial';
   import VChangePasswordVue from './VChangePassword';
   export default {
-    components: { VSocialVue, VGeneralVue,VChangePasswordVue },
+    components: { VGeneralVue,VChangePasswordVue },
   };
 </script>
