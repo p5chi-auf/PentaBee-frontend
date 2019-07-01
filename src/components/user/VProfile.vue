@@ -15,7 +15,7 @@
                   <div class="image-out-container">
                     <div class="greenIcon"/>
                     <div class="image-in-container">
-                      <img src="../../public/img/person1.jpg" alt="">
+                      <img src="../../../public/img/person1.jpg" alt="">
                     </div>
                   </div>
                 </div>

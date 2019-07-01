@@ -2,7 +2,7 @@ import Router from 'vue-router';
 import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
-import Profile from '@/components/VProfile';
+import Profile from '@/components/user/VProfile';
 import Edit from '@/components/user/EditProfile';
 import Vue from 'vue';
 Vue.use(Router);

@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import VHeader from '@/views/VHeader';
-import VFooter from '@/views/VFooter';
+import VHeader from '@/views/TheHeader';
+import VFooter from '@/views/TheFooter';
 import VSidebar from '@/components/VSidebar';
 import VLayout from '@/components/VLayout';
 
