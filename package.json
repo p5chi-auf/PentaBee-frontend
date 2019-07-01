@@ -15,8 +15,6 @@
     "bootstrap-vue": "^2.0.0-rc.24",
     "core-js": "^2.6.5",
     "css-loader": "^3.0.0",
-    "custom": "^0.0.0",
-    "html": "^1.0.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "rebuild": "^0.1.2",
@@ -27,9 +25,7 @@
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.3",
     "vue-sidebar-menu": "^3.9.1",
-    "vuex": "^3.0.1",
-    "webpack": "x.x.x",
-    "x": "^0.1.2"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
