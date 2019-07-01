@@ -7,7 +7,7 @@
         header-bg-variant="transparent"
         footer-border-variant="dark"
       >
-        <h4 class="text-center">Profile</h4>
+        <h4 class="text-center">User Profile</h4>
         <b-col>
           <b-alert show class="text-center" variant="warning" dismissible fade>
             <i class="fas fa-smile-wink"/>
