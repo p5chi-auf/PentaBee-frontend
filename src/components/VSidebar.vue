@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu :menu="menu" width="200px" @collapse="triggerSidebar"/>
+  <sidebar-menu :menu="menu" width="175px" @collapse="triggerSidebar"/>
 </template>
 
 <script>
@@ -20,22 +20,12 @@ export default {
     menu: () => [
       {
         header: true,
-        title: 'Main Navigation',
+        title: 'PentaBee Navigation',
       },
       {
         href: '/',
         title: 'Home',
         icon: 'fa fa-home',
-      },
-      {
-        href: '/registration',
-        title: 'Registration',
-        icon: 'fa fa-pencil-alt',
-      },
-      {
-        href: '/login',
-        title: 'Login',
-        icon: 'fa fa-sign-in-alt',
       },
       {
         href: '/charts',
