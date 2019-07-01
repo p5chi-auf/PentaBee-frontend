@@ -29,10 +29,6 @@
             <i class="fas fa-user"/> Profile
           </b-dropdown-item>
 
-          <b-dropdown-item to="/edit">
-            <i class="fas fa-user-edit"/> Edit Profile
-          </b-dropdown-item>
-
           <b-dropdown-item to="/settings">
             <i class="fas fa-cog"/> Settings
           </b-dropdown-item>

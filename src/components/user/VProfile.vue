@@ -1,51 +1,53 @@
 <template>
   <div class="profile home-content">
-    <section id="userProfile">
-      <div class="container my-3 py-4 text-center">
-        <div class="row md-5">
-          <div class="col">
-            <h2 class="text-center">User Profile</h2>
+    <b-container>
+      <b-card
+        border-variant="warning"
+        header-tag="header"
+        header-bg-variant="transparent"
+        footer-border-variant="dark"
+      >
+        <h4 class="text-center">Profile</h4>
+        <b-col>
+          <b-alert show class="text-center" variant="warning" dismissible fade>
+            <i class="fas fa-smile-wink"/>
+            Add more information about yourself
+          </b-alert>
+          <b-container class="row">
+            <b-tabs active-nav-item-class="font-weight-bold text-uppercase text-warning"
+                    active-tab-class="font-weight-bold"
+                    content-class="mt-3"
+                    class="row col-12"
+            >
+              <b-tab title="General" active>
+                <user-details/>
+              </b-tab>
+              <b-tab title="Change password">
+                <change-password/>
+              </b-tab>
+            </b-tabs>
+          </b-container>
+          <br>
+          <div class="text-center space">
+            <b-btn
+              class="col-md-5 float-none d-inline-block btn btn-1"
+              variant="warning"
+              block
+              pill
+            >Save Changes
+            </b-btn>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-8">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-center h-100">
-                  <div class="image-out-container">
-                    <div class="greenIcon"/>
-                    <div class="image-in-container">
-                      <img src="../../../public/img/person1.jpg" alt="">
-                    </div>
-                  </div>
-                </div>
-                <h3>Evan You</h3>
-                <h5>General user activity</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
-                <div class="d-flex flex-row justify-content-center">
-                  <div class="p-4">
-                    <a href="https://www.linkedin.com/in/evanyou/">
-                      <i class="fab fa-linkedin"/>
-                    </a>
-                  </div>
-                  <div class="p-4">
-                    <a href="https://github.com/yyx990803">
-                      <i class="fab fa-github"/>
-                    </a>
-                  </div>
-
-                  <div class="p-4">
-                    <a href="#">
-                      <i class="fas fa-paper-plane"/>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </b-col>
+      </b-card>
+    </b-container>
   </div>
 </template>
 
+<script>
+  import UserDetails from './UserDetails';
+  import ChangePassword from './ChangePassword';
+
+  export default {
+    components: { UserDetails,ChangePassword},
+  };
+</script>
