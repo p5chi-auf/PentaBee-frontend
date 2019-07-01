@@ -2,6 +2,7 @@ import Router from 'vue-router';
 import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
+import Activity from '@/components/VActivity';
 import Vue from 'vue';
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/registration',
       name: 'registration',
       component: Registration,
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      component: Activity,
     },
   ],
 });
