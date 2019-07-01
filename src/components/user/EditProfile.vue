@@ -3,11 +3,11 @@
     <b-container>
       <b-card
         border-variant="warning"
-        title="Edit Profile"
         header-tag="header"
         header-bg-variant="transparent"
         footer-border-variant="dark"
       >
+        <h4 class="text-center">Edit Profile</h4>
         <b-col>
           <b-alert show class="text-center" variant="warning" dismissible fade>
             <i class="fas fa-smile-wink"/>
@@ -33,7 +33,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="Evan"
               />
             </b-form-group>
 
@@ -44,7 +43,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="Evan"
               />
 
             </b-form-group>
@@ -56,7 +54,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="CHI"
               />
             </b-form-group>
             <b-form-group
@@ -66,7 +63,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="Developer"
               />
             </b-form-group>
             <b-form-group
@@ -76,7 +72,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="myemail@gmail.com"
               />
             </b-form-group>
             <b-form-group
@@ -86,7 +81,6 @@
               <b-form-input
                 type="text"
                 class="form-control"
-                value="Junior"
               />
             </b-form-group>
 
@@ -144,7 +138,6 @@
               <b-form-input
                 type="password"
                 class="form-control"
-                value="11111111"
               />
             </b-form-group>
 
@@ -155,7 +148,6 @@
               <b-form-input
                 type="password"
                 class="form-control"
-                value="11111111"
               />
 
             </b-form-group>
@@ -167,28 +159,22 @@
               <b-form-input
                 type="password"
                 class="form-control"
-                value="11111111"
               />
             </b-form-group>
           </b-form>
 
           <div class="text-center space">
             <b-btn
-              class="col-md-5 float-none d-inline-block"
+              class="col-md-5 float-none d-inline-block btn btn-1"
               variant="warning"
               block
               pill
             >Save Changes
             </b-btn>
           </div>
-
-
         </b-col>
       </b-card>
     </b-container>
   </div>
 </template>
 
-<style scoped>
-
-</style>

@@ -28,6 +28,16 @@ export default {
         icon: 'fa fa-home',
       },
       {
+        href: '/registration',
+        title: 'Registration',
+        icon: 'fa fa-pencil-alt',
+      },
+      {
+        href: '/login',
+        title: 'Login',
+        icon: 'fa fa-sign-in-alt',
+      },
+      {
         href: '/charts',
         title: 'List',
         icon: 'fa fa-cog',

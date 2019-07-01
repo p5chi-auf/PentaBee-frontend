@@ -1,23 +1,15 @@
 <template>
   <div id="app">
     <div>
-      <v-header
-        v-if="$route.name !== 'login' && $route.name !== 'registration'"
-      />
-      <v-sidebar
-        v-if="$route.name !== 'login' && $route.name !== 'registration'"
-      />
-      <router-view
-        v-if="
-          $route.name !== 'home' &&
-            $route.name !== 'profile' &&
-            $route.name !== 'edit'
-        "
-      />
-      <v-layout
-        v-if="$route.name !== 'login' && $route.name !== 'registration'"
-      />
-      <v-footer />
+      <template v-if="!isAuth">
+        <v-header />
+        <v-layout />
+        <v-sidebar />
+        <v-footer />
+      </template>
+      <template v-else>
+        <router-view />
+      </template>
     </div>
   </div>
 </template>
@@ -34,6 +26,12 @@ export default {
     VFooter,
     VSidebar,
     VLayout,
+  },
+  computed: {
+    isAuth() {
+      const { name } = this.$route;
+      return name === 'login' || name === 'registration';
+    },
   },
 };
 </script>

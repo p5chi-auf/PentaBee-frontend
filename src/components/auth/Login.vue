@@ -54,7 +54,8 @@
 
             <div class="text-center button-padding">
               <b-btn
-                variant="outline-warning"
+                variant="warning"
+                class="btn btn-1"
                 block
                 pill
                 @click="login()"
@@ -74,6 +75,7 @@
     </b-container>
   </div>
 </template>
+
 <script>
 import LoginService from '../../services/loginApi';
 export default {
@@ -100,3 +102,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

@@ -143,10 +143,10 @@
             </b-form-group>
           </b-form>
 
-          <div class="text-center space">
+          <div class="text-center button">
             <b-btn
-              class="col-md-5 float-none d-inline-block"
-              variant="outline-warning"
+              class="col-md-5 float-none d-inline-block btn btn-1"
+              variant="warning"
               block
               pill
               @click="registerIt()"
@@ -166,7 +166,7 @@
   </div>
 </template>
 <script>
-import RegisterService from '../../services/registerApi.js';
+import RegisterService from '@/services/registerApi.js';
 
 export default {
   data() {

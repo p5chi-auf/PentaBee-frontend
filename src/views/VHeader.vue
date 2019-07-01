@@ -22,7 +22,7 @@
           right
         >
           <template slot="button-content">
-            <img class="user" src="../../public/img/person1.jpg" alt="">
+            <img class="user" src="../../public/img/person1.jpg">
             <span class="user-dropdown"> Evan You</span>
           </template>
           <b-dropdown-item to="/profile">
