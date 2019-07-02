@@ -21,11 +21,11 @@
                 name="username"
                 type="text"
                 class="form-control"
-                :class="{ 'is-invalid': submitted && errors.has('username') }"
+                :class="{ 'is-invalid': errors.has('username') }"
               />
 
               <span
-                v-if="submitted && errors.has('username')"
+                v-if=" errors.has('username')"
                 class="invalid-feedback"
               >{{ errors.first('username') }}</span>
             </b-form-group>
@@ -43,11 +43,11 @@
                 name="password"
                 type="password"
                 class="form-control"
-                :class="{ 'is-invalid': submitted && errors.has('password') }"
+                :class="{ 'is-invalid': errors.has('password') }"
               />
 
               <span
-                v-if="submitted && errors.has('password')"
+                v-if=" errors.has('password')"
                 class="invalid-feedback"
               >{{ errors.first('password') }}</span>
             </b-form-group>
@@ -102,7 +102,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>
