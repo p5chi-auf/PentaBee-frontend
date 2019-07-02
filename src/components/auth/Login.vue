@@ -77,28 +77,30 @@
 </template>
 
 <script>
-import LoginService from '../../services/loginApi';
-export default {
-  data() {
-    return {
-      form: {
-        username: '',
-        password: '',
+  import LoginService from '../../services/loginApi';
+
+  export default {
+    data: () => ({
+        form: {
+          username: '',
+          password: '',
+        },
+    }),
+    methods: {
+      login() {
+        LoginService.login(this.form)
+          .then(response => {
+            // debugger;
+            // const data = response.data.result;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+            // window.localStorage.setItem('current_user_id', 46);
+            this.$router.push('/');
+          })
+          .catch(error => {
+            alert('Bad credentials');
+            console.log(error.response.this.form);
+          });
       },
-    };
-  },
-  methods: {
-    login() {
-      LoginService.login(this.form)
-        .then(response => {
-          self.response_key = response.data.result;
-          this.$router.push('/');
-        })
-        .catch(error => {
-          alert('Bad credentials');
-          console.log(error.response.this.form);
-        });
     },
-  },
-};
+  };
 </script>

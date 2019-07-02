@@ -169,8 +169,7 @@
 import RegisterService from '@/services/registerApi.js';
 
 export default {
-  data() {
-    return {
+  data: () => ({
       form: {
         username: '',
         password: '',
@@ -179,8 +178,7 @@ export default {
         name: '',
         surname: '',
       },
-    };
-  },
+  }),
   methods: {
     registerIt() {
       RegisterService.register(this.form)

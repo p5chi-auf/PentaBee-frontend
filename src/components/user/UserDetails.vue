@@ -104,17 +104,33 @@
 
         <div class="mt-3">Selected: <strong>{{ seniority }}</strong></div>
       </b-form-group>
+      <b-card-text>
+        A username : {{ form.username }}
+      </b-card-text>
     </b-form>
+    <br>
+    <div class="text-center space">
+      <b-btn
+        class="col-md-5 float-none d-inline-block btn btn-1"
+        variant="warning"
+        block
+        pill
+        @click="edit()"
+      > Save Changes
+      </b-btn>
+    </div>
   </div>
 </template>
 
 <script>
+  import UserApi from '@/services/user/userDetailsApi';
+
   export default {
     data() {
       return {
         form: {
           id: 0,
-          username: '',
+          username: 'fghdfg',
           email: '',
           position: '',
           seniority: 'value',
@@ -134,5 +150,22 @@
         ],
       };
     },
+    mounted: function() {
+      let id = window.localStorage.getItem('current_user_id');
+      UserApi.userInfo(id)
+        .then(response => {
+          console.log(response)
+        });
+    },
+    methods: {
+      edit(id) {
+        UserApi.edit(this.form)
+          .then(response => {
+            self.response_key = response.id.result;
+          });
+        alert('User not found.');
+        console.log(error.response.this.form);
+      },
+    }
   };
 </script>

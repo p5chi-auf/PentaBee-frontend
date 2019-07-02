@@ -38,17 +38,6 @@
                 </b-tab>
               </b-tabs>
             </b-container>
-            <br>
-            <div class="text-center space">
-              <b-btn
-                class="col-md-5 float-none d-inline-block btn btn-1"
-                variant="warning"
-                block
-                pill
-                @click="edit()"
-              > Save Changes
-              </b-btn>
-            </div>
           </b-col>
         </b-card>
       </b-row>
@@ -61,18 +50,15 @@
   import ChangePassword from './ChangePassword';
   import UserApi from '@/services/user/userDetailsApi';
 
-
   export default {
     components: { UserDetails, ChangePassword },
       methods: {
-        edit() {
-          UserApi.edit(this.form)
+        userInfo(id){
+          UserApi.userInfo(this.form)
             .then(response => {
               self.response_key = response.id.result;
             });
-          alert('Unauthorized');
-          console.log(error.response.this.form);
-        }
+        },
 		}
   };
 </script>

@@ -85,15 +85,23 @@
 </template>
 
 <script>
+  import UserApi from '@/services/user/userDetailsApi';
+
   export default {
-    data() {
-      return {
+    data: () => ({
         form: {
           old_password: '',
           password: '',
           confirm_password: '',
         },
-      };
-    },
+    }),
+    methods: {
+      edit(id) {
+        UserApi.changePassword(this.form)
+          .then(response => {
+            self.response_key = response.id.result;
+          });
+      },
+    }
   };
 </script>
