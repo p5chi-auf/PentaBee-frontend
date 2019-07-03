@@ -50,8 +50,10 @@
   import ChangePassword from './ChangePassword';
   import UserApi from '@/services/user/userDetailsApi';
 
+
   export default {
     components: { UserDetails, ChangePassword },
+
       methods: {
         userInfo(id){
           UserApi.userInfo(this.form)

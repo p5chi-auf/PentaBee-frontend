@@ -3,7 +3,7 @@
     <h6 class="text-left font-weight-bold">General</h6>
     <h6 class="text-left" style="color: #a3a3a3;">Setup your general profile details.</h6><br>
 
-    <b-form class="row" @submit.prevent="edit()">
+    <b-form class="row">
       <b-form-group
         id="input-group-1"
         class="col-md-6"
@@ -104,9 +104,6 @@
 
         <div class="mt-3">Selected: <strong>{{ seniority }}</strong></div>
       </b-form-group>
-      <b-card-text>
-        A username : {{ form.username }}
-      </b-card-text>
     </b-form>
     <br>
     <div class="text-center space">
@@ -115,7 +112,7 @@
         variant="warning"
         block
         pill
-        @click="edit()"
+        @click="userInfo()"
       > Save Changes
       </b-btn>
     </div>
@@ -124,13 +121,12 @@
 
 <script>
   import UserApi from '@/services/user/userDetailsApi';
-
+  import axios from 'axios';
   export default {
-    data() {
-      return {
+    data: () => ({
         form: {
-          id: 0,
-          username: 'fghdfg',
+          id: 46 ,
+          username: '',
           email: '',
           position: '',
           seniority: 'value',
@@ -138,7 +134,7 @@
           surname: '',
           technologies: [
             {
-              id: 0,
+              id: null,
             },
           ],
         },
@@ -148,24 +144,21 @@
           { value: '1', text: 'MIDDLE' },
           { value: '2', text: 'SENIOR' },
         ],
-      };
-    },
-    mounted: function() {
-      let id = window.localStorage.getItem('current_user_id');
-      UserApi.userInfo(id)
-        .then(response => {
-          console.log(response)
-        });
+    }),
+    mounted() {
+      const token = localStorage.getItem('token');
+      console.log(token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     },
     methods: {
-      edit(id) {
-        UserApi.edit(this.form)
-          .then(response => {
-            self.response_key = response.id.result;
-          });
-        alert('User not found.');
-        console.log(error.response.this.form);
-      },
-    }
+      userInfo(){
+        UserApi.getUserInfo(this.form.id).then((response) => {
+          console.log(response);
+          this.form = response.data;
+				}).catch(error => {
+          console.log(error)
+				})
+			}
+    },
   };
 </script>

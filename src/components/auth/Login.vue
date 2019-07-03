@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import LoginService from '../../services/loginApi';
+  import LoginService from '@/services/authApi';
 
   export default {
     data: () => ({
@@ -90,15 +90,12 @@
       login() {
         LoginService.login(this.form)
           .then(response => {
-            // debugger;
-            // const data = response.data.result;
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-            // window.localStorage.setItem('current_user_id', 46);
+            window.localStorage.setItem('token', response.data.token);
             this.$router.push('/');
           })
           .catch(error => {
             alert('Bad credentials');
-            console.log(error.response.this.form);
+            console.log(error);
           });
       },
     },

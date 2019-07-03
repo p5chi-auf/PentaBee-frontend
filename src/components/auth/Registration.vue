@@ -166,7 +166,7 @@
   </div>
 </template>
 <script>
-import RegisterService from '@/services/registerApi.js';
+import RegisterService from '@/services/authApi';
 
 export default {
   data: () => ({
