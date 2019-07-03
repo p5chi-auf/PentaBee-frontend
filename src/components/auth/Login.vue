@@ -78,7 +78,6 @@
 
 <script>
 import LoginService from '../../services/loginApi';
-import axios from 'axios';
 export default {
   data () {
     return {
@@ -86,7 +85,8 @@ export default {
         username: '',
         password: '',
       },
-      name: ''
+      name: '',
+      JWT:''
     };
   },
   methods: {
@@ -95,13 +95,12 @@ export default {
         .then (response => {
           window.localStorage.setItem ('token', response.data.token);
           this.$router.push ('/');
-
         })
         .catch (error => {
           console.log (error);
         });
-    },
-  }
+    }
+  },
 };
 </script>
 

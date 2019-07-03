@@ -1,7 +1,7 @@
 <template>
   <div class="pt-5">
     <b-card tag="article" class="mx-auto  col-md-11 ">
-      <b-card-text class="project-name col-md-3 text-left border border-warning">
+      <b-card-text class="project-name  text-left border border-warning">
         Project: {{ActivityDetails.name}}
       </b-card-text>
       
@@ -17,7 +17,7 @@
           <b-card-text class="text-left border border-warning">
             Uppdated at: {{ActivityDetails.updated_at}}
           </b-card-text>
-  
+          
           <b-card-text class="text-left border border-warning">
             Owner: {{ ActivityDetails.owner.id }}
           </b-card-text>
@@ -31,7 +31,7 @@
           <b-card-text class="text-left border border-warning">
             Activity deadline: {{ActivityDetails.final_deadline}}
           </b-card-text>
-  
+          
           <b-card-text class="text-left border border-warning">
             Technologies: {{ActivityDetails.technologies.id}}
           </b-card-text>
@@ -44,51 +44,47 @@
 
 <script>
   import ActivityService from '../../services/ActivityApi';
-  import axios from 'axios';
 
   export default {
     data () {
       return {
         ActivityDetails: {
-          id: 39,
+          id: 40,
           name: '',
           description: '',
           application_deadline: '',
           final_deadline: '',
           status: '',
           owner: {
-            id: 1
+            id: null
           },
           created_at: '',
           updated_at: '',
           technologies: [{
-            id: 3
+            id: null
           }],
           types: [{
-            id: 2
+            id: null
           }],
           public: true,
         }
-       
+
       }
 
     },
-    mounted (){
-      const token = localStorage.getItem('token');
-      console.log(token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    },
-    methods:{
-      created (){
-       ActivityService.GetActivityDetails(this.ActivityDetails.id).then((response) => {
-       console.log(response);
-       this.ActivityDetails = response.data;
-       }).catch(error => {
-         console.log(error)
-       })
+
+    methods: {
+      created () {
+        ActivityService.mounted ();
+        ActivityService.GetActivityDetails (this.ActivityDetails.id).then ((response) => {
+          console.log (response);
+          this.ActivityDetails = response.data;
+        })
+          .catch (error => {
+            console.log (error)
+          })
       },
     },
-    
   }
 </script>
 <style>
