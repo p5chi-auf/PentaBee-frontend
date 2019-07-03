@@ -1,9 +1,10 @@
 import Axios from 'axios';
-const API_ACTIVITY_RESOURCE = 'http://api.pentabee.local/api/activities/220';
+const BASE_URL_RESOURCE = 'http://api.pentabee.local/api/activities/';
 
 export default {
 
-  activity (data) {
-    return Axios.get(API_ACTIVITY_RESOURCE, data);
+
+  GetActivityDetails (id) {
+    return Axios.get(BASE_URL_RESOURCE + id);
   }
 };

@@ -3,14 +3,14 @@
     <b-card no-body>
       <b-tabs card>
         <b-tab title="Disponibile" active>
-          <b-card-group deck class="stile-b-card">
+          <b-card-group deck >
             <b-card bg-variant="light" border-variant="warning" class="col-md-4 mx-auto cards" @click="getInfo">
               <b-card-text class="project-name">
                 Project: {{name}}
               </b-card-text>
               
               <b-card-text>
-                Website for interconnection of all software developers, who need help or who can help with activities.
+                Description: {{description}}
               </b-card-text>
             </b-card>
           </b-card-group>
@@ -24,7 +24,7 @@
               </b-card-text>
               
               <b-card-text>
-                Website for interconnection of all software developers, who need help or who can help with activities.
+                Description: {{description}}
               </b-card-text>
             </b-card>
           </b-card-group>
@@ -38,7 +38,7 @@
               </b-card-text>
               
               <b-card-text>
-                Website for interconnection of all software developers, who need help or who can help with activities.
+                Description: {{description}}
               </b-card-text>
             </b-card>
           </b-card-group>
@@ -52,7 +52,7 @@
               </b-card-text>
               
               <b-card-text>
-                Website for interconnection of all software developers, who need help or who can help with activities.
+                Description: {{description}}
               </b-card-text>
             </b-card>
           </b-card-group>
@@ -67,8 +67,10 @@
   export default {
     data () {
       return {
+        id: 1,
         name: 'PentaBee',
-        description: 'Website for interconnection of all software developers, who need help or who can help with activities.'
+        description: 'Website for interconnection of all software developers, who need help or who can help with activities.',
+        status: 0,
       }
     },
     methods: {
@@ -79,10 +81,6 @@
   }
 </script>
 <style>
-  .stile-b-card {
-    padding-bottom: 50px;
-  }
-  
   .cards:hover {
     cursor: pointer;
   }
