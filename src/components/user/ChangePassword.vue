@@ -2,11 +2,10 @@
   <div>
     <h6 class="text-left font-weight-bold">Change Password</h6>
     <h6 class="text-left" style="color: #a3a3a3;">Change your current password.</h6><br>
-
-    <b-form class="row" @submit.prevent="edit()">
+    <b-form class="row" @submit.prevent="change()">
       <b-form-group
         id="input-group-1"
-        class="col-md-6"
+        class="col-md-4"
         label="Old Password"
         label-for="old_password"
       >
@@ -31,7 +30,7 @@
 
       <b-form-group
         id="input-group-2"
-        class="col-md-6"
+        class="col-md-4"
         label="New Password"
         label-for="password"
       >
@@ -58,7 +57,7 @@
 
       <b-form-group
         id="input-group-3"
-        class="col-md-6"
+        class="col-md-4"
         label="Repeat New Password"
         label-for="confirmPassword"
       >
@@ -81,25 +80,38 @@
         >{{ errors.first('confirm_password') }}</span>
       </b-form-group>
     </b-form>
+    <div class="text-center space">
+      <b-btn
+        class="col-md-5 float-none d-inline-block btn btn-1"
+        variant="warning"
+        block
+        pill
+        @click="change()"
+      > Save Changes
+      </b-btn>
+    </div>
   </div>
 </template>
 
 <script>
-  import UserApi from '@/services/user/userDetailsApi';
+  import UserApi from '@/services/userDetailsApi';
 
   export default {
     data: () => ({
-        form: {
-          old_password: '',
-          password: '',
-          confirm_password: '',
-        },
+      form: {
+        old_password: '',
+        password: '',
+        confirm_password: '',
+      },
     }),
     methods: {
-      edit(id) {
+      change() {
         UserApi.changePassword(this.form)
           .then(response => {
-            self.response_key = response.id.result;
+            console.log(response);
+          })
+          .catch(error => {
+            return console.log(error);
           });
       },
     }

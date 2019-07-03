@@ -3,7 +3,7 @@
     <h6 class="text-left font-weight-bold">General</h6>
     <h6 class="text-left" style="color: #a3a3a3;">Setup your general profile details.</h6><br>
 
-    <b-form class="row">
+    <b-form class="row" @submit.prevent="edit()">
       <b-form-group
         id="input-group-1"
         class="col-md-6"
@@ -68,6 +68,22 @@
       <b-form-group
         id="input-group-4"
         class="col-md-6"
+        label="Position"
+        label-for="position"
+      >
+        <b-form-input
+          id="position"
+          v-model="form.position"
+          name="position"
+          type="text"
+          class="form-control"
+          style="text-transform:uppercase"
+        />
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-5"
+        class="col-md-6"
         label="Last Name"
         label-for="lastName"
       >
@@ -86,10 +102,6 @@
         }}</span>
       </b-form-group>
 
-      <b-form-group class="col-md-6" label="Position">
-        <b-form-input type="text" class="form-control"/>
-      </b-form-group>
-
       <b-form-group
         id="input-group-6"
         class="col-md-6"
@@ -102,17 +114,16 @@
           </template>
         </b-form-select>
 
-        <div class="mt-3">Selected: <strong>{{ seniority }}</strong></div>
+        <div class="mt-3">Selected: <strong>{{ form.seniority }}</strong></div>
       </b-form-group>
     </b-form>
-    <br>
     <div class="text-center space">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"
         variant="warning"
         block
         pill
-        @click="userInfo()"
+        @click="edit()"
       > Save Changes
       </b-btn>
     </div>
@@ -120,8 +131,8 @@
 </template>
 
 <script>
-  import UserApi from '@/services/user/userDetailsApi';
-  import axios from 'axios';
+  import UserApi from '@/services/userDetailsApi';
+
   export default {
     data: () => ({
         form: {
@@ -129,12 +140,13 @@
           username: '',
           email: '',
           position: '',
-          seniority: 'value',
+          seniority: '',
           name: '',
           surname: '',
           technologies: [
             {
               id: null,
+              name: '',
             },
           ],
         },
@@ -146,19 +158,25 @@
         ],
     }),
     mounted() {
-      const token = localStorage.getItem('token');
-      console.log(token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      UserApi.mounted();
+      UserApi.getUserInfo(this.form.id).then((response) => {
+        console.log(response);
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error)
+      })
     },
     methods: {
-      userInfo(){
-        UserApi.getUserInfo(this.form.id).then((response) => {
-          console.log(response);
-          this.form = response.data;
-				}).catch(error => {
-          console.log(error)
-				})
-			}
+      edit() {
+        UserApi.editUser(this.form.id)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            return console.log(error);
+          });
+      },
     },
   };
 </script>
+
