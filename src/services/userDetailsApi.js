@@ -17,7 +17,7 @@ export default {
   delete(id) {
     return Axios.delete(API_USER + id + '/delete');
   },
-  changePassword(id) {
-    return Axios.post(API_USER + id + '/change_password');
+  changePassword(data) {
+    return Axios.post(API_USER + 52 + '/change_password', data);
   },
 };
