@@ -2,10 +2,13 @@
   height: calc(100vh - 122px);
   top: 81px;
 }
+.vsm-link{box-shadow:3px 0px 0px 0px #000 inset}
+.vsm-mobile-bg{background-color:#000}
 
 @media screen and (max-width: 414px) {
   .v-sidebar-menu {
     height: calc(100vh - 147px);
   }
 }
+
 

@@ -3,6 +3,7 @@ import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
+import Error from '@/components/auth/VError';
 import Vue from 'vue';
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: Error,
     },
   ],
 });

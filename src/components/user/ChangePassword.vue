@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h6 class="text-left font-weight-bold">Change Password</h6>
-    <h6 class="text-left" style="color: #a3a3a3;">Change your current password.</h6><br>
+    <br>
     <b-form class="row" @submit.prevent="change()">
       <b-form-group
         id="input-group-1"

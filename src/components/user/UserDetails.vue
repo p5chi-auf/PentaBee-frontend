@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h6 class="text-left font-weight-bold">General</h6>
-    <h6 class="text-left" style="color: #a3a3a3;">Setup your general profile details.</h6><br>
-
+    <br>
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
         id="input-group-1"
@@ -108,13 +106,11 @@
         label="Seniority"
         label-for="seniority"
       >
-        <b-form-select v-model="seniority" :options="options">
+        <b-form-select v-model="form.seniority" :options="options">
           <template slot="first">
             <option :value="null" disabled>-- Please select your seniority --</option>
           </template>
         </b-form-select>
-
-        <div class="mt-3">Selected: <strong>{{ form.seniority }}</strong></div>
       </b-form-group>
     </b-form>
     <div class="text-center space">
