@@ -37,7 +37,6 @@
           </b-card-text>
         </div>
       </div>
-      <b-button variant="primary" @click="created()">Get activity</b-button>
     </b-card>
   </div>
 </template>
@@ -45,11 +44,12 @@
 <script>
   import ActivityService from '../../services/ActivityApi';
 
+
   export default {
     data () {
       return {
         ActivityDetails: {
-          id: 40,
+          id: null,
           name: '',
           description: '',
           application_deadline: '',
@@ -72,10 +72,9 @@
       }
 
     },
-
-    methods: {
       created () {
-        ActivityService.getActivityDetails (this.ActivityDetails.id).then ((response) => {
+        let idActivity = localStorage.getItem('idActivity');
+        ActivityService.getActivityDetails(idActivity).then ((response) => {
           console.log (response);
           this.ActivityDetails = response.data;
         })
@@ -83,7 +82,7 @@
             console.log (error)
           })
       },
-    },
+   
   }
 </script>
 <style>

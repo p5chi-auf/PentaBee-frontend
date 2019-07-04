@@ -4,7 +4,7 @@
       <b-tabs card>
         <b-tab title="Disponibile" active>
           <b-card-group deck >
-            <b-card v-for="result in this.results" v-bind:key = "result.id" bg-variant="light" border-variant="warning" class="col-md-4 mx-auto cards" @click="getInfo">
+            <b-card v-for="result in this.results" v-bind:key = "result.id" bg-variant="light" border-variant="warning" class="col-md-4 mx-auto cards" @click="getInfo(result.id)">
               <b-card-text class="project-name">
                 Project: {{result.name}}
               </b-card-text>
@@ -38,20 +38,12 @@
 
 <script>
   import ActivityService from '../services/ActivityApi';
-  import jwt_decode from 'jwt-decode';
   export default {
-    id : id,
+    name: 'ActivityList',
     data () {
       return {
         page: 1,
-        results: [
-          {
-            id: null,
-            name: '',
-            description: '',
-            status: null
-          },
-        ],
+        results: [],
         numResults: null,
         perPage: null,
         numPages: null
@@ -59,21 +51,19 @@
     },
     mounted(){
       ActivityService.getActivityList (this.page).then ((response) => {
-        console.log (response);
+        console.log (response.data.results);
         this.results = response.data.results;
-        let decoded = jwt_decode(this.token);
-        console.log(decoded);
+        console.log('number of items'+ this.results.length);
       })
         .catch (error => {
           console.log (error)
         })
     },
     methods: {
-      getInfo () {
-        this.$router.push ('/activity');
-      },
-      created () {
-      },
+      getInfo (id) {
+        localStorage.setItem('idActivity',id);
+        this.$router.push({name:'activity',params:{AId:id}});
+      }
     }
   }
 </script>

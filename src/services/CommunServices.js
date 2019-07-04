@@ -4,6 +4,7 @@ const BASE_URL='http://api.pentabee.local/api/';
 
 export default {
   BASE_URL: BASE_URL,
+  TOKEN: token,
   getToken() {
    return  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   },
