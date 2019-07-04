@@ -1,17 +1,14 @@
 import Axios from 'axios';
-import axios from 'axios';
-const BASE_URL_RESOURCE = 'http://api.pentabee.local/api/activities/';
-const token = localStorage.getItem ('token');
+import CommonServices from './CommunServices';
 
 export default {
-  mounted() {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  getActivityDetails (id) {
+    CommonServices.getToken();
+    return Axios.get(CommonServices.BASE_URL+ 'activities/'+ id);
   },
-
-  GetActivityDetails (id) {
-    return Axios.get(BASE_URL_RESOURCE + id);
-  },
-  GetActivityList(page){
-    return Axios.get(BASE_URL_RESOURCE +'all/'+ page);
+  getActivityList(page){
+    CommonServices.getToken();
+    return Axios.get(CommonServices.BASE_URL +'/activities/all/'+ page);
   }
+
 };

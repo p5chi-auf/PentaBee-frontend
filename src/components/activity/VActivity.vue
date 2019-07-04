@@ -75,8 +75,7 @@
 
     methods: {
       created () {
-        ActivityService.mounted ();
-        ActivityService.GetActivityDetails (this.ActivityDetails.id).then ((response) => {
+        ActivityService.getActivityDetails (this.ActivityDetails.id).then ((response) => {
           console.log (response);
           this.ActivityDetails = response.data;
         })
