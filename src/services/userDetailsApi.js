@@ -11,8 +11,8 @@ export default {
   getUserInfo(id) {
     return Axios.get(API_USER + id);
   },
-  editUser(id) {
-    return Axios.post(API_USER + id + '/edit');
+  editUser(data) {
+    return Axios.post(API_USER + 52 + '/edit', data);
   },
   delete(id) {
     return Axios.delete(API_USER + id + '/delete');

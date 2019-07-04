@@ -168,7 +168,8 @@
     },
     methods: {
       edit() {
-        UserApi.editUser(this.form.id)
+        UserApi.editUser(this.form)
+        // UserApi.editUser(this.form.id)
           .then(response => {
             console.log(response);
           })
@@ -179,4 +180,3 @@
     },
   };
 </script>
-
