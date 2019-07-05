@@ -1,61 +1,50 @@
 <template>
   <div class="profile home-content">
-    <b-container>
-      <b-card-group deck>
-        <b-card
-          border-variant="warning"
-          header-bg-variant="transparent"
-          align="center"
-        >
-          <h4 class="text-center">
-            User Profile
-            <hr>
-          </h4>
-          <b-alert
-            show
-            class="text-center"
-            variant="warning"
-            dismissible
-            fade
-          >
-            <i class="fas fa-smile-wink"/>
-            Add more information about yourself
-          </b-alert>
-          <b-tabs
-            active-nav-item-class="font-weight-bold text-uppercase text-warning"
-            active-tab-class="font-weight-bold"
-            content-class="mt-3"
-          >
-            <b-tab title="General" active>
-              <br>
-              <user-details/>
-            </b-tab>
-            <b-tab title="Change password">
-              <br>
-              <change-password/>
-            </b-tab>
-          </b-tabs>
-        </b-card>
-      </b-card-group>
-    </b-container>
+    <section id="userProfile">
+      <div class="container my-3 py-4 text-center">
+        <div class="row md-5">
+          <div class="col">
+            <h2 class="text-center">User Profile</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-center h-100">
+                  <div class="image-out-container">
+                    <div class="greenIcon"/>
+                    <div class="image-in-container">
+                      <img :src="require('../../../public/img/person1.png')">
+                    </div>
+                  </div>
+                </div>
+                <h3>Evan You</h3>
+                <h5>General user activity</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
+                <div class="d-flex flex-row justify-content-center">
+                  <div class="p-4">
+                    <a href="https://www.linkedin.com/in/evanyou/">
+                      <i class="fab fa-linkedin"/>
+                    </a>
+                  </div>
+                  <div class="p-4">
+                    <a href="https://github.com/yyx990803">
+                      <i class="fab fa-github"/>
+                    </a>
+                  </div>
+
+                  <div class="p-4">
+                    <a href="#">
+                      <i class="fas fa-paper-plane"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
-
-<script>
-  import UserDetails from './UserDetails';
-  import ChangePassword from './ChangePassword';
-  import UserApi from '@/services/userDetailsApi';
-
-  export default {
-    components: { UserDetails, ChangePassword },
-
-    methods: {
-      userInfo(id){
-        UserApi.userInfo(this.form)
-          .then(response => {
-            self.response_key = response.id.result;
-          });
-      },
-    }
-  };
-</script>
