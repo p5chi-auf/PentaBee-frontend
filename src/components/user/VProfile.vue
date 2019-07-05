@@ -1,50 +1,76 @@
 <template>
   <div class="profile home-content">
     <section id="userProfile">
-      <div class="container my-3 py-4 text-center">
-        <div class="row md-5">
-          <div class="col">
+      <b-container class="my-3 py-4 text-center">
+        <b-row class="md-5">
+          <b-col>
             <h2 class="text-center">User Profile</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-8">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-center h-100">
-                  <div class="image-out-container">
-                    <div class="greenIcon"/>
-                    <div class="image-in-container">
-                      <img :src="require('../../../public/img/person1.png')">
-                    </div>
-                  </div>
-                </div>
-                <h3>Evan You</h3>
-                <h5>General user activity</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
-                <div class="d-flex flex-row justify-content-center">
-                  <div class="p-4">
-                    <a href="https://www.linkedin.com/in/evanyou/">
-                      <i class="fab fa-linkedin"/>
-                    </a>
-                  </div>
-                  <div class="p-4">
-                    <a href="https://github.com/yyx990803">
-                      <i class="fab fa-github"/>
-                    </a>
-                  </div>
-
-                  <div class="p-4">
-                    <a href="#">
-                      <i class="fas fa-paper-plane"/>
-                    </a>
+          </b-col>
+          <b-card class="col-lg-12 col-md-12">
+            <div class="card-body">
+              <div class="d-flex justify-content-center h-100">
+                <div class="image-out-container">
+                  <div class="greenIcon"/>
+                  <div class="image-in-container">
+                    <b-img :src="require('../../../public/img/person1.png')"/>
                   </div>
                 </div>
               </div>
+              <h3>{{ form.name }} {{ form.surname }}</h3>
+              <h5>General user activity</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
+              <div class="p-4">
+                <b-link href="https://www.linkedin.com/in/evanyou/">
+                  <i class="fab fa-linkedin"/>
+                </b-link>
+                <b-link class="ml-4" href="https://github.com/yyx990803">
+                  <i class="fab fa-github"/>
+                </b-link>
+                <b-link class="ml-4" href="#">
+                  <i class="fas fa-paper-plane"/>
+                </b-link>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </b-card>
+        </b-row>
+      </b-container>
     </section>
   </div>
 </template>
+
+<script>
+  import UserApi from '@/services/userDetailsApi';
+
+  export default {
+    data: () => ({
+      form: {
+        id: 52 ,
+        email: '',
+        position: '',
+        seniority: '',
+        name: '',
+        surname: '',
+        technologies: [
+          {
+            id: null,
+            name: '',
+          },
+        ],
+      },
+      seniority: null,
+      options: [
+        { value: '0', text: 'JUNIOR' },
+        { value: '1', text: 'MIDDLE' },
+        { value: '2', text: 'SENIOR' },
+      ],
+    }),
+    mounted() {
+      UserApi.getUserDetails();
+      UserApi.userInfo(this.form.id).then((response) => {
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+  };
+</script>

@@ -53,4 +53,11 @@ body {
     background-size: 200% auto;
     border-radius: 10px;
   }
+  #userProfile .card{
+      border-radius: 0;
+      box-shadow: 5px 5px 5px #ffda00;
+      transition: all 0.3s ease-in;
+      -webkit-transition: all 0.3s ease-in;
+      -moz-transition: all 0.3s ease-in;
+    }
 }
