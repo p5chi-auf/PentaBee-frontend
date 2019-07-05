@@ -1,10 +1,9 @@
 import Axios from 'axios';
 const token = localStorage.getItem ('token');
-import CommonServices from './CommunServices';
+import CommonServices from './Services';
 
 export default {
   login(data) {
-    CommonServices.getToken();
     return Axios.post(CommonServices.BASE_URL+'login', data);
   }
 };

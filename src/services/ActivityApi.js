@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import CommonServices from './CommunServices';
+import CommonServices from './Services';
 
 export default {
   getActivityDetails (id) {

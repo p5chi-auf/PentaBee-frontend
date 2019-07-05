@@ -78,6 +78,7 @@
 
 <script>
 import LoginService from '../../services/loginApi';
+
 export default {
   data () {
     return {
@@ -85,8 +86,6 @@ export default {
         username: '',
         password: '',
       },
-      name: '',
-      JWT:''
     };
   },
   methods: {
