@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br>
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
         id="input-group-1"
@@ -11,15 +10,15 @@
         <b-form-input
           id="username"
           v-model="form.username"
-          v-validate.continues="'alpha_dash|required|min:5|max:20'"
+          v-validate.continues="'alpha_dash|required|min:4|max:50'"
           name="username"
           type="text"
           class="form-control"
           :class="{ 'is-invalid': errors.has('username') }"
         />
-        <span v-if="errors.has('username')" class="invalid-feedback">{{
-          errors.first('username')
-        }}</span>
+        <span v-if="errors.has('username')" class="invalid-feedback">
+          {{ errors.first('username') }}
+        </span>
       </b-form-group>
 
       <b-form-group
@@ -37,9 +36,9 @@
           class="form-control"
           :class="{ 'is-invalid': errors.has('email') }"
         />
-        <span v-if="errors.has('email')" class="invalid-feedback">{{
-          errors.first('email')
-        }}</span>
+        <span v-if="errors.has('email')" class="invalid-feedback">
+          {{ errors.first('email') }}
+        </span>
       </b-form-group>
 
       <b-form-group
@@ -58,9 +57,9 @@
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
-        <span v-if="errors.has('name')" class="invalid-feedback">{{
-          errors.first('name')
-        }}</span>
+        <span v-if="errors.has('name')" class="invalid-feedback">
+          {{ errors.first('name') }}
+        </span>
       </b-form-group>
 
       <b-form-group
@@ -95,9 +94,9 @@
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
-        <span v-if="errors.has('surname')" class="invalid-feedback">{{
-          errors.first('surname')
-        }}</span>
+        <span v-if="errors.has('surname')" class="invalid-feedback">
+          {{ errors.first('surname') }}
+        </span>
       </b-form-group>
 
       <b-form-group
@@ -132,6 +131,7 @@
   export default {
     data: () => ({
         form: {
+          //TODO get id from vuex
           id: 52 ,
           username: '',
           email: '',
@@ -154,9 +154,8 @@
         ],
     }),
     mounted() {
-      UserApi.mounted();
-      UserApi.getUserInfo(this.form.id).then((response) => {
-        console.log(response);
+      UserApi.getUserDetails();
+      UserApi.userInfo(this.form.id).then((response) => {
         this.form = response.data;
       }).catch(error => {
         console.log(error)
@@ -165,10 +164,6 @@
     methods: {
       edit() {
         UserApi.editUser(this.form)
-        // UserApi.editUser(this.form.id)
-          .then(response => {
-            console.log(response);
-          })
           .catch(error => {
             return console.log(error);
           });

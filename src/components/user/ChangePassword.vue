@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br>
     <b-form class="row" @submit.prevent="change()">
       <b-form-group
         id="input-group-1"
@@ -25,7 +24,6 @@
           {{ 'Incorrect old password' }}
         </span>
       </b-form-group>
-
 
       <b-form-group
         id="input-group-2"
@@ -106,9 +104,6 @@
     methods: {
       change() {
         UserApi.changePassword(this.form)
-          .then(response => {
-            console.log(response);
-          })
           .catch(error => {
             return console.log(error);
           });

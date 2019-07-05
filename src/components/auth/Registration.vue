@@ -17,7 +17,7 @@
               <b-form-input
                 id="username"
                 v-model="form.username"
-                v-validate.continues="'alpha_dash|required|min:5|max:20'"
+                v-validate.continues="'alpha_dash|required|min:4|max:50'"
                 name="username"
                 type="text"
                 class="form-control"

@@ -3,12 +3,12 @@ const API_USER= 'http://api.pentabee.local/api/user/';
 import axios from 'axios';
 
 export default {
-  mounted(){
+  getUserDetails(){
     const token = localStorage.getItem('token');
     console.log(token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   },
-  getUserInfo(id) {
+  userInfo(id) {
     return Axios.get(API_USER + id);
   },
   editUser(data) {

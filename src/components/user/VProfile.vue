@@ -27,9 +27,11 @@
             content-class="mt-3"
           >
             <b-tab title="General" active>
+              <br>
               <user-details/>
             </b-tab>
             <b-tab title="Change password">
+              <br>
               <change-password/>
             </b-tab>
           </b-tabs>
@@ -43,7 +45,6 @@
   import UserDetails from './UserDetails';
   import ChangePassword from './ChangePassword';
   import UserApi from '@/services/userDetailsApi';
-
 
   export default {
     components: { UserDetails, ChangePassword },
