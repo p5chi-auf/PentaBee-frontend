@@ -8,7 +8,7 @@
             <hr >
           </h4>
 
-          <b-form @submit.prevent="login()">
+          <b-form @submit.prevent="onSubmit()">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -58,7 +58,7 @@
                 class="btn btn-1"
                 block
                 pill
-                @click="login()"
+                @click="onSubmit()"
               >Login
               </b-btn>
             </div>
@@ -78,7 +78,7 @@
 
 <script>
   import LoginService from '@/services/authApi';
-
+  import { mapActions } from 'vuex';
   export default {
     data: () => ({
         form: {
@@ -87,14 +87,18 @@
         },
     }),
     methods: {
-      login() {
+      ...mapActions('account',['login','logout']),
+      onSubmit() {
         LoginService.login(this.form)
           .then(response => {
-            window.localStorage.setItem('token', response.data.token);
+            const { token}=response.data;
+            window.localStorage.setItem('token', token);
+            this.login(response.data);
             this.$router.push('/');
           })
           .catch(error => {
             alert('Bad credentials');
+            this.logout();
             console.log(error);
           });
       },

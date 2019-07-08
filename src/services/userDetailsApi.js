@@ -12,12 +12,12 @@ export default {
     return Axios.get(API_USER + id);
   },
   editUser(data) {
-    return Axios.post(API_USER + 52 + '/edit', data);
+    return Axios.post(API_USER + data.id + '/edit', data);
   },
   delete(id) {
     return Axios.delete(API_USER + id + '/delete');
   },
   changePassword(data) {
-    return Axios.post(API_USER + 52 + '/change_password', data);
+    return Axios.post(API_USER + data.id + '/change_password', data);
   },
 };

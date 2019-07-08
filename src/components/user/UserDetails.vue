@@ -127,12 +127,11 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapActions,mapState } from 'vuex';
 
   export default {
     data: () => ({
         form: {
-          //TODO get id from vuex
-          id: 52 ,
           username: '',
           email: '',
           position: '',
@@ -153,17 +152,28 @@
           { value: '2', text: 'SENIOR' },
         ],
     }),
+    computed:{
+      ...mapState('account',['user']),
+      userId(){
+        return this.user && this.user.id || 52
+      }
+    },
     mounted() {
       UserApi.getUserDetails();
-      UserApi.userInfo(this.form.id).then((response) => {
+      UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
         console.log(error)
       })
     },
     methods: {
+      ...mapActions('account',['login','logout']),
       edit() {
-        UserApi.editUser(this.form)
+        const body = {
+          ...this.form,
+          id:this.userId,
+        }
+        UserApi.editUser(body)
           .catch(error => {
             return console.log(error);
           });

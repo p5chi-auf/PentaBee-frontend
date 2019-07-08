@@ -17,8 +17,11 @@
                 </div>
               </div>
               <h3>{{ form.name }} {{ form.surname }}</h3>
-              <h5>General user activity</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ducimus ipsum itaque iure nihil possimus voluptates! Aperiam autem placeat qui.</p>
+              <h5>{{ form.position }} {{ seniorityList[form.seniority] }}</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cumque delectus ipsum iure
+                laborum libero, magni mollitia, necessitatibus nihil officia omnis possimus provident quaerat quisquam
+                recusandae, similique sit temporibus?
+              </p>
               <div class="p-4">
                 <b-link href="https://www.linkedin.com/in/evanyou/">
                   <i class="fab fa-linkedin"/>
@@ -39,12 +42,13 @@
 </template>
 
 <script>
+
   import UserApi from '@/services/userDetailsApi';
 
   export default {
     data: () => ({
       form: {
-        id: 52 ,
+        id: 52,
         email: '',
         position: '',
         seniority: '',
@@ -57,20 +61,23 @@
           },
         ],
       },
-      seniority: null,
-      options: [
-        { value: '0', text: 'JUNIOR' },
-        { value: '1', text: 'MIDDLE' },
-        { value: '2', text: 'SENIOR' },
-      ],
     }),
+    computed:{
+      seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
+    },
     mounted() {
       UserApi.getUserDetails();
       UserApi.userInfo(this.form.id).then((response) => {
         this.form = response.data;
       }).catch(error => {
-        console.log(error)
-      })
+        console.log(error);
+      });
     },
   };
 </script>
+
+<style scoped>
+  h5{
+    text-transform: uppercase;
+  }
+  </style>
