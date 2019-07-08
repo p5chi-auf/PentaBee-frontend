@@ -171,12 +171,6 @@ import RegisterService from '@/services/authApi';
 export default {
   data: () => ({
       form: {
-        username: '',
-        password: '',
-        confirm_password: '',
-        email: '',
-        name: '',
-        surname: '',
       },
   }),
   methods: {

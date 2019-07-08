@@ -9,9 +9,10 @@ const actions = {
     dispatch('setUser',user);
     dispatch('setToken',token);
   },
-  logout:({dispatch})=>{
-    dispatch('setUser',null);
-    dispatch('setToken',null);
+  logout: ()=>{
+    window.localStorage.removeItem('token');
+    // dispatch('setUser',null);
+    // dispatch('setToken',null);
   },
   setUser: ({ commit }, payload) => {
     commit('setUser', payload);

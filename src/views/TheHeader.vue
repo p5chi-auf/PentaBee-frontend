@@ -39,7 +39,7 @@
 
           <b-dropdown-divider/>
 
-          <b-dropdown-item to="/login">
+          <b-dropdown-item @click="onclick">
             <i class="fas fa-power-off"/> Logout
           </b-dropdown-item>
         </b-dropdown>
@@ -67,3 +67,18 @@
     border: 2px solid white;
   }
 </style>
+
+<script>
+  import { mapActions } from 'vuex';
+
+  export default {
+
+    methods: {
+      ...mapActions('account',['logout']),
+      onclick () {
+          this.$router.push('/login');
+          this.logout();
+      }
+  }
+};
+</script>

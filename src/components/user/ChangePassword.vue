@@ -104,10 +104,14 @@
     methods: {
       change() {
         UserApi.changePassword(this.form)
+          .then(response => {
+            this.$router.push('/login');
+            console.log(response);
+          })
           .catch(error => {
             return console.log(error);
           });
-      },
+      }
     }
   };
 </script>

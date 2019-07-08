@@ -85,8 +85,6 @@
   export default {
     data: () => ({
         form: {
-          username: '',
-          password: '',
         },
     }),
     methods: {

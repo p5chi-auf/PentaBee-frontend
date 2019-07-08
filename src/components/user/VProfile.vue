@@ -52,13 +52,12 @@
 <script>
 
   import UserApi from '@/services/userDetailsApi';
-  import UserDetails from './UserDetails';
 
   export default {
-    components: { UserDetails },
+
     data: () => ({
       form: {
-        id: 52,
+        id: 92,
         email: '',
         position: '',
         seniority: '',
