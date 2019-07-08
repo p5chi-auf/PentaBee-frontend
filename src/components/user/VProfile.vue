@@ -1,5 +1,5 @@
 <template>
-  <div class="profile home-content">
+  <div class="profileCard home-content">
     <section id="userProfile">
       <b-container class="my-3 py-4 text-center">
         <b-row class="md-5">
@@ -22,6 +22,14 @@
                 laborum libero, magni mollitia, necessitatibus nihil officia omnis possimus provident quaerat quisquam
                 recusandae, similique sit temporibus?
               </p>
+              <div class="text-left row">
+                <h6 class="text-left ">Technologies:</h6>
+                <b-list-group v-for="item in form.technologies" :key="item.id" horizontal
+                              class="text-left"
+                >
+                  <h6 class="text-left col">{{ item.name }}</h6>
+                </b-list-group>
+              </div>
               <div class="p-4">
                 <b-link href="https://www.linkedin.com/in/evanyou/">
                   <i class="fab fa-linkedin"/>
@@ -44,8 +52,10 @@
 <script>
 
   import UserApi from '@/services/userDetailsApi';
+  import UserDetails from './UserDetails';
 
   export default {
+    components: { UserDetails },
     data: () => ({
       form: {
         id: 52,
@@ -76,8 +86,3 @@
   };
 </script>
 
-<style scoped>
-  h5{
-    text-transform: uppercase;
-  }
-  </style>

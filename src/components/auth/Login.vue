@@ -70,6 +70,9 @@
               <b-link class="link-redirect" to="/registration">Sign up</b-link>
             </p>
           </b-form>
+          <b-alert v-model="alert" variant="danger" dismissible>
+            Dismissible Alert!
+          </b-alert>
         </b-card>
       </b-row>
     </b-container>

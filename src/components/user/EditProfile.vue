@@ -34,6 +34,10 @@
               <br>
               <change-password/>
             </b-tab>
+            <b-tab title="Delete profile">
+              <br>
+              <delete-profile/>
+            </b-tab>
           </b-tabs>
         </b-card>
       </b-card-group>
@@ -44,10 +48,11 @@
 <script>
   import UserDetails from './UserDetails';
   import ChangePassword from './ChangePassword';
+  import DeleteProfile from './DeleteProfile';
   import UserApi from '@/services/userDetailsApi';
 
   export default {
-    components: { UserDetails, ChangePassword },
+    components: { UserDetails, ChangePassword, DeleteProfile },
 
     methods: {
       userInfo(id){
