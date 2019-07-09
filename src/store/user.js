@@ -1,6 +1,7 @@
 const state = () => ({
   user: null,
   token: null,
+  id: null,
 });
 
 const actions = {

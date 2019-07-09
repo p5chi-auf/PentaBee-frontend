@@ -52,12 +52,13 @@
 <script>
 
   import UserApi from '@/services/userDetailsApi';
+  import { mapState } from 'vuex';
 
   export default {
 
     data: () => ({
       form: {
-        id: 92,
+        id: null,
         email: '',
         position: '',
         seniority: '',
@@ -73,10 +74,14 @@
     }),
     computed:{
       seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
+      ...mapState('account',['user']),
+      userId(){
+        return this.user && this.user.id || 92
+      },
     },
     mounted() {
       UserApi.getUserDetails();
-      UserApi.userInfo(this.form.id).then((response) => {
+      UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
         console.log(error);

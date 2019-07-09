@@ -132,6 +132,19 @@
   export default {
     data: () => ({
         form: {
+          id: null,
+          username: '',
+          email: '',
+          position: '',
+          seniority: null,
+          name: '',
+          surname: '',
+          technologies: [
+            {
+              id: null,
+              name: ''
+            }
+          ]
         },
         seniority: null,
         options: [
