@@ -7,8 +7,10 @@ export default {
   getUserDetails(){
     const decoded = jwt_decode(localStorage.getItem('token'));
     console.log(decoded.id);
+    const idUser=decoded.id;
     const token = localStorage.getItem('token');
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return idUser;
   },
   userInfo(id) {
     return Axios.get(API_USER + id);

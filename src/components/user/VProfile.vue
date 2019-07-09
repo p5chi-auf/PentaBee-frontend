@@ -76,7 +76,7 @@
       seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
       ...mapState('account',['user']),
       userId(){
-        return this.user && this.user.id || 92
+        return this.user && this.user.id || UserApi.getUserDetails()
       },
     },
     mounted() {
