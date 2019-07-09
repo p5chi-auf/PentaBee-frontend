@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import aside from './aside';
-import account from './account';
+import account from './user';
 
 Vue.use(Vuex);
 

@@ -82,6 +82,8 @@
 <script>
   import LoginService from '@/services/authApi';
   import { mapActions } from 'vuex';
+  import jwt_decode from 'jwt-decode';
+
   export default {
     data: () => ({
         form: {
@@ -94,6 +96,8 @@
           .then(response => {
             const { token}=response.data;
             window.localStorage.setItem('token', token);
+            let decoded = jwt_decode(localStorage.getItem('token'));
+            console.log(decoded.id);
             this.login(response.data);
             this.$router.push('/');
           })

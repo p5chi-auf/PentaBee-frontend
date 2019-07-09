@@ -111,16 +111,6 @@
           </template>
         </b-form-select>
       </b-form-group>
-      <b-form-group
-        id="input-group-7"
-        class="col-md-12"
-        label="Technologies"
-        label-for="technologies"
-      >
-        <b-list-group v-for="item in form.technologies" :key="item.id">
-          <h6 class="text-left col">{{ item.name }}</h6>
-        </b-list-group>
-      </b-form-group>
     </b-form>
     <div class="text-center space">
       <b-btn
@@ -154,7 +144,7 @@
       ...mapState('account',['user']),
       userId(){
         return this.user && this.user.id || 92
-      }
+      },
     },
     mounted() {
       UserApi.getUserDetails();
