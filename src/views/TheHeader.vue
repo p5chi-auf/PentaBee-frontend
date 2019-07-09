@@ -35,7 +35,7 @@
 
           <b-dropdown-divider/>
 
-          <b-dropdown-item to="/login">
+          <b-dropdown-item @click="logout()">
             <i class="fas fa-power-off"/> Logout
           </b-dropdown-item>
         </b-dropdown>
@@ -63,3 +63,18 @@
     border: 2px solid white;
   }
 </style>
+<script>
+  export default {
+    data(){
+      return{
+      
+      }
+    },
+    methods:{
+    logout(){
+    window.localStorage.removeItem('token');
+    this.$router.push ('/login');
+  }
+  }
+  }
+</script>

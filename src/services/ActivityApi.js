@@ -6,9 +6,17 @@ export default {
     CommonServices.getToken();
     return Axios.get(CommonServices.BASE_URL+ 'activities/'+ id);
   },
-  getActivityList(page){
+  getActivityList(data){
     CommonServices.getToken();
-    return Axios.get(CommonServices.BASE_URL +'/activities/all/'+ page);
+    return Axios.get(CommonServices.BASE_URL +'activities', data);
+  },
+  deleteActivity(id){
+    CommonServices.getToken();
+    return Axios.delete(CommonServices.BASE_URL+'activities/' + id +'/delete')
+  },
+  createActivity(data){
+    CommonServices.getToken();
+    return Axios.post(CommonServices.BASE_URL+'/activities/create')
   }
 
 };

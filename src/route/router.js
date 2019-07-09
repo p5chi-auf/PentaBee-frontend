@@ -3,13 +3,13 @@ import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Activity from '@/components/activity/VActivity';
+import CreateActivity from '@/components/activity/CreateActivity'
 
 import Vue from 'vue';
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -30,6 +30,11 @@ export default new Router({
       path: ':id/activity',
       name: 'activity',
       component: Activity,
+    },
+    {
+      path: '/activity/create',
+      name: 'createActivity',
+      component: CreateActivity,
     }
   ],
 });

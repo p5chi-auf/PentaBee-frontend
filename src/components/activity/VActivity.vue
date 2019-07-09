@@ -1,44 +1,46 @@
 <template>
-  <div class="pt-5">
-    <b-card tag="article" class="mx-auto  col-md-11 ">
-      <b-card-text class="project-name  text-left border border-warning">
+  <div class="pt-5 pb-5 ">
+    <b-card class="mx-auto  col-md-11 border-warning">
+      <h1 class="project-name  text-center mx-auto">
         Project: {{Activity.name}}
-      </b-card-text>
+      </h1>
+      <hr class="border line">
       
-      <b-card-text class="border border-warning">
+      <b-card-text class="text-center">
         About project: {{Activity.description}}
       </b-card-text>
       
       <div class="row">
         <div class="col">
-          <b-card-text class="text-left border border-warning">
+          <b-card-text class="text-left">
+            Owner: {{ Activity.owner.name +' ' + Activity.owner.surname}}
+          </b-card-text>
+          <b-card-text class="text-left">
             Created at: {{Activity.created_at}}
           </b-card-text>
           
-          <b-card-text class="text-left border border-warning">
+          <b-card-text class="text-left">
             Uppdated at: {{Activity.updated_at}}
           </b-card-text>
-          
-          <b-card-text class="text-left border border-warning">
-            Owner: {{ Activity.owner.id }}
-          </b-card-text>
         </div>
-        
-        <div class="col">
-          <b-card-text class="text-left border border-warning">
+        <div class="text left col">
+          <div class="row">
+            <h5 class="">Technologies:</h5>
+            <b-list-group horizontal v-for="item in Activity.technologies" v-bind:key="item.id"
+                          class="">
+              <p-card-text class=" col">{{item.name}}</p-card-text>
+            </b-list-group>
+          </div>
+          <b-card-text class="">
             Application till: {{Activity.application_deadline}}
           </b-card-text>
           
-          <b-card-text class="text-left border border-warning">
+          <b-card-text class="">
             Activity deadline: {{Activity.final_deadline}}
-          </b-card-text>
-          
-          <b-card-text v-for="item in Activity.technologies" v-bind:key="item.id"
-                       class="text-left border border-warning">
-            Technologies: {{item.id}}
           </b-card-text>
         </div>
       </div>
+      <b-button class="btn-primary" @click="deleteActivity"> delete activity</b-button>
     </b-card>
   </div>
 </template>
@@ -62,13 +64,31 @@
           console.log (error)
         })
     },
+    methods: {
+      deleteActivity () {
+        ActivityService.deleteActivity (this.$route.params.id).then ((response) => {
+          alert ('delted succesful!!!!');
+        })
+          .catch (error => {
+            alert ('You d\'ont have permission')
+          })
+      }
+
+    }
   }
 
 </script>
 
 <style>
   .project-name {
-    font-size: 26px;
     color: #fed900;
+    text-shadow: 2px 2px 4px #e5d899;
+    position: relative;
   }
+  .line {
+    padding: 2px;
+    background-image: linear-gradient(to right, gray, #000000, gray);
+    
+  }
+
 </style>
