@@ -6,6 +6,7 @@ import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity'
 
 import Vue from 'vue';
+import ActivityList from "../components/activity/ActivityList";
 Vue.use(Router);
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
       path: '/registration',
       name: 'registration',
       component: Registration,
+    },
+    {
+      path: '/ActivityList',
+      name: 'activityList',
+      component: ActivityList,
     },
     {
       path: '/activity/:ActivityId',

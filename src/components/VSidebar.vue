@@ -8,24 +8,29 @@ import { mapActions } from 'vuex';
 
 export default {
   components: {
-    SidebarMenu,
+    SidebarMenu
   },
   data() {
     return {
       isActive: false,
-      showMenu: true,
+      showMenu: true
     };
   },
   computed: {
     menu: () => [
       {
         header: true,
-        title: 'PentaBee Navigation',
+        title: 'PentaBee Navigation'
       },
       {
         href: '/',
         title: 'Home',
-        icon: 'fa fa-home',
+        icon: 'fa fa-home'
+      },
+      {
+        href: '/ActivityList',
+        title: 'Activity List',
+        icon: 'fa fa-list'
       },
       {
         href: '/charts',
@@ -34,7 +39,7 @@ export default {
         child: [
           {
             href: '/charts/sublink',
-            title: 'Sub Link',
+            title: 'Sub Link'
           },
         ],
       },

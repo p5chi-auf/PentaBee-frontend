@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './route';
 import store from './store';
 import './plugins';
+let VueTruncate = require('vue-truncate-filter');
+Vue.use(VueTruncate);
 
 import './assets/main.scss';
 

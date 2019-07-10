@@ -9,9 +9,10 @@
 
 <script>
 import { mapState } from 'vuex';
+
 export default {
   computed: {
-    ...mapState('aside', ['sideBarIsActive']),
+    ...mapState('aside', ['sideBarIsActive'])
   },
 };
 </script>
