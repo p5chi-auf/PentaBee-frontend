@@ -55,6 +55,7 @@
           type="text"
           class="form-control"
           :class="{ 'is-invalid': errors.has('name') }"
+          style="text-transform:capitalize"
         />
 
         <span v-if="errors.has('name')" class="invalid-feedback">
@@ -92,6 +93,7 @@
           type="text"
           class="form-control"
           :class="{ 'is-invalid': errors.has('surname') }"
+          style="text-transform:capitalize"
         />
 
         <span v-if="errors.has('surname')" class="invalid-feedback">

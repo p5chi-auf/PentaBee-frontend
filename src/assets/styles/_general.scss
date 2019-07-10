@@ -8,7 +8,7 @@ body {
   }
 
   h4 {
-    color: #ffbc1d;
+    color: #000;
   }
 
   .login-registration-background {
@@ -39,7 +39,7 @@ body {
     padding-bottom: 70px;
   }
   .btn-1 {
-    background-image: linear-gradient(to right, #ffda00 0%, #F57C00 51%, #ffbc1d 100%);
+    background-image: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
   }
 
   .btn-1:hover {
@@ -60,4 +60,8 @@ body {
       -webkit-transition: all 0.3s ease-in;
       -moz-transition: all 0.3s ease-in;
     }
+  .line {
+    padding: 1px;
+    background-image: linear-gradient(to right, white, #F57C00, white);
+  }
 }

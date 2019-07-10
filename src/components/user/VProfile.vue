@@ -1,12 +1,12 @@
 <template>
-  <div class="profileCard home-content">
+  <div class="edit profileCard home-content">
     <section id="userProfile">
       <b-container class="my-3 py-4 text-center">
         <b-row class="md-5">
           <b-col>
             <h2 class="text-center">User Profile</h2>
           </b-col>
-          <b-card class="col-lg-12 col-md-12">
+          <b-card class="col-lg-12 col-md-12" border-variant="warning">
             <div class="card-body">
               <div class="d-flex justify-content-center h-100">
                 <div class="image-out-container">
@@ -16,7 +16,7 @@
                   </div>
                 </div>
               </div>
-              <h3>{{ form.name }} {{ form.surname }}</h3>
+              <h3 style="text-transform:capitalize">{{ form.name }} {{ form.surname }}</h3>
               <h5>{{ form.position }} {{ seniorityList[form.seniority] }}</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cumque delectus ipsum iure
                 laborum libero, magni mollitia, necessitatibus nihil officia omnis possimus provident quaerat quisquam
@@ -30,6 +30,7 @@
                   <h6 class="text-left col">{{ item.name }}</h6>
                 </b-list-group>
               </div>
+              <hr class="line">
               <div class="p-4">
                 <b-link href="https://www.linkedin.com/in/evanyou/">
                   <i class="fab fa-linkedin"/>
