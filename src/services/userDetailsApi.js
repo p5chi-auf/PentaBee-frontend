@@ -18,8 +18,8 @@ export default {
   editUser(data) {
     return Axios.post(API_USER + data.id + '/edit', data);
   },
-  delete(id) {
-    return Axios.delete(API_USER + id + '/delete');
+  delete(data) {
+    return Axios.delete(API_USER + data.id + '/delete');
   },
   changePassword(data) {
     return Axios.post(API_USER + data.id + '/change_password', data);

@@ -15,11 +15,27 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapActions,mapState } from 'vuex';
 
   export default {
+    computed:{
+      ...mapState('account',['user']),
+      userId(){
+        return this.user && this.user.id || UserApi.getUserDetails()
+      },
+    },
     methods: {
+      ...mapActions('account',['login','logout']),
       onclick() {
-        UserApi.delete(this.form)
+        const body = {
+        ...this.form,
+        id:this.userId,
+        };
+        UserApi.delete(body)
+          .then(response => {
+            this.$router.push('/login');
+            console.log(response);
+          })
           .catch(error => {
             return console.log(error);
           });
