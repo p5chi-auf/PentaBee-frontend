@@ -20,6 +20,7 @@ import VFooter from '@/views/TheFooter';
 import VSidebar from '@/components/VSidebar';
 import VLayout from '@/components/VLayout';
 
+
 export default {
   components: {
     VHeader,

@@ -27,7 +27,7 @@ export default new Router({
       component: Registration,
     },
     {
-      path: ':id/activity',
+      path: '/activity/:ActivityId',
       name: 'activity',
       component: Activity,
     },

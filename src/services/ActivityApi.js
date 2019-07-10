@@ -8,7 +8,7 @@ export default {
   },
   getActivityList(data){
     CommonServices.getToken();
-    return Axios.get(CommonServices.BASE_URL +'activities', data);
+    return Axios.get(CommonServices.BASE_URL +'activities'+data);
   },
   deleteActivity(id){
     CommonServices.getToken();

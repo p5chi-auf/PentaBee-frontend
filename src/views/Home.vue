@@ -2,156 +2,203 @@
   <div class="mb-5">
     <b-card no-body>
       <b-tabs card>
-        <b-tab title="Disponibile" active>
-          <div class="row">
-            <div
-                    v-for="result in this.results"
-                    v-bind:key="result.id"
-                    @click="getInfo(result.id)"
-                    class="col-md-4 "
-            >
-              <b-card bg-variant="light"
-                      border-variant="warning"
-                      class="cards mt-2"
-                      style="height: available"
+        <section class="tabSection">
+          <b-tab title="All" active>
+            <div class="row ">
+              <div v-for="result in results"
+                   :key="result.id"
+                   class="col-md-4 row-eq-height "
+                   @click="getInfo(result.id)"
               >
-                <b-card-text class="text-name ">
-                  Project: {{result.name}}
-                </b-card-text>
-                
-                <b-card-text>
-                  Description: {{result.description}}
-                </b-card-text>
-              </b-card>
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="cards col-md-12 mt-3"
+                >
+                  <b-card-text class="text-name text-center">
+                    Project: {{ result.name | truncate(20, '...') }}
+                  </b-card-text>
+                  <hr class="line-separator">
+                  <b-card-text class="description-height text-center">
+                    Description: {{ result.description | truncate(40, '...') }}
+                  </b-card-text>
+                </b-card>
+              </div>
             </div>
-          </div>
-        </b-tab>
-        <b-tab title="Aplicate" active>
-          <div class="row">
-            <div
-                    v-for="result in this.results"
-                    v-bind:key="result.id"
-                    @click="getInfo(result.id)"
-                    class="col-md-4">
-              <b-card bg-variant="light"
-                      border-variant="warning"
-                      class="cards mt-2">
-                <b-card-text class="text-name ">
-                  Project: {{result.name}}
-                </b-card-text>
-                
-                <b-card-text>
-                  Description: {{result.description}}
-                </b-card-text>
-              </b-card>
-            
-            </div>
-          </div>
-        </b-tab>
+          </b-tab>
         
-        <b-tab title="Terminate" active>
-          <div class="row">
-            <div
-                    v-for="result in this.results"
-                    v-bind:key="result.id"
-                    @click="getInfo(result.id)"
-                    class="col-md-4">
-              <b-card bg-variant="light"
-                      border-variant="warning"
-                      class="cards mt-2">
-                <b-card-text class="text-name ">
-                  Project: {{result.name}}
-                </b-card-text>
-                
-                <b-card-text>
-                  Description: {{result.description}}
-                </b-card-text>
-              </b-card>
-            
+          <b-tab title="Joined" active>
+            <div class="row ">
+              <div v-for="result in results"
+                   :key="result.id"
+                   class="col-md-4 row-eq-height"
+                   @click="getInfo(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="cards col-md-12 mt-3"
+                >
+                  <b-card-text class="text-name text-center">
+                    Project: {{ result.name | truncate(20, '...') }}
+                  </b-card-text>
+                  <hr class="line-separator">
+                  <b-card-text class="description-height text-center">
+                    Description: {{ result.description | truncate(40, '...') }}
+                  </b-card-text>
+                </b-card>
+              </div>
             </div>
-          </div>
-        </b-tab>
+          </b-tab>
         
-        <b-tab title="Ale Mele" active>
-          <div class="row">
-            <div v-for="result in this.results"
-                    v-bind:key="result.id"
-                    @click="getInfo(result.id)"
-                    class="col-md-4">
-              <b-card bg-variant="light"
-                      border-variant="warning"
-                      class="cards mt-2">
-                <b-card-text class="text-name ">
-                  Project: {{result.name}}
-                </b-card-text>
-                
-                <b-card-text>
-                  Description: {{result.description}}
-                </b-card-text>
-              </b-card>
+          <b-tab title="Finished" active class>
+            <div class="row ">
+              <div v-for="result in results"
+                   :key="result.id"
+                   class="col-md-4 row-eq-height"
+                   @click="getInfo(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="cards col-md-12 mt-3"
+                >
+                  <b-card-text class="text-name text-center">
+                    Project: {{ result.name | truncate(20, '...') }}
+                  </b-card-text>
+                  <hr class="line-separator">
+                  <b-card-text class="description-height text-center">
+                    Description: {{ result.description | truncate(40, '...') }}
+                  </b-card-text>
+                </b-card>
+              </div>
             </div>
-          </div>
-        </b-tab>
+          </b-tab>
+        
+          <b-tab title="Mine" active class="tab-style">
+            <div class="row ">
+              <div v-for="result in results"
+                   :key="result.id"
+                   class="col-md-4 row-eq-height"
+                   @click="getInfo(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="cards col-md-12 mt-3"
+                >
+                  <b-card-text class="text-name text-center">
+                    Project: {{ result.name | truncate(20, '...') }}
+                  </b-card-text>
+                  <hr class="line-separator">
+                  <b-card-text class="description-height text-center">
+                    Description: {{ result.description | truncate(40, '...') }}
+                  </b-card-text>
+                </b-card>
+              </div>
+            </div>
+          </b-tab>
+        </section>
       </b-tabs>
+      <div class="d-flex justify-content-center  " >
+        <b-pagination
+          v-model="pagination.currentPage"
+          bg-variant="dark"
+          :total-rows="pagination.numResults"
+          :per-page="pagination.per_page"
+          aria-controls="my-table"
+          @input="getData"
+        />
+      </div>
     </b-card>
-    <div class="overflow-auto">
-      <b-pagination
-              v-model="currentPage"
-              :total-rows="rows"
-              :per-page="perPage"
-              aria-controls="my-table"
-      ></b-pagination>
-    
-    
-    </div>
   </div>
 </template>
 
 <script>
   import ActivityService from '../services/ActivityApi';
+  import Vue from 'vue';
+  let VueTruncate = require('vue-truncate-filter');
+  Vue.use(VueTruncate);
+  
 
   export default {
 
     data () {
       return {
+        max:10,
         results: [],
-        pagination: {},
-        currentPage: 1,
-        perPage: 9,
+        pagination: {
+          currentPage: 1,
+          per_page: 9,
+          numPages: 1,
+          numResults: 1,
+        }
+        
       }
     },
-    created () {
-     this.getData();
+    mounted () {
+      this.getData ();
+      
+      
     },
-   
+
     methods: {
-      getData(){
-        ActivityService.getActivityList (this.currentPage, this.perPage).then ((response) => {
+      getData () {
+        let request = '?pagination[page]='+ this.pagination.currentPage +'&pagination[per_page]='+ this.pagination.per_page;
+        ActivityService.getActivityList (request).then ((response) => {
           this.results = response.data.results;
+          this.pagination.numResults = response.data.numResults;
         })
           .catch (error => {
             console.log (error)
           })
       },
       getInfo (id) {
-        this.$router.push ({name: 'activity', params: {id: id}});
+         this.$router.push ({name:'activity', params: {ActivityId: id}});
+         
       },
-
-      rows() {
-        return this.results.length;
-      }
     }
   }
 </script>
 <style>
-  .cards:hover {
-    cursor: pointer;
-  }
   .text-name {
     color: #000;
     font-size: 20px;
     text-shadow: 1px 1px 1px #fffab0;
+    height: available;
   }
- 
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+  }
+  .description-height{
+    height: 50px;
+  }
+  .tabSection .card{
+    border-radius: 25px ;
+    box-shadow: 5px 5px 5px #ffda00;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+  }
+  .tabSection .card:hover {
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px #9e9e9e;
+    cursor: pointer;
+  }
+
+  .tabSection .edit-card {
+    border-radius: 0;
+    box-shadow: 5px 5px 5px #ffda00;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+  }
+  .line-separator{
+    padding: 1px;
+    background-image: linear-gradient(to right, white, #F57C00, white);
+  }
 </style>
 
