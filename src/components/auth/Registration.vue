@@ -5,7 +5,7 @@
         <b-card class="p-3">
           <h4 class="text-center">
             Create an PentaBee account
-            <hr >
+            <hr class="line">
           </h4>
           <b-form class="row" @submit.prevent="registerIt()">
             <b-form-group

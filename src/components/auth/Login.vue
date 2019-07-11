@@ -5,7 +5,7 @@
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr >
+            <hr class="line">
           </h4>
 
           <b-form @submit.prevent="onSubmit()">
@@ -92,7 +92,7 @@
       onSubmit() {
         LoginService.login(this.form)
           .then(response => {
-            const { token}=response.data;
+            const {token}=response.data;
             window.localStorage.setItem('token', token);
             this.$router.push('/');
           })

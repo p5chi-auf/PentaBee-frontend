@@ -113,6 +113,7 @@
           </template>
         </b-form-select>
       </b-form-group>
+      <user-technologies/>
     </b-form>
     <div class="text-center space">
       <b-btn
@@ -129,9 +130,11 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import UserTechnologies from './VTechnologies';
   import { mapActions,mapState } from 'vuex';
 
   export default {
+    components: { UserTechnologies },
     data: () => ({
         form: {
           id: null,

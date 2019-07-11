@@ -1,5 +1,6 @@
 import Axios from 'axios';
-const API_USER= 'http://api.pentabee.local/api/user/';
+const API_USER = 'http://api.pentabee.local/api/user/';
+const API_TECHNOLOGIES = 'http://api.pentabee.local/api/technologies';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
@@ -18,10 +19,13 @@ export default {
   editUser(data) {
     return Axios.post(API_USER + data.id + '/edit', data);
   },
-  delete(data) {
-    return Axios.delete(API_USER + data.id + '/delete');
+  delete(id) {
+    return Axios.delete(API_USER + id + '/delete');
   },
   changePassword(data) {
     return Axios.post(API_USER + data.id + '/change_password', data);
   },
+  getTechnologies() {
+    return Axios.get(API_TECHNOLOGIES);
+  }
 };

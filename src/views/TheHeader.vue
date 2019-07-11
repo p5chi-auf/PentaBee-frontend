@@ -70,15 +70,13 @@
 
 <script>
   import { mapActions } from 'vuex';
-
   export default {
-
     methods: {
       ...mapActions('account',['logout']),
       onclick () {
-          this.$router.push('/login');
-          this.logout();
+        this.$router.push('/login');
+        this.logout();
       }
-  }
-};
+    }
+  };
 </script>
