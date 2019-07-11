@@ -38,7 +38,7 @@ export default new Router({
       component: Activity,
     },
     {
-      path: '/activity/create',
+      path: '/activityCreate',
       name: 'createActivity',
       component: CreateActivity,
     }

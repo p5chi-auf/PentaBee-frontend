@@ -16,7 +16,7 @@ export default {
   },
   createActivity(data){
     CommonServices.getToken();
-    return Axios.post(CommonServices.BASE_URL+'/activities/create')
+    return Axios.post(CommonServices.BASE_URL+'activities/create', data)
   }
 
 };

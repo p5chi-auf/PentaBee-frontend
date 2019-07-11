@@ -8,7 +8,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="getInfo(result.id)"
+                   @click="setActivityId(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -32,7 +32,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="getInfo(result.id)"
+                   @click="setActivityId(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -56,7 +56,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="getInfo(result.id)"
+                   @click="setActivityId(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -80,7 +80,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="getInfo(result.id)"
+                   @click="setActivityId(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -147,7 +147,7 @@
             console.log (error)
           })
       },
-      getInfo (id) {
+      setActivityId (id) {
         this.$router.push ({name:'activity', params: {ActivityId: id}});
 
       },
@@ -172,14 +172,14 @@
     height: 50px;
   }
   .tabSection .card{
-    border-radius: 25px ;
+    border-radius: 15px;
     box-shadow: 5px 5px 5px #ffda00;
     transition: all 0.3s ease-in;
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
   .tabSection .card:hover {
-    border-radius: 25px;
+    border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
     cursor: pointer;
   }

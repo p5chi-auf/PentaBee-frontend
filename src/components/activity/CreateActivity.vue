@@ -58,14 +58,12 @@
               label="Application deadline:"
               label-for="application_deadline"
             >
-              <b-form-input
-                id="application_deadline"
+             
+              <datetime
                 v-model="form.application_deadline"
-                v-validate.continues="'required'"
                 name="application_deadline"
-                type="date"
-                class="form-control"
-                :class="{ 'is-invalid': errors.has('application_deadline') }"
+                value-zone="UTC"
+                type="datetime"
               />
             </b-form-group>
             
@@ -75,43 +73,37 @@
               label="Final deadline:"
               label-for="final_deadline"
             >
-              <b-form-input
-                id="final_deadline"
+              <datetime
                 v-model="form.final_deadline"
-                v-validate.continues="'required'"
                 name="final_deadline"
-                type="date"
-                class="form-control"
-                :class="{ 'is-invalid': errors.has('final_deadline') }"
+                value-zone="UTC"
+                type="datetime"
               />
             </b-form-group>
             
             <b-form-group class="col-md-6">
-              <b-form-select v-model="form.technologies.id" :options="options"/>
+              <b-form-select v-model="form.technologies.id" :options="options" class=""/>
             </b-form-group>
             
             <b-form-group class="col-md-6">
-              <b-form-select v-model="types" :options="typ"/>
+              <b-form-select v-model="form.types.id" :options="typ"/>
             </b-form-group>
           </b-form>
-          
+          <select v-model="form.public" name="Public">
+            <option value="true">Public</option>
+            <option value="false">Private</option>
+          </select>
           <div class="text-center button">
             <b-btn
               class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
               variant="warning"
               block
               pill
-              @click="registerIt()"
-            >Create your account
+              @click="createActivity()"
+            >Create Activity
             </b-btn>
           </div>
           
-          <p class="text-center">
-            Already have a
-            <b-link class="link-redirect">PentaBee</b-link>
-            account?
-            <b-link class="link-redirect" to="/login">Log in</b-link>
-          </p>
         </b-card>
       </b-row>
     </b-container>
@@ -129,35 +121,40 @@
           application_deadline: '',
           final_deadline: '',
           status: 0,
+          public: true,
           technologies: [
-            {
-              id: null
-            }
+            {id: 11},
+            {id: 12},
+            {id: 10}
           ],
-          types: [
-            {id: null}
+          types: [{
+            id:11
+          }
           ],
         },
-        id: null,
+        selectTechnology:null,
         options: [
           {value: null, text: 'Please select some item'},
           {value: 11, text: 'Javascript'},
           {value: 12, text: 'Node.js'}
         ],
-        types: null,
         typ: [
           {value: null, text: 'Please select some item'},
-          {id: 11, text: 'dt audit'}
+          {value: 11, text: 'dt audit'}
         ]
 
       };
     },
     methods: {
-      registerIt () {
+      createActivity () {
+        console.log(this.form.technologies.id);
         RegisterService.createActivity (this.form)
 
       },
     },
   };
 </script>
+<style>
+
+</style>
 
