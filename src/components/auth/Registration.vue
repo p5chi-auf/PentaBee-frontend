@@ -32,6 +32,26 @@
             <b-form-group
               id="input-group-2"
               class="col-md-6"
+              label="Email:"
+              label-for="email"
+            >
+              <b-form-input
+                id="email"
+                v-model="form.email"
+                v-validate.continues="'required|email'"
+                name="email"
+                type="email"
+                class="form-control"
+                :class="{ 'is-invalid': errors.has('email') }"
+              />
+              <span v-if="errors.has('email')" class="invalid-feedback">{{
+                errors.first('email')
+              }}</span>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-3"
+              class="col-md-6"
               label="First Name:"
               label-for="firstName"
             >
@@ -50,25 +70,6 @@
               }}</span>
             </b-form-group>
 
-            <b-form-group
-              id="input-group-3"
-              class="col-md-6"
-              label="Email:"
-              label-for="email"
-            >
-              <b-form-input
-                id="email"
-                v-model="form.email"
-                v-validate.continues="'required|email'"
-                name="email"
-                type="email"
-                class="form-control"
-                :class="{ 'is-invalid': errors.has('email') }"
-              />
-              <span v-if="errors.has('email')" class="invalid-feedback">{{
-                errors.first('email')
-              }}</span>
-            </b-form-group>
             <b-form-group
               id="input-group-4"
               class="col-md-6"

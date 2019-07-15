@@ -18,7 +18,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        auth: true,
+        requiresAuth: true,
       },
     },
     {
@@ -36,7 +36,7 @@ const router = new Router({
       name: 'profile',
       component: Profile,
       meta: {
-        auth: true,
+        requiresAuth: true,
       },
     },
     {
@@ -44,7 +44,7 @@ const router = new Router({
       name: 'edit',
       component: Edit,
       meta: {
-        auth: true,
+        requiresAuth: true,
       },
     },
     {
@@ -56,13 +56,15 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.auth)) {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
     const isAuth = store.getters['account/isAuthentificated'];
-    if (isAuth) {
+    if (!isAuth) {
       next({
         path: '/login',
-        params: { nextUrl: to.fullPath },
+        query: { redirect: to.fullPath }
       });
+    } else {
+      next();
     }
   } else {
     next();

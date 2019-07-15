@@ -36,7 +36,7 @@
                   <br>
                   <change-password/>
                 </b-tab>
-                <b-tab title="Delete profile">
+                <b-tab title="Delete account">
                   <br>
                   <delete-profile/>
                 </b-tab>

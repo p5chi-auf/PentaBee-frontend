@@ -8,7 +8,7 @@ const actions = {
   login: ({ dispatch }, token) => {
     dispatch('setToken', token);
   },
-  logout: () => {
+  logout: ({ dispatch }) => {
     window.localStorage.removeItem('token');
     // dispatch('setUser',null);
     dispatch('setToken', null);
