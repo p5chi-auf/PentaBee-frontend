@@ -7,6 +7,7 @@ import Datetime from 'vue-datetime';
 import './assets/styles/vueDataTime.css'; //style for datetime piker
 import VueTruncate from 'vue-truncate-filter';
 import moment, {unix} from 'moment';
+import './assets/main.scss';
 
 Vue.use(VueTruncate);
 Vue.use(Datetime);
@@ -22,8 +23,6 @@ Vue.filter('formatTime', function(value) {
     return moment(unix(value)).format("hh:mm")
   }
 });
-
-import './assets/main.scss';
 
 new Vue({
   router,

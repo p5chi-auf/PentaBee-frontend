@@ -18,17 +18,14 @@
               <b-form-input
                 id="name"
                 v-model="form.name"
-                v-validate.continues="'required|min:3|max:50'"
+                v-validate.continues="'required|min:3|max:100'"
                 name="name"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': errors.has('name') }"
               />
               
-              <span v-if="errors.has('name')" class="invalid-feedback">{{
-                errors.first('name')
-              }}
-              </span>
+              <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
             </b-form-group>
             
             <b-form-group
@@ -40,16 +37,14 @@
               <b-form-input
                 id="description"
                 v-model="form.description"
-                v-validate.continues="'required|min:3'"
+                v-validate.continues="'required'"
                 name="description"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': errors.has('description') }"
               />
               
-              <span v-if="errors.has('description')" class="invalid-feedback">
-                {{ errors.first('description') }}
-              </span>
+              <span v-if="errors.has('description')" class="invalid-feedback">{{ errors.first('description') }}</span>
             </b-form-group>
             
             <b-form-group
@@ -58,12 +53,12 @@
               label="Application deadline:"
               label-for="application_deadline"
             >
-             
               <datetime
                 v-model="form.application_deadline"
                 name="application_deadline"
                 value-zone="UTC"
                 type="datetime"
+                input-style="string"
               />
             </b-form-group>
             
@@ -78,21 +73,48 @@
                 name="final_deadline"
                 value-zone="UTC"
                 type="datetime"
+                input-style="string"
               />
             </b-form-group>
             
             <b-form-group class="col-md-6">
-              <b-form-select v-model="form.technologies.id" :options="options" class=""/>
+              <b-form-select
+                v-model="technologyId"
+                v-validate.continues="'required'"
+                :options="technologiesList"
+                name="technologies"
+                :class="{ 'is-invalid': errors.has('technologies') }"
+              >
+                <template slot="first">
+                  <option :value="null" disabled>-- Please select your seniority --</option>
+                </template>
+              </b-form-select>
+              
+              <span v-if="errors.has('technologies')" class="invalid-feedback">{{ errors.first('Technologies') }}</span>
             </b-form-group>
             
             <b-form-group class="col-md-6">
-              <b-form-select v-model="form.types.id" :options="typ"/>
+              <b-form-select
+                v-model="typeId"
+                v-validate.continues="'required'"
+                :options="typ"
+                name="type"
+                :class="{ 'is-invalid': errors.has('type') }"
+              >
+                <template slot="first">
+                  <option :value="null" disabled>-- Please select your seniority --</option>
+                </template>
+              </b-form-select>
+              
+              <span v-if="errors.has('type')" class="invalid-feedback">{{ errors.first('Types') }}</span>
             </b-form-group>
           </b-form>
+          
           <select v-model="form.public" name="Public">
             <option value="true">Public</option>
             <option value="false">Private</option>
           </select>
+          
           <div class="text-center button">
             <b-btn
               class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
@@ -103,7 +125,6 @@
             >Create Activity
             </b-btn>
           </div>
-          
         </b-card>
       </b-row>
     </b-container>
@@ -111,6 +132,7 @@
 </template>
 <script>
   import RegisterService from '../../services/ActivityApi';
+  import moment from 'moment';
 
   export default {
     data () {
@@ -122,24 +144,16 @@
           final_deadline: '',
           status: 0,
           public: true,
-          technologies: [
-            {id: 11},
-            {id: 12},
-            {id: 10}
-          ],
-          types: [{
-            id:11
-          }
-          ],
+          technologies: [],
+          types: [],
         },
-        selectTechnology:null,
-        options: [
-          {value: null, text: 'Please select some item'},
+        technologyId: null,
+        technologiesList: [
           {value: 11, text: 'Javascript'},
           {value: 12, text: 'Node.js'}
         ],
+        typeId: null,
         typ: [
-          {value: null, text: 'Please select some item'},
           {value: 11, text: 'dt audit'}
         ]
 
@@ -147,8 +161,14 @@
     },
     methods: {
       createActivity () {
-        console.log(this.form.technologies.id);
-        RegisterService.createActivity (this.form)
+        let formClone = JSON.parse (JSON.stringify (this.form));
+
+        formClone.application_deadline = moment (this.form.application_deadline).format ("X");
+        formClone.final_deadline = moment (this.form.final_deadline).format ("X");
+        formClone.technologies.push ({id: this.technologyId});
+        formClone.types.push ({id: this.typeId});
+        
+        RegisterService.createActivity (formClone)
 
       },
     },

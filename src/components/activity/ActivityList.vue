@@ -16,11 +16,13 @@
                   class="cards col-md-12 mt-3"
                 >
                   <b-card-text class="text-name text-center">
-                    Project: {{ result.name | truncate(20, '...') }}
+                    {{ result.name | truncate(20, '...') }}
                   </b-card-text>
+                  
                   <hr class="line-separator">
+                  
                   <b-card-text class="description-height text-center">
-                    Description: {{ result.description | truncate(40, '...') }}
+                    {{ result.description | truncate(100, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -40,11 +42,13 @@
                   class="cards col-md-12 mt-3"
                 >
                   <b-card-text class="text-name text-center">
-                    Project: {{ result.name | truncate(20, '...') }}
+                    {{ result.name | truncate(30, '...') }}
                   </b-card-text>
+                  
                   <hr class="line-separator">
+                  
                   <b-card-text class="description-height text-center">
-                    Description: {{ result.description | truncate(40, '...') }}
+                    {{ result.description | truncate(100, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -64,11 +68,13 @@
                   class="cards col-md-12 mt-3"
                 >
                   <b-card-text class="text-name text-center">
-                    Project: {{ result.name | truncate(20, '...') }}
+                    {{ result.name | truncate(30, '...') }}
                   </b-card-text>
+                  
                   <hr class="line-separator">
+                  
                   <b-card-text class="description-height text-center">
-                    Description: {{ result.description | truncate(40, '...') }}
+                    {{ result.description | truncate(100, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -88,11 +94,13 @@
                   class="cards col-md-12 mt-3"
                 >
                   <b-card-text class="text-name text-center">
-                    Project: {{ result.name | truncate(20, '...') }}
+                    {{ result.name | truncate(30, '...') }}
                   </b-card-text>
+                  
                   <hr class="line-separator">
+                  
                   <b-card-text class="description-height text-center">
-                    Description: {{ result.description | truncate(40, '...') }}
+                    {{ result.description | truncate(100, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -100,7 +108,7 @@
           </b-tab>
         </section>
       </b-tabs>
-      <div class="d-flex justify-content-center" >
+      <div class="d-flex justify-content-center">
         <b-pagination
           v-model="pagination.currentPage"
           bg-variant="dark"
@@ -120,7 +128,7 @@
   export default {
     data () {
       return {
-        max:10,
+        max: 10,
         results: [],
         pagination: {
           currentPage: 1,
@@ -128,16 +136,16 @@
           numPages: 1,
           numResults: 1,
         }
-
       }
     },
+    
     mounted () {
       this.getData ();
     },
 
     methods: {
       getData () {
-        const request = '?pagination[page]='+ this.pagination.currentPage +'&pagination[per_page]='+ this.pagination.per_page;
+        const request = '?pagination[page]=' + this.pagination.currentPage + '&pagination[per_page]=' + this.pagination.per_page;
 
         ActivityService.getActivityList (request).then ((response) => {
           this.results = response.data.results;
@@ -147,9 +155,9 @@
             console.log (error)
           })
       },
+      
       setActivityId (id) {
-        this.$router.push ({name:'activity', params: {ActivityId: id}});
-
+        this.$router.push ({name: 'activity', params: {ActivityId: id}});
       },
     }
   }
@@ -162,22 +170,28 @@
     text-shadow: 1px 1px 1px #fffab0;
     height: available;
   }
+  
   .row-eq-height {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display:         flex;
+    display: flex;
   }
-  .description-height{
-    height: 50px;
+  
+  .description-height {
+    height: 60px;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
   }
-  .tabSection .card{
+  
+  .tabSection .card {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #ffda00;
     transition: all 0.3s ease-in;
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
+  
   .tabSection .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
@@ -191,7 +205,8 @@
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
-  .line-separator{
+  
+  .line-separator {
     padding: 1px;
     background-image: linear-gradient(to right, white, #F57C00, white);
   }

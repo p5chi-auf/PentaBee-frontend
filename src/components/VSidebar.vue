@@ -28,20 +28,21 @@ export default {
         icon: 'fa fa-home'
       },
       {
-        href: '/ActivityList',
-        title: 'Activity List',
-        icon: 'fa fa-list'
-      },
-      {
         href: '/charts',
-        title: 'List',
+        title: 'Activity',
         icon: 'fa fa-cog',
         child: [
           {
-            href: '/charts/sublink',
-            title: 'Sub Link'
+            href: '/ActivityList',
+            title: 'List',
+            icon: 'fa fa-list'
           },
-        ],
+          {
+            href: '/activityCreate',
+            title: 'Create',
+            icon: 'fa fa-list'
+          }
+          ]
       },
     ],
   },
