@@ -125,6 +125,7 @@
             >Create Activity
             </b-btn>
           </div>
+        
         </b-card>
       </b-row>
     </b-container>
@@ -147,6 +148,7 @@
           technologies: [],
           types: [],
         },
+
         technologyId: null,
         technologiesList: [
           {value: 11, text: 'Javascript'},
@@ -162,12 +164,10 @@
     methods: {
       createActivity () {
         let formClone = JSON.parse (JSON.stringify (this.form));
-
         formClone.application_deadline = moment (this.form.application_deadline).format ("X");
         formClone.final_deadline = moment (this.form.final_deadline).format ("X");
         formClone.technologies.push ({id: this.technologyId});
         formClone.types.push ({id: this.typeId});
-        
         RegisterService.createActivity (formClone)
 
       },

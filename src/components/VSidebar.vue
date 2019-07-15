@@ -33,12 +33,12 @@ export default {
         icon: 'fa fa-cog',
         child: [
           {
-            href: '/ActivityList',
+            href: '/activity-list',
             title: 'List',
             icon: 'fa fa-list'
           },
           {
-            href: '/activityCreate',
+            href: '/activity-create',
             title: 'Create',
             icon: 'fa fa-list'
           }

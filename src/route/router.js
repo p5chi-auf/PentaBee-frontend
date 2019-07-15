@@ -28,17 +28,17 @@ export default new Router({
       component: Registration,
     },
     {
-      path: '/ActivityList',
+      path: '/activity-list',
       name: 'activityList',
       component: ActivityList,
     },
     {
-      path: '/activity/:ActivityId',
+      path: '/activity/:activityId',
       name: 'activity',
       component: Activity,
     },
     {
-      path: '/activityCreate',
+      path: '/activity-create',
       name: 'createActivity',
       component: CreateActivity,
     }

@@ -1,17 +1,18 @@
-import Axios from 'axios';
+import TokenService from 'axios';
 import jwt_decode from 'jwt-decode';
+
 const TOKEN = localStorage.getItem ('token');
 const BASE_URL='http://api.pentabee.local/api/';
-const decoded = jwt_decode(TOKEN);
-const IdUSER = decoded.id;
-const USERNAME =  decoded.username;
+const DECODED_TOKEN = jwt_decode(TOKEN);
+const ID_USER = DECODED_TOKEN.id;
+const USER_NAME =  DECODED_TOKEN.username;
 
 export default {
-  base_url: BASE_URL,
+  baseUrl: BASE_URL,
   token: TOKEN,
-  idUser: IdUSER,
-  username: USERNAME,
+  idUser: ID_USER,
+  userName: USER_NAME,
   getToken() {
-   return  Axios.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
-  },
+   return  TokenService.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
+  }
 }

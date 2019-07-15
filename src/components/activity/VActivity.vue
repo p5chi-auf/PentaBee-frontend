@@ -76,18 +76,16 @@
     data () {
       return {
         Activity: {
-          owner: []
+          owner: {}
         },
         idUser: null
       }
     },
 
     created () {
-      ActivityService.getActivityDetails (this.$route.params.ActivityId).then ((response) => {
+      ActivityService.getActivityDetails (this.$route.params.activityId).then ((response) => {
         this.Activity = response.data;
         this.idUser = CommonServices.idUser;
-
-
       })
         .catch (error => {
           console.log (error)
@@ -95,9 +93,9 @@
     },
     methods: {
       deleteActivity () {
-        ActivityService.deleteActivity (this.$route.params.ActivityId).then ((response) => {
+        ActivityService.deleteActivity (this.$route.params.activityId).then ((response) => {
           alert ('deleted successful!!!!');
-          this.$router.push ('/ActivityList')
+          this.$router.push ('/activity-list')
         }).catch (error => {
           alert ("You d'ont have permission")
         })
@@ -124,7 +122,6 @@
   .description-styles {
     text-indent: 2em;
     font-weight: initial;
-    
   }
   
   .SectionStyle .card:hover {
@@ -160,5 +157,4 @@
     font-size: initial;
     padding: 0;
   }
-
 </style>

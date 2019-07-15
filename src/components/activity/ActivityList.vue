@@ -157,7 +157,7 @@
       },
       
       setActivityId (id) {
-        this.$router.push ({name: 'activity', params: {ActivityId: id}});
+        this.$router.push ({name: 'activity', params: {activityId: id}});
       },
     }
   }
