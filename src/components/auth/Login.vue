@@ -8,6 +8,10 @@
             <hr class="line">
           </h4>
 
+          <b-alert variant="danger" :show="!!loginError" dismissible>
+            {{ loginError }}
+          </b-alert>
+
           <b-form @submit.prevent="onSubmit()">
             <b-form-group
               id="input-group-1"
@@ -70,11 +74,6 @@
               <b-link class="link-redirect" to="/registration">Sign up</b-link>
             </p>
           </b-form>
-          <div class>
-            <b-alert variant="danger" :show="!!loginError" dismissible>
-              {{ loginError }}
-            </b-alert>
-          </div>
         </b-card>
       </b-row>
     </b-container>

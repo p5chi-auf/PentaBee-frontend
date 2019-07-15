@@ -6,14 +6,14 @@
   >
     <label class="typo__label">Technologies</label>
     <multiselect
-      v-model="value"
-      placeholder="Search a technologie"
+      v-model="form.technologies"
+      placeholder="Search a technology"
       label="name" track-by="id"
-      :options="form"
+      :options="formTechnologies"
       :multiple="true"
       :taggable="true"
     />
-    <pre class="language-json"><id>{{ value }}</id></pre>
+    <pre class="language-json"><id>{{ form.technologies }}</id></pre>
   </b-form-group>
 </template>
 
@@ -27,23 +27,41 @@
       Multiselect
     },
       data: () => ({
-        value: [
-        ],
-        form: [
+        form: {
+          id: null,
+          email: '',
+          position: '',
+          seniority: '',
+          name: '',
+          surname: '',
+          technologies: [
+            {
+              id: null,
+              name: '',
+            },
+          ],
+        },
+        formTechnologies: [
         ]
       }),
       computed:{
         ...mapState('account',['user']),
         userId(){
-          return this.user && this.user.id || UserApi.getUserDetails()
+          return UserApi.getUserDetails()
         },
       },
       mounted() {
         UserApi.getUserDetails();
 
-        UserApi.getTechnologies(this.userId).then((response) => {
+        UserApi.userInfo(this.userId).then((response) => {
           this.form = response.data;
-          console.log(this.form)
+        }).catch(error => {
+          console.log(error);
+        });
+
+        UserApi.getTechnologies(this.userId).then((response) => {
+          this.formTechnologies = response.data;
+          console.log(this.formTechnologies)
 
         }).catch(error => {
           console.log(error);

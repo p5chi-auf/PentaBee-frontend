@@ -151,7 +151,6 @@
             }
           ]
         },
-        seniority: null,
         options: [
           { value: '0', text: 'JUNIOR' },
           { value: '1', text: 'MIDDLE' },
@@ -161,8 +160,7 @@
     computed:{
       ...mapState('account',['user']),
       userId(){
-
-        return this.user && this.user.id || UserApi.getUserDetails()
+        return UserApi.getUserDetails()
       },
     },
     mounted() {
@@ -179,7 +177,7 @@
         const body = {
           ...this.form,
           id:this.userId,
-        }
+        };
         UserApi.editUser(body)
           .catch(error => {
             return console.log(error);

@@ -56,17 +56,6 @@
     </div>
   </header>
 </template>
-<style scoped>
-  .user{
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: 50%;
-    position: relative;
-    height: 40px;
-    width: 40px;
-    border: 2px solid white;
-  }
-</style>
 
 <script>
   import { mapActions } from 'vuex';
