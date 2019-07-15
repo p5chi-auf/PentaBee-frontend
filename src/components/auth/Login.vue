@@ -70,6 +70,11 @@
               <b-link class="link-redirect" to="/registration">Sign up</b-link>
             </p>
           </b-form>
+          <div class>
+            <b-alert variant="danger" :show="!!loginError" dismissible>
+              {{ loginError }}
+            </b-alert>
+          </div>
         </b-card>
       </b-row>
     </b-container>
@@ -86,6 +91,7 @@
           username: '',
           password: '',
         },
+      loginError: '',
     }),
     methods: {
       ...mapActions('account',['login','logout']),
@@ -97,7 +103,7 @@
             this.$router.push('/');
           })
           .catch(error => {
-            alert('Bad credentials');
+          this.loginError = error;
             this.logout();
             console.log(error);
           });

@@ -5,37 +5,35 @@ const state = () => ({
 });
 
 const actions = {
-  login: ({dispatch},payload)=>{
-    const { user, token} = payload;
-    dispatch('setUser',user);
-    dispatch('setToken',token);
+  login: ({ dispatch }, token) => {
+    dispatch('setToken', token);
   },
-  logout: ()=>{
+  logout: () => {
     window.localStorage.removeItem('token');
     // dispatch('setUser',null);
-    // dispatch('setToken',null);
+    dispatch('setToken', null);
   },
   setUser: ({ commit }, payload) => {
     commit('setUser', payload);
   },
   setToken: ({ commit }, token) => {
     commit('setToken', token);
-  }
+  },
 };
 
 const mutations = {
-  setUser(state,payload) {
+  setUser(state, payload) {
     state.user = payload;
   },
-  setToken(state,token) {
+  setToken(state, token) {
     state.token = token;
-  }
+  },
 };
 
 const getters = {
-  isAuthentificated:(state)=>{
-    return !!state.token && !!state.user;
-}
+  isAuthentificated: state => {
+    return !!state.token;
+  },
 };
 
 export default {

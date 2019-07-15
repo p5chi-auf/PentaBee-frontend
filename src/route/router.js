@@ -6,9 +6,10 @@ import Profile from '@/components/user/VProfile';
 import Edit from '@/components/user/EditProfile';
 import NotFound from '@/components/auth/NotFound';
 import Vue from 'vue';
+import store from '../store';
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -16,6 +17,9 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/login',
@@ -31,11 +35,17 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/edit',
       name: 'edit',
       component: Edit,
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/404',
@@ -44,3 +54,19 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    const isAuth = store.getters['account/isAuthentificated'];
+    if (isAuth) {
+      next({
+        path: '/login',
+        params: { nextUrl: to.fullPath },
+      });
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;

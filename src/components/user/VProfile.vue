@@ -81,6 +81,7 @@
       },
     },
     mounted() {
+      console.log(this);
       UserApi.getUserDetails();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
