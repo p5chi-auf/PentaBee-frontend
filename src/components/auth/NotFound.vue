@@ -4,11 +4,12 @@
       <b-row align-h="center" class="mt-5">
         <b-img :src="require('../../assets/images/error_bee.png')"/>
         <div class="a">Oops!</div>
-        <br>
+      </b-row>
+      <div class="text-center">
         <h1>404 - PAGE NOT FOUND</h1>
         <p>The page you are looking for might have been removed
           had it's name changed or is temporary unavailable.</p>
-      </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -26,4 +27,3 @@
     color: #fff;
   }
 </style>
-

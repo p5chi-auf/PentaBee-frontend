@@ -147,7 +147,6 @@
           technologies: [
             {
               id: null,
-              name: ''
             }
           ]
         },

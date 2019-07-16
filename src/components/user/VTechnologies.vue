@@ -13,19 +13,15 @@
       :multiple="true"
       :taggable="true"
     />
-    <pre class="language-json"><id>{{ form.technologies }}</id></pre>
+    <pre class="language-json"><code>{{ form.technologies }}</code></pre>
   </b-form-group>
 </template>
 
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapState } from 'vuex';
-  import Multiselect from 'vue-multiselect'
 
   export default {
-    components: {
-      Multiselect
-    },
       data: () => ({
         form: {
           id: null,
@@ -66,6 +62,6 @@
         }).catch(error => {
           console.log(error);
         });
-      }
+      },
   }
 </script>

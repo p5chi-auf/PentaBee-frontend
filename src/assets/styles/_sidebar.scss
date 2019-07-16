@@ -15,4 +15,11 @@
   }
 }
 
-
+@media screen and (max-width: 320px) {
+  .v-sidebar-menu {
+    height: calc(100vh - 205px);
+  }
+  .v-sidebar-menu {
+    top: 139px;
+  }
+}
