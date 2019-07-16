@@ -131,30 +131,30 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import UserTechnologies from './VTechnologies';
-  import { mapActions,mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     components: { UserTechnologies },
     data: () => ({
-        form: {
-          id: null,
-          username: '',
-          email: '',
-          position: '',
-          seniority: null,
-          name: '',
-          surname: '',
-          technologies: [
-            {
-              id: null,
-            }
-          ]
-        },
-        options: [
-          { value: '0', text: 'JUNIOR' },
-          { value: '1', text: 'MIDDLE' },
-          { value: '2', text: 'SENIOR' },
-        ],
+      form: {
+        id: null,
+        username: '',
+        email: '',
+        position: '',
+        seniority: null,
+        name: '',
+        surname: '',
+        technologies: [
+          {
+            id: null,
+          }
+        ]
+      },
+      options: [
+        { value: '0', text: 'JUNIOR' },
+        { value: '1', text: 'MIDDLE' },
+        { value: '2', text: 'SENIOR' },
+      ],
     }),
     computed:{
       ...mapState('account',['user']),

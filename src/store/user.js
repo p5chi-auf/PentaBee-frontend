@@ -10,7 +10,6 @@ const actions = {
   },
   logout: ({ dispatch }) => {
     window.localStorage.removeItem('token');
-    // dispatch('setUser',null);
     dispatch('setToken', null);
   },
   setUser: ({ commit }, payload) => {
@@ -31,7 +30,7 @@ const mutations = {
 };
 
 const getters = {
-  isAuthentificated: state => {
+  isAuth: state => {
     return !!state.token;
   },
 };

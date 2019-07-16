@@ -19,6 +19,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import Details from './UserDetails';
   import { mapState } from 'vuex';
 
   export default {

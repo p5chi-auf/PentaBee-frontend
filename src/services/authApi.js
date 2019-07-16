@@ -1,12 +1,12 @@
 import Axios from 'axios';
-const BASE_URL = 'http://api.pentabee.local/api/';
+import { userEndpoints } from '@/constants/apiEndpoints';
 
 export default {
 
   login(data) {
-    return Axios.post(BASE_URL + '/login', data);
+    return Axios.post(userEndpoints.LOGIN, data);
   },
   register(data) {
-    return Axios.post(BASE_URL + '/register', data);
+    return Axios.post( userEndpoints.REGISTER, data);
   }
 };
