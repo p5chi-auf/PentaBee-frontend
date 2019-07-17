@@ -8,11 +8,11 @@
           alt="Responsive image"
         >
       </b-navbar-brand>
-
+      
       <b-navbar-nav small>
         <b-nav-item href="#">version 1.0.0</b-nav-item>
       </b-navbar-nav>
-
+      
       <div class="ml-auto">
         <b-dropdown
           size="lg"
@@ -28,14 +28,14 @@
           <b-dropdown-item to="/profile">
             <i class="fas fa-user"/> Profile
           </b-dropdown-item>
-
+          
           <b-dropdown-item to="/settings">
             <i class="fas fa-cog"/> Settings
           </b-dropdown-item>
-
+          
           <b-dropdown-divider/>
-
-          <b-dropdown-item to="/login">
+          
+          <b-dropdown-item @click="logout()">
             <i class="fas fa-power-off"/> Logout
           </b-dropdown-item>
         </b-dropdown>
@@ -53,7 +53,7 @@
   </header>
 </template>
 <style scoped>
-  .user{
+  .user {
     margin-top: auto;
     margin-bottom: auto;
     border-radius: 50%;
@@ -63,3 +63,16 @@
     border: 2px solid white;
   }
 </style>
+<script>
+  export default {
+    data () {
+      return {}
+    },
+    methods: {
+      logout () {
+        window.localStorage.removeItem ('token');
+        this.$router.push ('/login');
+      }
+    }
+  }
+</script>

@@ -17,6 +17,9 @@
     "core-js": "^2.6.5",
     "css-loader": "^3.0.0",
     "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
+    "luxon": "^1.16.1",
+    "moment": "^2.24.0",
     "popper.js": "^1.15.0",
     "rebuild": "^0.1.2",
     "tags": "^2.0.10",
@@ -24,9 +27,12 @@
     "vee-validate": "^2.2.7",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
+    "vue-datetime": "^1.0.0-beta.10",
     "vue-router": "^3.0.3",
     "vue-sidebar-menu": "^3.9.1",
-    "vuex": "^3.0.1"
+    "vue-truncate-filter": "^1.1.7",
+    "vuex": "^3.0.1",
+    "weekstart": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -44,3 +50,4 @@
     "vue-template-compiler": "^2.6.10"
   }
 }
+
