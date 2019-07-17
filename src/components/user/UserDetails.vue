@@ -113,7 +113,21 @@
           </template>
         </b-form-select>
       </b-form-group>
-      <user-technologies/>
+      <b-form-group
+        id="input-group-7"
+        class="col-md-12"
+        label-for="technologies"
+      >
+        <label class="typo__label">Technologies</label>
+        <multiselect
+          v-model="form.technologies"
+          placeholder="Search a technology"
+          label="name" track-by="id"
+          :options="formTechnologies"
+          :multiple="true"
+          :taggable="true"
+        />
+      </b-form-group>
     </b-form>
     <div class="text-center space">
       <b-btn
@@ -130,11 +144,10 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import UserTechnologies from './VTechnologies';
   import { mapActions, mapState } from 'vuex';
 
   export default {
-    components: { UserTechnologies },
+
     data: () => ({
       form: {
         id: null,
@@ -150,6 +163,8 @@
           }
         ]
       },
+      formTechnologies: [
+      ],
       options: [
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
@@ -164,11 +179,20 @@
     },
     mounted() {
       UserApi.getUserDetails();
+
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
         console.log(error)
-      })
+      });
+
+      UserApi.getTechnologies(this.userId).then((response) => {
+        this.formTechnologies = response.data;
+        console.log(this.formTechnologies)
+
+      }).catch(error => {
+        console.log(error);
+      });
     },
     methods: {
       ...mapActions('account',['login','logout']),
