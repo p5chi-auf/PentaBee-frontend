@@ -8,11 +8,11 @@
           <div class="col-md-9">
             <div class="row">
               <b-card-title class="col-md-8 mx-auto row">
-                {{ Activity.name }}
+                {{ activity.name }}
               </b-card-title>
 
-              <b-card-text class="col-md-4 text-right">
-                {{ Activity.owner.name +' ' + Activity.owner.surname }}
+              <b-card-text class="col-md-4 text-right" style="text-transform:capitalize">
+                {{ activity.owner.name +' ' + activity.owner.surname }}
                 <img src="../../assets/images/user-image.png" class="user-image">
               </b-card-text>
             </div>
@@ -20,21 +20,21 @@
 
             <div class="ml-2">
               <h5 class="font-weight-bold">Description: </h5>
-              <p class="ml-4 description-styles">{{ Activity.description }}</p>
+              <p class="ml-4 description-styles">{{ activity.description }}</p>
             </div>
 
             <div class="ml-1 row">
               <div class="col-md-5">
                 <h5 class="font-weight-bold">Technologies:</h5>
 
-                <ul v-for="item in Activity.technologies" :key="item.id">
+                <ul v-for="item in activity.technologies" :key="item.id">
                   <li class="technology-name ml-lg-5">{{ item.name }}</li>
                 </ul>
               </div>
 
               <div class="col-md-5">
                 <h5 class="font-weight-bold">Types:</h5>
-                <ul v-for="item in Activity.types" :key="item.id">
+                <ul v-for="item in activity.types" :key="item.id">
                   <li class="technology-name ml-lg-5">{{ item.name }}</li>
                 </ul>
               </div>
@@ -42,19 +42,19 @@
 
             <h5 class="ml-4 font-weight-bold">Application till:
               <p class="col-md-4 ml-3 aplication-deadline">
-                Date: {{ Activity.application_deadline | formatDate }}
+                Date: {{ activity.application_deadline | formatDate }}
               </p>
-              <p class="col-md-4 ml-3 aplication-deadline">Time: {{ Activity.application_deadline | formatTime }}</p>
+              <p class="col-md-4 ml-3 aplication-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
             </h5>
 
             <h5 class="ml-5 font-weight-bold">
               Activity deadline:
-              <p class="col-md-4 ml-4 deadline">Date: {{ Activity.final_deadline | formatDate }}</p>
-              <p class="col-md-4 ml-4 deadline">Time: {{ Activity.final_deadline | formatTime }}</p>
+              <p class="col-md-4 ml-4 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
+              <p class="col-md-4 ml-4 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
             </h5>
 
             <b-button
-              v-if="idUser == Activity.owner.id"
+              v-if="idUser == activity.owner.id"
               class="btn-danger col-md-2 float-right"
               @click="deleteActivity"
             >
@@ -75,7 +75,7 @@
 
     data () {
       return {
-        Activity: {
+        activity: {
           owner: {}
         },
         idUser: null
@@ -84,7 +84,7 @@
 
     created () {
       ActivityService.getActivityDetails (this.$route.params.activityId).then ((response) => {
-        this.Activity = response.data;
+        this.activity = response.data;
         this.idUser = CommonServices.idUser;
       })
         .catch (error => {

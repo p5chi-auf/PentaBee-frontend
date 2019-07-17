@@ -8,7 +8,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="setActivityId(result.id)"
+                   @click="redirectToActivityDatails(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -22,7 +22,7 @@
                   <hr class="line-separator">
 
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -34,7 +34,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="setActivityId(result.id)"
+                   @click="redirectToActivityDatails(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -48,7 +48,7 @@
                   <hr class="line-separator">
 
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -60,7 +60,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="setActivityId(result.id)"
+                   @click="redirectToActivityDatails(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -86,7 +86,7 @@
               <div v-for="result in results"
                    :key="result.id"
                    class="col-md-4 row-eq-height"
-                   @click="setActivityId(result.id)"
+                   @click="redirectToActivityDatails(result.id)"
               >
                 <b-card
                   bg-variant="light"
@@ -100,7 +100,7 @@
                   <hr class="line-separator">
 
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -156,7 +156,7 @@
           })
       },
 
-      setActivityId (id) {
+      redirectToActivityDatails (id) {
         this.$router.push ({name: 'activity', params: {activityId: id}});
       },
     }
