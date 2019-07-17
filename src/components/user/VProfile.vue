@@ -73,11 +73,11 @@
         ],
       },
     }),
-    computed:{
-      seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
-      ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserDetails()
+    computed: {
+      seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
+      ...mapState('account', ['user']),
+      userId() {
+        return UserApi.getUserDetails();
       },
     },
     mounted() {

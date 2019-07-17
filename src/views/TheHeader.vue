@@ -14,20 +14,6 @@
       </b-navbar-nav>
       <div class="ml-auto">
         <b-dropdown
-          toggle-class="text-decoration-none"
-          no-caret
-          right
-          size="sm"
-        >
-          <template slot="button-content">
-            <i class="far fa-bell notification"/>
-          </template>
-          <b-dropdown-item>
-            Lorem ipsum dolor sit amet.
-          </b-dropdown-item>
-        </b-dropdown>
-
-        <b-dropdown
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"
@@ -35,8 +21,9 @@
           right
         >
           <template slot="button-content">
-            <img class="user mr-1" src="../../public/img/person1.png">
-            <span class="user-dropdown">{{ form.name }} {{ form.surname }}</span>
+            <img class="user mr-1" src="../../public/img/person1.png" alt="">
+            <span style="text-transform:capitalize" class="user-dropdown">{{ form.name }} {{ form.surname }}</span>
+
           </template>
           <b-dropdown-item to="/profile">
             <i class="fas fa-user"/> Profile
@@ -101,7 +88,9 @@
       UserApi.getUserDetails();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
-      })
+      }).catch(error => {
+        console.log(error);
+      });
     },
     methods: {
       ...mapActions('account',['logout']),
@@ -113,8 +102,3 @@
   };
 </script>
 
-<style>
-  .notification{
-    color: #ffda00;
-  }
-</style>
