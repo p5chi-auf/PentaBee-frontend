@@ -25,7 +25,7 @@ export default {
     VHeader,
     VFooter,
     VSidebar,
-    VLayout,
+    VLayout
   },
   computed: {
     isAuth() {

@@ -86,10 +86,10 @@
 
   export default {
     data: () => ({
-        form: {
-          username: '',
-          password: '',
-        },
+      form: {
+        username: '',
+        password: '',
+      },
       loginError: '',
     }),
     methods: {
@@ -105,7 +105,7 @@
             this.$router.push('/');
           })
           .catch(error => {
-          this.loginError = error;
+            this.loginError = error;
             this.logout();
             console.log(error);
           });

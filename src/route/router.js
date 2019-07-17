@@ -5,6 +5,10 @@ import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
 import Edit from '@/components/user/EditProfile';
 import NotFound from '@/components/auth/NotFound';
+import Activity from '@/components/activity/VActivity';
+import CreateActivity from '@/components/activity/CreateActivity';
+import ActivityList from "../components/activity/ActivityList";
+
 import Vue from 'vue';
 import store from '../store';
 Vue.use(Router);
@@ -51,6 +55,21 @@ const router = new Router({
       path: '/404',
       name: 'notfound',
       component: NotFound,
+    },
+    {
+      path: '/activity-list',
+      name: 'activityList',
+      component: ActivityList,
+    },
+    {
+      path: '/activity/:activityId',
+      name: 'activity',
+      component: Activity,
+    },
+    {
+      path: '/activity-create',
+      name: 'createActivity',
+      component: CreateActivity,
     },
   ],
 });
