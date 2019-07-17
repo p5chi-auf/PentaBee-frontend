@@ -95,10 +95,8 @@
     methods: {
       ...mapActions('account', ['login', 'logout']),
       onSubmit() {
-        console.log('before login');
         LoginService.login(this.form)
           .then(response => {
-            console.log('login data', response.data);
             const { token } = response.data;
             window.localStorage.setItem('token', token);
             this.login(token);

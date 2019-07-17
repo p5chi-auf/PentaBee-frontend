@@ -10,7 +10,7 @@
       </b-navbar-brand>
 
       <b-navbar-nav small>
-        <b-nav-item href="#">version 1.0.0</b-nav-item>
+        <b-nav-item href="#">1.0.0</b-nav-item>
       </b-navbar-nav>
       <div class="ml-auto">
         <b-dropdown

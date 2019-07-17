@@ -13,7 +13,7 @@
 
               <b-card-text class="col-md-4 text-right" style="text-transform:capitalize">
                 {{ activity.owner.name +' ' + activity.owner.surname }}
-                <img src="../../assets/images/user-image.png" class="user-image">
+                <img src="../../assets/images/user-image.png" class="user-image" alt="">
               </b-card-text>
             </div>
             <hr class="border line">
@@ -69,7 +69,7 @@
 
 <script>
   import ActivityService from '../../services/ActivityApi';
-  import CommonServices from '../../services/Services'
+  import CommonServices from '../../services/services'
 
   export default {
 
@@ -102,8 +102,7 @@
       }
 
     }
-  }
-
+  };
 </script>
 
 <style>

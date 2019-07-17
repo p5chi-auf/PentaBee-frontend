@@ -160,21 +160,20 @@
         technologies: [
           {
             id: null,
-          }
-        ]
+          },
+        ],
       },
-      formTechnologies: [
-      ],
+      formTechnologies: [],
       options: [
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
         { value: '2', text: 'SENIOR' },
       ],
     }),
-    computed:{
-      ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserDetails()
+    computed: {
+      ...mapState('account', ['user']),
+      userId() {
+        return UserApi.getUserDetails();
       },
     },
     mounted() {
@@ -183,23 +182,21 @@
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
-        console.log(error)
+        console.log(error);
       });
 
       UserApi.getTechnologies(this.userId).then((response) => {
         this.formTechnologies = response.data;
-        console.log(this.formTechnologies)
-
       }).catch(error => {
         console.log(error);
       });
     },
     methods: {
-      ...mapActions('account',['login','logout']),
+      ...mapActions('account', ['login', 'logout']),
       edit() {
         const body = {
           ...this.form,
-          id:this.userId,
+          id: this.userId,
         };
         UserApi.editUser(body)
           .catch(error => {

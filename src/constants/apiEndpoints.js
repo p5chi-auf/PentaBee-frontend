@@ -5,4 +5,5 @@ export const userEndpoints = {
   TECHNOLOGIES: `${basePath}/technologies`,
   LOGIN: `${basePath}/login`,
   REGISTER: `${basePath}/register`,
+  ACTIVITIES: `${basePath}/activities`,
 };

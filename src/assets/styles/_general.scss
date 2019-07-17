@@ -2,11 +2,16 @@ body {
   font-family: 'Lato', sans-serif;
 
   .main {
-    padding-top: 80px;
+    padding-top: 90px;
     padding-left: 50px;
     transition: all 0.5s;
     height: auto;
     width: auto;
+  }
+  @media screen and (max-width: 360px) {
+    .main {
+      padding-top: 150px;
+    }
   }
 
   h4 {
