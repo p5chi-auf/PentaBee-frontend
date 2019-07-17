@@ -1,7 +1,7 @@
 <template>
   <div class="edit">
     <div class="profileCard home-content">
-      <section id="userProfile">
+      <section id="card-outline">
         <b-container>
           <b-card-group deck>
             <b-card
@@ -53,18 +53,12 @@
   import UserDetails from './UserDetails';
   import ChangePassword from './ChangePassword';
   import DeleteProfile from './DeleteProfile';
-  import UserApi from '@/services/userDetailsApi';
 
   export default {
-    components: { UserDetails, ChangePassword, DeleteProfile },
-
-    methods: {
-      userInfo(id){
-        UserApi.userInfo(this.form)
-          .then(response => {
-            self.response_key = response.id.result;
-          });
-      },
+    components: {
+      UserDetails,
+      ChangePassword,
+      DeleteProfile
     }
   };
 </script>

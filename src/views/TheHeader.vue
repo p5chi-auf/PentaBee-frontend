@@ -12,6 +12,7 @@
       <b-navbar-nav small>
         <b-nav-item href="#">1.0.0</b-nav-item>
       </b-navbar-nav>
+
       <div class="ml-auto">
         <b-dropdown
           size="lg"
@@ -21,30 +22,37 @@
           right
         >
           <template slot="button-content">
-            <img class="user mr-1" src="../../public/img/person1.png" alt="">
-            <span style="text-transform:capitalize" class="user-dropdown">{{ form.name }} {{ form.surname }}</span>
-
+            <img class="user mr-1" src="../../public/img/person1.png" alt="user image">
+            <span style="text-transform:capitalize" class="user-dropdown">
+              {{ form.name }} {{ form.surname }}
+            </span>
           </template>
+
           <b-dropdown-item to="/profile">
-            <i class="fas fa-user"/> Profile
+            <i class="fas fa-user"/>
+            Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/edit">
-            <i class="fas fa-user-edit"/> Edit Profile
+            <i class="fas fa-user-edit"/>
+            Edit Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/settings">
-            <i class="fas fa-cog"/> Settings
+            <i class="fas fa-cog"/>
+            Settings
           </b-dropdown-item>
 
           <b-dropdown-divider/>
 
           <b-dropdown-item @click="onclick">
-            <i class="fas fa-sign-out-alt"/> Logout
+            <i class="fas fa-sign-out-alt"/>
+            Logout
           </b-dropdown-item>
         </b-dropdown>
       </div>
     </b-navbar>
+
     <div class="top-bar">
       <div class="inner">
         <div class="top-bar-orange"/>
@@ -59,33 +67,17 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
 
   export default {
     data: () => ({
-      form: {
-        id: null,
-        email: '',
-        position: '',
-        seniority: '',
-        name: '',
-        surname: '',
-        technologies: [
-          {
-            id: null,
-            name: '',
-          },
-        ],
-      },
+      form: {}
     }),
-    computed:{
-      ...mapState('account',['user']),
+    computed: {
       userId(){
-        return UserApi.getUserDetails()
-      },
+        return UserApi.getUserId()
+      }
     },
     mounted() {
-      UserApi.getUserDetails();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
@@ -93,10 +85,9 @@
       });
     },
     methods: {
-      ...mapActions('account',['logout']),
       onclick () {
+        window.localStorage.removeItem('token');
         this.$router.push('/login');
-        this.logout();
       }
     }
   };

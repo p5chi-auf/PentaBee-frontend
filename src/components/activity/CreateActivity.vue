@@ -1,7 +1,7 @@
 <template>
   <div class="edit">
     <div class="profileCard home-content">
-      <section id="userProfile">
+      <section id="card-outline">
         <b-container class="col-md-8">
           <b-row align-h="center" class="mt-5">
             <b-card class="p-3">

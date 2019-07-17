@@ -129,6 +129,7 @@
         />
       </b-form-group>
     </b-form>
+
     <div class="text-center space">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"
@@ -144,13 +145,11 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
 
   export default {
 
     data: () => ({
       form: {
-        id: null,
         username: '',
         email: '',
         position: '',
@@ -171,37 +170,26 @@
       ],
     }),
     computed: {
-      ...mapState('account', ['user']),
       userId() {
-        return UserApi.getUserDetails();
+        return UserApi.getUserId();
       },
     },
     mounted() {
-      UserApi.getUserDetails();
+      UserApi.userInfo(this.userId)
+        .then((response) => {
+          this.form = response.data;
+        });
 
-      UserApi.userInfo(this.userId).then((response) => {
-        this.form = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
-
-      UserApi.getTechnologies(this.userId).then((response) => {
-        this.formTechnologies = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
+      UserApi.getTechnologies(this.userId)
+        .then((response) => {
+          this.formTechnologies = response.data;
+        });
     },
     methods: {
-      ...mapActions('account', ['login', 'logout']),
       edit() {
-        const body = {
-          ...this.form,
-          id: this.userId,
-        };
-        UserApi.editUser(body)
-          .catch(error => {
-            return console.log(error);
-          });
+        UserApi.editUser(id, this.form).then(() => {
+          //TODO redirect to vprofil
+        });
       },
     },
   };

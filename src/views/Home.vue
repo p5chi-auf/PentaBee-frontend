@@ -19,11 +19,10 @@
     }),
     computed: {
       userId() {
-        return UserApi.getUserDetails();
+        return UserApi.getUserId();
       },
     },
     mounted() {
-      UserApi.getUserDetails();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       });
