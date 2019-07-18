@@ -140,7 +140,6 @@
 <script>
   import RegisterService from '../../services/activityApi';
   import moment from 'moment';
-
   export default {
     data () {
       return {
@@ -154,7 +153,6 @@
           technologies: [],
           types: [],
         },
-
         technologyId: null,
         technologiesList: [
           {value: 11, text: 'Javascript'},
@@ -164,7 +162,6 @@
         typ: [
           {value: 11, text: 'dt audit'}
         ]
-
       };
     },
     methods: {
