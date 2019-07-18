@@ -92,6 +92,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapActions,mapState } from 'vuex';
 
   export default {
     data: () => ({
@@ -99,18 +100,25 @@
         old_password: '',
         password: '',
         confirm_password: '',
-      }
+      },
     }),
-    computed: {
-      userId() {
-        return UserApi.getUserId();
-      }
+    computed:{
+      ...mapState('account',['user']),
+      userId(){
+        return this.user && this.user.id || UserApi.getUserId()
+      },
     },
     methods: {
+      ...mapActions('account',['login','logout']),
       change() {
-        UserApi.changePassword(this.userId, this.form)
-          .then(() => {
-            //TODO alert for succes case
+        const body = {
+          ...this.form,
+          id:this.userId,
+        };
+        UserApi.changePassword(body)
+          .then(response => {
+            this.$router.push('/login');
+            console.log(response);
           })
           .catch(error => {
             return console.log(error);
@@ -119,3 +127,5 @@
     }
   };
 </script>
+
+//TODO alert for succes case

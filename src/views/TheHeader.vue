@@ -67,7 +67,6 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-
   export default {
     data: () => ({
       form: {}

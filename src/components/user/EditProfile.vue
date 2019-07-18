@@ -9,10 +9,17 @@
               header-bg-variant="transparent"
               align="center"
             >
+              <div class="text-right">
+                <b-link to="/profile">
+                  <i class="fas fa-user-circle"/>
+                </b-link>
+              </div>
+
               <h4 class="text-center">
                 Edit Profile
-                <hr class="line">
               </h4>
+              <hr class="line">
+
               <b-alert
                 show
                 class="text-center"

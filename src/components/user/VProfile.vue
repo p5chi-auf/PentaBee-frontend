@@ -8,6 +8,11 @@
           </b-col>
 
           <b-card class="col-12" border-variant="warning">
+            <div class="text-right">
+              <b-link to="/edit">
+                Edit
+              </b-link>
+            </div>
             <div class="card-body">
               <div class="d-flex justify-content-center h-100">
                 <div class="image-out-container">
@@ -51,23 +56,39 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapState } from 'vuex';
 
   export default {
     data: () => ({
-      form: {},
+      form: {
+        id: null,
+        email: '',
+        position: '',
+        seniority: '',
+        name: '',
+        surname: '',
+        technologies: [
+          {
+            id: null,
+            name: '',
+          },
+        ],
+      },
     }),
-    computed: {
-      seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
-      userId() {
-        return UserApi.getUserId();
+    computed:{
+      seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
+      ...mapState('account',['user']),
+      userId(){
+        return UserApi.getUserId()
       },
     },
     mounted() {
-      UserApi.userInfo(this.userId)
-        .then((response) => {
-          this.form = response.data;
-        }).catch(error => {
-          console.log(error);
+      console.log(this);
+      UserApi.getUserId();
+      UserApi.userInfo(this.userId).then((response) => {
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error);
       });
     },
   };

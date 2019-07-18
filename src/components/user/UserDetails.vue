@@ -145,11 +145,12 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
-
     data: () => ({
       form: {
+        id: null,
         username: '',
         email: '',
         position: '',
@@ -170,27 +171,38 @@
       ],
     }),
     computed: {
+      ...mapState('account', ['user']),
       userId() {
         return UserApi.getUserId();
       },
     },
     mounted() {
-      UserApi.userInfo(this.userId)
-        .then((response) => {
-          this.form = response.data;
-        });
-
-      UserApi.getTechnologies(this.userId)
-        .then((response) => {
-          this.formTechnologies = response.data;
-        });
+      UserApi.getUserId();
+      UserApi.userInfo(this.userId).then((response) => {
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error);
+      });
+      UserApi.getTechnologies(this.userId).then((response) => {
+        this.formTechnologies = response.data;
+        console.log(this.formTechnologies);
+      }).catch(error => {
+        console.log(error);
+      });
     },
     methods: {
+      ...mapActions('account', ['login', 'logout']),
       edit() {
-        UserApi.editUser(id, this.form).then(() => {
-          //TODO redirect to vprofil
-        });
-      },
-    },
+        const body = {
+          ...this.form,
+          id: this.userId,
+        };
+        UserApi.editUser(body)
+          .catch(error => {
+            return console.log(error);
+          });
+				// this.$router.push('/profile');
+      }
+    }
   };
 </script>

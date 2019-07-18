@@ -1,7 +1,7 @@
 const state = () => ({
   user: null,
   token: null,
-  id: null
+  id: null,
 });
 
 const actions = {
@@ -9,7 +9,6 @@ const actions = {
     dispatch('setToken', token);
   },
   logout: ({ dispatch }) => {
-    // window.localStorage.removeItem('token');
     dispatch('setToken', null);
   },
   setUser: ({ commit }, payload) => {
