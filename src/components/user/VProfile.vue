@@ -59,6 +59,7 @@
   import { mapState } from 'vuex';
 
   export default {
+
     data: () => ({
       form: {
         id: null,
@@ -83,7 +84,6 @@
       },
     },
     mounted() {
-      console.log(this);
       UserApi.getUserId();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;

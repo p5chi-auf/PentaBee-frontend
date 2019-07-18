@@ -125,7 +125,9 @@
 </template>
 
 <script>
-  import ActivityService from '../../services/ActivityApi';
+  import ActivityService from '../../services/activityApi';
+  import UserApi from '@/services/userDetailsApi';
+  import { mapState } from 'vuex';
 
   export default {
     data() {
@@ -140,8 +142,20 @@
         },
       };
     },
-    mounted() {
+    computed:{
+      ...mapState('account',['user']),
+      userId(){
+        return UserApi.getUserId()
+      },
+    },
+		mounted() {
+      UserApi.getUserId();
       this.getData();
+      UserApi.userInfo(this.userId).then((response) => {
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error);
+      })
     },
     methods: {
       getData() {

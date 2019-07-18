@@ -60,16 +60,25 @@ const router = new Router({
       path: '/activity-list',
       name: 'activityList',
       component: ActivityList,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/activity/:activityId',
       name: 'activity',
       component: Activity,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/activity-create',
       name: 'createActivity',
       component: CreateActivity,
+      meta: {
+        requiresAuth: true,
+      },
     },
   ],
 });

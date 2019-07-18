@@ -54,7 +54,7 @@
             </h5>
 
             <b-button
-              v-if="idUser == activity.owner.id"
+              v-if="userId == activity.owner.id"
               class="btn-danger col-md-2 float-right"
               @click="deleteActivity"
             >
@@ -68,8 +68,9 @@
 </template>
 
 <script>
-  import ActivityService from '../../services/ActivityApi';
-  import CommonServices from '../../services/services'
+  import ActivityService from '../../services/activityApi';
+  import UserApi from '@/services/userDetailsApi';
+  import { mapState } from 'vuex';
 
   export default {
 
@@ -78,14 +79,17 @@
         activity: {
           owner: {}
         },
-        idUser: null
       }
     },
-
+    computed:{
+      ...mapState('account',['user']),
+      userId(){
+        return UserApi.getUserId();
+      },
+    },
     created () {
       ActivityService.getActivityDetails (this.$route.params.activityId).then ((response) => {
         this.activity = response.data;
-        this.idUser = CommonServices.idUser;
       })
         .catch (error => {
           console.log (error)

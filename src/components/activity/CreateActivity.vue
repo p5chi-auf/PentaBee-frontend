@@ -138,7 +138,7 @@
   </div>
 </template>
 <script>
-  import RegisterService from '../../services/ActivityApi';
+  import RegisterService from '../../services/activityApi';
   import moment from 'moment';
 
   export default {
