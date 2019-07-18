@@ -10,7 +10,7 @@
           <b-card class="col-12" border-variant="warning">
             <div class="text-right">
               <b-link to="/edit">
-                Edit
+                <i class="icon-size fas fa-edit"/>
               </b-link>
             </div>
             <div class="card-body">

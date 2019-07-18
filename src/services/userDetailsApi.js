@@ -6,6 +6,7 @@ export default {
   getUserId() {
     const token = localStorage.getItem('token');
     const { id } = jwt_decode(token);
+
     Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     return id;
   },

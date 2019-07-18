@@ -23,7 +23,7 @@
         >
           <template slot="button-content">
             <img class="user mr-1" src="../../public/img/person1.png" alt="user image">
-            <span style="text-transform:capitalize" class="user-dropdown">
+            <span class="user-dropdown text-capitalize">
               {{ form.name }} {{ form.surname }}
             </span>
           </template>

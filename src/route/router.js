@@ -78,9 +78,9 @@ const router = new Router({
       component: CreateActivity,
       meta: {
         requiresAuth: true,
-      },
-    },
-  ],
+      }
+    }
+  ]
 });
 
 router.beforeEach((to, from, next) => {

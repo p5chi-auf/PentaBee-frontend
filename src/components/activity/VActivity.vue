@@ -11,7 +11,7 @@
                 {{ activity.name }}
               </b-card-title>
 
-              <b-card-text class="col-md-4 text-right" style="text-transform:capitalize">
+              <b-card-text class="col-md-4 text-right text-capitalize">
                 {{ activity.owner.name +' ' + activity.owner.surname }}
                 <img src="../../assets/images/user-image.png" class="user-image" alt="">
               </b-card-text>
@@ -82,7 +82,7 @@
       }
     },
     computed:{
-      ...mapState('account',['user']),
+      ...mapState('account',['user', 'setUser']),
       userId(){
         return UserApi.getUserId();
       },
@@ -93,18 +93,17 @@
       })
         .catch (error => {
           console.log (error)
-        })
+        });
     },
     methods: {
       deleteActivity () {
-        ActivityService.deleteActivity (this.$route.params.activityId).then ((response) => {
+        ActivityService.deleteActivity (this.$route.params.activityId).then (() => {
           alert ('deleted successful!!!!');
           this.$router.push ('/activity-list')
-        }).catch (error => {
+        }).catch (() => {
           alert ("You d'ont have permission")
         })
       }
-
     }
   };
 </script>

@@ -53,9 +53,8 @@
           v-validate.continues="'required|min:3|max:20'"
           name="name"
           type="text"
-          class="form-control"
+          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('name') }"
-          style="text-transform:capitalize"
         />
 
         <span v-if="errors.has('name')" class="invalid-feedback">
@@ -91,9 +90,8 @@
           v-validate.continues="'required|min:3|max:20'"
           name="surname"
           type="text"
-          class="form-control"
+          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('surname') }"
-          style="text-transform:capitalize"
         />
 
         <span v-if="errors.has('surname')" class="invalid-feedback">
@@ -185,7 +183,6 @@
       });
       UserApi.getTechnologies(this.userId).then((response) => {
         this.formTechnologies = response.data;
-        console.log(this.formTechnologies);
       }).catch(error => {
         console.log(error);
       });

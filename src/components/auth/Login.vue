@@ -82,7 +82,7 @@
 
 <script>
   import LoginService from '@/services/authApi';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapMutations } from 'vuex';
 
   export default {
     data: () => ({
@@ -93,7 +93,8 @@
       loginError: '',
     }),
     methods: {
-      ...mapActions('account', ['login', 'logout']),
+      ...mapActions('account', ['login', 'logout', 'setUser']),
+      ...mapMutations('account', []),
       onSubmit() {
         LoginService.login(this.form)
           .then(response => {

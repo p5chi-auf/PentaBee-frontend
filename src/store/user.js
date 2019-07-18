@@ -1,7 +1,7 @@
 const state = () => ({
   user: null,
-  token: null,
-  id: null,
+  token: localStorage.getItem('token') || '',
+  idUser: null
 });
 
 const actions = {
@@ -11,8 +11,8 @@ const actions = {
   logout: ({ dispatch }) => {
     dispatch('setToken', null);
   },
-  setUser: ({ commit }, payload) => {
-    commit('setUser', payload);
+  setUser: ({ commit }, idUser) => {
+    commit('setUser', idUser);
   },
   setToken: ({ commit }, token) => {
     commit('setToken', token);
@@ -20,8 +20,8 @@ const actions = {
 };
 
 const mutations = {
-  setUser(state, payload) {
-    state.user = payload;
+  setUser(state, idUser) {
+    state.user = idUser;
   },
   setToken(state, token) {
     state.token = token;
@@ -32,6 +32,9 @@ const getters = {
   isAuth: state => {
     return !!state.token;
   },
+  setUser: state =>{
+    return state.idUser;
+  }
 };
 
 export default {
