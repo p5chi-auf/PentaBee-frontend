@@ -23,7 +23,7 @@
                     <hr class="line-separator">
 
                     <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(90, '...') }}
+                      {{ result.description | truncate(70, '...') }}
                     </b-card-text>
                   </b-card>
                 </div>
@@ -49,7 +49,7 @@
                     <hr class="line-separator">
 
                     <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(90, '...') }}
+                      {{ result.description | truncate(70, '...') }}
                     </b-card-text>
                   </b-card>
                 </div>
@@ -101,7 +101,7 @@
                     <hr class="line-separator">
 
                     <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(90, '...') }}
+                      {{ result.description | truncate(70, '...') }}
                     </b-card-text>
                   </b-card>
                 </div>

@@ -104,7 +104,7 @@
             this.$router.push('/');
           })
           .catch(error => {
-            this.loginError = error;
+            this.loginError = 'Invalid username or password';
             this.logout();
             console.log(error);
           });

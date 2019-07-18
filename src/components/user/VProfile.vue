@@ -30,9 +30,12 @@
               <div class="text-left row">
                 <h6 class="text-left ">Technologies:</h6>
                 <b-list-group v-for="item in form.technologies" :key="item.id" horizontal class="text-left">
-                  <h6 class="text-left col">{{ item.name }}</h6>
+                  <h6 class="text-left ml-3">{{ item.name }}</h6>
                 </b-list-group>
               </div>
+              <h6 class="text-left row">Email:
+                <b-link class="ml-2">{{ form.email }}</b-link>
+              </h6>
 
               <hr class="line">
               <div class="p-4">
