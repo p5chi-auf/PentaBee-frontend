@@ -1,26 +1,20 @@
-import TokenService from 'axios';
-import CommonServices from './Services';
+import Axios from 'axios';
+import { userEndpoints } from '@/constants/apiEndpoints';
 
 export default {
-  getActivityDetails (id) {
-    CommonServices.getToken();
-    return TokenService.get(CommonServices.baseUrl + 'activities/' + id);
-  },
   getActivityList(data){
-    CommonServices.getToken();
-    return TokenService.get(CommonServices.baseUrl + 'activities' + data);
+    return Axios.get(userEndpoints.ACTIVITIES + data);
+  },
+  getActivityDetails (id) {
+    return Axios.get(userEndpoints.ACTIVITIES + '/' + id);
   },
   deleteActivity(id){
-    CommonServices.getToken();
-    return TokenService.delete(CommonServices.baseUrl + 'activities/' + id + '/delete');
+    return Axios.delete(userEndpoints.ACTIVITIES + '/' + id + '/delete')
   },
   createActivity(data){
-    CommonServices.getToken();
-    return TokenService.post(CommonServices.baseUrl + 'activities/create', data);
+    return Axios.post(userEndpoints.ACTIVITIES + '/create', data)
   },
   editActivity(id, data){
-    CommonServices.getToken();
-    return TokenService.post( CommonServices.baseUrl + 'activities/' + id + '/edit', data);
-
+    return Axios.post( userEndpoints.ACTIVITIES +'/' + id + '/edit', data)
   }
 };

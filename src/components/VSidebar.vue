@@ -28,19 +28,14 @@ export default {
         icon: 'fa fa-home'
       },
       {
-        href: '/charts',
-        title: 'Activity',
-        icon: 'fa fa-arrows-alt-v',
+        href: '/activity-list',
+        title: 'Activities',
+        icon: 'fa fa-list',
         child: [
-          {
-            href: '/activity-list',
-            title: 'List',
-            icon: 'fa fa-list'
-          },
           {
             href: '/activity-create',
             title: 'Create',
-            icon: 'fa fa-list'
+            icon: 'fas fa-plus-circle'
           }
           ]
       },

@@ -5,7 +5,7 @@
         <b-card class="p-3">
           <h4 class="text-center">
             Create an PentaBee account
-            <hr >
+            <hr class="line">
           </h4>
           <b-form class="row" @submit.prevent="registerIt()">
             <b-form-group
@@ -17,20 +17,41 @@
               <b-form-input
                 id="username"
                 v-model="form.username"
-                v-validate.continues="'alpha_dash|required|min:5|max:20'"
+                v-validate.continues="'alpha_dash|required|min:4|max:50'"
                 name="username"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': errors.has('username') }"
               />
 
-              <span v-if="errors.has('username')" class="invalid-feedback">{{
-                errors.first('username')
-              }}</span>
+              <span v-if="errors.has('username')" class="invalid-feedback">
+                {{ errors.first('username') }}
+              </span>
             </b-form-group>
 
             <b-form-group
               id="input-group-2"
+              class="col-md-6"
+              label="Email:"
+              label-for="email"
+            >
+              <b-form-input
+                id="email"
+                v-model="form.email"
+                v-validate.continues="'required|email'"
+                name="email"
+                type="email"
+                class="form-control"
+                :class="{ 'is-invalid': errors.has('email') }"
+              />
+
+              <span v-if="errors.has('email')" class="invalid-feedback">
+                {{ errors.first('email') }}
+              </span>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-3"
               class="col-md-6"
               label="First Name:"
               label-for="firstName"
@@ -45,30 +66,11 @@
                 :class="{ 'is-invalid': errors.has('name') }"
               />
 
-              <span v-if="errors.has('name')" class="invalid-feedback">{{
-                errors.first('name')
-              }}</span>
+              <span v-if="errors.has('name')" class="invalid-feedback">
+                {{ errors.first('name') }}
+              </span>
             </b-form-group>
 
-            <b-form-group
-              id="input-group-3"
-              class="col-md-6"
-              label="Email:"
-              label-for="email"
-            >
-              <b-form-input
-                id="email"
-                v-model="form.email"
-                v-validate.continues="'required|email'"
-                name="email"
-                type="email"
-                class="form-control"
-                :class="{ 'is-invalid': errors.has('email') }"
-              />
-              <span v-if="errors.has('email')" class="invalid-feedback">{{
-                errors.first('email')
-              }}</span>
-            </b-form-group>
             <b-form-group
               id="input-group-4"
               class="col-md-6"
@@ -85,9 +87,9 @@
                 :class="{ 'is-invalid': errors.has('surname') }"
               />
 
-              <span v-if="errors.has('surname')" class="invalid-feedback">{{
-                errors.first('surname')
-              }}</span>
+              <span v-if="errors.has('surname')" class="invalid-feedback">
+                {{ errors.first('surname') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -136,10 +138,9 @@
                 }"
               />
 
-              <span
-                v-if="errors.has('confirm_password')"
-                class="invalid-feedback"
-              >{{ errors.first('confirm_password') }}</span>
+              <span v-if="errors.has('confirm_password')" class="invalid-feedback">
+                {{ errors.first('confirm_password') }}
+              </span>
             </b-form-group>
           </b-form>
 
@@ -165,34 +166,25 @@
     </b-container>
   </div>
 </template>
+
 <script>
-import RegisterService from '@/services/registerApi.js';
+  import RegisterService from '@/services/authApi';
 
-export default {
-  data() {
-    return {
-      form: {
-        username: '',
-        password: '',
-        confirm_password: '',
-        email: '',
-        name: '',
-        surname: '',
+  export default {
+    data: () => ({
+      form: {},
+    }),
+    methods: {
+      registerIt() {
+        RegisterService.register(this.form)
+          .then(response => {
+            this.$router.push('/login');
+            console.log(response);
+          })
+          .catch(error => {
+            return console.log(error);
+          });
       },
-    };
-  },
-  methods: {
-    registerIt() {
-      RegisterService.register(this.form)
-        .then(response => {
-          this.$router.push('/login');
-          console.log(response);
-        })
-        .catch(error => {
-          return console.log(error);
-        });
     },
-  },
-};
+  };
 </script>
-
