@@ -23,7 +23,7 @@
         >
           <template slot="button-content">
             <img class="user" src="../../public/img/person1.jpg">
-            <span class="user-dropdown"> Evan You</span>
+            <span class="user-dropdown ml-2">{{ username }}</span>
           </template>
           <b-dropdown-item to="/profile">
             <i class="fas fa-user"/> Profile
@@ -64,10 +64,16 @@
   }
 </style>
 <script>
+  import CommonServices from '../services/Services';
   export default {
     data () {
-      return {}
+      return {
+        username: CommonServices.userName
+      }
     },
+    // mounted:{
+    // this.username =
+    // },
     methods: {
       logout () {
         window.localStorage.removeItem ('token');

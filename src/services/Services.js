@@ -1,4 +1,4 @@
-import TokenService from 'axios';
+import Axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 const TOKEN = localStorage.getItem ('token');
@@ -13,6 +13,6 @@ export default {
   idUser: ID_USER,
   userName: USER_NAME,
   getToken() {
-   return  TokenService.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
+   return  Axios.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
   }
 }

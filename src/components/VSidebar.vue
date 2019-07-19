@@ -30,7 +30,7 @@ export default {
       {
         href: '/charts',
         title: 'Activity',
-        icon: 'fa fa-cog',
+        icon: 'fa fa-arrows-alt-v',
         child: [
           {
             href: '/activity-list',

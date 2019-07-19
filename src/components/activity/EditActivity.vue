@@ -4,15 +4,15 @@
       <b-row align-h="center" class="mt-5">
         <b-card class="p-3">
           <h4 class="text-center">
-            Create an activity
+            Edit activity
             <hr>
           </h4>
           
-          <b-form class="row" @submit.prevent="createActivity()">
+          <b-form class="row" @submit.prevent="editActivity()">
             <b-form-group
               id="input-group-1"
               class="col-md-6"
-              label="Name of activity:"
+              label="Name of project:"
               label-for="name"
             >
               <b-form-input
@@ -74,6 +74,7 @@
                 value-zone="UTC"
                 type="datetime"
                 input-style="string"
+                format="DD HH:mm"
               />
             </b-form-group>
             
@@ -86,7 +87,7 @@
                 :class="{ 'is-invalid': errors.has('technologies') }"
               >
                 <template slot="first">
-                  <option :value="null" disabled>-- Please select technologies --</option>
+                  <option :value="null" disabled>-- Please select technology --</option>
                 </template>
               </b-form-select>
               
@@ -120,11 +121,26 @@
               variant="warning"
               block
               pill
-              @click="createActivity()"
-            >Create Activity
+              @click="show()"
+            >Edit Activity
             </b-btn>
           </div>
-        
+          <modal
+            name="edit-activity"
+            transition="nice-modal-fade"
+            :min-width="100"
+            :min-height="100"
+            :delay="100"
+            :adaptive="true"
+          >
+            <div class="example-modal-content text-center mt-5">
+              Do you want to delete activity??????
+            </div>
+            <div class="row mt-lg-5">
+              <b-button class="col-md-4 mx-auto" @click="editActivity()">Yes</b-button>
+              <b-button class="col-md-4 mx-auto" @click="cancel">Noooooooo!</b-button>
+            </div>
+          </modal>
         </b-card>
       </b-row>
     </b-container>
@@ -132,6 +148,7 @@
 </template>
 <script>
   import RegisterService from '../../services/activityApi';
+  import CommonServices from '../../services/Services';
   import moment from 'moment';
 
   export default {
@@ -156,21 +173,48 @@
         typeId: null,
         typ: [
           {value: 11, text: 'dt audit'}
-        ]
-
+        ],
+        edit: false
       };
     },
+    created () {
+      RegisterService.getActivityDetails (this.$route.params.activityEditId).then ((response) => {
+        this.form = response.data;
+        this.form.application_deadline = moment (this.form.application_deadline).format ("YYYY-MM-DD HH:mm");
+        this.form.final_deadline = moment (this.form.final_deadline).format("YYYY-MM-DD HH:mm");
+        console.log(this.form);
+      })
+        .catch (error => {
+          console.log (error)
+        })
+    },
     methods: {
-      createActivity () {
+      
+      show(){
+        this.$modal.show('edit-activity');
+        
+      },
+      cancel () {
+        this.$modal.hide('edit-activity');
+        return this.edit = false
+      },
+      editActivity () {
+        this.$modal.hide('edit-activity');
         let formClone = JSON.parse (JSON.stringify (this.form));
         formClone.application_deadline = moment (this.form.application_deadline).format ("X");
         formClone.final_deadline = moment (this.form.final_deadline).format ("X");
         formClone.technologies.push ({id: this.technologyId});
         formClone.types.push ({id: this.typeId});
-        RegisterService.createActivity (formClone);
-        this.$router.push('/activity-list')
-      },
-    },
+          RegisterService.editActivity (this.$route.params.activityEditId, formClone).then ((response) => {
+            alert('successful edited');
+            this.$router.push ('/activity-list');
+            this.edit = false;
+          })
+          .catch(error => {
+          alert('your data are levie')
+          });
+      }
+    }
   };
 </script>
 <style>

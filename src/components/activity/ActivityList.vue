@@ -22,7 +22,7 @@
                   <hr class="line-separator">
                   
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -48,7 +48,7 @@
                   <hr class="line-separator">
                   
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -74,7 +74,7 @@
                   <hr class="line-separator">
                   
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -93,14 +93,16 @@
                   border-variant="warning"
                   class="cards col-md-12 mt-3"
                 >
-                  <b-card-text class="text-name text-center">
-                    {{ result.name | truncate(30, '...') }}
-                  </b-card-text>
-                  
+                  <div class="row">
+                    <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                    <b-card-text class="col-md-10 text-name">
+                      {{ result.name | truncate(30, '...') }}
+                    </b-card-text>
+                  </div>
                   <hr class="line-separator">
                   
                   <b-card-text class="description-height text-center">
-                    {{ result.description | truncate(100, '...') }}
+                    {{ result.description | truncate(90, '...') }}
                   </b-card-text>
                 </b-card>
               </div>
@@ -123,7 +125,7 @@
 </template>
 
 <script>
-  import ActivityService from '../../services/ActivityApi';
+  import ActivityService from '../../services/activityApi';
 
   export default {
     data () {
@@ -145,7 +147,7 @@
 
     methods: {
       getData () {
-        const request = '?pagination[page]=' + this.pagination.currentPage + '&pagination[per_page]=' + this.pagination.per_page;
+        let request = '?pagination[page]=' + this.pagination.currentPage + '&pagination[per_page]=' + this.pagination.per_page;
 
         ActivityService.getActivityList (request).then ((response) => {
           this.results = response.data.results;
@@ -209,6 +211,14 @@
   .line-separator {
     padding: 1px;
     background-image: linear-gradient(to right, white, #F57C00, white);
+  }
+  .activity-image {
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    position: relative;
+    height: 40px;
+    width: 40px;
   }
 </style>
 

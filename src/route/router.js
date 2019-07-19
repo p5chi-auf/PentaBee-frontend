@@ -3,7 +3,8 @@ import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Activity from '@/components/activity/VActivity';
-import CreateActivity from '@/components/activity/CreateActivity'
+import CreateActivity from '@/components/activity/CreateActivity';
+import  ActivityEdit from '@/components/activity/EditActivity';
 
 import Vue from 'vue';
 import ActivityList from "../components/activity/ActivityList";
@@ -31,6 +32,11 @@ export default new Router({
       path: '/activity-list',
       name: 'activityList',
       component: ActivityList,
+    },
+    {
+      path: '/activity/:activityEditId/edit',
+      name: 'activityEdit',
+      component: ActivityEdit,
     },
     {
       path: '/activity/:activityId',

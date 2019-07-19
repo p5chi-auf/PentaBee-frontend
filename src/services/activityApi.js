@@ -12,10 +12,15 @@ export default {
   },
   deleteActivity(id){
     CommonServices.getToken();
-    return TokenService.delete(CommonServices.baseUrl + 'activities/' + id + '/delete')
+    return TokenService.delete(CommonServices.baseUrl + 'activities/' + id + '/delete');
   },
   createActivity(data){
     CommonServices.getToken();
-    return TokenService.post(CommonServices.baseUrl + 'activities/create', data)
+    return TokenService.post(CommonServices.baseUrl + 'activities/create', data);
+  },
+  editActivity(id, data){
+    CommonServices.getToken();
+    return TokenService.post( CommonServices.baseUrl + 'activities/' + id + '/edit', data);
+
   }
 };

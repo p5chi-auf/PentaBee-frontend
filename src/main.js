@@ -4,13 +4,14 @@ import router from './route';
 import store from './store';
 import './plugins';
 import Datetime from 'vue-datetime';
-import './assets/styles/vueDataTime.css'; //style for datetime piker
 import VueTruncate from 'vue-truncate-filter';
 import moment, {unix} from 'moment';
 import './assets/main.scss';
+import VModal from 'vue-js-modal'
 
 Vue.use(VueTruncate);
 Vue.use(Datetime);
+Vue.use(VModal);
 
 Vue.filter('formatDate', function(value) {
   if (value) {
