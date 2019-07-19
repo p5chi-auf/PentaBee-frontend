@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-alert variant="danger" :show="!!passwordError" dismissible>
+      {{ passwordError }}
+    </b-alert>
     <b-form class="row" @submit.prevent="change()">
       <b-form-group
         id="input-group-1"
@@ -99,6 +102,7 @@
         password: '',
         confirm_password: '',
       },
+      passwordError: '',
     }),
     computed: {
       ...mapState('account', ['user']),
@@ -117,13 +121,10 @@
           .then(() => {
             this.$router.push('/login');
           })
-          .catch(error => {
-            return console.log(error);
+          .catch(() => {
+            this.passwordError = 'Invalid old password';
           });
-        //TODO alert for succes case
       }
     }
   };
 </script>
-
-

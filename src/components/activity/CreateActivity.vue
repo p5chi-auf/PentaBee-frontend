@@ -7,7 +7,7 @@
             <b-card class="p-3">
               <h4 class="text-center">
                 Create an activity
-                <hr>
+                <hr class="line">
               </h4>
 
               <b-form class="row" @submit.prevent="createActivity()">

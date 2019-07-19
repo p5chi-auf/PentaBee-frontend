@@ -3,7 +3,7 @@ import * as Axios from './axios';
 import * as SidebarMenu from './sidebarMenu';
 import * as VeeValidate from './veeValidate';
 import * as Multiselect from './multiselect';
-
+import * as VModal from './vueModal';
 
 export default {
   Bootstrap,
@@ -11,4 +11,5 @@ export default {
   SidebarMenu,
   VeeValidate,
   Multiselect,
+  VModal,
 };

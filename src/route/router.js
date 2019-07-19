@@ -15,7 +15,6 @@ Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -52,7 +51,7 @@ const router = new Router({
       },
     },
     {
-      path: '/404',
+      path: '*',
       name: 'notfound',
       component: NotFound,
     },

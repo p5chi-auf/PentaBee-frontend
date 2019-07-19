@@ -198,7 +198,7 @@
           .catch(error => {
             return console.log(error);
           });
-      }
-    }
+      },
+    },
   };
 </script>
