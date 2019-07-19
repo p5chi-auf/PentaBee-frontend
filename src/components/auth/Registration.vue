@@ -24,9 +24,9 @@
                 :class="{ 'is-invalid': errors.has('username') }"
               />
 
-              <span v-if="errors.has('username')" class="invalid-feedback">{{
-                errors.first('username')
-              }}</span>
+              <span v-if="errors.has('username')" class="invalid-feedback">
+                {{ errors.first('username') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -44,9 +44,10 @@
                 class="form-control"
                 :class="{ 'is-invalid': errors.has('email') }"
               />
-              <span v-if="errors.has('email')" class="invalid-feedback">{{
-                errors.first('email')
-              }}</span>
+
+              <span v-if="errors.has('email')" class="invalid-feedback">
+                {{ errors.first('email') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -65,9 +66,9 @@
                 :class="{ 'is-invalid': errors.has('name') }"
               />
 
-              <span v-if="errors.has('name')" class="invalid-feedback">{{
-                errors.first('name')
-              }}</span>
+              <span v-if="errors.has('name')" class="invalid-feedback">
+                {{ errors.first('name') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -86,9 +87,9 @@
                 :class="{ 'is-invalid': errors.has('surname') }"
               />
 
-              <span v-if="errors.has('surname')" class="invalid-feedback">{{
-                errors.first('surname')
-              }}</span>
+              <span v-if="errors.has('surname')" class="invalid-feedback">
+                {{ errors.first('surname') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -137,10 +138,9 @@
                 }"
               />
 
-              <span
-                v-if="errors.has('confirm_password')"
-                class="invalid-feedback"
-              >{{ errors.first('confirm_password') }}</span>
+              <span v-if="errors.has('confirm_password')" class="invalid-feedback">
+                {{ errors.first('confirm_password') }}
+              </span>
             </b-form-group>
           </b-form>
 
@@ -166,26 +166,25 @@
     </b-container>
   </div>
 </template>
+
 <script>
-import RegisterService from '@/services/authApi';
+  import RegisterService from '@/services/authApi';
 
-export default {
-  data: () => ({
-      form: {
+  export default {
+    data: () => ({
+      form: {},
+    }),
+    methods: {
+      registerIt() {
+        RegisterService.register(this.form)
+          .then(response => {
+            this.$router.push('/login');
+            console.log(response);
+          })
+          .catch(error => {
+            return console.log(error);
+          });
       },
-  }),
-  methods: {
-    registerIt() {
-      RegisterService.register(this.form)
-        .then(response => {
-          this.$router.push('/login');
-          console.log(response);
-        })
-        .catch(error => {
-          return console.log(error);
-        });
     },
-  },
-};
+  };
 </script>
-

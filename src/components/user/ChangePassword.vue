@@ -37,7 +37,7 @@
           v-model="form.password"
           v-validate.continues="{
             required: true,
-            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
+            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/
           }"
           name="password"
           type="password"
@@ -66,17 +66,15 @@
           type="password"
           class="form-control"
           data-vv-as="password"
-          :class="{
-            'is-invalid': errors.has('confirm_password'),
-          }"
+          :class="{'is-invalid': errors.has('confirm_password')}"
         />
 
-        <span
-          v-if="errors.has('confirm_password')"
-          class="invalid-feedback"
-        >{{ errors.first('confirm_password') }}</span>
+        <span v-if="errors.has('confirm_password')" class="invalid-feedback">
+          {{ errors.first('confirm_password') }}
+        </span>
       </b-form-group>
     </b-form>
+
     <div class="text-center space">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"
@@ -92,7 +90,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions,mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     data: () => ({
@@ -102,30 +100,30 @@
         confirm_password: '',
       },
     }),
-    computed:{
-      ...mapState('account',['user']),
-      userId(){
-        return this.user && this.user.id || UserApi.getUserId()
+    computed: {
+      ...mapState('account', ['user']),
+      userId() {
+        return UserApi.getUserId();
       },
     },
     methods: {
-      ...mapActions('account',['login','logout']),
+      ...mapActions('account', ['login', 'logout']),
       change() {
-        const body = {
+        const data = {
           ...this.form,
-          id:this.userId,
+          id: this.userId,
         };
-        UserApi.changePassword(body)
-          .then(response => {
+        UserApi.changePassword(data)
+          .then(() => {
             this.$router.push('/login');
-            console.log(response);
           })
           .catch(error => {
             return console.log(error);
           });
+        //TODO alert for succes case
       }
     }
   };
 </script>
 
-//TODO alert for succes case
+

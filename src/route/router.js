@@ -4,7 +4,7 @@ import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
 import Edit from '@/components/user/EditProfile';
-import NotFound from '@/components/auth/NotFound';
+import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from "../components/activity/ActivityList";

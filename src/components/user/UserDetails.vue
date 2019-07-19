@@ -190,15 +190,14 @@
     methods: {
       ...mapActions('account', ['login', 'logout']),
       edit() {
-        const body = {
+        const data = {
           ...this.form,
           id: this.userId,
         };
-        UserApi.editUser(body)
+        UserApi.editUser(data)
           .catch(error => {
             return console.log(error);
           });
-				// this.$router.push('/profile');
       }
     }
   };

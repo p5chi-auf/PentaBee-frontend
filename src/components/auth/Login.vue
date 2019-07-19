@@ -103,10 +103,8 @@
             this.login(token);
             this.$router.push('/');
           })
-          .catch(error => {
+          .catch(() => {
             this.loginError = 'Invalid username or password';
-            this.logout();
-            console.log(error);
           });
       },
     },
