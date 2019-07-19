@@ -3,9 +3,23 @@
   top: 81px;
 }
 
+.v-sidebar-menu .vsm-item.first-item.active-item>.vsm-link, .v-sidebar-menu .vsm-item.first-item.parent-active-item>.vsm-link {
+  box-shadow: 3px 0 0 0 #ffda00 inset;
+}
+
+.v-sidebar-menu .vsm-mobile-bg{background: linear-gradient(to right, #ffda00 0%, #F57C00 80%, #ffbc1d 100%);}
+
 @media screen and (max-width: 414px) {
   .v-sidebar-menu {
     height: calc(100vh - 147px);
   }
 }
 
+@media screen and (max-width: 320px) {
+  .v-sidebar-menu {
+    height: calc(100vh - 205px);
+  }
+  .v-sidebar-menu {
+    top: 139px;
+  }
+}

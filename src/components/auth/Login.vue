@@ -5,10 +5,14 @@
         <b-card class="p-3">
           <h4>
             Please Enter Your Information
-            <hr >
+            <hr class="line">
           </h4>
 
-          <b-form @submit.prevent="login()">
+          <b-alert variant="danger" :show="!!loginError" dismissible>
+            {{ loginError }}
+          </b-alert>
+
+          <b-form @submit.prevent="onSubmit()">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -47,7 +51,7 @@
               />
 
               <span
-                v-if="errors.has('password')"
+                v-if=" errors.has('password')"
                 class="invalid-feedback"
               >{{ errors.first('password') }}</span>
             </b-form-group>
@@ -58,7 +62,7 @@
                 class="btn btn-1"
                 block
                 pill
-                @click="login()"
+                @click="onSubmit()"
               >Login
               </b-btn>
             </div>
@@ -77,32 +81,32 @@
 </template>
 
 <script>
-import LoginService from '../../services/loginApi';
+  import LoginService from '@/services/authApi';
+  import { mapActions, mapMutations } from 'vuex';
 
-export default {
-  data () {
-    return {
+  export default {
+    data: () => ({
       form: {
         username: '',
         password: '',
       },
-    };
-  },
-  methods: {
-    login () {
-      LoginService.login (this.form)
-        .then (response => {
-          window.localStorage.setItem ('token', response.data.token);
-          this.$router.push ('/');
-        })
-        .catch (error => {
-          console.log (error);
-        });
-    }
-  },
-};
+      loginError: '',
+    }),
+    methods: {
+      ...mapActions('account', ['login', 'logout', 'setUser']),
+      ...mapMutations('account', []),
+      onSubmit() {
+        LoginService.login(this.form)
+          .then(response => {
+            const { token } = response.data;
+            window.localStorage.setItem('token', token);
+            this.login(token);
+            this.$router.push('/');
+          })
+          .catch(() => {
+            this.loginError = 'Invalid username or password';
+          });
+      },
+    },
+  };
 </script>
-
-<style scoped>
-
-</style>

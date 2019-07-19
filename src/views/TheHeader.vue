@@ -8,11 +8,11 @@
           alt="Responsive image"
         >
       </b-navbar-brand>
-      
+
       <b-navbar-nav small>
-        <b-nav-item href="#">version 1.0.0</b-nav-item>
+        <b-nav-item href="#">1.0.0</b-nav-item>
       </b-navbar-nav>
-      
+
       <div class="ml-auto">
         <b-dropdown
           size="lg"
@@ -22,25 +22,37 @@
           right
         >
           <template slot="button-content">
-            <img class="user" src="../../public/img/person1.jpg">
-            <span class="user-dropdown"> Evan You</span>
+            <img class="user mr-1" src="../../public/img/person1.png" alt="user image">
+            <span class="user-dropdown text-capitalize">
+              {{ form.name }} {{ form.surname }}
+            </span>
           </template>
+
           <b-dropdown-item to="/profile">
-            <i class="fas fa-user"/> Profile
+            <i class="fas fa-user"/>
+            Profile
           </b-dropdown-item>
-          
+
+          <b-dropdown-item to="/edit">
+            <i class="fas fa-user-edit"/>
+            Edit Profile
+          </b-dropdown-item>
+
           <b-dropdown-item to="/settings">
-            <i class="fas fa-cog"/> Settings
+            <i class="fas fa-cog"/>
+            Settings
           </b-dropdown-item>
-          
+
           <b-dropdown-divider/>
-          
-          <b-dropdown-item @click="logout()">
-            <i class="fas fa-power-off"/> Logout
+
+          <b-dropdown-item @click="onclick">
+            <i class="fas fa-sign-out-alt"/>
+            Logout
           </b-dropdown-item>
         </b-dropdown>
       </div>
     </b-navbar>
+
     <div class="top-bar">
       <div class="inner">
         <div class="top-bar-orange"/>
@@ -52,27 +64,30 @@
     </div>
   </header>
 </template>
-<style scoped>
-  .user {
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: 50%;
-    position: relative;
-    height: 40px;
-    width: 40px;
-    border: 2px solid white;
-  }
-</style>
+
 <script>
+  import UserApi from '@/services/userDetailsApi';
   export default {
-    data () {
-      return {}
+    data: () => ({
+      form: {}
+    }),
+    computed: {
+      userId(){
+        return UserApi.getUserId()
+      }
+    },
+    mounted() {
+      UserApi.userInfo(this.userId).then((response) => {
+        this.form = response.data;
+      }).catch(error => {
+        console.log(error);
+      });
     },
     methods: {
-      logout () {
-        window.localStorage.removeItem ('token');
-        this.$router.push ('/login');
+      onclick () {
+        window.localStorage.removeItem('token');
+        this.$router.push('/login');
       }
     }
-  }
+  };
 </script>

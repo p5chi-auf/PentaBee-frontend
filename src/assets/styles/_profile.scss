@@ -1,101 +1,88 @@
- .card{
-   position: relative;
- }
- * {
-   margin: 0;
-   padding: 0;
- }
+.edit {
+  .profileCard {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #777;
+  }
 
- .profile{
-   font-family: 'Raleway', sans-serif;
-   font-size: 14px;
-   font-weight: 400;
-   color: #777;
- }
+  h2 {
+    font-size: 30px;
+    color: #555;
+    font-weight: bold;
+    padding-bottom: 50px;
+  }
 
- h2{
-   font-size: 30px;
-   color: #555;
-   font-weight: bold;
-   padding-bottom: 50px;
- }
+  h3 {
+    font-size: 20px;
+    color: #565656;
+    font-weight: bold;
+    margin-left: 10px;
+    padding-top: 10px;
+  }
 
- h3{
-   font-size: 20px;
-   color: #565656;
-   font-weight: bold;
-   margin-left: 10px;
- }
+  h5 {
+    text-transform: uppercase;
+  }
 
- #userProfile img{
-   margin-top: -50px;
- }
+  #card-outline img {
+    margin-top: -110px;
+  }
 
- #userProfile i{
-   font-size: 26px;
-   color: #555;
- }
- #userProfile i:hover{
-   font-size: 30px;
-   color-adjust: inherit;
- }
+  #card-outline i {
+    font-size: 26px;
+    color: #555;
+  }
+  #card-outline .icon-size{
+    font-size: 20px;
+  }
+  #card-outline i:hover {
+    font-size: 28px;
+    color-adjust: inherit;
+  }
 
- #userProfile .card{
-   border-radius: 0;
-   box-shadow: 5px 5px 5px #ffda00;
-   transition: all 0.3s ease-in;
-   -webkit-transition: all 0.3s ease-in;
-   -moz-transition: all 0.3s ease-in;
- }
+  #card-outline .card:hover {
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #9e9e9e;
+  }
+  #card-outline .card {
+    border-radius: 15px;
+  }
 
- #userProfile .card:hover{
-   background: #ffda00;
-   color: #fff;
-   border-radius: 5px;
-   border: none;
-   box-shadow: 5px 5px 10px #9e9e9e;
- }
- #userProfile .edit-card{
-   border-radius: 0;
-   box-shadow: 5px 5px 5px #ffda00;
-   transition: all 0.3s ease-in;
-   -webkit-transition: all 0.3s ease-in;
-   -moz-transition: all 0.3s ease-in;
- }
+  .container {
+    height: 100%;
+    align-content: center;
+  }
 
- #userProfile .card:hover h3, #userProfile .card:hover i{
-   color: #fff;
- }
+  .image-out-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    position: relative;
+  }
 
- .container{
-   height: 100%;
-   align-content: center;
- }
+  .image-in-container img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid white;
+  }
 
- .image-out-container {
-   margin-top: auto;
-   margin-bottom: auto;
-   border-radius: 50%;
-   position: relative;
- }
+  .image-out-container .greenIcon {
+    background-color: #4cd137;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    height: 30px;
+    width: 30px;
+    border: 5px solid white;
+    border-radius: 50%;
+  }
 
- .image-in-container img {
-   height: 200px;
-   width: 200px;
-   border-radius: 50%;
-   border: 5px solid white;
- }
-
- .image-out-container .greenIcon {
-   background-color: #4cd137;
-   position: absolute;
-   right: 30px;
-   bottom: 10px;
-   height: 30px;
-   width: 30px;
-   border: 5px solid white;
-   border-radius: 50%;
- }
- .editProfile, profile{
-   padding-top: 30px;
- }
+  .editProfile, profile {
+    padding-top: 30px;
+  }
+  a{
+    color: black;
+  }
+}

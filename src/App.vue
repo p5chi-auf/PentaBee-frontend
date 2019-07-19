@@ -30,7 +30,7 @@ export default {
   computed: {
     isAuth() {
       const { name } = this.$route;
-      return name === 'login' || name === 'registration';
+      return name === 'login' || name === 'registration' || name === 'notfound';
     },
   },
 };
