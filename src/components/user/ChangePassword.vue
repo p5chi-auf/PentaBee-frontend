@@ -7,7 +7,7 @@
       <b-form-group
         id="input-group-1"
         class="col-md-4"
-        label="Old Password"
+        label="Old Password:"
         label-for="old_password"
       >
         <b-form-input
@@ -31,7 +31,7 @@
       <b-form-group
         id="input-group-2"
         class="col-md-4"
-        label="New Password"
+        label="New Password:"
         label-for="password"
       >
         <b-form-input
@@ -58,7 +58,7 @@
       <b-form-group
         id="input-group-3"
         class="col-md-4"
-        label="Repeat New Password"
+        label="Repeat New Password:"
         label-for="confirmPassword"
       >
         <b-form-input

@@ -29,24 +29,24 @@
           </template>
 
           <b-dropdown-item to="/profile">
-            <i class="fas fa-user"/>
+            <i class="fas fa-user mr-2"/>
             Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/edit">
-            <i class="fas fa-user-edit"/>
+            <i class="fas fa-user-edit mr-1"/>
             Edit Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/settings">
-            <i class="fas fa-cog"/>
+            <i class="fas fa-cog mr-2"/>
             Settings
           </b-dropdown-item>
 
           <b-dropdown-divider/>
 
           <b-dropdown-item @click="onclick">
-            <i class="fas fa-sign-out-alt"/>
+            <i class="fas fa-sign-out-alt mr-2"/>
             Logout
           </b-dropdown-item>
         </b-dropdown>

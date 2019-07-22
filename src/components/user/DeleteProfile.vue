@@ -18,9 +18,13 @@
       :delay="100"
       :adaptive="true"
     >
-      <div class="example-modal-content text-center mt-5">
+      <button class="float-right mr-2 mt-2" @click="$modal.hide('delete-account')">
+        <i class="fas fa-times"/>
+      </button>
+      <div class="example-modal-content text-center mt-5 ml-2">
         ARE YOU SURE YOU WANT TO PERMANENTLY DELETE YOUR ACCOUNT?
-        <p class="mt-4 ml-4">This account will no longer be available and all data in the account <br>
+        <p class="mt-4 ml-4">
+          This account will no longer be available and all data in the account <br>
           will be permanently deleted.</p>
       </div>
       <div class="row mt-5">
@@ -68,3 +72,4 @@
     }
   };
 </script>
+

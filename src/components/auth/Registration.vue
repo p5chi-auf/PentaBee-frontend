@@ -188,3 +188,91 @@
     },
   };
 </script>
+<!--<template>-->
+<!--  <div class="background">-->
+<!--    <b-container class="col-md-9">-->
+<!--      <b-row align-h="center" class="mt-5">-->
+<!--        <b-card class="p-3">-->
+<!--          <h4 class="text-center">-->
+<!--            Create an PentaBee account-->
+<!--            <hr >-->
+<!--          </h4>-->
+
+<!--          <b-form class="row" @submit.prevent="handleSubmit">-->
+<!--            <b-form-group-->
+<!--              id="input-group-1"-->
+<!--              label-for="input-1"-->
+<!--              class="col-md-6 first_group"-->
+<!--            >-->
+<!--              <span for="username" class="ml-2">Username</span>-->
+
+<!--              <b-form-input-->
+<!--                id="username"-->
+<!--                v-model="user.username"-->
+<!--                v-validate="'alpha|required|min:5|max:20'"-->
+<!--                type="text"-->
+<!--                name="username"-->
+<!--                class="form-control"-->
+<!--                :class="{-->
+<!--                  'is-invalid': submitted && errors.has('username')-->
+<!--                }"-->
+<!--              />-->
+<!--              <span-->
+<!--                v-if="submitted && errors.has('username')"-->
+<!--                class="invalid-feedback "-->
+<!--              >-->
+<!--                {{ errors.first("username") }}-->
+<!--              </span>-->
+<!--            </b-form-group>-->
+<!--            -->
+<!--          </b-form>-->
+<!--          <div class="text-center space">-->
+<!--            <b-btn-->
+<!--              pill-->
+<!--              block-->
+<!--              type="submit"-->
+<!--              variant="outline-warning"-->
+<!--              class="col-md-5 float-none d-inline-block"-->
+<!--              @click="handleSubmit"-->
+<!--            >-->
+<!--              Create your account-->
+<!--            </b-btn>-->
+<!--          </div>-->
+<!--          <p class="text-center">-->
+<!--            Already have a-->
+<!--            <b-link class="link" to="/">PentaBee</b-link> account?-->
+<!--            <b-link class="link" to="/login">Log in</b-link>-->
+<!--          </p>-->
+<!--        </b-card>-->
+<!--      </b-row>-->
+<!--    </b-container>-->
+<!--  </div>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--  export default {-->
+<!--    data() {-->
+<!--      return {-->
+<!--        user: {-->
+<!--          username: "",-->
+<!--          firstName: "",-->
+<!--          lastName: "",-->
+<!--          email: "",-->
+<!--          password: "",-->
+<!--          confirmPassword: ""-->
+<!--        },-->
+<!--        submitted: false-->
+<!--      };-->
+<!--    },-->
+<!--    methods: {-->
+<!--      handleSubmit() {-->
+<!--        this.submitted = true;-->
+<!--        this.$validator.validate().then(valid => {-->
+<!--          if (valid) {-->
+<!--            alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));-->
+<!--          }-->
+<!--        });-->
+<!--      }-->
+<!--    }-->
+<!--  };-->
+<!--</script>-->

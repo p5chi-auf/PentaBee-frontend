@@ -7,7 +7,6 @@
             <b-card
               border-variant="warning"
               header-bg-variant="transparent"
-              align="center"
             >
               <div class="text-right">
                 <b-link to="/profile">

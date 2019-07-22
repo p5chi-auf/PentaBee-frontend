@@ -4,7 +4,7 @@
       <b-form-group
         id="input-group-1"
         class="col-md-6"
-        label="Username"
+        label="Username:"
         label-for="username"
       >
         <b-form-input
@@ -24,7 +24,7 @@
       <b-form-group
         id="input-group-2"
         class="col-md-6"
-        label="Email"
+        label="Email:"
         label-for="email"
       >
         <b-form-input
@@ -44,7 +44,7 @@
       <b-form-group
         id="input-group-3"
         class="col-md-6"
-        label="First Name"
+        label="First Name:"
         label-for="firstName"
       >
         <b-form-input
@@ -65,7 +65,7 @@
       <b-form-group
         id="input-group-4"
         class="col-md-6"
-        label="Position"
+        label="Position:"
         label-for="position"
       >
         <b-form-input
@@ -81,7 +81,7 @@
       <b-form-group
         id="input-group-5"
         class="col-md-6"
-        label="Last Name"
+        label="Last Name:"
         label-for="lastName"
       >
         <b-form-input
@@ -102,7 +102,7 @@
       <b-form-group
         id="input-group-6"
         class="col-md-6"
-        label="Seniority"
+        label="Seniority:"
         label-for="seniority"
       >
         <b-form-select v-model="form.seniority" :options="options">
@@ -114,9 +114,9 @@
       <b-form-group
         id="input-group-7"
         class="col-md-12"
+        label="Technologies:"
         label-for="technologies"
       >
-        <label class="typo__label">Technologies</label>
         <multiselect
           v-model="form.technologies"
           placeholder="Search a technology"
