@@ -93,7 +93,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     data: () => ({
@@ -106,9 +106,7 @@
     }),
     computed: {
       ...mapState('account', ['user']),
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account',['userId']),
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),

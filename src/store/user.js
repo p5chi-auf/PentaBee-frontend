@@ -1,3 +1,5 @@
+import jwt_decode from 'jwt-decode';
+
 const state = () => ({
   user: null,
   token: localStorage.getItem('token') || '',
@@ -34,6 +36,13 @@ const getters = {
   },
   setUser: state =>{
     return state.idUser;
+  },
+  userId: state =>{
+    if(!!state.token){
+      const {id} = jwt_decode(state.token);
+      return id;
+    }
+    return null;
   }
 };
 

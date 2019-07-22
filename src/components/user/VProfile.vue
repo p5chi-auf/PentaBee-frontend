@@ -59,7 +59,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
 
@@ -73,7 +73,7 @@
         surname: '',
         technologies: [
           {
-            id: null,
+            id: null ,
             name: '',
           },
         ],
@@ -82,12 +82,9 @@
     computed:{
       seniorityList:()=>['JUNIOR', 'MIDDLE', 'SENIOR'],
       ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserId()
-      },
+      ...mapGetters('account',['userId']),
     },
     mounted() {
-      UserApi.getUserId();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {

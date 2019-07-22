@@ -127,7 +127,7 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import UserApi from '@/services/userDetailsApi';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
     data() {
@@ -144,12 +144,9 @@
     },
     computed:{
       ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserId()
-      },
+      ...mapGetters('account',['userId']),
     },
 		mounted() {
-      UserApi.getUserId();
       this.getData();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;

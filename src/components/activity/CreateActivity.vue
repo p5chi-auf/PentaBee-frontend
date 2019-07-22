@@ -140,6 +140,7 @@
 <script>
   import RegisterService from '../../services/activityApi';
   import moment from 'moment';
+
   export default {
     data () {
       return {

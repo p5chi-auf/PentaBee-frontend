@@ -1,17 +1,17 @@
-import Axios from 'axios';
+import API from './';
 import { userEndpoints } from '@/constants/apiEndpoints';
 
 export default {
   getActivityList(data){
-    return Axios.get(userEndpoints.ACTIVITIES + data);
+    return API.get(userEndpoints.ACTIVITIES, data);
   },
   getActivityDetails (id) {
-    return Axios.get(userEndpoints.ACTIVITIES + '/' + id);
+    return API.get(userEndpoints.ACTIVITIES + '/' + id);
   },
   deleteActivity(id){
-    return Axios.delete(userEndpoints.ACTIVITIES + '/' + id + '/delete')
+    return API.delete(userEndpoints.ACTIVITIES + '/' + id + '/delete')
   },
   createActivity(data){
-    return Axios.post(userEndpoints.ACTIVITIES + '/create', data)
+    return API.post(userEndpoints.ACTIVITIES + '/create', data)
   }
 };

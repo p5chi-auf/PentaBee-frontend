@@ -134,16 +134,33 @@
         variant="warning"
         block
         pill
-        @click="edit()"
+        @click="show()"
       > Save Changes
       </b-btn>
     </div>
+    <modal
+      name="edit-account"
+      transition="nice-modal-fade"
+      :min-width="100"
+      :min-height="100"
+      :max-width="350"
+      :max-height="200"
+      :delay="100"
+      :adaptive="true"
+    >
+      <div class="example-modal-content text-center mt-5">
+        <h4>User successfully edited!</h4>
+      </div>
+      <div class="row mt-5">
+        <b-button class="col-8 mx-auto" variant="warning" @click="edit()">Check your profile</b-button>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     data: () => ({
@@ -170,12 +187,9 @@
     }),
     computed: {
       ...mapState('account', ['user']),
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account',['userId']),
     },
     mounted() {
-      UserApi.getUserId();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
@@ -195,10 +209,16 @@
           id: this.userId,
         };
         UserApi.editUser(data)
+          .then(() => {
+            this.$router.push('/profile');
+          })
           .catch(error => {
             return console.log(error);
           });
       },
-    },
+      show(){
+        this.$modal.show('edit-account');
+      }
+    }
   };
 </script>

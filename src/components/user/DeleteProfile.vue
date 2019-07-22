@@ -24,8 +24,8 @@
           will be permanently deleted.</p>
       </div>
       <div class="row mt-5">
-        <b-button class="col-md-5 mx-auto" variant="dark" @click="cancel">No</b-button>
-        <b-button class="col-md-5 mx-auto" variant="warning" @click="onclick()">Yes</b-button>
+        <b-button class="col-5 mx-auto" variant="dark" @click="cancel">No</b-button>
+        <b-button class="col-5 mx-auto" variant="warning" @click="onclick()">Yes</b-button>
       </div>
     </modal>
   </div>
@@ -33,14 +33,12 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     computed: {
       ...mapState('account', ['user']),
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account',['userId']),
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
@@ -60,6 +58,7 @@
         };
         UserApi.delete(data)
           .then(() => {
+            window.localStorage.removeItem('token');
             this.$router.push('/login');
           })
           .catch(error => {

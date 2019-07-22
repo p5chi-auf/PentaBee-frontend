@@ -9,15 +9,14 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapGetters } from 'vuex';
 
   export default {
     data: () => ({
       form: {},
     }),
     computed: {
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account',['userId']),
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
