@@ -3,7 +3,7 @@ import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
-import Edit from '@/components/user/EditProfile';
+import Edit from '@/views/EditProfile';
 import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';

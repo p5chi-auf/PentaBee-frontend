@@ -57,9 +57,9 @@
 </template>
 
 <script>
-  import UserDetails from './UserDetails';
-  import ChangePassword from './ChangePassword';
-  import DeleteProfile from './DeleteProfile';
+  import UserDetails from '../components/user/UserDetails';
+  import ChangePassword from '../components/user/ChangePassword';
+  import DeleteProfile from '../components/user/DeleteProfile';
 
   export default {
     components: {

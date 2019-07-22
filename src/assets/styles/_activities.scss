@@ -1,0 +1,76 @@
+.activity-list {
+  .text-name {
+    color: #000;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #fffab0;
+    height: available;
+  }
+
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .description-height {
+    height: 60px;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
+  .line-separator {
+    padding: 1px;
+    background-image: linear-gradient(to right, white, #F57C00, white);
+  }
+  .technology-name {
+    font-size: initial;
+  }
+
+  .SectionStyle .card {
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #ffda00;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+  }
+
+  .description-styles {
+    text-indent: 2em;
+    font-weight: initial;
+  }
+
+  .SectionStyle .card:hover {
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #9e9e9e;
+  }
+
+  .line {
+    padding: 1px;
+    background-image: linear-gradient(to right, #fff68d 0%, #ffda00, #fff68d 100%);
+  }
+
+  .round-image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+  }
+
+  .user-image {
+    border-radius: 50%;
+    height: 40px;
+    width: 60px;
+  }
+
+  .aplication-deadline {
+    color: #006b00;
+    font-size: initial;
+    padding: 0;
+  }
+
+  .deadline {
+    color: red;
+    font-size: initial;
+    padding: 0;
+  }
+}

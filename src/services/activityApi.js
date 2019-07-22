@@ -2,8 +2,8 @@ import API from './';
 import { userEndpoints } from '@/constants/apiEndpoints';
 
 export default {
-  getActivityList(data){
-    return API.get(userEndpoints.ACTIVITIES, data);
+  getActivityList(filter){
+    return API.get(userEndpoints.ACTIVITIES + filter);
   },
   getActivityDetails (id) {
     return API.get(userEndpoints.ACTIVITIES + '/' + id);
