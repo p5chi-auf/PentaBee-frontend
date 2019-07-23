@@ -1,5 +1,9 @@
 <template>
   <div>
+    <b-alert variant="danger" :show="!!loginError" dismissible>
+      {{ loginError }}
+    </b-alert>
+
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
         id="input-group-1"
@@ -8,17 +12,13 @@
         label-for="username"
       >
         <b-form-input
-          id="username"
+          id="disabledInput"
           v-model="form.username"
-          v-validate.continues="'alpha_dash|required|min:4|max:50'"
           name="username"
           type="text"
           class="form-control"
-          :class="{ 'is-invalid': errors.has('username') }"
+          disabled
         />
-        <span v-if="errors.has('username')" class="invalid-feedback">
-          {{ errors.first('username') }}
-        </span>
       </b-form-group>
 
       <b-form-group
@@ -30,15 +30,11 @@
         <b-form-input
           id="email"
           v-model="form.email"
-          v-validate.continues="'required|email'"
           name="email"
           type="email"
           class="form-control"
-          :class="{ 'is-invalid': errors.has('email') }"
+          disabled
         />
-        <span v-if="errors.has('email')" class="invalid-feedback">
-          {{ errors.first('email') }}
-        </span>
       </b-form-group>
 
       <b-form-group
@@ -152,7 +148,14 @@
         <h4>User successfully edited!</h4>
       </div>
       <div class="row mt-5">
-        <b-button class="col-8 mx-auto" variant="warning" @click="edit()">Check your profile</b-button>
+        <b-btn
+          class="col-8 mx-auto btn btn-1"
+          variant="warning"
+          block
+          pill
+          @click="edit()"
+        > Check your profile
+        </b-btn>
       </div>
     </modal>
   </div>
@@ -178,6 +181,7 @@
           },
         ],
       },
+      loginError: '',
       formTechnologies: [],
       options: [
         { value: '0', text: 'JUNIOR' },
@@ -187,7 +191,7 @@
     }),
     computed: {
       ...mapState('account', ['user']),
-      ...mapGetters('account',['userId']),
+      ...mapGetters('account', ['userId']),
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
@@ -216,7 +220,7 @@
             return console.log(error);
           });
       },
-      show(){
+      show() {
         this.$modal.show('edit-account');
       }
     }

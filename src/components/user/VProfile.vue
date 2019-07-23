@@ -1,8 +1,8 @@
 <template>
   <div class="edit profileCard home-content">
     <section id="card-outline">
-      <b-container class="my-3 pt-4 text-center">
-        <b-row class="md-5">
+      <b-container class="my-3 pt-4 col-6 text-center">
+        <b-row>
           <b-col>
             <h2 class="text-center">User Profile</h2>
           </b-col>

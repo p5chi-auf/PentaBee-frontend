@@ -29,7 +29,7 @@
       </div>
       <div class="row mt-5">
         <b-button class="col-5 mx-auto" variant="dark" @click="cancel">No</b-button>
-        <b-button class="col-5 mx-auto" variant="warning" @click="onclick()">Yes</b-button>
+        <b-button class="col-5 mx-auto btn btn-1" variant="warning" @click="onclick()">Yes</b-button>
       </div>
     </modal>
   </div>
