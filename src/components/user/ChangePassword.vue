@@ -111,16 +111,19 @@
     methods: {
       ...mapActions('account', ['login', 'logout']),
       change() {
+        this.$validator.validate();
         const data = {
           ...this.form,
           id: this.userId,
         };
+
         UserApi.changePassword(data)
           .then(() => {
             this.$router.push('/login');
+            window.localStorage.removeItem('token');
           })
           .catch(() => {
-            this.passwordError = 'Invalid old password';
+            this.passwordError = 'Please complete all required fields';
           });
       }
     }
