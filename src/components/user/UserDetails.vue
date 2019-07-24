@@ -49,7 +49,6 @@
           v-validate.continues="'required|min:3|max:20'"
           name="name"
           type="text"
-          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
@@ -70,7 +69,6 @@
           name="position"
           type="text"
           class="form-control"
-          style="text-transform:uppercase"
         />
       </b-form-group>
 
@@ -86,7 +84,6 @@
           v-validate.continues="'required|min:3|max:20'"
           name="surname"
           type="text"
-          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
@@ -110,7 +107,7 @@
       <b-form-group
         id="input-group-7"
         class="col-md-12"
-        label="Technologies:"
+        label="Skills:"
         label-for="technologies"
       >
         <multiselect
@@ -122,6 +119,20 @@
           :taggable="true"
         />
       </b-form-group>
+      <b-form-group
+        id="input-group-8"
+        class="col-md-12"
+        label="About me:"
+        label-for="biography"
+      >
+        <b-form-textarea
+          id="textarea-state"
+          v-model="form.biography"
+          placeholder="Enter at least 10 characters"
+          :state="form.biography.length >= 10 && form.biography.length <= 200"
+          rows="3"
+        />
+      </b-form-group>
     </b-form>
 
     <div class="text-center space">
@@ -131,7 +142,7 @@
         block
         pill
         @click="show()"
-      > Save Changes
+      > Update Profile
       </b-btn>
     </div>
     <modal
@@ -175,6 +186,7 @@
         seniority: null,
         name: '',
         surname: '',
+        biography: '',
         technologies: [
           {
             id: null,

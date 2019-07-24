@@ -9,7 +9,7 @@
               header-bg-variant="transparent"
             >
               <div class="text-right">
-                <b-link to="/profile">
+                <b-link v-b-tooltip.hover title="View profile" to="/profile">
                   <i class="fas fa-user-circle"/>
                 </b-link>
               </div>
