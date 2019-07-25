@@ -16,5 +16,8 @@ export default {
   },
   editActivity(id, data){
     return Axios.post( userEndpoints.ACTIVITIES +'/' + id + '/edit', data)
+  },
+  getTypes() {
+    return Axios.get( 'http://api.pentabee.local/api/activity-types')
   }
 };

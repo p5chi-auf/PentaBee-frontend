@@ -2,6 +2,7 @@
   <div class="col home-content">
     <div class="mb-5">
       <b-card no-body>
+        <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
         <b-tabs card>
           <section class="tabSection">
             <b-tab title="All" active>
@@ -132,7 +133,6 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import UserApi from '@/services/userDetailsApi';
   import { mapState } from 'vuex';
 
   export default {
@@ -150,18 +150,9 @@
     },
     computed:{
       ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserId()
-      },
     },
 		mounted() {
-      UserApi.getUserId();
       this.getData();
-      UserApi.userInfo(this.userId).then((response) => {
-        this.form = response.data;
-      }).catch(error => {
-        console.log(error);
-      })
     },
     
     methods: {
@@ -237,5 +228,20 @@
     position: relative;
     height: 40px;
     width: 40px;
+  }
+  .create-activity-icon{
+    position:fixed;
+    right: 35px;
+    z-index: 1;
+    font-size: 40px;
+    cursor: pointer;
+    background: linear-gradient(to right, rgba(255, 218, 0, 0.8) 0%, rgba(245, 124, 0, 0.8) 50%, rgba(255, 188, 29, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .create-activity-icon:hover{
+    background: rgba(40, 41, 44, 0.69);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 </style>

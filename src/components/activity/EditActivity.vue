@@ -2,21 +2,21 @@
   <div class="edit">
     <div class="profileCard home-content">
       <section id="card-outline">
-        <b-container class="col-md-8">
+        <b-container class="col-md-9">
           <b-row align-h="center" class="mt-5">
             <b-card class="p-3">
               <h4 class="text-center">
                 Edit activity
                 <hr>
               </h4>
-          
+              
               <b-form class="row" @submit.prevent="editActivity()">
                 <b-form-group
                   id="input-group-1"
                   class="col-md-6"
-                  label="Name of project:"
                   label-for="name"
                 >
+                  <label class="ml-3 text-color-activity">Name of activity:</label>
                   <b-form-input
                     id="name"
                     v-model="form.name"
@@ -26,17 +26,62 @@
                     class="form-control"
                     :class="{ 'is-invalid': errors.has('name') }"
                   />
-              
                   <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
                 </b-form-group>
-            
+                
+                <b-form-group class=" col-md-6">
+                  <div class="row  mt-4">
+                    <b-form-radio v-model="form.public" name="some-radios" :value="true" class=" ml-3 col-md-5 mt-2 text-color-activity">
+                      Public
+                    </b-form-radio>
+                    <b-form-radio v-model="form.public" name="some-radios" :value="false" class="ml-3 col-md-5 mt-2 text-color-activity">
+                      Private
+                    </b-form-radio>
+                  </div>
+                </b-form-group>
+                
+                <technology-list
+                  v-model="form.technologies"
+                  class="col-md-6"
+                />
+  
+                <types-list
+                  v-model="form.types"
+                  class="col-md-6"
+                />
+  
+                <b-form-group
+                  id="input-group-3"
+                  class="col-md-6"
+                >
+                  <label class="ml-3 text-color-activity">Application deadline:</label>
+                  <datetime
+                    v-model="form.application_deadline"
+                    name="application_deadline"
+                    value-zone="UTC"
+                    type="datetime"
+                  />
+                </b-form-group>
+  
+                <b-form-group
+                  class="col-md-6"
+                >
+                  <label class="ml-3 text-color-activity">Final deadline:</label>
+                  <datetime
+                    v-model="form.final_deadline"
+                    name="final_deadline"
+                    value-zone="UTC"
+                    type="datetime"
+                    format="DD HH:mm"
+                  />
+                </b-form-group>
+                
                 <b-form-group
                   id="input-group-2"
-                  class="col-md-6"
-                  label="Description:"
-                  label-for="description"
+                  class="col-md-12 mx-auto"
                 >
-                  <b-form-input
+                  <label class="ml-3 text-color-activity">Description:</label>
+                  <b-textarea
                     id="description"
                     v-model="form.description"
                     v-validate.continues="'required'"
@@ -45,78 +90,13 @@
                     class="form-control"
                     :class="{ 'is-invalid': errors.has('description') }"
                   />
-              
-                  <span v-if="errors.has('description')" class="invalid-feedback">{{ errors.first('description') }}</span>
-                </b-form-group>
-            
-                <b-form-group
-                  id="input-group-3"
-                  class="col-md-6"
-                  label="Application deadline:"
-                  label-for="application_deadline"
-                >
-                  <datetime
-                    v-model="form.application_deadline"
-                    name="application_deadline"
-                    value-zone="UTC"
-                    type="datetime"
-                    input-style="string"
-                  />
-                </b-form-group>
-            
-                <b-form-group
-                  id="input-group-3"
-                  class="col-md-6"
-                  label="Final deadline:"
-                  label-for="final_deadline"
-                >
-                  <datetime
-                    v-model="form.final_deadline"
-                    name="final_deadline"
-                    value-zone="UTC"
-                    type="datetime"
-                    input-style="string"
-                    format="DD HH:mm"
-                  />
-                </b-form-group>
-            
-                <b-form-group class="col-md-6">
-                  <b-form-select
-                    v-model="technologyId"
-                    v-validate.continues="'required'"
-                    :options="technologiesList"
-                    name="technologies"
-                    :class="{ 'is-invalid': errors.has('technologies') }"
-                  >
-                    <template slot="first">
-                      <option :value="null" disabled>-- Please select technology --</option>
-                    </template>
-                  </b-form-select>
-              
-                  <span v-if="errors.has('technologies')" class="invalid-feedback">{{ errors.first('Technologies') }}</span>
-                </b-form-group>
-            
-                <b-form-group class="col-md-6">
-                  <b-form-select
-                    v-model="typeId"
-                    v-validate.continues="'required'"
-                    :options="typ"
-                    name="type"
-                    :class="{ 'is-invalid': errors.has('type') }"
-                  >
-                    <template slot="first">
-                      <option :value="null" disabled>-- Please select type of activity --</option>
-                    </template>
-                  </b-form-select>
-                  <span v-if="errors.has('type')" class="invalid-feedback">{{ errors.first('Types') }}</span>
+                  
+                  <span v-if="errors.has('description')"
+                        class="invalid-feedback"
+                  >{{ errors.first('description') }}</span>
                 </b-form-group>
               </b-form>
-          
-              <select v-model="form.public" name="Public">
-                <option :value="true">Public</option>
-                <option :value="false">Private</option>
-              </select>
-          
+              
               <div class="text-center button">
                 <b-btn
                   class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
@@ -154,11 +134,16 @@
 </template>
 <script>
   import ActivityService from '../../services/activityApi';
-  import UserApi from '@/services/userDetailsApi';
-  import { mapState } from 'vuex';
-  import moment from 'moment';
+  import {mapState} from 'vuex';
+  import moment, {unix} from 'moment';
+  import TechnologyList from './Technologies';
+  import TypesList from './Types';
 
   export default {
+    components: {
+      TechnologyList: TechnologyList,
+      TypesList: TypesList
+    },
     data () {
       return {
         form: {
@@ -167,65 +152,58 @@
           application_deadline: '',
           final_deadline: '',
           status: 0,
-          public: 'true',
-          technologies: [],
+          public: true,
+          technologies: [
+            {id: null}
+          ],
           types: [],
         },
-
-        technologyId: null,
-        technologiesList: [
-          {value: 11, text: 'Javascript'},
-          {value: 12, text: 'Node.js'}
-        ],
-        typeId: null,
-        typ: [
-          {value: 11, text: 'dt audit'}
-        ],
-        edit: false
+        edit: false,
+        technologiesList: []
       };
     },
-    computed:{
-      ...mapState('account',['user']),
-      userId(){
-        return UserApi.getUserId()
-      },
+    computed: {
+      ...mapState ('account', ['user']),
     },
-    created () {
-        ActivityService.getActivityDetails (this.$route.params.activityEditId).then ((response) => {
+    mounted () {
+      ActivityService.getActivityDetails (this.$route.params.activityEditId).then ((response) => {
         this.form = response.data;
-        this.form.application_deadline = moment (this.form.application_deadline).format ("YYYY-MM-DD HH:mm");
-        this.form.final_deadline = moment (this.form.final_deadline).format("YYYY-MM-DD HH:mm");
-        console.log(this.form);
+        this.form.application_deadline = moment (unix (this.form.application_deadline)).toISOString ();
+        this.form.final_deadline = moment (unix (this.form.final_deadline)).toISOString ();
+        console.log (this.form);
       })
         .catch (error => {
           console.log (error)
-        })
+        });
     },
     methods: {
-      
-      show(){
-        this.$modal.show('edit-activity');
-        
+
+      show () {
+        this.$modal.show ('edit-activity');
       },
       cancel () {
-        this.$modal.hide('edit-activity');
+        this.$modal.hide ('edit-activity');
         return this.edit = false
       },
       editActivity () {
-        this.$modal.hide('edit-activity');
-        let formClone = JSON.parse (JSON.stringify (this.form));
-        formClone.application_deadline = moment (this.form.application_deadline).format ("X");
-        formClone.final_deadline = moment (this.form.final_deadline).format ("X");
-        formClone.technologies.push ({id: this.technologyId});
-        formClone.types.push ({id: this.typeId});
-          ActivityService.editActivity (this.$route.params.activityEditId, formClone).then ((response) => {
-            alert('successful edited');
-            this.$router.push ('/activity-list');
-            this.edit = false;
-          })
-          .catch(error => {
-          alert('your data are levie')
+        this.technologiesList = TechnologyList.props;
+        console.log(this.technologiesList);
+        this.$modal.hide ('edit-activity');
+        this.form.application_deadline = moment (this.form.application_deadline).format ("X");
+        this.form.final_deadline = moment (this.form.final_deadline).format ("X");
+        ActivityService.editActivity (this.$route.params.activityEditId, this.form).then ((response) => {
+          // alert ('successful edited');
+          this.$router.push ('/activity-list');
+          this.edit = false;
+        })
+          .catch (error => {
+            console.log (this.form);
+            alert ('your data are bad')
           });
+      },
+      getTechnologies(tech){
+        console.log(tech);
+        debugger
       }
     }
   };

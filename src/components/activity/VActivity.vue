@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-5 pb-5">
+  <div class="pt-5 mb-5 pb-5">
     <section class="SectionStyle">
       <b-card class="  col-md-11 mx-auto border-warning">
         <div class="row">
@@ -10,7 +10,6 @@
               <b-card-title class="col-md-8 mx-auto row">
                 {{ activity.name }}
               </b-card-title>
-
               <b-card-text class="col-md-4 text-right text-capitalize">
                 {{ activity.owner.name +' ' + activity.owner.surname }}
                 <img src="../../assets/images/user-image.png" class="user-image" alt="">
@@ -28,12 +27,12 @@
               All about activity
             </b-alert>
 
-            <div class="ml-2">
+            <div>
               <h5 class="font-weight-bold">Description: </h5>
               <p class="ml-4 description-styles">{{ activity.description }}</p>
             </div>
 
-            <div class="ml-1 row">
+            <div class="row">
               <div class="col-md-5">
                 <h5 class="font-weight-bold">Technologies:</h5>
 
@@ -50,34 +49,35 @@
               </div>
             </div>
 
-            <h5 class="ml-4 font-weight-bold">Application till:
-              <p class="col-md-4 ml-3 aplication-deadline">
+            <h5 class="font-weight-bold">Application till:
+              <p class="col-md-4 ml-4 aplication-deadline">
                 Date: {{ activity.application_deadline | formatDate }}
               </p>
-              <p class="col-md-4 ml-3 aplication-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
+              <p class="col-md-4  ml-4 aplication-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
             </h5>
 
-            <h5 class="ml-5 font-weight-bold">
+            <h5 class="font-weight-bold">
               Activity deadline:
               <p class="col-md-4 ml-4 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
               <p class="col-md-4 ml-4 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
             </h5>
-
+            
             <b-button
               v-if="userId == activity.owner.id"
-              class="btn-danger col-md-2 float-right"
+              class="btn-danger col-md-3 float-right ml-2 mr-2"
+              @click="showDeleteModal"
+            >
+              Delete activity
+            </b-button>
+  
+            <b-button
+              v-if="userId == activity.owner.id"
+              class="btn-success col-md-3 float-right ml-2 mr-2"
               @click="setActivityEditId"
             >
               Edit activity
             </b-button>
             
-            <b-button
-              v-if="userId == activity.owner.id"
-              class="btn-danger col-md-2 mr-3 float-right"
-              @click="showDeleteModal"
-            >
-              Delete activity
-            </b-button>
             <modal
               name="delete-activity"
               transition="nice-modal-fade"
