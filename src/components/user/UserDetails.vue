@@ -1,3 +1,107 @@
+<!--    <div class="text-center space">-->
+<!--      <b-btn-->
+<!--        class="col-md-5 float-none d-inline-block btn btn-1"-->
+<!--        variant="warning"-->
+<!--        block-->
+<!--        pill-->
+<!--        @click="show()"-->
+<!--      > Update Profile-->
+<!--      </b-btn>-->
+<!--    </div>-->
+<!--    <modal-->
+<!--      name="edit-account"-->
+<!--      transition="nice-modal-fade"-->
+<!--      :min-width="100"-->
+<!--      :min-height="100"-->
+<!--      :max-width="350"-->
+<!--      :max-height="200"-->
+<!--      :delay="100"-->
+<!--      :adaptive="true"-->
+<!--    >-->
+<!--      <div class="example-modal-content text-center mt-5">-->
+<!--        <h4>User successfully edited!</h4>-->
+<!--      </div>-->
+<!--      <div class="row mt-5">-->
+<!--        <b-btn-->
+<!--          class="col-8 mx-auto btn btn-1"-->
+<!--          variant="warning"-->
+<!--          block-->
+<!--          pill-->
+<!--          @click="edit()"-->
+<!--        > Check your profile-->
+<!--        </b-btn>-->
+<!--      </div>-->
+<!--    </modal>-->
+<!--  </div>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--  import UserApi from '@/services/userDetailsApi';-->
+<!--  import { mapActions, mapState, mapGetters } from 'vuex';-->
+
+<!--  export default {-->
+<!--    data: () => ({-->
+<!--      form: {-->
+<!--        id: null,-->
+<!--        username: '',-->
+<!--        email: '',-->
+<!--        position: '',-->
+<!--        seniority: null,-->
+<!--        name: '',-->
+<!--        surname: '',-->
+<!--        biography: '',-->
+<!--        technologies: [-->
+<!--          {-->
+<!--            id: null,-->
+<!--          },-->
+<!--        ],-->
+<!--      },-->
+<!--      loginError: '',-->
+<!--      formTechnologies: [],-->
+<!--      options: [-->
+<!--        { value: '0', text: 'JUNIOR' },-->
+<!--        { value: '1', text: 'MIDDLE' },-->
+<!--        { value: '2', text: 'SENIOR' },-->
+<!--      ],-->
+<!--    }),-->
+<!--    computed: {-->
+<!--      ...mapState('account', ['user']),-->
+<!--      ...mapGetters('account', ['userId']),-->
+<!--    },-->
+<!--    mounted() {-->
+<!--      UserApi.userInfo(this.userId).then((response) => {-->
+<!--        this.form = response.data;-->
+<!--      }).catch(error => {-->
+<!--        console.log(error);-->
+<!--      });-->
+<!--      UserApi.getTechnologies(this.userId).then((response) => {-->
+<!--        this.formTechnologies = response.data;-->
+<!--      }).catch(error => {-->
+<!--        console.log(error);-->
+<!--      });-->
+<!--    },-->
+<!--    methods: {-->
+<!--      ...mapActions('account', ['login', 'logout']),-->
+<!--      edit() {-->
+<!--        const data = {-->
+<!--          ...this.form,-->
+<!--          id: this.userId,-->
+<!--        };-->
+<!--        UserApi.editUser(data)-->
+<!--          .then(() => {-->
+<!--            this.$router.push('/profile');-->
+<!--          })-->
+<!--          .catch(error => {-->
+<!--            return console.log(error);-->
+<!--          });-->
+<!--      },-->
+<!--      show() {-->
+<!--        this.$modal.show('edit-account');-->
+<!--      }-->
+<!--    }-->
+<!--  };-->
+<!--</script>-->
+
 <template>
   <div>
     <b-alert variant="danger" :show="!!loginError" dismissible>
@@ -12,7 +116,7 @@
         label-for="username"
       >
         <b-form-input
-          id="disabledInput"
+          id="username"
           v-model="form.username"
           name="username"
           type="text"
@@ -49,6 +153,7 @@
           v-validate.continues="'required|min:3|max:20'"
           name="name"
           type="text"
+          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
@@ -69,6 +174,7 @@
           name="position"
           type="text"
           class="form-control"
+          style="text-transform:uppercase"
         />
       </b-form-group>
 
@@ -84,6 +190,7 @@
           v-validate.continues="'required|min:3|max:20'"
           name="surname"
           type="text"
+          class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
@@ -104,6 +211,7 @@
           </template>
         </b-form-select>
       </b-form-group>
+
       <b-form-group
         id="input-group-7"
         class="col-md-12"
@@ -119,6 +227,7 @@
           :taggable="true"
         />
       </b-form-group>
+
       <b-form-group
         id="input-group-8"
         class="col-md-12"
@@ -129,7 +238,6 @@
           id="textarea-state"
           v-model="form.biography"
           placeholder="Enter at least 10 characters"
-          :state="form.biography.length >= 10 && form.biography.length <= 200"
           rows="3"
         />
       </b-form-group>
@@ -142,7 +250,7 @@
         block
         pill
         @click="show()"
-      > Update Profile
+      > Save Changes
       </b-btn>
     </div>
     <modal
@@ -175,7 +283,6 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
-
   export default {
     data: () => ({
       form: {

@@ -1,7 +1,7 @@
 <template>
   <div class="edit profileCard home-content row">
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h2 class="text-center pl-4 my-4 mb-5">Profile</h2>
+      <h2 class="text-center pl-4 mb-5">Profile</h2>
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
@@ -30,12 +30,16 @@
                 <div class="box text-left">{{ item.name }}</div>
               </b-list-group>
             </div>
-            <h6 class="text-left my-3 row">
-              <i class="ml-4 fas fa-map-marker-alt"/>
-              <b-link class="ml-2">CHI</b-link>
-              <i class="ml-5 fas fa-envelope"/>
-              <b-link class="ml-2">{{ form.email }}</b-link>
-            </h6>
+            <div class="text-center my-3 row">
+              <div class="mb-2">
+                <i class="ml-4 fas fa-envelope"/>
+                <b-link class="ml-2">{{ form.email }}</b-link>
+              </div>
+              <div class="mb-2">
+                <i class="ml-4 fas fa-map-marker-alt"/>
+                <b-link class="ml-2">CHI</b-link>
+              </div>
+            </div>
           </div>
         </b-card>
       </section>

@@ -28,10 +28,9 @@
                 :class="{ 'is-invalid': errors.has('username') }"
               />
 
-              <span
-                v-if="errors.has('username')"
-                class="invalid-feedback"
-              >{{ errors.first('username') }}</span>
+              <span v-if="errors.has('username')" class="invalid-feedback">
+                {{ errors.first('username') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -50,10 +49,9 @@
                 :class="{ 'is-invalid': errors.has('password') }"
               />
 
-              <span
-                v-if=" errors.has('password')"
-                class="invalid-feedback"
-              >{{ errors.first('password') }}</span>
+              <span v-if=" errors.has('password')" class="invalid-feedback">
+                {{ errors.first('password') }}
+              </span>
             </b-form-group>
 
             <div class="text-center button-padding">
@@ -63,7 +61,7 @@
                 block
                 pill
                 @click="onSubmit()"
-              >Login
+              >Log In
               </b-btn>
             </div>
 
@@ -96,6 +94,7 @@
       ...mapActions('account', ['login', 'logout', 'setUser']),
       ...mapMutations('account', []),
       onSubmit() {
+        this.$validator.validate();
         LoginService.login(this.form)
           .then(response => {
             const { token } = response.data;

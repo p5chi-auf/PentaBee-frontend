@@ -7,26 +7,26 @@ export default {
   },
   editUser(data) {
     const { id } = data;
-    if(id){
-    return API.post(userEndpoints.USER + id + '/edit', data);
+    if (id) {
+      return API.post(userEndpoints.USER + id + '/edit', data);
     }
     return Promise.reject('Id not found');
   },
   delete(data) {
     const { id } = data;
-    if(id){
-      return API.delete(userEndpoints.USER + id + '/delete');
+    if (id) {
+      return API.delete(userEndpoints.USER + id + '/delete', data);
     }
     return Promise.reject('Id not found');
   },
   changePassword(data) {
     const { id } = data;
-    if(id) {
+    if (id) {
       return API.post(userEndpoints.USER + id + '/change_password', data);
     }
-    return  Promise.reject('Id not found');
+    return Promise.reject('Id not found');
   },
   getTechnologies() {
     return API.get(userEndpoints.TECHNOLOGIES);
-  }
+  },
 };

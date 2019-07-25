@@ -13,10 +13,7 @@
         <b-form-input
           id="old_password"
           v-model="form.old_password"
-          v-validate.continues="{
-            required: true,
-            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
-          }"
+          v-validate.continues="'required|verify_password'"
           name="old_password"
           type="password"
           class="form-control"
@@ -24,7 +21,7 @@
         />
 
         <span v-if="errors.has('old_password')" class="invalid-feedback">
-          {{ 'Incorrect old password' }}
+          {{ errors.first('old_password') }}
         </span>
       </b-form-group>
 
@@ -38,20 +35,14 @@
           id="password"
           ref="password"
           v-model="form.password"
-          v-validate.continues="{
-            required: true,
-            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/
-          }"
+          v-validate.continues="'required|verify_password'"
           name="password"
           type="password"
           class="form-control"
           :class="{ 'is-invalid': errors.has('password') }"
         />
-
         <span v-if="errors.has('password')" class="invalid-feedback">
-          {{
-            'The password should contain Minimum 8, at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'
-          }}
+          {{ errors.first("password") }}
         </span>
       </b-form-group>
 
