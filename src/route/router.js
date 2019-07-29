@@ -7,10 +7,11 @@ import Edit from '@/views/EditProfile';
 import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
-import ActivityList from "../components/activity/ActivityList";
+import ActivityList from '../components/activity/ActivityList';
 
 import Vue from 'vue';
 import store from '../store';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -77,9 +78,9 @@ const router = new Router({
       component: CreateActivity,
       meta: {
         requiresAuth: true,
-      }
-    }
-  ]
+      },
+    },
+  ],
 });
 
 router.beforeEach((to, from, next) => {
@@ -88,7 +89,7 @@ router.beforeEach((to, from, next) => {
     if (!isAuth) {
       next({
         path: '/login',
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath },
       });
     } else {
       next();

@@ -39,7 +39,7 @@
           :class="{ 'is-invalid': errors.has('password') }"
         />
         <span v-if="errors.has('password')" class="invalid-feedback">
-          {{ errors.first("password") }}
+          {{ errors.first('password') }}
         </span>
       </b-form-group>
 
@@ -89,11 +89,11 @@
         old_password: '',
         password: '',
         confirm_password: '',
-      }
+      },
     }),
     computed: {
       ...mapState('account', ['user']),
-      ...mapGetters('account',['userId']),
+      ...mapGetters('account', ['userId']),
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
@@ -106,19 +106,26 @@
 
         UserApi.changePassword(data)
           .then(() => {
+            this.$toast.open({
+              message: 'Your password has been successfully changed',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/login');
             window.localStorage.removeItem('token');
           })
           .catch(() => {
-              this.$toast.open({
-                message: "Please complete all required fields",
-                type: "error",
-                position: "top-right",
-                duration: 5000,
-                dismissible: true,
-              })
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-      }
-    }
+      },
+    },
   };
 </script>

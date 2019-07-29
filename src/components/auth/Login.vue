@@ -8,10 +8,6 @@
             <hr class="line">
           </h4>
 
-          <b-alert variant="danger" :show="!!loginError" dismissible>
-            {{ loginError }}
-          </b-alert>
-
           <b-form @submit.prevent="onSubmit()">
             <b-form-group
               id="input-group-1"
@@ -88,7 +84,6 @@
         username: '',
         password: '',
       },
-      loginError: '',
     }),
     methods: {
       ...mapActions('account', ['login', 'logout', 'setUser']),
@@ -100,10 +95,23 @@
             const { token } = response.data;
             window.localStorage.setItem('token', token);
             this.login(token);
+            this.$toast.open({
+              message: 'You\'ve successfully logged in',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/');
           })
           .catch(() => {
-            this.loginError = 'Invalid username or password';
+            this.$toast.open({
+              message: 'Invalid username or password',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
       },
     },

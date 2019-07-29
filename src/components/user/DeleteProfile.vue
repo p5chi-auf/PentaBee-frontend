@@ -32,15 +32,6 @@
         <b-button class="col-5 mx-auto btn btn-1" variant="warning" @click="onclick()">Yes</b-button>
       </div>
     </modal>
-    <div>
-      <h1>
-        Vue toast
-      </h1>
-      <button @click="open">
-        Show toast
-      </button>
-      <hr>
-    </div>
   </div>
 </template>
 
@@ -51,16 +42,16 @@
   export default {
     computed: {
       ...mapState('account', ['user']),
-      ...mapGetters('account',['userId']),
+      ...mapGetters('account', ['userId']),
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
 
-      show(){
+      show() {
         this.$modal.show('delete-account');
 
       },
-      cancel () {
+      cancel() {
         this.$modal.hide('delete-account');
         this.edit = false;
         return this.edit;
@@ -72,6 +63,13 @@
         };
         UserApi.delete(data)
           .then(() => {
+            this.$toast.open({
+              message: 'Your account has been successfully deleted!',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             window.localStorage.removeItem('token');
             this.$router.push('/login');
           })
@@ -79,16 +77,6 @@
             return console.log(error);
           });
       },
-      open() {
-        this.$toast.open({
-          message: "Test message from Vue",
-          type: "success",
-          position: "top-right",
-          duration: 5000,
-          dismissible: true,
-        })
-      }
-    }
+    },
   };
 </script>
-

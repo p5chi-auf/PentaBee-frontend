@@ -1,12 +1,7 @@
 <template>
   <div>
-    <b-alert variant="danger" :show="!!loginError" dismissible>
-      {{ loginError }}
-    </b-alert>
-
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
-        id="input-group-1"
         class="col-md-6"
         label="Username:"
         label-for="username"
@@ -22,7 +17,6 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-2"
         class="col-md-6"
         label="Email:"
         label-for="email"
@@ -59,23 +53,6 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-4"
-        class="col-md-6"
-        label="Position:"
-        label-for="position"
-      >
-        <b-form-input
-          id="position"
-          v-model="form.position"
-          name="position"
-          type="text"
-          class="form-control"
-          style="text-transform:uppercase"
-        />
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-5"
         class="col-md-6"
         label="Last Name:"
         label-for="lastName"
@@ -96,8 +73,22 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-6"
-        class="col-md-6"
+        class="col-md-4"
+        label="Position:"
+        label-for="position"
+      >
+        <b-form-input
+          id="position"
+          v-model="form.position"
+          name="position"
+          type="text"
+          class="form-control"
+          style="text-transform:uppercase"
+        />
+      </b-form-group>
+
+      <b-form-group
+        class="col-md-4"
         label="Seniority:"
         label-for="seniority"
       >
@@ -109,8 +100,7 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-9"
-        class="col-md-6"
+        class="col-md-4"
         label="Location:"
         label-for="location"
       >
@@ -122,7 +112,6 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-7"
         class="col-md-12"
         label="Skills:"
         label-for="technologies"
@@ -138,7 +127,6 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-8"
         class="col-md-12"
         label="About me:"
         label-for="biography"
@@ -192,6 +180,7 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
+
   export default {
     data: () => ({
       form: {
@@ -266,7 +255,7 @@
       },
       show() {
         this.$modal.show('edit-account');
-      }
-    }
+      },
+    },
   };
 </script>

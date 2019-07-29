@@ -86,6 +86,13 @@
     methods: {
       onclick () {
         window.localStorage.removeItem('token');
+        this.$toast.open({
+          message: 'You\'ve been logged out!',
+          type: 'error',
+          position: 'top-right',
+          duration: 3000,
+          dismissible: true,
+        });
         this.$router.push('/login');
       }
     }

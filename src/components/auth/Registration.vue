@@ -176,11 +176,24 @@
         this.$validator.validate();
         RegisterService.register(this.form)
           .then(response => {
+            this.$toast.open({
+              message: 'You\'ve successfully registered!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/login');
             console.log(response);
           })
-          .catch(error => {
-            return console.log(error);
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
       },
     },
