@@ -2,7 +2,7 @@
   <div class="login-registration-background">
     <b-container fluid>
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3">
+        <b-card class="p-2">
           <h4>
             Please Enter Your Information
             <hr class="line">
@@ -65,11 +65,11 @@
               </b-btn>
             </div>
 
-            <p class="text-center">
+            <p class="mt-3 text-center">
               Haven't got a
               <b-link class="link-redirect" to="#">PentaBee</b-link>
               account?
-              <b-link class="link-redirect" to="/registration">Sign up</b-link>
+              <b-link class="link-redirect" to="/registration">Sign Up</b-link>
             </p>
           </b-form>
         </b-card>

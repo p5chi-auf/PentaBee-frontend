@@ -1,8 +1,5 @@
 <template>
   <div>
-    <b-alert variant="danger" :show="!!passwordError" dismissible>
-      {{ passwordError }}
-    </b-alert>
     <b-form class="row" @submit.prevent="change()">
       <b-form-group
         id="input-group-1"
@@ -92,8 +89,7 @@
         old_password: '',
         password: '',
         confirm_password: '',
-      },
-      passwordError: '',
+      }
     }),
     computed: {
       ...mapState('account', ['user']),
@@ -114,7 +110,13 @@
             window.localStorage.removeItem('token');
           })
           .catch(() => {
-            this.passwordError = 'Please complete all required fields';
+              this.$toast.open({
+                message: "Please complete all required fields",
+                type: "error",
+                position: "top-right",
+                duration: 5000,
+                dismissible: true,
+              })
           });
       }
     }

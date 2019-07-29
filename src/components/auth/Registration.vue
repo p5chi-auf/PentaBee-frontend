@@ -156,7 +156,7 @@
             Already have a
             <b-link class="link-redirect">PentaBee</b-link>
             account?
-            <b-link class="link-redirect" to="/login">Log in</b-link>
+            <b-link class="link-redirect" to="/login">Log In</b-link>
           </p>
         </b-card>
       </b-row>

@@ -1,107 +1,3 @@
-<!--    <div class="text-center space">-->
-<!--      <b-btn-->
-<!--        class="col-md-5 float-none d-inline-block btn btn-1"-->
-<!--        variant="warning"-->
-<!--        block-->
-<!--        pill-->
-<!--        @click="show()"-->
-<!--      > Update Profile-->
-<!--      </b-btn>-->
-<!--    </div>-->
-<!--    <modal-->
-<!--      name="edit-account"-->
-<!--      transition="nice-modal-fade"-->
-<!--      :min-width="100"-->
-<!--      :min-height="100"-->
-<!--      :max-width="350"-->
-<!--      :max-height="200"-->
-<!--      :delay="100"-->
-<!--      :adaptive="true"-->
-<!--    >-->
-<!--      <div class="example-modal-content text-center mt-5">-->
-<!--        <h4>User successfully edited!</h4>-->
-<!--      </div>-->
-<!--      <div class="row mt-5">-->
-<!--        <b-btn-->
-<!--          class="col-8 mx-auto btn btn-1"-->
-<!--          variant="warning"-->
-<!--          block-->
-<!--          pill-->
-<!--          @click="edit()"-->
-<!--        > Check your profile-->
-<!--        </b-btn>-->
-<!--      </div>-->
-<!--    </modal>-->
-<!--  </div>-->
-<!--</template>-->
-
-<!--<script>-->
-<!--  import UserApi from '@/services/userDetailsApi';-->
-<!--  import { mapActions, mapState, mapGetters } from 'vuex';-->
-
-<!--  export default {-->
-<!--    data: () => ({-->
-<!--      form: {-->
-<!--        id: null,-->
-<!--        username: '',-->
-<!--        email: '',-->
-<!--        position: '',-->
-<!--        seniority: null,-->
-<!--        name: '',-->
-<!--        surname: '',-->
-<!--        biography: '',-->
-<!--        technologies: [-->
-<!--          {-->
-<!--            id: null,-->
-<!--          },-->
-<!--        ],-->
-<!--      },-->
-<!--      loginError: '',-->
-<!--      formTechnologies: [],-->
-<!--      options: [-->
-<!--        { value: '0', text: 'JUNIOR' },-->
-<!--        { value: '1', text: 'MIDDLE' },-->
-<!--        { value: '2', text: 'SENIOR' },-->
-<!--      ],-->
-<!--    }),-->
-<!--    computed: {-->
-<!--      ...mapState('account', ['user']),-->
-<!--      ...mapGetters('account', ['userId']),-->
-<!--    },-->
-<!--    mounted() {-->
-<!--      UserApi.userInfo(this.userId).then((response) => {-->
-<!--        this.form = response.data;-->
-<!--      }).catch(error => {-->
-<!--        console.log(error);-->
-<!--      });-->
-<!--      UserApi.getTechnologies(this.userId).then((response) => {-->
-<!--        this.formTechnologies = response.data;-->
-<!--      }).catch(error => {-->
-<!--        console.log(error);-->
-<!--      });-->
-<!--    },-->
-<!--    methods: {-->
-<!--      ...mapActions('account', ['login', 'logout']),-->
-<!--      edit() {-->
-<!--        const data = {-->
-<!--          ...this.form,-->
-<!--          id: this.userId,-->
-<!--        };-->
-<!--        UserApi.editUser(data)-->
-<!--          .then(() => {-->
-<!--            this.$router.push('/profile');-->
-<!--          })-->
-<!--          .catch(error => {-->
-<!--            return console.log(error);-->
-<!--          });-->
-<!--      },-->
-<!--      show() {-->
-<!--        this.$modal.show('edit-account');-->
-<!--      }-->
-<!--    }-->
-<!--  };-->
-<!--</script>-->
-
 <template>
   <div>
     <b-alert variant="danger" :show="!!loginError" dismissible>
@@ -213,6 +109,19 @@
       </b-form-group>
 
       <b-form-group
+        id="input-group-9"
+        class="col-md-6"
+        label="Location:"
+        label-for="location"
+      >
+        <b-form-select v-model="form.location" :options="option">
+          <template slot="first">
+            <option :value="null" disabled>-- Please select your location --</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+      <b-form-group
         id="input-group-7"
         class="col-md-12"
         label="Skills:"
@@ -294,6 +203,7 @@
         name: '',
         surname: '',
         biography: '',
+        location: '',
         technologies: [
           {
             id: null,
@@ -306,6 +216,21 @@
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
         { value: '2', text: 'SENIOR' },
+      ],
+      option: [
+        { value: 'CHI', text: 'CHI' },
+        { value: 'NYC', text: 'NYC' },
+        { value: 'BOS', text: 'BOS' },
+        { value: 'FRA', text: 'FRA' },
+        { value: 'PAR', text: 'PAR' },
+        { value: 'ORL', text: 'ORL' },
+        { value: 'BUC', text: 'BUC' },
+        { value: 'BRA', text: 'BRA' },
+        { value: 'CLU', text: 'CLU' },
+        { value: 'IAS', text: 'IAS' },
+        { value: 'HAN', text: 'HAN' },
+        { value: 'GUA', text: 'GUA' },
+        { value: 'LYO', text: 'LYO' },
       ],
     }),
     computed: {

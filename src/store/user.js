@@ -1,4 +1,4 @@
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const state = () => ({
   user: null,
@@ -39,7 +39,7 @@ const getters = {
   },
   userId: state =>{
     if(!!state.token){
-      const {id} = jwt_decode(state.token);
+      const {id} = jwtDecode(state.token);
       return id;
     }
     return null;

@@ -37,7 +37,7 @@
               </div>
               <div class="mb-2">
                 <i class="ml-4 fas fa-map-marker-alt"/>
-                <b-link class="ml-2">CHI</b-link>
+                <b-link class="ml-2">{{ form.location }}</b-link>
               </div>
             </div>
           </div>
@@ -64,6 +64,7 @@
         name: '',
         surname: '',
         biography: '',
+        location: '',
         technologies: [
           {
             id: null,

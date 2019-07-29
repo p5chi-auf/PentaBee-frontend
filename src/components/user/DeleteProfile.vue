@@ -32,6 +32,15 @@
         <b-button class="col-5 mx-auto btn btn-1" variant="warning" @click="onclick()">Yes</b-button>
       </div>
     </modal>
+    <div>
+      <h1>
+        Vue toast
+      </h1>
+      <button @click="open">
+        Show toast
+      </button>
+      <hr>
+    </div>
   </div>
 </template>
 
@@ -53,7 +62,8 @@
       },
       cancel () {
         this.$modal.hide('delete-account');
-        return this.edit = false
+        this.edit = false;
+        return this.edit;
       },
       onclick() {
         const data = {
@@ -68,6 +78,15 @@
           .catch(error => {
             return console.log(error);
           });
+      },
+      open() {
+        this.$toast.open({
+          message: "Test message from Vue",
+          type: "success",
+          position: "top-right",
+          duration: 5000,
+          dismissible: true,
+        })
       }
     }
   };
