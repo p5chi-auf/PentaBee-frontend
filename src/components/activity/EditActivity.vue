@@ -25,16 +25,29 @@
                     type="text"
                     class="form-control"
                     :class="{ 'is-invalid': errors.has('name') }"
+                    @change="edited = true"
                   />
                   <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
                 </b-form-group>
                 
                 <b-form-group class=" col-md-6">
                   <div class="row  mt-4">
-                    <b-form-radio v-model="form.public" name="some-radios" :value="true" class=" ml-3 col-md-5 mt-2 text-color-activity">
+                    <b-form-radio
+                      v-model="form.public"
+                      name="some-radios"
+                      :value="true"
+                      class=" ml-3 col-md-5 mt-2 text-color-activity"
+                      @change="edited = true"
+                    >
                       Public
                     </b-form-radio>
-                    <b-form-radio v-model="form.public" name="some-radios" :value="false" class="ml-3 col-md-5 mt-2 text-color-activity">
+                    <b-form-radio
+                      v-model="form.public"
+                      name="some-radios"
+                      :value="false"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
+                      @change="edited = true"
+                    >
                       Private
                     </b-form-radio>
                   </div>
@@ -43,13 +56,15 @@
                 <technology-list
                   v-model="form.technologies"
                   class="col-md-6"
+                  @changeTechnologiesList="edited = true"
                 />
-  
+                
                 <types-list
                   v-model="form.types"
                   class="col-md-6"
+                  @changeTypesList="edited = true"
                 />
-  
+                
                 <b-form-group
                   id="input-group-3"
                   class="col-md-6"
@@ -60,9 +75,12 @@
                     name="application_deadline"
                     value-zone="UTC"
                     type="datetime"
+                    :min-datetime="form.application_deadline"
+                    input-style="width: 185px"
+                    @click="edited = true"
                   />
                 </b-form-group>
-  
+                
                 <b-form-group
                   class="col-md-6"
                 >
@@ -72,7 +90,9 @@
                     name="final_deadline"
                     value-zone="UTC"
                     type="datetime"
-                    format="DD HH:mm"
+                    :min-datetime="timeStartDeadline"
+                    input-style="width: 185px"
+                    @click="edited = true"
                   />
                 </b-form-group>
                 
@@ -89,6 +109,7 @@
                     type="text"
                     class="form-control"
                     :class="{ 'is-invalid': errors.has('description') }"
+                    @change="edited = true"
                   />
                   
                   <span v-if="errors.has('description')"
@@ -118,11 +139,11 @@
                 :adaptive="true"
               >
                 <div class="example-modal-content text-center mt-5">
-                  <h6>Do you want to save changes for activity?</h6>
+                  <h6> Do you want to save changes for activity? </h6>
                 </div>
                 <div class="row mt-lg-5 ml-3">
-                  <b-button class="col-md-5 " variant="dark" @click="cancel">Cancel</b-button>
-                  <b-button class="col-md-5 ml-3" variant="warning" @click="editActivity()">Save</b-button>
+                  <b-button class="col-md-5" variant="dark" @click="cancel"> Cancel </b-button>
+                  <b-button class="col-md-5 ml-3" variant="warning" @click="editActivity()"> Save </b-button>
                 </div>
               </modal>
             </b-card>
@@ -158,13 +179,15 @@
           ],
           types: [],
         },
-        edit: false,
+        edited: false,
         technologiesList: []
       };
     },
+    
     computed: {
       ...mapState ('account', ['user']),
     },
+    
     mounted () {
       ActivityService.getActivityDetails (this.$route.params.activityEditId).then ((response) => {
         this.form = response.data;
@@ -176,39 +199,35 @@
           console.log (error)
         });
     },
+    
     methods: {
-
       show () {
         this.$modal.show ('edit-activity');
       },
       cancel () {
         this.$modal.hide ('edit-activity');
-        return this.edit = false
       },
       editActivity () {
-        this.technologiesList = TechnologyList.props;
-        console.log(this.technologiesList);
         this.$modal.hide ('edit-activity');
-        this.form.application_deadline = moment (this.form.application_deadline).format ("X");
-        this.form.final_deadline = moment (this.form.final_deadline).format ("X");
-        ActivityService.editActivity (this.$route.params.activityEditId, this.form).then ((response) => {
-          // alert ('successful edited');
-          this.$router.push ('/activity-list');
-          this.edit = false;
-        })
-          .catch (error => {
-            console.log (this.form);
-            alert ('your data are bad')
-          });
+        let activity = JSON.parse (JSON.stringify (this.form));
+        activity.application_deadline = moment (this.form.application_deadline).format ("X");
+        activity.final_deadline = moment (this.form.final_deadline).format ("X");
+
+        if (this.edited === true) {
+          ActivityService.editActivity (this.$route.params.activityEditId, activity).then ((response) => {
+            this.$router.push ('/activity-list');
+          })
+            .catch (error => {
+              alert ('your data are bad')
+            });
+        } else {
+          alert ('you need to make changes')
+        }
       },
-      getTechnologies(tech){
-        console.log(tech);
-        debugger
+      getTechnologies (tech) {
+        console.log (tech);
+      debugger
       }
     }
   };
 </script>
-<style>
-
-</style>
-

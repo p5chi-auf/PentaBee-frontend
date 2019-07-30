@@ -20,7 +20,7 @@
   export default {
     model:{
       prop: "types",
-      event: "input"
+      event: "changeTypesList"
     },
     props:{
       types: Array,
@@ -41,7 +41,7 @@
     },
     methods: {
       updateTypes (types) {
-        this.$emit('input', types);
+        this.$emit('changeTypesList', types);
       }
     }
   };

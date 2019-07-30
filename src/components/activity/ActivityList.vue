@@ -5,85 +5,7 @@
         <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
         <b-tabs card>
           <section class="tabSection">
-            <b-tab title="All" active>
-              <div class="row">
-                <div v-for="result in results"
-                     :key="result.id"
-                     class="col-md-4 row-eq-height"
-                     @click="redirectToActivityDetails(result.id)"
-                >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
-                    <b-card-text class="text-name text-center">
-                      {{ result.name | truncate(20, '...') }}
-                    </b-card-text>
-
-                    <hr class="line-separator">
-
-                    <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(70, '...') }}
-                    </b-card-text>
-                  </b-card>
-                </div>
-              </div>
-            </b-tab>
-
-            <b-tab title="Joined" active>
-              <div class="row">
-                <div v-for="result in results"
-                     :key="result.id"
-                     class="col-md-4 row-eq-height"
-                     @click="redirectToActivityDetails(result.id)"
-                >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
-                    <b-card-text class="text-name text-center">
-                      {{ result.name | truncate(30, '...') }}
-                    </b-card-text>
-
-                    <hr class="line-separator">
-
-                    <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(70, '...') }}
-                    </b-card-text>
-                  </b-card>
-                </div>
-              </div>
-            </b-tab>
-
-            <b-tab title="Finished" active class>
-              <div class="row">
-                <div v-for="result in results"
-                     :key="result.id"
-                     class="col-md-4 row-eq-height"
-                     @click="redirectToActivityDetails(result.id)"
-                >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
-                    <b-card-text class="text-name text-center">
-                      {{ result.name | truncate(30, '...') }}
-                    </b-card-text>
-
-                    <hr class="line-separator">
-
-                    <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(100, '...') }}
-                    </b-card-text>
-                  </b-card>
-                </div>
-              </div>
-            </b-tab>
-
-            <b-tab title="Mine" active class="tab-style">
+            <b-tab title="Mine" active>
               <div class="row">
                 <div v-for="result in results"
                      :key="result.id"
@@ -98,17 +20,115 @@
                     <div class="row">
                       <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
                       <b-card-text class="col-md-10 text-name">
-                        {{ result.name | truncate(30, '...') }}
+                        {{ result.name | truncate(28, '...') }}
                       </b-card-text>
                     </div>
-
+                    
                     <hr class="line-separator">
-
+                    
                     <b-card-text class="description-height text-center">
                       {{ result.description | truncate(70, '...') }}
                     </b-card-text>
-                    <b-card-text>
-                      {{ result.owner }}
+                    <b-card-text class="ml-3 owner-username-styles">
+                      {{ result.owner.username }}
+                    </b-card-text>
+                  </b-card>
+                </div>
+              </div>
+            </b-tab>
+            
+            <b-tab title="Joined" active>
+              <div class="row">
+                <div v-for="result in results"
+                     :key="result.id"
+                     class="col-md-4 row-eq-height"
+                     @click="redirectToActivityDetails(result.id)"
+                >
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
+                    <div class="row">
+                      <img src="../../assets/images/combs.jpg" class="activity-image mr-2">
+                      <b-card-text class="col-md-10 text-name">
+                        {{ result.name | truncate(28, '...') }}
+                      </b-card-text>
+                    </div>
+                    
+                    <hr class="line-separator">
+                    
+                    <b-card-text class="description-height text-center">
+                      {{ result.description | truncate(70, '...') }}
+                    </b-card-text>
+                    <b-card-text class="ml-3 owner-username-styles">
+                      {{ result.owner.username }}
+                    </b-card-text>
+                  </b-card>
+                </div>
+              </div>
+            </b-tab>
+            
+            <b-tab title="Finished" active class>
+              <div class="row">
+                <div v-for="result in results"
+                     :key="result.id"
+                     class="col-md-4 row-eq-height"
+                     @click="redirectToActivityDetails(result.id)"
+                >
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
+                    <div class="row">
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <b-card-text class="col-md-10 text-name">
+                        {{ result.name | truncate(28, '...') }}
+                      </b-card-text>
+                    </div>
+                    
+                    <hr class="line-separator">
+                    
+                    <b-card-text class="description-height text-center">
+                      {{ result.description | truncate(70, '...') }}
+                    </b-card-text>
+                    
+                    <b-card-text class="ml-3 owner-username-styles">
+                      {{ result.owner.username }}
+                    </b-card-text>
+                  </b-card>
+                </div>
+              </div>
+            </b-tab>
+            
+            <b-tab title="All" active class="tab-style">
+              <div class="row">
+                <div v-for="result in results"
+                     :key="result.id"
+                     class="col-md-4 row-eq-height"
+                     @click="redirectToActivityDetails(result.id)"
+                >
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
+                    <div class="row">
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <b-card-text class="col-md-10 text-name">
+                        {{ result.name | truncate(28, '...') }}
+                      </b-card-text>
+                    </div>
+                    
+                    <hr class="line-separator">
+                    
+                    <b-card-text class="description-height text-center">
+                      {{ result.description | truncate(70, '...') }}
+                    </b-card-text>
+                    
+                    <b-card-text class="ml-3 owner-username-styles">
+                      {{ result.owner.username }}
                     </b-card-text>
                   </b-card>
                 </div>
@@ -133,10 +153,10 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import { mapState } from 'vuex';
+  import {mapState} from 'vuex';
 
   export default {
-    data() {
+    data () {
       return {
         max: 10,
         results: [],
@@ -148,27 +168,27 @@
         }
       }
     },
-    computed:{
-      ...mapState('account',['user']),
+    computed: {
+      ...mapState ('account', ['user']),
     },
-		mounted() {
-      this.getData();
+    mounted () {
+      this.getData ();
     },
-    
+
     methods: {
-      getData() {
+      getData () {
         const request = '?pagination[page]=' + this.pagination.currentPage + '&pagination[per_page]=' + this.pagination.per_page;
 
-        ActivityService.getActivityList(request).then((response) => {
+        ActivityService.getActivityList (request).then ((response) => {
           this.results = response.data.results;
           this.pagination.numResults = response.data.numResults;
         })
-          .catch(error => {
-            console.log(error);
+          .catch (error => {
+            console.log (error);
           });
       },
-      redirectToActivityDetails(id) {
-        this.$router.push({ name: 'activity', params: { activityId: id } });
+      redirectToActivityDetails (id) {
+        this.$router.push ({name: 'activity', params: {activityId: id}});
       }
     }
   }
@@ -221,6 +241,7 @@
     padding: 1px;
     background-image: linear-gradient(to right, white, #F57C00, white);
   }
+  
   .activity-image {
     margin-top: auto;
     margin-bottom: auto;
@@ -229,9 +250,10 @@
     height: 40px;
     width: 40px;
   }
-  .create-activity-icon{
-    position:fixed;
-    right: 35px;
+  
+  .create-activity-icon {
+    position: absolute;
+    right: 5px;
     z-index: 1;
     font-size: 40px;
     cursor: pointer;
@@ -239,9 +261,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .create-activity-icon:hover{
+  
+  .create-activity-icon:hover {
     background: rgba(40, 41, 44, 0.69);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  
+  .owner-username-styles {
+    color: #000000;
+    font-weight: bold;
   }
 </style>

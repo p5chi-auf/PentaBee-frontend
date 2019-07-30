@@ -19,9 +19,9 @@
   export default {
     model: {
       prop: "technologies",
-      event: "input"
+      event: "changeTechnologiesList"
     },
-    props: {"technologies": Array},
+    props: {technologies: Array},
     data() {
       return{
         formTechnologies: [],
@@ -39,7 +39,7 @@
     },
     methods: {
       updateTechnologies (technologies) {
-        this.$emit('input', technologies);
+        this.$emit('changeTechnologiesList', technologies);
       }
     }
   };
