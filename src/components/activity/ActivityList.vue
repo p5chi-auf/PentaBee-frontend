@@ -21,7 +21,7 @@
                         {{ result.name | truncate(20, '...') }}
                       </b-card-text>
 
-                      <hr class="line-separator">
+                      <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(70, '...') }}
@@ -47,7 +47,7 @@
                         {{ result.name | truncate(30, '...') }}
                       </b-card-text>
 
-                      <hr class="line-separator">
+                      <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(70, '...') }}
@@ -73,7 +73,7 @@
                         {{ result.name | truncate(30, '...') }}
                       </b-card-text>
 
-                      <hr class="line-separator">
+                      <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(100, '...') }}
@@ -99,7 +99,7 @@
                         {{ result.name | truncate(30, '...') }}
                       </b-card-text>
 
-                      <hr class="line-separator">
+                      <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(70, '...') }}
@@ -128,7 +128,7 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
     data() {
@@ -145,6 +145,7 @@
     },
     computed:{
       ...mapState('account',['user']),
+      ...mapGetters('account', ['userId']),
     },
     mounted() {
       this.getData();

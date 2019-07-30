@@ -1,6 +1,6 @@
 <template>
   <div class="activity-list">
-    <div class="pt-5 pb-5">
+    <div class="pt-5 pb-5 pl-1">
       <section class="SectionStyle">
         <b-card class="col-md-11 mx-auto border-warning">
           <div class="row">
@@ -13,11 +13,11 @@
                 </b-card-title>
 
                 <b-card-text class="col-md-4 text-right text-capitalize">
-                  {{ activity.owner.name +' ' + activity.owner.surname }}
+                  {{ activity.owner.name + ' ' + activity.owner.surname }}
                   <img src="../../assets/images/user-image.png" class="user-image" alt="">
                 </b-card-text>
               </div>
-              <hr class="border line">
+              <hr class="line">
 
               <div class="ml-2">
                 <h5 class="font-weight-bold">Description: </h5>
@@ -61,6 +61,15 @@
               >
                 Delete activity
               </b-button>
+              <b-btn
+                variant="warning"
+                class="btn btn-1 col-4"
+                block
+                pill
+                @click="apply(activity.id)"
+              >Apply
+              </b-btn>
+              <users-list/>
             </div>
           </div>
         </b-card>
@@ -72,9 +81,10 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import { mapState, mapGetters } from 'vuex';
+  import UsersList from '../user/UsersList';
 
   export default {
-
+    components: { UsersList },
     data() {
       return {
         activity: {
@@ -95,13 +105,34 @@
         });
     },
     methods: {
+      apply(id) {
+        ActivityService.applyActivity(id)
+          .then(() => {
+            this.$toast.open({
+              message: 'You\'ve successfully applied!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          }).catch(error => {
+          this.$toast.open({
+            message: 'Activity is already finished or application deadline passed!',
+            type: 'error',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true,
+          });
+        });
+      },
       deleteActivity() {
         ActivityService.deleteActivity(this.$route.params.activityId).then(() => {
           alert('Deleted successful!');
           this.$router.push('/activity-list');
-        }).catch(() => {
-          alert('You d\'ont have permission');
         });
+      },
+      setApplicants() {
+        ActivityService.inviteUser(this.$route.params.activityId);
       },
     },
   };

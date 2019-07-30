@@ -13,5 +13,12 @@ export default {
   },
   createActivity(data){
     return API.post(userEndpoints.ACTIVITIES + '/create', data)
-  }
+  },
+
+  applyActivity(id){
+    return API.post(userEndpoints.ACTIVITIES +'/'+ id + '/apply')
+  },
+  inviteUser(activityId, userId){
+    return API.post(userEndpoints.ACTIVITIES +'/'+ activityId +'/invite' +'/'+  userId)
+  },
 };

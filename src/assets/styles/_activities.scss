@@ -19,10 +19,6 @@
     text-overflow: ellipsis;
   }
 
-  .line-separator {
-    padding: 1px;
-    background-image: linear-gradient(to right, white, #F57C00, white);
-  }
   .technology-name {
     font-size: initial;
   }
@@ -43,11 +39,6 @@
   .SectionStyle .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
-  }
-
-  .line {
-    padding: 1px;
-    background-image: linear-gradient(to right, #fff68d 0%, #ffda00, #fff68d 100%);
   }
 
   .round-image {
