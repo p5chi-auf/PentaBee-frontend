@@ -36,7 +36,7 @@ const router = new Router({
       component: Registration,
     },
     {
-      path: '/profile',
+      path: '/profile/:userId',
       name: 'profile',
       component: Profile,
       meta: {
@@ -44,7 +44,7 @@ const router = new Router({
       },
     },
     {
-      path: '/edit',
+      path: '/edit/:userId',
       name: 'edit',
       component: Edit,
       meta: {

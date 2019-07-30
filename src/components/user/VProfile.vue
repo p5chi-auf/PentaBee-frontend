@@ -5,7 +5,7 @@
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
-            <b-link to="/edit">
+            <b-link @click="$router.push({ name: 'edit', params: { userId: form.id } })">
               <i v-b-tooltip.hover title="Edit profile" class="icon-size fas fa-edit"/>
             </b-link>
           </div>
@@ -21,7 +21,7 @@
             </div>
 
             <h3 class="mt-1">{{ form.name }} {{ form.surname }}</h3>
-            <h6 class="seniorityText mt-2">{{ form.position }} {{ seniorityList[form.seniority] }}</h6>
+            <h6 class="seniorityText mt-2" style="text-transform:uppercase">{{ form.position }} {{ seniorityList[form.seniority] }}</h6>
             <hr class="line">
             <p>{{ form.biography }}</p>
             <h5 class="text-center">Skills:</h5>

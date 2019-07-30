@@ -83,7 +83,6 @@
           name="position"
           type="text"
           class="form-control"
-          style="text-transform:uppercase"
         />
       </b-form-group>
 
@@ -146,34 +145,10 @@
         variant="warning"
         block
         pill
-        @click="show()"
+        @click="edit()"
       > Save Changes
       </b-btn>
     </div>
-    <modal
-      name="edit-account"
-      transition="nice-modal-fade"
-      :min-width="100"
-      :min-height="100"
-      :max-width="350"
-      :max-height="200"
-      :delay="100"
-      :adaptive="true"
-    >
-      <div class="example-modal-content text-center mt-5">
-        <h4>User successfully edited!</h4>
-      </div>
-      <div class="row mt-5">
-        <b-btn
-          class="col-8 mx-auto btn btn-1"
-          variant="warning"
-          block
-          pill
-          @click="edit()"
-        > Check your profile
-        </b-btn>
-      </div>
-    </modal>
   </div>
 </template>
 
@@ -247,14 +222,24 @@
         };
         UserApi.editUser(data)
           .then(() => {
-            this.$router.push('/profile');
+            this.$toast.open({
+              message: 'You\'ve successfully updated your profile!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+            this.$router.push({name: 'profile'});
           })
-          .catch(error => {
-            return console.log(error);
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-      },
-      show() {
-        this.$modal.show('edit-account');
       },
     },
   };

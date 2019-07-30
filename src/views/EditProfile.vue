@@ -9,7 +9,11 @@
               header-bg-variant="transparent"
             >
               <div class="text-right">
-                <b-link v-b-tooltip.hover title="View profile" to="/profile">
+                <b-link
+                  v-b-tooltip.hover.left
+                  title="View profile"
+                  @click="$router.push({ name: 'profile', params: { userId: id } })"
+                >
                   <i class="fas fa-user-circle"/>
                 </b-link>
               </div>

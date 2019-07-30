@@ -66,7 +66,7 @@
       </b-form-group>
     </b-form>
 
-    <div class="text-center space">
+    <div class="text-center space card-body gradient-buttons">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"
         variant="warning"

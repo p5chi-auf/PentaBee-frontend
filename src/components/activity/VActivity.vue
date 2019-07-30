@@ -1,27 +1,29 @@
 <template>
   <div class="activity-list">
-    <div class="pt-5 pb-5 pl-1">
+    <div class="pt-5 pb-5 pl-2">
       <section class="SectionStyle">
-        <b-card class="col-md-11 mx-auto border-warning">
+        <b-card class="col-12 mx-auto border-warning">
           <div class="row">
             <div class="col-md-3">
-              <img src="../../assets/images/combs.jpg" class="round-image" alt="avatar"></div>
+              <img src="../../assets/images/combs.jpg" class="round-image" alt="avatar">
+            </div>
             <div class="col-md-9">
-              <div class="row">
+              <div class="ml-1 row">
                 <b-card-title class="col-md-8 mx-auto row">
                   {{ activity.name }}
                 </b-card-title>
 
                 <b-card-text class="col-md-4 text-right text-capitalize">
-                  {{ activity.owner.name + ' ' + activity.owner.surname }}
-                  <img src="../../assets/images/user-image.png" class="user-image" alt="">
+                  <img v-b-tooltip.hover :title="activity.owner.name + ' ' + activity.owner.surname"
+                       src="../../assets/images/user-image.png" class="user-image" alt="avatar"
+                  >
                 </b-card-text>
               </div>
               <hr class="line">
 
               <div class="ml-2">
                 <h5 class="font-weight-bold">Description: </h5>
-                <p class="ml-4 description-styles">{{ activity.description }}</p>
+                <p class="ml-3 description-styles">{{ activity.description }}</p>
               </div>
 
               <div class="ml-1 row">
@@ -41,36 +43,56 @@
                 </div>
               </div>
 
-              <h5 class="ml-4 font-weight-bold">Application till:
-                <p class="col-md-4 ml-3 aplication-deadline">
-                  Date: {{ activity.application_deadline | formatDate }}
-                </p>
-                <p class="col-md-4 ml-3 aplication-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
+              <h5 class="ml-4 font-weight-bold">
+                Application till:
+                <p class="col-md-4 ml-3 application-deadline">Date: {{ activity.application_deadline | formatDate }}</p>
+                <p class="col-md-4 ml-3 application-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
               </h5>
 
-              <h5 class="ml-5 font-weight-bold">
+              <h5 class="ml-4 font-weight-bold">
                 Activity deadline:
-                <p class="col-md-4 ml-4 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
-                <p class="col-md-4 ml-4 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
+                <p class="col-md-4 ml-3 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
+                <p class="col-md-4 ml-3 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
               </h5>
-
-              <b-button
-                v-if="userId === activity.owner.id"
-                class="btn-danger col-md-2 float-right"
-                @click="deleteActivity"
-              >
-                Delete activity
-              </b-button>
-              <b-btn
-                variant="warning"
-                class="btn btn-1 col-4"
-                block
-                pill
-                @click="apply(activity.id)"
-              >Apply
-              </b-btn>
-              <users-list/>
             </div>
+          </div>
+
+          <div class="text-center">
+            <b-btn
+              v-if="userId !== activity.owner.id"
+              variant="warning"
+              class="btn btn-1 col-3"
+              pill
+              @click="apply(activity.id)"
+            >
+              Apply
+            </b-btn>
+            <b-btn
+              variant="warning"
+              class="btn btn-1 col-3"
+              pill
+              to="/invite"
+            >
+              Invite
+            </b-btn>
+
+            <b-btn
+              variant="warning"
+              class="btn btn-1 col-3"
+              pill
+            >
+              Edit
+            </b-btn>
+
+            <b-btn
+              v-if="userId === activity.owner.id"
+              variant="warning"
+              class="btn btn-1 col-3 btn-delete"
+              pill
+              @click="deleteActivity"
+            >
+              Delete activity
+            </b-btn>
           </div>
         </b-card>
       </section>
@@ -81,10 +103,8 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import { mapState, mapGetters } from 'vuex';
-  import UsersList from '../user/UsersList';
 
   export default {
-    components: { UsersList },
     data() {
       return {
         activity: {
@@ -115,24 +135,23 @@
               duration: 3000,
               dismissible: true,
             });
-          }).catch(error => {
-          this.$toast.open({
-            message: 'Activity is already finished or application deadline passed!',
-            type: 'error',
-            position: 'top-right',
-            duration: 3000,
-            dismissible: true,
+          })
+          .catch((error) => {
+            let message = error.response.data.message;
+            this.$toast.open({
+              message: message,
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-        });
       },
       deleteActivity() {
         ActivityService.deleteActivity(this.$route.params.activityId).then(() => {
           alert('Deleted successful!');
           this.$router.push('/activity-list');
         });
-      },
-      setApplicants() {
-        ActivityService.inviteUser(this.$route.params.activityId);
       },
     },
   };

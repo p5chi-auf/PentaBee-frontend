@@ -28,12 +28,12 @@
             </span>
           </template>
 
-          <b-dropdown-item to="/profile">
+          <b-dropdown-item @click="$router.push({ name: 'profile', params: { userId: form.id } })">
             <i class="fas fa-user mr-2"/>
             Profile
           </b-dropdown-item>
 
-          <b-dropdown-item to="/edit">
+          <b-dropdown-item @click="$router.push({ name: 'edit', params: { userId: form.id } })">
             <i class="fas fa-user-edit mr-1"/>
             Edit Profile
           </b-dropdown-item>

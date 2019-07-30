@@ -2,7 +2,7 @@
   <div>
     <div class="text-center space">
       <b-btn
-        class="col-md-5 float-none d-inline-block btn btn-1"
+        class="col-md-5 float-none d-inline-block btn btn-1 btn-delete"
         variant="warning"
         block
         pill
@@ -13,8 +13,8 @@
     <modal
       name="delete-account"
       transition="nice-modal-fade"
-      :min-width="100"
-      :min-height="100"
+      :min-width="10"
+      :min-height="10"
       :delay="100"
       :adaptive="true"
     >
@@ -28,7 +28,7 @@
           will be permanently deleted.</p>
       </div>
       <div class="row mt-5">
-        <b-button class="col-5 mx-auto" variant="dark" @click="cancel">No</b-button>
+        <b-button class="col-5 ml-5" variant="dark" @click="cancel">No</b-button>
         <b-button class="col-5 mx-auto btn btn-1" variant="warning" @click="onclick()">Yes</b-button>
       </div>
     </modal>
