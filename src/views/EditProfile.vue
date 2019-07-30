@@ -7,10 +7,13 @@
             <b-card
               border-variant="warning"
               header-bg-variant="transparent"
-              align="center"
             >
               <div class="text-right">
-                <b-link to="/profile">
+                <b-link
+                  v-b-tooltip.hover.left
+                  title="View profile"
+                  @click="$router.push({ name: 'profile', params: { userId: id } })"
+                >
                   <i class="fas fa-user-circle"/>
                 </b-link>
               </div>
@@ -57,9 +60,9 @@
 </template>
 
 <script>
-  import UserDetails from './UserDetails';
-  import ChangePassword from './ChangePassword';
-  import DeleteProfile from './DeleteProfile';
+  import UserDetails from '../components/user/UserDetails';
+  import ChangePassword from '../components/user/ChangePassword';
+  import DeleteProfile from '../components/user/DeleteProfile';
 
   export default {
     components: {

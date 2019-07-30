@@ -7,7 +7,7 @@
             <b-card class="p-3">
               <h4 class="text-center">
                 Create an activity
-                <hr>
+                <hr class="line">
               </h4>
 
               <b-form class="row" @submit.prevent="createActivity()">
@@ -140,6 +140,7 @@
 <script>
   import RegisterService from '../../services/activityApi';
   import moment from 'moment';
+
   export default {
     data () {
       return {

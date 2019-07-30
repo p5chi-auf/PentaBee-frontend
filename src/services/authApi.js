@@ -1,12 +1,11 @@
-import Axios from 'axios';
+import API from './';
 import { userEndpoints } from '@/constants/apiEndpoints';
 
 export default {
-
   login(data) {
-    return Axios.post(userEndpoints.LOGIN, data);
+    return API.post(userEndpoints.LOGIN, data);
   },
   register(data) {
-    return Axios.post( userEndpoints.REGISTER, data);
+    return API.post( userEndpoints.REGISTER, data);
   }
 };

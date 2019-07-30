@@ -102,20 +102,17 @@
                 id="password"
                 ref="password"
                 v-model="form.password"
-                v-validate.continues="{
-                  required: true,
-                  regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
-                }"
+                v-validate.continues="'required|verify_password'"
                 name="password"
                 type="password"
                 class="form-control"
                 :class="{ 'is-invalid': errors.has('password') }"
               />
 
-              <span v-if="errors.has('password')" class="invalid-feedback">
-                {{
-                  'The password should contain Minimum 8, at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'
-                }}
+              <span
+                v-if="errors.has('password')" class="invalid-feedback"
+              >
+                {{ errors.first('password') }}
               </span>
             </b-form-group>
 
@@ -159,7 +156,7 @@
             Already have a
             <b-link class="link-redirect">PentaBee</b-link>
             account?
-            <b-link class="link-redirect" to="/login">Log in</b-link>
+            <b-link class="link-redirect" to="/login">Log In</b-link>
           </p>
         </b-card>
       </b-row>
@@ -176,13 +173,27 @@
     }),
     methods: {
       registerIt() {
+        this.$validator.validate();
         RegisterService.register(this.form)
           .then(response => {
+            this.$toast.open({
+              message: 'You\'ve successfully registered!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/login');
             console.log(response);
           })
-          .catch(error => {
-            return console.log(error);
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
       },
     },

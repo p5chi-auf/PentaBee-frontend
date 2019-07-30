@@ -28,25 +28,25 @@
             </span>
           </template>
 
-          <b-dropdown-item to="/profile">
-            <i class="fas fa-user"/>
+          <b-dropdown-item @click="$router.push({ name: 'profile', params: { userId: form.id } })">
+            <i class="fas fa-user mr-2"/>
             Profile
           </b-dropdown-item>
 
-          <b-dropdown-item to="/edit">
-            <i class="fas fa-user-edit"/>
+          <b-dropdown-item @click="$router.push({ name: 'edit', params: { userId: form.id } })">
+            <i class="fas fa-user-edit mr-1"/>
             Edit Profile
           </b-dropdown-item>
 
           <b-dropdown-item to="/settings">
-            <i class="fas fa-cog"/>
+            <i class="fas fa-cog mr-2"/>
             Settings
           </b-dropdown-item>
 
           <b-dropdown-divider/>
 
           <b-dropdown-item @click="onclick">
-            <i class="fas fa-sign-out-alt"/>
+            <i class="fas fa-sign-out-alt mr-2"/>
             Logout
           </b-dropdown-item>
         </b-dropdown>
@@ -67,14 +67,14 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import { mapGetters } from 'vuex';
+
   export default {
     data: () => ({
       form: {}
     }),
     computed: {
-      userId(){
-        return UserApi.getUserId()
-      }
+      ...mapGetters('account',['userId']),
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
@@ -86,6 +86,13 @@
     methods: {
       onclick () {
         window.localStorage.removeItem('token');
+        this.$toast.open({
+          message: 'You\'ve been logged out!',
+          type: 'error',
+          position: 'top-right',
+          duration: 3000,
+          dismissible: true,
+        });
         this.$router.push('/login');
       }
     }

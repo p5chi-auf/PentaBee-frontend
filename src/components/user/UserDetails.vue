@@ -2,49 +2,39 @@
   <div>
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
-        id="input-group-1"
         class="col-md-6"
-        label="Username"
+        label="Username:"
         label-for="username"
       >
         <b-form-input
           id="username"
           v-model="form.username"
-          v-validate.continues="'alpha_dash|required|min:4|max:50'"
           name="username"
           type="text"
           class="form-control"
-          :class="{ 'is-invalid': errors.has('username') }"
+          disabled
         />
-        <span v-if="errors.has('username')" class="invalid-feedback">
-          {{ errors.first('username') }}
-        </span>
       </b-form-group>
 
       <b-form-group
-        id="input-group-2"
         class="col-md-6"
-        label="Email"
+        label="Email:"
         label-for="email"
       >
         <b-form-input
           id="email"
           v-model="form.email"
-          v-validate.continues="'required|email'"
           name="email"
           type="email"
           class="form-control"
-          :class="{ 'is-invalid': errors.has('email') }"
+          disabled
         />
-        <span v-if="errors.has('email')" class="invalid-feedback">
-          {{ errors.first('email') }}
-        </span>
       </b-form-group>
 
       <b-form-group
         id="input-group-3"
         class="col-md-6"
-        label="First Name"
+        label="First Name:"
         label-for="firstName"
       >
         <b-form-input
@@ -63,25 +53,8 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-4"
         class="col-md-6"
-        label="Position"
-        label-for="position"
-      >
-        <b-form-input
-          id="position"
-          v-model="form.position"
-          name="position"
-          type="text"
-          class="form-control"
-          style="text-transform:uppercase"
-        />
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-5"
-        class="col-md-6"
-        label="Last Name"
+        label="Last Name:"
         label-for="lastName"
       >
         <b-form-input
@@ -100,9 +73,22 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-6"
-        class="col-md-6"
-        label="Seniority"
+        class="col-md-4"
+        label="Position:"
+        label-for="position"
+      >
+        <b-form-input
+          id="position"
+          v-model="form.position"
+          name="position"
+          type="text"
+          class="form-control"
+        />
+      </b-form-group>
+
+      <b-form-group
+        class="col-md-4"
+        label="Seniority:"
         label-for="seniority"
       >
         <b-form-select v-model="form.seniority" :options="options">
@@ -111,12 +97,24 @@
           </template>
         </b-form-select>
       </b-form-group>
+
       <b-form-group
-        id="input-group-7"
+        class="col-md-4"
+        label="Location:"
+        label-for="location"
+      >
+        <b-form-select v-model="form.location" :options="option">
+          <template slot="first">
+            <option :value="null" disabled>-- Please select your location --</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+
+      <b-form-group
         class="col-md-12"
+        label="Skills:"
         label-for="technologies"
       >
-        <label class="typo__label">Technologies</label>
         <multiselect
           v-model="form.technologies"
           placeholder="Search a technology"
@@ -124,6 +122,19 @@
           :options="formTechnologies"
           :multiple="true"
           :taggable="true"
+        />
+      </b-form-group>
+
+      <b-form-group
+        class="col-md-12"
+        label="About me:"
+        label-for="biography"
+      >
+        <b-form-textarea
+          id="textarea-state"
+          v-model="form.biography"
+          placeholder="Enter at least 10 characters"
+          rows="3"
         />
       </b-form-group>
     </b-form>
@@ -143,7 +154,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     data: () => ({
@@ -155,27 +166,42 @@
         seniority: null,
         name: '',
         surname: '',
+        biography: '',
+        location: '',
         technologies: [
           {
             id: null,
           },
         ],
       },
+      loginError: '',
       formTechnologies: [],
       options: [
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
         { value: '2', text: 'SENIOR' },
       ],
+      option: [
+        { value: 'CHI', text: 'CHI' },
+        { value: 'NYC', text: 'NYC' },
+        { value: 'BOS', text: 'BOS' },
+        { value: 'FRA', text: 'FRA' },
+        { value: 'PAR', text: 'PAR' },
+        { value: 'ORL', text: 'ORL' },
+        { value: 'BUC', text: 'BUC' },
+        { value: 'BRA', text: 'BRA' },
+        { value: 'CLU', text: 'CLU' },
+        { value: 'IAS', text: 'IAS' },
+        { value: 'HAN', text: 'HAN' },
+        { value: 'GUA', text: 'GUA' },
+        { value: 'LYO', text: 'LYO' },
+      ],
     }),
     computed: {
       ...mapState('account', ['user']),
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account', ['userId']),
     },
     mounted() {
-      UserApi.getUserId();
       UserApi.userInfo(this.userId).then((response) => {
         this.form = response.data;
       }).catch(error => {
@@ -195,10 +221,26 @@
           id: this.userId,
         };
         UserApi.editUser(data)
-          .catch(error => {
-            return console.log(error);
+          .then(() => {
+            this.$toast.open({
+              message: 'You\'ve successfully updated your profile!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+            this.$router.push({name: 'profile'});
+          })
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-      }
-    }
+      },
+    },
   };
 </script>

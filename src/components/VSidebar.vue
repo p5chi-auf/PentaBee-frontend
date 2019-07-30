@@ -1,20 +1,14 @@
 <template>
-  <sidebar-menu :menu="menu" width="175px" @collapse="triggerSidebar"/>
+  <sidebar-menu :menu="menu" :collapsed="sideBarIsActive" width="175px" @collapse="triggerSidebar"/>
 </template>
 
 <script>
 import { SidebarMenu } from 'vue-sidebar-menu';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   components: {
     SidebarMenu
-  },
-  data() {
-    return {
-      isActive: false,
-      showMenu: true
-    };
   },
   computed: {
     menu: () => [
@@ -40,9 +34,13 @@ export default {
           ]
       },
     ],
+      ...mapState('aside', ['sideBarIsActive'])
+  },
+  mounted(){
+    this.setSidebarState(true);
   },
   methods: {
-    ...mapActions('aside', ['triggerSidebar']),
+    ...mapActions('aside', ['triggerSidebar', 'setSidebarState']),
   },
 };
 </script>

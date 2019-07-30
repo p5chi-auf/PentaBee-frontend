@@ -4,16 +4,13 @@
       <b-form-group
         id="input-group-1"
         class="col-md-4"
-        label="Old Password"
+        label="Old Password:"
         label-for="old_password"
       >
         <b-form-input
           id="old_password"
           v-model="form.old_password"
-          v-validate.continues="{
-            required: true,
-            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/,
-          }"
+          v-validate.continues="'required|verify_password'"
           name="old_password"
           type="password"
           class="form-control"
@@ -21,41 +18,35 @@
         />
 
         <span v-if="errors.has('old_password')" class="invalid-feedback">
-          {{ 'Incorrect old password' }}
+          {{ errors.first('old_password') }}
         </span>
       </b-form-group>
 
       <b-form-group
         id="input-group-2"
         class="col-md-4"
-        label="New Password"
+        label="New Password:"
         label-for="password"
       >
         <b-form-input
           id="password"
           ref="password"
           v-model="form.password"
-          v-validate.continues="{
-            required: true,
-            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_!@#$%^&*])(?=.{8,})/
-          }"
+          v-validate.continues="'required|verify_password'"
           name="password"
           type="password"
           class="form-control"
           :class="{ 'is-invalid': errors.has('password') }"
         />
-
         <span v-if="errors.has('password')" class="invalid-feedback">
-          {{
-            'The password should contain Minimum 8, at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character.'
-          }}
+          {{ errors.first('password') }}
         </span>
       </b-form-group>
 
       <b-form-group
         id="input-group-3"
         class="col-md-4"
-        label="Repeat New Password"
+        label="Repeat New Password:"
         label-for="confirmPassword"
       >
         <b-form-input
@@ -75,7 +66,7 @@
       </b-form-group>
     </b-form>
 
-    <div class="text-center space">
+    <div class="text-center space card-body gradient-buttons">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"
         variant="warning"
@@ -90,7 +81,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     data: () => ({
@@ -102,28 +93,39 @@
     }),
     computed: {
       ...mapState('account', ['user']),
-      userId() {
-        return UserApi.getUserId();
-      },
+      ...mapGetters('account', ['userId']),
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
       change() {
+        this.$validator.validate();
         const data = {
           ...this.form,
           id: this.userId,
         };
+
         UserApi.changePassword(data)
           .then(() => {
+            this.$toast.open({
+              message: 'Your password has been successfully changed',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/login');
+            window.localStorage.removeItem('token');
           })
-          .catch(error => {
-            return console.log(error);
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-        //TODO alert for succes case
-      }
-    }
+      },
+    },
   };
 </script>
-
-
