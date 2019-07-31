@@ -4,7 +4,7 @@
       <b-card no-body>
         <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
         <b-tabs card>
-          <section class="card-outline">
+          <section class="tab-section">
             <b-tab title="Mine" active>
               <div class="row">
                 <div v-for="result in results"
@@ -221,13 +221,13 @@
     -moz-transition: all 0.3s ease-in;
   }
   
-  .tabSection .card:hover {
+  .tab-section .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
     cursor: pointer;
   }
   
-  .tabSection .edit-card {
+  .tab-section .edit-card {
     border-radius: 0;
     box-shadow: 5px 5px 5px #ffda00;
     transition: all 0.3s ease-in;

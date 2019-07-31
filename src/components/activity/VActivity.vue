@@ -18,11 +18,11 @@
               </div>
               <hr class="border line">
               <b-alert
-                      show
-                      class="text-center"
-                      variant="warning"
-                      dismissible
-                      fade
+                show
+                class="text-center"
+                variant="warning"
+                dismissible
+                fade
               >
                 <i class="fas fa-smile-wink"/>
                 All about activity
@@ -65,44 +65,35 @@
                 </h5>
               </div>
               <b-button
-                      v-if="userId===activity.owner.id"
-                      class="btn-danger col-md-3 float-right ml-2 mr-2"
-                      @click="showDeleteModal"
+                v-if="userId===activity.owner.id"
+                class="btn-danger col-md-3 float-right ml-2 mr-2"
+                @click="showDeleteModal"
               >
                 Delete activity
               </b-button>
               
               <b-button
-                      v-if="userId===activity.owner.id"
-                      class="btn-success col-md-3 float-right ml-2 mr-2"
-                      @click="setActivityEditId"
+                v-if="userId===activity.owner.id"
+                class="btn-success col-md-3 float-right ml-2 mr-2"
+                @click="setActivityEditId"
               >
                 Edit activity
               </b-button>
               
               <modal
-                      name="delete-activity"
-                      transition="nice-modal-fade"
-                      :min-width="100"
-                      :min-height="100"
-                      :max-width="300"
-                      :max-height="200"
-                      :delay="100"
-                      :adaptive="true"
+                name="delete-activity"
+                transition="nice-modal-fade"
+                :min-width="100"
+                :min-height="100"
+                :max-width="300"
+                :max-height="200"
+                :delay="100"
+                :adaptive="true"
               >
                 <div class="example-modal-content text-center mt-5">
                   Do you want to delete activity?
                 </div>
                 <div class="row mt-5 ml-3">
-                  <b-btn
-                          v-if="userId !== activity.owner.id"
-                          variant="warning"
-                          class="btn btn-1 col-3"
-                          pill
-                          @click="apply(activity.id)"
-                  >
-                    Apply
-                  </b-btn>
                   <b-button class="col-md-5" variant="dark" @click="cancel">Cancel</b-button>
                   <b-button class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-button>
                 </div>
@@ -118,10 +109,8 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import UserApi from '@/services/userDetailsApi';
-  import { mapState, mapGetters} from 'vuex';
-
+  import { mapState } from 'vuex';
   export default {
-
     data () {
       return {
         activity: {
@@ -133,7 +122,6 @@
 
     computed:{
       ...mapState('account',['user', 'setUser']),
-      ...mapGetters('account', ['userId']),
       userId(){
         return UserApi.getUserId();
       },
@@ -159,28 +147,6 @@
       setActivityEditId () {
         this.$router.push ({name: 'activityEdit', params: {activityEditId: this.activity.id}});
       },
-      apply(id) {
-        ActivityService.applyActivity(id)
-          .then(() => {
-            this.$toast.open({
-              message: 'You\'ve successfully applied!',
-              type: 'success',
-              position: 'top-right',
-              duration: 3000,
-              dismissible: true,
-            });
-          })
-          .catch((error) => {
-            let message = error.response.data.message;
-            this.$toast.open({
-              message: message,
-              type: 'error',
-              position: 'top-right',
-              duration: 3000,
-              dismissible: true,
-            });
-          });
-      },
       deleteActivity () {
         ActivityService.deleteActivity (this.$route.params.activityId).then (() => {
           this.$router.push ('/activity-list')
@@ -196,7 +162,6 @@
   .technology-name {
     font-size: initial;
   }
-  
   .SectionStyle .card {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #ffda00;
@@ -204,40 +169,33 @@
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
-  
   .description-styles {
     text-indent: 2em;
     font-weight: initial;
   }
-  
   .SectionStyle .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
   }
-  
   .line {
     padding: 1px;
     background-image: linear-gradient(to right, #fff68d 0%, #ffda00, #fff68d 100%);
   }
-  
   .round-image {
     border-radius: 50%;
     height: 150px;
     width: 150px;
   }
-  
   .user-image {
     border-radius: 50%;
     height: 40px;
     width: 60px;
   }
-  
   .application-deadline {
     color: #006b00;
     font-size: initial;
     padding: 0;
   }
-  
   .deadline {
     color: red;
     font-size: initial;

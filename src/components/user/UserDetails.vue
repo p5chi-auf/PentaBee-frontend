@@ -2,49 +2,49 @@
   <div>
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
-              class="col-md-6"
-              label="Username:"
-              label-for="username"
+        class="col-md-6"
+        label="Username:"
+        label-for="username"
       >
         <b-form-input
-                id="username"
-                v-model="form.username"
-                name="username"
-                type="text"
-                class="form-control"
-                disabled
+          id="username"
+          v-model="form.username"
+          name="username"
+          type="text"
+          class="form-control"
+          disabled
         />
       </b-form-group>
       
       <b-form-group
-              class="col-md-6"
-              label="Email:"
-              label-for="email"
+        class="col-md-6"
+        label="Email:"
+        label-for="email"
       >
         <b-form-input
-                id="email"
-                v-model="form.email"
-                name="email"
-                type="email"
-                class="form-control"
-                disabled
+          id="email"
+          v-model="form.email"
+          name="email"
+          type="email"
+          class="form-control"
+          disabled
         />
       </b-form-group>
       
       <b-form-group
-              id="input-group-3"
-              class="col-md-6"
-              label="First Name:"
-              label-for="firstName"
+        id="input-group-3"
+        class="col-md-6"
+        label="First Name:"
+        label-for="firstName"
       >
         <b-form-input
-                id="firstName"
-                v-model="form.name"
-                v-validate.continues="'required|min:3|max:20'"
-                name="name"
-                type="text"
-                class="form-control text-capitalize"
-                :class="{ 'is-invalid': errors.has('name') }"
+          id="firstName"
+          v-model="form.name"
+          v-validate.continues="'required|min:3|max:20'"
+          name="name"
+          type="text"
+          class="form-control text-capitalize"
+          :class="{ 'is-invalid': errors.has('name') }"
         />
         
         <span v-if="errors.has('name')" class="invalid-feedback">
@@ -53,18 +53,18 @@
       </b-form-group>
       
       <b-form-group
-              class="col-md-6"
-              label="Last Name:"
-              label-for="lastName"
+        class="col-md-6"
+        label="Last Name:"
+        label-for="lastName"
       >
         <b-form-input
-                id="lastName"
-                v-model="form.surname"
-                v-validate.continues="'required|min:3|max:20'"
-                name="surname"
-                type="text"
-                class="form-control text-capitalize"
-                :class="{ 'is-invalid': errors.has('surname') }"
+          id="lastName"
+          v-model="form.surname"
+          v-validate.continues="'required|min:3|max:20'"
+          name="surname"
+          type="text"
+          class="form-control text-capitalize"
+          :class="{ 'is-invalid': errors.has('surname') }"
         />
         
         <span v-if="errors.has('surname')" class="invalid-feedback">
@@ -73,23 +73,23 @@
       </b-form-group>
       
       <b-form-group
-              class="col-md-4"
-              label="Position:"
-              label-for="position"
+        class="col-md-4"
+        label="Position:"
+        label-for="position"
       >
         <b-form-input
-                id="position"
-                v-model="form.position"
-                name="position"
-                type="text"
-                class="form-control"
+          id="position"
+          v-model="form.position"
+          name="position"
+          type="text"
+          class="form-control"
         />
       </b-form-group>
       
       <b-form-group
-              class="col-md-4"
-              label="Seniority:"
-              label-for="seniority"
+        class="col-md-4"
+        label="Seniority:"
+        label-for="seniority"
       >
         <b-form-select v-model="form.seniority" :options="options">
           <template slot="first">
@@ -99,9 +99,9 @@
       </b-form-group>
       
       <b-form-group
-              class="col-md-4"
-              label="Location:"
-              label-for="location"
+        class="col-md-4"
+        label="Location:"
+        label-for="location"
       >
         <b-form-select v-model="form.location" :options="option">
           <template slot="first">
@@ -111,41 +111,41 @@
       </b-form-group>
       
       <b-form-group
-              class="col-md-12"
-              label="Skills:"
-              label-for="technologies"
+        class="col-md-12"
+        label="Skills:"
+        label-for="technologies"
       >
         <multiselect
-                v-model="form.technologies"
-                placeholder="Search a technology"
-                label="name" track-by="id"
-                :options="formTechnologies"
-                :multiple="true"
-                :taggable="true"
+          v-model="form.technologies"
+          placeholder="Search a technology"
+          label="name" track-by="id"
+          :options="formTechnologies"
+          :multiple="true"
+          :taggable="true"
         />
       </b-form-group>
       
       <b-form-group
-              class="col-md-12"
-              label="About me:"
-              label-for="biography"
+        class="col-md-12"
+        label="About me:"
+        label-for="biography"
       >
         <b-form-textarea
-                id="textarea-state"
-                v-model="form.biography"
-                placeholder="Enter at least 10 characters"
-                rows="3"
+          id="textarea-state"
+          v-model="form.biography"
+          placeholder="Enter at least 10 characters"
+          rows="3"
         />
       </b-form-group>
     </b-form>
     
     <div class="text-center space">
       <b-btn
-              class="col-md-5 float-none d-inline-block btn btn-1"
-              variant="warning"
-              block
-              pill
-              @click="edit()"
+        class="col-md-5 float-none d-inline-block btn btn-1"
+        variant="warning"
+        block
+        pill
+        @click="edit()"
       > Save Changes
       </b-btn>
     </div>

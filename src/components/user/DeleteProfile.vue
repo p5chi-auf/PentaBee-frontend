@@ -2,21 +2,21 @@
   <div>
     <div class="text-center space">
       <b-btn
-              class="col-md-5 float-none d-inline-block btn btn-1 btn-delete"
-              variant="warning"
-              block
-              pill
-              @click="show()"
+        class="col-md-5 float-none d-inline-block btn btn-1 btn-delete"
+        variant="warning"
+        block
+        pill
+        @click="show()"
       > Delete Account
       </b-btn>
     </div>
     <modal
-            name="delete-account"
-            transition="nice-modal-fade"
-            :min-width="10"
-            :min-height="10"
-            :delay="100"
-            :adaptive="true"
+      name="delete-account"
+      transition="nice-modal-fade"
+      :min-width="10"
+      :min-height="10"
+      :delay="100"
+      :adaptive="true"
     >
       <button class="float-right mr-2 mt-2" @click="$modal.hide('delete-account')">
         <i class="fas fa-times"/>
