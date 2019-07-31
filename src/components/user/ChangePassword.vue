@@ -71,7 +71,6 @@
         class="col-md-5 float-none d-inline-block btn btn-1"
         variant="warning"
         block
-        pill
         @click="change()"
       > Save Changes
       </b-btn>
