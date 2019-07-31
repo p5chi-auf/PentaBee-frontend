@@ -5,7 +5,7 @@
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
-            <b-link @click="$router.push({ name: 'edit', params: { userId: form.id } })">
+            <b-link @click="$router.push({ name: 'edit', params: { userId: profileData.id } })">
               <i v-b-tooltip.hover title="Edit profile" class="icon-size fas fa-edit"/>
             </b-link>
           </div>
@@ -15,30 +15,31 @@
                 <div class="greenIcon"/>
 
                 <div class="image-in-container">
-                  <b-img :src="'http://api.pentabee.local/'+form.avatar.original"/>
+                  <b-img :src="avatars"/>
                   <!--                  <b-img :src="require('../../../public/img/person1.png')"/>-->
                 </div>
               </div>
             </div>
 
-            <h3 class="mt-1">{{ form.name }} {{ form.surname }}</h3>
-            <h6 class="seniorityText mt-2" style="text-transform:uppercase">{{ form.position }} {{ seniorityList[form.seniority] }}</h6>
+            <h3 class="mt-1">{{ profileData.name }} {{ profileData.surname }}</h3>
+            <h6 class="seniorityText mt-2" style="text-transform:uppercase">{{ profileData.position }} {{
+              seniorityList[profileData.seniority] }}</h6>
             <hr class="line">
-            <p>{{ form.biography }}</p>
+            <p>{{ profileData.biography }}</p>
             <h5 class="text-center">Skills:</h5>
             <div class="text-left row">
-              <b-list-group v-for="item in form.technologies" :key="item.id" horizontal class="text-left">
+              <b-list-group v-for="item in profileData.technologies" :key="item.id" horizontal class="text-left">
                 <div class="box text-left">{{ item.name }}</div>
               </b-list-group>
             </div>
             <div class="text-center my-3 row">
               <div class="mb-2">
                 <i class="ml-4 fas fa-envelope"/>
-                <b-link class="ml-2">{{ form.email }}</b-link>
+                <b-link class="ml-2">{{ profileData.email }}</b-link>
               </div>
               <div class="mb-2">
                 <i class="ml-4 fas fa-map-marker-alt"/>
-                <b-link class="ml-2">{{ form.location }}</b-link>
+                <b-link class="ml-2">{{ profileData.location }}</b-link>
               </div>
             </div>
           </div>
@@ -53,11 +54,12 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapState, mapGetters } from 'vuex';
   import Activities from './UserActivities';
+  import { apiDomain } from '@/constants/apiEndpoints';
 
   export default {
     components: { Activities },
     data: () => ({
-      form: {
+      profileData: {
         id: null,
         email: '',
         position: '',
@@ -74,19 +76,28 @@
         ],
         avatar: {
           original: '',
-          // 200x200: '',
-          // 40x40: '',
-        }
+          '200x200': '',
+          '40x40': '',
+        },
       },
     }),
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
       ...mapState('account', ['user']),
       ...mapGetters('account', ['userId']),
+      avatars: function() {
+        let avatarUrl = (((this.profileData || {}).avatar || {})['200x200'] || '');
+        if (avatarUrl === '') {
+          avatarUrl = '/img/person1.png';
+        } else {
+          avatarUrl = apiDomain + '/' + avatarUrl;
+        }
+        return avatarUrl;
+      },
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
-        this.form = response.data;
+        this.profileData = response.data;
       }).catch(error => {
         console.log(error);
       });
