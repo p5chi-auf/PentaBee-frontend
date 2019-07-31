@@ -4,7 +4,7 @@
       <b-card no-body>
         <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
         <b-tabs card>
-          <section class="tabSection">
+          <section class="card-outline">
             <b-tab title="Mine" active>
               <div class="row">
                 <div v-for="result in results"
@@ -153,10 +153,10 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import {mapState} from 'vuex';
+  import {mapState, mapGetters} from 'vuex';
 
   export default {
-    data () {
+    data() {
       return {
         max: 10,
         results: [],
@@ -164,19 +164,18 @@
           currentPage: 1,
           per_page: 9,
           numPages: 1,
-          numResults: 1,
+          numResults: 1
         }
       }
     },
     computed: {
-      ...mapState ('account', ['user']),
+      ...mapState('account', ['user']),
     },
-    mounted () {
-      this.getData ();
+    mounted() {
+      this.getData();
     },
-
     methods: {
-      getData () {
+      getData() {
         const request = '?pagination[page]=' + this.pagination.currentPage + '&pagination[per_page]=' + this.pagination.per_page;
 
         ActivityService.getActivityList (request).then ((response) => {
@@ -186,7 +185,7 @@
           .catch (error => {
           });
       },
-      redirectToActivityDetails (id) {
+      redirectToActivityDetails(id) {
         this.$router.push ({name: 'activity', params: {activityId: id}});
       }
     }

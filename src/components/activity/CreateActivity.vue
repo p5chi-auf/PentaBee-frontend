@@ -7,7 +7,7 @@
             <b-card class="p-3">
               <h4 class="text-center">
                 Create an activity
-                <hr>
+                <hr class="line">
               </h4>
               
               <b-alert show class="text-center" variant="warning" dismissible fade>
@@ -19,13 +19,13 @@
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Name of activity:</label>
                   <b-form-input
-                    v-model="form.name"
-                    v-validate.continues="'required|min:3|max:100'"
-                    :class="{ 'is-invalid': errors.has('name') }"
-                    name="name"
-                    placeholder="Name of activity"
-                    type="text"
-                    class="form-control"
+                          v-model="form.name"
+                          v-validate.continues="'required|min:3|max:100'"
+                          :class="{ 'is-invalid': errors.has('name') }"
+                          name="name"
+                          placeholder="Name of activity"
+                          type="text"
+                          class="form-control"
                   />
                   
                   <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
@@ -34,17 +34,17 @@
                 <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
-                      v-model="form.public"
-                      :value="true"
-                      class="ml-3 col-md-5 mt-2 text-color-activity"
+                            v-model="form.public"
+                            :value="true"
+                            class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Public
                     </b-form-radio>
                     
                     <b-form-radio
-                      v-model="form.public"
-                      :value="false"
-                      class="ml-3 col-md-5 mt-2 text-color-activity"
+                            v-model="form.public"
+                            :value="false"
+                            class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Private
                     </b-form-radio>
@@ -62,42 +62,42 @@
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Application deadline:</label>
                   <datetime
-                    v-model="form.application_deadline"
-                    :min-datetime="timeStartApplication"
-                    input-style="width: 185px"
-                    name="application_deadline"
-                    value-zone="UTC"
-                    type="datetime"
-                    @input="setDeadline"
+                          v-model="form.application_deadline"
+                          :min-datetime="timeStartApplication"
+                          input-style="width: 185px"
+                          name="application_deadline"
+                          value-zone="UTC"
+                          type="datetime"
+                          @input="setDeadline"
                   />
                 </b-form-group>
                 
                 <b-form-group class="col-md-5">
                   <label class="ml-3 text-color-activity">Final deadline:</label>
                   <datetime
-                    v-model="form.final_deadline"
-                    :min-datetime="timeStartDeadline"
-                    input-style="width: 185px"
-                    name="final_deadline"
-                    value-zone="UTC"
-                    type="datetime"
+                          v-model="form.final_deadline"
+                          :min-datetime="timeStartDeadline"
+                          input-style="width: 185px"
+                          name="final_deadline"
+                          value-zone="UTC"
+                          type="datetime"
                   />
                 </b-form-group>
                 
                 <b-form-group
-                  class="col-md-12"
+                        class="col-md-12"
                 >
                   <label class="ml-3 text-color-activity">Activity description:</label>
                   
                   <b-textarea
-                    id="description"
-                    v-model="form.description"
-                    v-validate.continues="'required'"
-                    :class="{ 'is-invalid': errors.has('description') }"
-                    name="description"
-                    placeholder="Something about the project..."
-                    type="text"
-                    class="form-control"
+                          id="description"
+                          v-model="form.description"
+                          v-validate.continues="'required'"
+                          :class="{ 'is-invalid': errors.has('description') }"
+                          name="description"
+                          placeholder="Something about the project..."
+                          type="text"
+                          class="form-control"
                   />
                   
                   <span v-if="errors.has('description')" class="invalid-feedback">
@@ -108,11 +108,11 @@
               
               <div class="text-center button">
                 <b-btn
-                  class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
-                  variant="warning"
-                  block
-                  pill
-                  @click="createActivity()"
+                        class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
+                        variant="warning"
+                        block
+                        pill
+                        @click="createActivity()"
                 >Create Activity
                 </b-btn>
               </div>
@@ -169,6 +169,7 @@
       createActivity () {
 
         let activity = JSON.parse (JSON.stringify (this.form));
+        
         activity.application_deadline = moment (this.form.application_deadline).format ('X');
         activity.final_deadline = moment (this.form.final_deadline).format ('X');
         RegisterService.createActivity (activity)

@@ -11,15 +11,17 @@
 
 @media screen and (max-width: 414px) {
   .v-sidebar-menu {
-    height: calc(100vh - 147px);
+    height: calc(100vh - 131px);
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 415px) {
   .v-sidebar-menu {
-    height: calc(100vh - 205px);
+    height: calc(100vh - 147px);
   }
+}
+@media screen and (min-width: 465px) {
   .v-sidebar-menu {
-    top: 139px;
+    height: calc(100vh - 122px);
   }
 }

@@ -6,7 +6,7 @@ footer {
     width: 100%;
     text-align: center;
     background: #161616;
-    z-index: 1;
+    z-index: 2;
   }
 
   .bottom-bar {
@@ -27,5 +27,11 @@ footer {
 
   .bottom-bar-yellow {
     background: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
+  }
+  @media screen and (max-width: 414px) {
+    .footer {
+      width: 100%;
+      height: 50px;
+    }
   }
 }

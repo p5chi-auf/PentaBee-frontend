@@ -3,15 +3,16 @@ import Home from '@/views/Home';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
-import Edit from '@/components/user/EditProfile';
+import Edit from '@/views/EditProfile';
 import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
-import ActivityList from "../components/activity/ActivityList";
+import ActivityList from '../components/activity/ActivityList';
 import  ActivityEdit from '@/components/activity/EditActivity';
 
 import Vue from 'vue';
 import store from '../store';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -36,7 +37,7 @@ const router = new Router({
       component: Registration,
     },
     {
-      path: '/profile',
+      path: '/profile/:userId',
       name: 'profile',
       component: Profile,
       meta: {
@@ -44,7 +45,7 @@ const router = new Router({
       },
     },
     {
-      path: '/edit',
+      path: '/edit/:userId',
       name: 'edit',
       component: Edit,
       meta: {
@@ -97,7 +98,7 @@ router.beforeEach((to, from, next) => {
     if (!isAuth) {
       next({
         path: '/login',
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath },
       });
     } else {
       next();

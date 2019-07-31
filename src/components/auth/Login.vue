@@ -2,15 +2,11 @@
   <div class="login-registration-background">
     <b-container fluid>
       <b-row align-h="center" class="mt-5">
-        <b-card class="p-3">
+        <b-card class="p-2">
           <h4>
             Please Enter Your Information
             <hr class="line">
           </h4>
-
-          <b-alert variant="danger" :show="!!loginError" dismissible>
-            {{ loginError }}
-          </b-alert>
 
           <b-form @submit.prevent="onSubmit()">
             <b-form-group
@@ -28,10 +24,9 @@
                 :class="{ 'is-invalid': errors.has('username') }"
               />
 
-              <span
-                v-if="errors.has('username')"
-                class="invalid-feedback"
-              >{{ errors.first('username') }}</span>
+              <span v-if="errors.has('username')" class="invalid-feedback">
+                {{ errors.first('username') }}
+              </span>
             </b-form-group>
 
             <b-form-group
@@ -50,10 +45,9 @@
                 :class="{ 'is-invalid': errors.has('password') }"
               />
 
-              <span
-                v-if=" errors.has('password')"
-                class="invalid-feedback"
-              >{{ errors.first('password') }}</span>
+              <span v-if=" errors.has('password')" class="invalid-feedback">
+                {{ errors.first('password') }}
+              </span>
             </b-form-group>
 
             <div class="text-center button-padding">
@@ -63,15 +57,15 @@
                 block
                 pill
                 @click="onSubmit()"
-              >Login
+              >Log In
               </b-btn>
             </div>
 
-            <p class="text-center">
+            <p class="mt-3 text-center">
               Haven't got a
               <b-link class="link-redirect" to="#">PentaBee</b-link>
               account?
-              <b-link class="link-redirect" to="/registration">Sign up</b-link>
+              <b-link class="link-redirect" to="/registration">Sign Up</b-link>
             </p>
           </b-form>
         </b-card>
@@ -90,21 +84,34 @@
         username: '',
         password: '',
       },
-      loginError: '',
     }),
     methods: {
       ...mapActions('account', ['login', 'logout', 'setUser']),
       ...mapMutations('account', []),
       onSubmit() {
+        this.$validator.validate();
         LoginService.login(this.form)
           .then(response => {
             const { token } = response.data;
             window.localStorage.setItem('token', token);
             this.login(token);
+            this.$toast.open({
+              message: 'You\'ve successfully logged in',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/');
           })
           .catch(() => {
-            this.loginError = 'Invalid username or password';
+            this.$toast.open({
+              message: 'Invalid username or password',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
       },
     },

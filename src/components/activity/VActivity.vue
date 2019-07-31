@@ -18,30 +18,30 @@
               </div>
               <hr class="border line">
               <b-alert
-                show
-                class="text-center"
-                variant="warning"
-                dismissible
-                fade
+                      show
+                      class="text-center"
+                      variant="warning"
+                      dismissible
+                      fade
               >
                 <i class="fas fa-smile-wink"/>
                 All about activity
               </b-alert>
-
+              
               <div>
                 <h5 class="font-weight-bold">Description: </h5>
                 <p class="ml-1 description-styles">{{ activity.description }}</p>
               </div>
-
+              
               <div class="row">
                 <div class="col">
                   <h5 class="font-weight-bold">Technologies:</h5>
-
+                  
                   <ul v-for="item in activity.technologies" :key="item.id">
                     <li class="technology-name ml-3">{{ item.name }}</li>
                   </ul>
                 </div>
-
+                
                 <div class="col">
                   <h5 class="font-weight-bold">Types:</h5>
                   <ul v-for="item in activity.types" :key="item.id">
@@ -49,7 +49,7 @@
                   </ul>
                 </div>
               </div>
-
+              
               <div class="row">
                 <h5 class="font-weight-bold col">Application till:
                   <p class="col-md-4 ml-4 application-deadline">
@@ -57,7 +57,7 @@
                   </p>
                   <p class="col-md-4  ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
                 </h5>
-
+                
                 <h5 class="font-weight-bold col">
                   Activity deadline:
                   <p class="col-md-4 ml-4 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
@@ -65,35 +65,44 @@
                 </h5>
               </div>
               <b-button
-                v-if="userId===activity.owner.id"
-                class="btn-danger col-md-3 float-right ml-2 mr-2"
-                @click="showDeleteModal"
+                      v-if="userId===activity.owner.id"
+                      class="btn-danger col-md-3 float-right ml-2 mr-2"
+                      @click="showDeleteModal"
               >
                 Delete activity
               </b-button>
-  
+              
               <b-button
-                v-if="userId===activity.owner.id"
-                class="btn-success col-md-3 float-right ml-2 mr-2"
-                @click="setActivityEditId"
+                      v-if="userId===activity.owner.id"
+                      class="btn-success col-md-3 float-right ml-2 mr-2"
+                      @click="setActivityEditId"
               >
                 Edit activity
               </b-button>
-            
+              
               <modal
-                name="delete-activity"
-                transition="nice-modal-fade"
-                :min-width="100"
-                :min-height="100"
-                :max-width="300"
-                :max-height="200"
-                :delay="100"
-                :adaptive="true"
+                      name="delete-activity"
+                      transition="nice-modal-fade"
+                      :min-width="100"
+                      :min-height="100"
+                      :max-width="300"
+                      :max-height="200"
+                      :delay="100"
+                      :adaptive="true"
               >
                 <div class="example-modal-content text-center mt-5">
                   Do you want to delete activity?
                 </div>
                 <div class="row mt-5 ml-3">
+                  <b-btn
+                          v-if="userId !== activity.owner.id"
+                          variant="warning"
+                          class="btn btn-1 col-3"
+                          pill
+                          @click="apply(activity.id)"
+                  >
+                    Apply
+                  </b-btn>
                   <b-button class="col-md-5" variant="dark" @click="cancel">Cancel</b-button>
                   <b-button class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-button>
                 </div>
@@ -109,7 +118,7 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import UserApi from '@/services/userDetailsApi';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters} from 'vuex';
 
   export default {
 
@@ -121,9 +130,10 @@
         delete: false
       }
     },
-    
+
     computed:{
       ...mapState('account',['user', 'setUser']),
+      ...mapGetters('account', ['userId']),
       userId(){
         return UserApi.getUserId();
       },
@@ -135,7 +145,7 @@
         .catch (error => {
           console.log (error)
         });
-      
+
     },
     methods: {
       showDeleteModal(){
@@ -145,10 +155,32 @@
         this.$modal.hide('delete-activity');
         return 0
       },
-    
-        setActivityEditId () {
-          this.$router.push ({name: 'activityEdit', params: {activityEditId: this.activity.id}});
-        },
+
+      setActivityEditId () {
+        this.$router.push ({name: 'activityEdit', params: {activityEditId: this.activity.id}});
+      },
+      apply(id) {
+        ActivityService.applyActivity(id)
+          .then(() => {
+            this.$toast.open({
+              message: 'You\'ve successfully applied!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          })
+          .catch((error) => {
+            let message = error.response.data.message;
+            this.$toast.open({
+              message: message,
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+      },
       deleteActivity () {
         ActivityService.deleteActivity (this.$route.params.activityId).then (() => {
           this.$router.push ('/activity-list')
@@ -164,7 +196,7 @@
   .technology-name {
     font-size: initial;
   }
-
+  
   .SectionStyle .card {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #ffda00;
@@ -172,40 +204,40 @@
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
-
+  
   .description-styles {
     text-indent: 2em;
     font-weight: initial;
   }
-
+  
   .SectionStyle .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
   }
-
+  
   .line {
     padding: 1px;
     background-image: linear-gradient(to right, #fff68d 0%, #ffda00, #fff68d 100%);
   }
-
+  
   .round-image {
     border-radius: 50%;
     height: 150px;
     width: 150px;
   }
-
+  
   .user-image {
     border-radius: 50%;
     height: 40px;
     width: 60px;
   }
-
+  
   .application-deadline {
     color: #006b00;
     font-size: initial;
     padding: 0;
   }
-
+  
   .deadline {
     color: red;
     font-size: initial;
