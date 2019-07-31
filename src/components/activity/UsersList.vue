@@ -31,4 +31,6 @@
     },
   };
 </script>
-
+<!--setApplicants() {-->
+<!--ActivityService.inviteUser(this.$route.params.activityId);-->
+<!--},-->

@@ -68,11 +68,9 @@
 
     <div class="text-center space card-body gradient-buttons">
       <b-btn
-        class="col-md-5 float-none d-inline-block btn btn-1"
-        variant="warning"
-        block
+        class="float-none d-inline-block btn btn-1"
         @click="change()"
-      > Save Changes
+      > Save changes
       </b-btn>
     </div>
   </div>

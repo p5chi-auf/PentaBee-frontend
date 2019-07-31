@@ -40,7 +40,7 @@ body {
   }
 
   .link-redirect {
-    color: #ffbc1d;
+    color: #668994;
   }
 
   .home-content {
@@ -48,19 +48,14 @@ body {
   }
 
   .btn-1 {
-    background-image: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
+    background-image: linear-gradient(to right, #668994 0%, #6f97a3 50%, #668994 100%);
     color: #fff;
+    font-weight: bold;
     margin-left: 5px;
-  }
-
-  .btn-delete {
-    background-image: linear-gradient(to right, #ffda00 0%, #f54a00 50%, #ff0000 100%);
-    color: #800000;
   }
 
   .btn-1:hover {
     background-position: right center;
-    color: #fff;
   }
 
   .btn {
