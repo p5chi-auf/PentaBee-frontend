@@ -18,7 +18,7 @@
                     class="cards col-md-12 mt-3"
                   >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img src="../../assets/images/combs.jpg" class="activity-image mr-2">
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
@@ -26,7 +26,7 @@
                     
                     <hr class="line-separator">
                     
-                    <b-card-text class="description-height text-center">
+                    <b-card-text class="description-aria-height text-center">
                       {{ result.description | truncate(70, '...') }}
                     </b-card-text>
                     <b-card-text class="ml-3 owner-username-styles">
@@ -115,7 +115,7 @@
                     class="cards col-md-12 mt-3"
                   >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img src="../../assets/images/combs.jpg" class="activity-image mr-2">
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
@@ -184,7 +184,6 @@
           this.pagination.numResults = response.data.numResults;
         })
           .catch (error => {
-            console.log (error);
           });
       },
       redirectToActivityDetails (id) {
@@ -209,7 +208,7 @@
     display: flex;
   }
   
-  .description-height {
+  .description-aria-height {
     height: 60px;
     overflow: hidden !important;
     text-overflow: ellipsis;

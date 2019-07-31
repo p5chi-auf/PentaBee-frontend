@@ -31,12 +31,12 @@
                   <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
                 </b-form-group>
                 
-                <b-form-group class=" col-md-6">
+                <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
                       v-model="form.public"
                       :value="true"
-                      class=" ml-3 col-md-5 mt-2 text-color-activity"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Public
                     </b-form-radio>
@@ -116,7 +116,6 @@
                 >Create Activity
                 </b-btn>
               </div>
-            
             </b-card>
           </b-row>
         </b-container>
@@ -124,6 +123,7 @@
     </div>
   </div>
 </template>
+
 <script>
   import RegisterService from '../../services/activityApi';
   import moment from 'moment';
@@ -153,6 +153,7 @@
     },
     created () {
       let startTime = new Date ();
+
       startTime.setDate (startTime.getDate () + 1);
       this.form.application_deadline = moment (startTime).toISOString ();
       this.timeStartApplication = moment (startTime).toISOString ();
@@ -161,19 +162,20 @@
     methods: {
       setDeadline () {
         let deadline = moment (this.form.application_deadline).add (1, 'days');
+
         this.form.final_deadline = moment (deadline).toISOString ();
         this.timeStartDeadline = moment (deadline).toISOString ();
       },
       createActivity () {
-        console.log (this.form.application_deadline);
+
         let activity = JSON.parse (JSON.stringify (this.form));
         activity.application_deadline = moment (this.form.application_deadline).format ('X');
         activity.final_deadline = moment (this.form.final_deadline).format ('X');
         RegisterService.createActivity (activity)
-          .then ((response) => {
+          .then (() => {
             this.$router.push ('/activity-list')
           })
-          .catch (error => {
+          .catch (() => {
             alert ('yor data are bad')
           })
       }

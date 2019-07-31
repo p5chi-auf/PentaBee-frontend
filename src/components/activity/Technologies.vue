@@ -1,6 +1,6 @@
 <template>
   <b-form-group>
-    <label class="typo__label ml-3 text-color-activity">Technologies</label>
+    <label class="ml-3 text-color-activity">Technologies</label>
     <multiselect
       v-model="technologies"
       placeholder="Search a technology"
@@ -34,7 +34,6 @@
       UserApi.getTechnologies ().then ((response) => {
         this.formTechnologies = response.data;
       }).catch (error => {
-        console.log (error);
       });
     },
     methods: {

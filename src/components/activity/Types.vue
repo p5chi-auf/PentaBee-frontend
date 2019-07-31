@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form-group>
-      <label class="typo__label ml-3 text-color-activity">Types</label>
+      <label class="ml-3 text-color-activity">Types</label>
       <multiselect
         v-model="types"
         placeholder="Search a type"
@@ -15,8 +15,10 @@
     </b-form-group>
   </div>
 </template>
+
 <script>
   import ActivityService from "../../services/activityApi";
+  
   export default {
     model:{
       prop: "types",
@@ -36,7 +38,6 @@
       ActivityService.getTypes().then((response) =>{
         this.formTypes = response.data;
       }).catch(error =>{
-        console.log(error);
       })
     },
     methods: {
@@ -46,7 +47,3 @@
     }
   };
 </script>
-<style>
-
-</style>
-

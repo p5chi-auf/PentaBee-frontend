@@ -52,10 +52,10 @@
 
               <div class="row">
                 <h5 class="font-weight-bold col">Application till:
-                  <p class="col-md-4 ml-4 aplication-deadline">
+                  <p class="col-md-4 ml-4 application-deadline">
                     Date: {{ activity.application_deadline | formatDate }}
                   </p>
-                  <p class="col-md-4  ml-4 aplication-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
+                  <p class="col-md-4  ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
                 </h5>
 
                 <h5 class="font-weight-bold col">
@@ -65,7 +65,7 @@
                 </h5>
               </div>
               <b-button
-                v-if="userId == activity.owner.id"
+                v-if="userId===activity.owner.id"
                 class="btn-danger col-md-3 float-right ml-2 mr-2"
                 @click="showDeleteModal"
               >
@@ -73,7 +73,7 @@
               </b-button>
   
               <b-button
-                v-if="userId == activity.owner.id"
+                v-if="userId===activity.owner.id"
                 class="btn-success col-md-3 float-right ml-2 mr-2"
                 @click="setActivityEditId"
               >
@@ -200,7 +200,7 @@
     width: 60px;
   }
 
-  .aplication-deadline {
+  .application-deadline {
     color: #006b00;
     font-size: initial;
     padding: 0;
