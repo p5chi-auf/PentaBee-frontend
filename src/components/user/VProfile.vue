@@ -1,7 +1,7 @@
 <template>
   <div class="edit profileCard home-content row">
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h2 class="text-center pl-4 mb-5">Profile</h2>
+      <h2 class="text-center pl-4 mb-5 my-4">Profile</h2>
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
@@ -15,7 +15,8 @@
                 <div class="greenIcon"/>
 
                 <div class="image-in-container">
-                  <b-img :src="require('../../../public/img/person1.png')"/>
+                  <b-img :src="'http://api.pentabee.local/'+form.avatar.original"/>
+                  <!--                  <b-img :src="require('../../../public/img/person1.png')"/>-->
                 </div>
               </div>
             </div>
@@ -71,6 +72,11 @@
             name: '',
           },
         ],
+        avatar: {
+          original: '',
+          // 200x200: '',
+          // 40x40: '',
+        }
       },
     }),
     computed: {

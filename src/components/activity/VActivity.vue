@@ -151,8 +151,8 @@
                     Do you want to delete activity?
                   </div>
                   <div class="row mt-5 ml-3">
-                    <b-button class="col-md-5" variant="dark" @click="cancel">Cancel</b-button>
-                    <b-button class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-button>
+                    <b-btn class="col-md-5" variant="dark" @click="cancel">Cancel</b-btn>
+                    <b-btn class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-btn>
                   </div>
                 </modal>
               </div>

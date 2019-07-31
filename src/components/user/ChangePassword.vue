@@ -4,9 +4,10 @@
       <b-form-group
         id="input-group-1"
         class="col-md-4"
-        label="Old Password:"
         label-for="old_password"
       >
+        <label class="typo__label ml-3">Old password:</label>
+
         <b-form-input
           id="old_password"
           v-model="form.old_password"
@@ -25,9 +26,10 @@
       <b-form-group
         id="input-group-2"
         class="col-md-4"
-        label="New Password:"
         label-for="password"
       >
+        <label class="typo__label ml-3">New password:</label>
+
         <b-form-input
           id="password"
           ref="password"
@@ -46,9 +48,10 @@
       <b-form-group
         id="input-group-3"
         class="col-md-4"
-        label="Repeat New Password:"
         label-for="confirmPassword"
       >
+        <label class="typo__label ml-3">Repeat new password:</label>
+
         <b-form-input
           id="confirmPassword"
           v-model="form.confirm_password"

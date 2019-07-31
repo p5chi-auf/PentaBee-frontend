@@ -3,9 +3,10 @@
     <b-form class="row" @submit.prevent="edit()">
       <b-form-group
         class="col-md-6"
-        label="Username:"
         label-for="username"
       >
+        <label class="typo__label ml-3">Username:</label>
+
         <b-form-input
           id="username"
           v-model="form.username"
@@ -18,9 +19,10 @@
 
       <b-form-group
         class="col-md-6"
-        label="Email:"
         label-for="email"
       >
+        <label class="typo__label ml-3">Email:</label>
+
         <b-form-input
           id="email"
           v-model="form.email"
@@ -34,9 +36,10 @@
       <b-form-group
         id="input-group-3"
         class="col-md-6"
-        label="First Name:"
         label-for="firstName"
       >
+        <label class="typo__label ml-3">First Name:</label>
+
         <b-form-input
           id="firstName"
           v-model="form.name"
@@ -54,9 +57,10 @@
 
       <b-form-group
         class="col-md-6"
-        label="Last Name:"
         label-for="lastName"
       >
+        <label class="typo__label ml-3">Last Name:</label>
+
         <b-form-input
           id="lastName"
           v-model="form.surname"
@@ -74,24 +78,24 @@
 
       <b-form-group
         class="col-md-4"
-        label="Position:"
         label-for="position"
       >
-        <b-form-input
-          id="position"
-          v-model="form.position"
-          name="position"
-          type="text"
-          class="form-control"
-        />
+        <label class="typo__label ml-3">Position:</label>
+
+        <b-form-select v-model="form.position" :options="options3">
+          <template slot="first">
+            <option :value="null" disabled>-- Please select your position --</option>
+          </template>
+        </b-form-select>
       </b-form-group>
 
       <b-form-group
         class="col-md-4"
-        label="Seniority:"
         label-for="seniority"
       >
-        <b-form-select v-model="form.seniority" :options="options">
+        <label class="typo__label ml-3">Seniority:</label>
+
+        <b-form-select v-model="form.seniority" :options="options1">
           <template slot="first">
             <option :value="null" disabled>-- Please select your seniority --</option>
           </template>
@@ -100,10 +104,11 @@
 
       <b-form-group
         class="col-md-4"
-        label="Location:"
         label-for="location"
       >
-        <b-form-select v-model="form.location" :options="option">
+        <label class="typo__label ml-3">Location:</label>
+
+        <b-form-select v-model="form.location" :options="options2">
           <template slot="first">
             <option :value="null" disabled>-- Please select your location --</option>
           </template>
@@ -112,24 +117,20 @@
 
       <b-form-group
         class="col-md-12"
-        label="Skills:"
         label-for="technologies"
       >
-        <multiselect
-          v-model="form.technologies"
-          placeholder="Search a technology"
-          label="name" track-by="id"
-          :options="formTechnologies"
-          :multiple="true"
-          :taggable="true"
-        />
+        <label class="typo__label ml-3">Skills:</label>
+
+        <!--        <technology-list v-model="form.technologies"/>-->
+        <technologies v-model="form.technologies"/>
       </b-form-group>
 
       <b-form-group
         class="col-md-12"
-        label="About me:"
         label-for="biography"
       >
+        <label class="typo__label ml-3">About me:</label>
+
         <b-form-textarea
           id="textarea-state"
           v-model="form.biography"
@@ -141,12 +142,9 @@
 
     <div class="text-center space">
       <b-btn
-        class="col-md-5 float-none d-inline-block btn btn-1"
-        variant="warning"
-        block
-        pill
+        class="float-none d-inline-block btn btn-1"
         @click="edit()"
-      > Save Changes
+      > Save changes
       </b-btn>
     </div>
   </div>
@@ -155,8 +153,11 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
+  import Technologies from '../activity/Technologies';
 
   export default {
+    components: { Technologies },
+
     data: () => ({
       form: {
         id: null,
@@ -176,12 +177,12 @@
       },
       loginError: '',
       formTechnologies: [],
-      options: [
+      options1: [
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
         { value: '2', text: 'SENIOR' },
       ],
-      option: [
+      options2: [
         { value: 'CHI', text: 'CHI' },
         { value: 'NYC', text: 'NYC' },
         { value: 'BOS', text: 'BOS' },
@@ -195,6 +196,11 @@
         { value: 'HAN', text: 'HAN' },
         { value: 'GUA', text: 'GUA' },
         { value: 'LYO', text: 'LYO' },
+      ],
+      options3: [
+        { value: 'DEV', text: 'DEV' },
+        { value: 'PO', text: 'PO' },
+        { value: 'QA', text: 'QA' },
       ],
     }),
     computed: {
@@ -229,7 +235,7 @@
               duration: 3000,
               dismissible: true,
             });
-            this.$router.push({name: 'profile'});
+            this.$router.push({ name: 'profile' });
           })
           .catch(() => {
             this.$toast.open({

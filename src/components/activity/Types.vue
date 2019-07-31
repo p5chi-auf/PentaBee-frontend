@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <b-form-group>
-      <label class="typo__label ml-3 text-color-activity">Types</label>
-      <multiselect
-        v-model="types"
-        placeholder="Search a type"
-        label="name" track-by="id"
-        :options="formTypes"
-        :multiple="true"
-        :taggable="true"
-        class="row col"
-        @input="updateTypes($event)"
-      />
-    </b-form-group>
-  </div>
+  <b-form-group>
+    <label class="typo__label ml-3 text-color-activity">Types:</label>
+    <multiselect
+      v-model="types"
+      placeholder="Search a type"
+      label="name" track-by="id"
+      :options="formTypes"
+      :multiple="true"
+      :taggable="true"
+      @input="updateTypes($event)"
+    />
+  </b-form-group>
 </template>
 
 <script>
@@ -38,7 +35,6 @@
       ActivityService.getTypes().then((response) => {
         this.formTypes = response.data;
       }).catch(error => {
-        console.log(error);
       });
     },
     methods: {

@@ -31,12 +31,12 @@
                   <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
                 </b-form-group>
 
-                <b-form-group class=" col-md-6">
+                <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
                       v-model="form.public"
                       :value="true"
-                      class=" ml-3 col-md-5 mt-2 text-color-activity"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Public
                     </b-form-radio>
@@ -52,7 +52,10 @@
                 </b-form-group>
 
                 <div class="col-md-6">
-                  <technology-list v-model="form.technologies"/>
+                  <b-form-group>
+                    <label class="typo__label ml-3 text-color-activity">Technologies:</label>
+                    <technology-list v-model="form.technologies"/>
+                  </b-form-group>
                 </div>
 
                 <div class="col-md-6">
@@ -108,15 +111,11 @@
 
               <div class="text-center button">
                 <b-btn
-                  class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
-                  variant="warning"
-                  block
-                  pill
+                  class="float-none d-inline-block btn btn-1 mt-2"
                   @click="createActivity()"
                 >Create Activity
                 </b-btn>
               </div>
-
             </b-card>
           </b-row>
         </b-container>
@@ -136,7 +135,7 @@
       TechnologyList: TechnologyList,
       ActivityTypesList: ActivityTypesList
     },
-    data() {
+    data () {
       return {
         form: {
           name: '',
@@ -152,30 +151,29 @@
         timeStartDeadline: ''
       }
     },
-    created() {
-      let startTime = new Date();
-      startTime.setDate(startTime.getDate() + 1);
-      this.form.application_deadline = moment(startTime).toISOString();
-      this.timeStartApplication = moment(startTime).toISOString();
-      this.setDeadline()
+    created () {
+      let startTime = new Date ();
+      startTime.setDate (startTime.getDate () + 1);
+      this.form.application_deadline = moment (startTime).toISOString ();
+      this.timeStartApplication = moment (startTime).toISOString ();
+      this.setDeadline ()
     },
     methods: {
-      setDeadline() {
-        let deadline = moment(this.form.application_deadline).add(1, 'days');
-        this.form.final_deadline = moment(deadline).toISOString();
-        this.timeStartDeadline = moment(deadline).toISOString();
+      setDeadline () {
+        let deadline = moment (this.form.application_deadline).add (1, 'days');
+        this.form.final_deadline = moment (deadline).toISOString ();
+        this.timeStartDeadline = moment (deadline).toISOString ();
       },
-      createActivity() {
-        console.log(this.form.application_deadline);
-        let activity = JSON.parse(JSON.stringify(this.form));
-        activity.application_deadline = moment(this.form.application_deadline).format('X');
-        activity.final_deadline = moment(this.form.final_deadline).format('X');
-        RegisterService.createActivity(activity)
-          .then(() => {
-            this.$router.push('/activity-list')
+      createActivity () {
+        let activity = JSON.parse (JSON.stringify (this.form));
+        activity.application_deadline = moment (this.form.application_deadline).format ('X');
+        activity.final_deadline = moment (this.form.final_deadline).format ('X');
+        RegisterService.createActivity (activity)
+          .then (() => {
+            this.$router.push ('/activity-list')
           })
-          .catch(() => {
-            alert('yor data are bad')
+          .catch (() => {
+            alert ('yor data are bad')
           })
       }
     }

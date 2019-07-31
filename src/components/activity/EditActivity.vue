@@ -142,8 +142,8 @@
                   <h6> Do you want to save changes for activity? </h6>
                 </div>
                 <div class="row mt-lg-5 ml-3">
-                  <b-button class="col-md-5" variant="dark" @click="cancel"> Cancel</b-button>
-                  <b-button class="col-md-5 ml-3" variant="warning" @click="editActivity()"> Save</b-button>
+                  <b-btn class="col-md-5" variant="dark" @click="cancel"> Cancel</b-btn>
+                  <b-btn class="col-md-5 ml-3" variant="warning" @click="editActivity()"> Save</b-btn>
                 </div>
               </modal>
             </b-card>
