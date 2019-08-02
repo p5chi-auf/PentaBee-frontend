@@ -112,6 +112,7 @@
                     Apply
                   </b-btn>
                   <b-btn
+                    v-if="userId === activity.owner.id"
                     variant="warning"
                     class="btn btn-1 col-3"
                     pill

@@ -61,7 +61,7 @@
 
             <p class="mt-3 text-center">
               Haven't got a
-              <b-text class="link-redirect">PentaBee</b-text>
+              <code class="link-redirect">PentaBee</code>
               account?
               <b-link class="link-redirect" to="/registration">Sign Up</b-link>
             </p>

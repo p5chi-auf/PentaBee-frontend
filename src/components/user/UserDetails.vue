@@ -50,9 +50,7 @@
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
-        <span v-if="errors.has('name')" class="invalid-feedback">
-          {{ errors.first('name') }}
-        </span>
+        <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
       </b-form-group>
 
       <b-form-group
@@ -71,9 +69,7 @@
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
-        <span v-if="errors.has('surname')" class="invalid-feedback">
-          {{ errors.first('surname') }}
-        </span>
+        <span v-if="errors.has('surname')" class="invalid-feedback">{{ errors.first('surname') }}</span>
       </b-form-group>
 
       <b-form-group
@@ -121,7 +117,6 @@
       >
         <label class="typo__label ml-3">Skills:</label>
 
-        <!--        <technology-list v-model="form.technologies"/>-->
         <technologies v-model="form.technologies"/>
       </b-form-group>
 

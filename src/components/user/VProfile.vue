@@ -9,6 +9,7 @@
               <i v-b-tooltip.hover title="Edit profile" class="icon-size fas fa-edit"/>
             </b-link>
           </div>
+
           <div class="card-body">
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
@@ -16,27 +17,34 @@
 
                 <div class="image-in-container">
                   <b-img :src="avatars"/>
-                  <!--                  <b-img :src="require('../../../public/img/person1.png')"/>-->
                 </div>
               </div>
             </div>
 
             <h3 class="mt-1">{{ profileData.name }} {{ profileData.surname }}</h3>
-            <h6 class="seniorityText mt-2" style="text-transform:uppercase">{{ profileData.position }} {{
-              seniorityList[profileData.seniority] }}</h6>
+
+            <h6 class="seniorityText mt-2" style="text-transform:uppercase">
+              {{ profileData.position }} {{ seniorityList[profileData.seniority] }}
+            </h6>
+
             <hr class="line">
+
             <p>{{ profileData.biography }}</p>
+
             <h5 class="text-center">Skills:</h5>
+
             <div class="text-left row">
               <b-list-group v-for="item in profileData.technologies" :key="item.id" horizontal class="text-left">
                 <div class="box text-left">{{ item.name }}</div>
               </b-list-group>
             </div>
+
             <div class="text-center my-3 row">
               <div class="mb-2">
                 <i class="ml-4 fas fa-envelope"/>
                 <b-link class="ml-2">{{ profileData.email }}</b-link>
               </div>
+
               <div class="mb-2">
                 <i class="ml-4 fas fa-map-marker-alt"/>
                 <b-link class="ml-2">{{ profileData.location }}</b-link>
@@ -98,8 +106,6 @@
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
         this.profileData = response.data;
-      }).catch(error => {
-        console.log(error);
       });
     },
   };

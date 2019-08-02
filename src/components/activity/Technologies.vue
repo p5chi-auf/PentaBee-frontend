@@ -32,8 +32,6 @@
       this.selectedTechnologies = this.technologies;
       UserApi.getTechnologies().then((response) => {
         this.formTechnologies = response.data;
-      }).catch(error => {
-        console.log(error);
       });
     },
     methods: {

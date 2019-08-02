@@ -73,9 +73,6 @@
             window.localStorage.removeItem('token');
             this.$router.push('/login');
           })
-          .catch(error => {
-            return console.log(error);
-          });
       },
     },
   };

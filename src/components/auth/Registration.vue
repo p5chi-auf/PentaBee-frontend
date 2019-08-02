@@ -152,7 +152,7 @@
 
           <p class="text-center">
             Already have a
-            <b-text class="link-redirect">PentaBee</b-text>
+            <code class="link-redirect">PentaBee</code>
             account?
             <b-link class="link-redirect" to="/login">Log In</b-link>
           </p>
@@ -173,7 +173,7 @@
       registerIt() {
         this.$validator.validate();
         RegisterService.register(this.form)
-          .then(response => {
+          .then(() => {
             this.$toast.open({
               message: 'You\'ve successfully registered!',
               type: 'success',
@@ -182,7 +182,6 @@
               dismissible: true,
             });
             this.$router.push('/login');
-            console.log(response);
           })
           .catch(() => {
             this.$toast.open({
