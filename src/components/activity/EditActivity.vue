@@ -121,9 +121,6 @@
               <div class="text-center button">
                 <b-btn
                   class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
-                  variant="warning"
-                  block
-                  pill
                   @click="show()"
                 >Edit Activity
                 </b-btn>

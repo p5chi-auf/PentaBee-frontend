@@ -7,4 +7,5 @@ export const userEndpoints = {
   LOGIN: `${basePath}/login`,
   REGISTER: `${basePath}/register`,
   ACTIVITIES: `${basePath}/activities`,
+  TYPES: `${basePath}/activity-types`,
 };

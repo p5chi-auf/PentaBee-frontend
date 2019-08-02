@@ -2,10 +2,11 @@
   <div class="col home-content">
     <div class="mb-5">
       <b-card no-body>
-        <b-tabs card>
-          <section id="card-outline">
-            <div class="activity-list">
-              <b-tab title="All" active>
+        <div class="activity-list">
+          <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
+          <b-tabs card>
+            <section id="card-outline">
+              <b-tab title="Mine" active>
                 <div class="row">
                   <div v-for="result in results"
                        :key="result.id"
@@ -17,14 +18,20 @@
                       border-variant="warning"
                       class="cards col-md-12 mt-3"
                     >
-                      <b-card-text class="text-name text-center">
-                        {{ result.name | truncate(20, '...') }}
-                      </b-card-text>
+                      <div class="row">
+                        <img src="../../assets/images/combs.jpg" class="activity-image mr-2" alt="activity">
+                        <b-card-text class="col-md-10 text-name">
+                          {{ result.name | truncate(28, '...') }}
+                        </b-card-text>
+                      </div>
 
                       <hr class="line">
 
-                      <b-card-text class="description-height text-center">
+                      <b-card-text class="description-aria-height text-center">
                         {{ result.description | truncate(70, '...') }}
+                      </b-card-text>
+                      <b-card-text class="ml-3 owner-username-styles">
+                        {{ result.owner.username }}
                       </b-card-text>
                     </b-card>
                   </div>
@@ -43,14 +50,20 @@
                       border-variant="warning"
                       class="cards col-md-12 mt-3"
                     >
-                      <b-card-text class="text-name text-center">
-                        {{ result.name | truncate(30, '...') }}
-                      </b-card-text>
+                      <div class="row">
+                        <img src="../../assets/images/combs.jpg" class="activity-image mr-2" alt="activity">
+                        <b-card-text class="col-md-10 text-name">
+                          {{ result.name | truncate(28, '...') }}
+                        </b-card-text>
+                      </div>
 
                       <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(70, '...') }}
+                      </b-card-text>
+                      <b-card-text class="ml-3 owner-username-styles">
+                        {{ result.owner.username }}
                       </b-card-text>
                     </b-card>
                   </div>
@@ -69,21 +82,28 @@
                       border-variant="warning"
                       class="cards col-md-12 mt-3"
                     >
-                      <b-card-text class="text-name text-center">
-                        {{ result.name | truncate(30, '...') }}
-                      </b-card-text>
+                      <div class="row">
+                        <img src="../../assets/images/combs.jpg" class=" activity-image mr-2" alt="activity">
+                        <b-card-text class="col-md-10 text-name">
+                          {{ result.name | truncate(28, '...') }}
+                        </b-card-text>
+                      </div>
 
                       <hr class="line">
 
                       <b-card-text class="description-height text-center">
-                        {{ result.description | truncate(100, '...') }}
+                        {{ result.description | truncate(70, '...') }}
+                      </b-card-text>
+
+                      <b-card-text class="ml-3 owner-username-styles">
+                        {{ result.owner.username }}
                       </b-card-text>
                     </b-card>
                   </div>
                 </div>
               </b-tab>
 
-              <b-tab title="Mine" active class="tab-style">
+              <b-tab title="All" active class="tab-style">
                 <div class="row">
                   <div v-for="result in results"
                        :key="result.id"
@@ -95,31 +115,38 @@
                       border-variant="warning"
                       class="cards col-md-12 mt-3"
                     >
-                      <b-card-text class="text-name text-center">
-                        {{ result.name | truncate(30, '...') }}
-                      </b-card-text>
+                      <div class="row">
+                        <img src="../../assets/images/combs.jpg" class="activity-image mr-2" alt="activity">
+                        <b-card-text class="col-md-10 text-name">
+                          {{ result.name | truncate(28, '...') }}
+                        </b-card-text>
+                      </div>
 
                       <hr class="line">
 
                       <b-card-text class="description-height text-center">
                         {{ result.description | truncate(70, '...') }}
                       </b-card-text>
+
+                      <b-card-text class="ml-3 owner-username-styles">
+                        {{ result.owner.username }}
+                      </b-card-text>
                     </b-card>
                   </div>
                 </div>
               </b-tab>
-            </div>
-          </section>
-        </b-tabs>
-        <div class="d-flex justify-content-center">
-          <b-pagination
-            v-model="pagination.currentPage"
-            bg-variant="dark"
-            :total-rows="pagination.numResults"
-            :per-page="pagination.per_page"
-            aria-controls="my-table"
-            @input="getData"
-          />
+            </section>
+          </b-tabs>
+          <div class="d-flex justify-content-center">
+            <b-pagination
+              v-model="pagination.currentPage"
+              class="color"
+              :total-rows="pagination.numResults"
+              :per-page="pagination.per_page"
+              aria-controls="my-table"
+              @input="getData"
+            />
+          </div>
         </div>
       </b-card>
     </div>
@@ -128,7 +155,7 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import { mapState, mapGetters } from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
     data() {
@@ -143,9 +170,8 @@
         },
       };
     },
-    computed:{
-      ...mapState('account',['user']),
-      ...mapGetters('account', ['userId']),
+    computed: {
+      ...mapState('account', ['user']),
     },
     mounted() {
       this.getData();
@@ -156,10 +182,7 @@
         ActivityService.getActivityList(request).then((response) => {
           this.results = response.data.results;
           this.pagination.numResults = response.data.numResults;
-        })
-          .catch(error => {
-            console.log(error);
-          });
+        });
       },
       redirectToActivityDetails(id) {
         this.$router.push({ name: 'activity', params: { activityId: id } });

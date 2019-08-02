@@ -4,7 +4,7 @@
       <section id="card-outline">
         <b-container class="col-md-9 mx-auto">
           <b-row align-h="center" class="mt-5">
-            <b-card class="p-3">
+            <b-card class="ml-2 p-3">
               <h4 class="text-center">
                 Create an activity
                 <hr>

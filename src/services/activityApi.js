@@ -18,7 +18,7 @@ export default {
     return API.post( userEndpoints.ACTIVITIES +'/' + id + '/edit', data)
   },
   getTypes() {
-    return API.get( 'http://api.pentabee.local/api/activity-types')
+    return API.get( userEndpoints.TYPES)
   },
   applyActivity(id){
     return API.post(userEndpoints.ACTIVITIES +'/'+ id + '/apply')

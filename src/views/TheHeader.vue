@@ -58,7 +58,7 @@
         <div class="top-bar-violet"/>
         <div class="top-bar-blue"/>
         <div class="top-bar-green"/>
-        <div class="top-bar-bluesky"/>
+        <div class="top-bar-blueSky"/>
       </div>
     </div>
   </header>

@@ -1,23 +1,32 @@
 <template>
-  <div>
-    <b-form>
-      <b-form-group class="col-md-12" label="Users:" label-for="users">
-        <multiselect
-          v-model="form.results.id"
-          placeholder="Search an user"
-          label="name"
-          track-by="id"
-          :options="form.results"
-          :multiple="true"
-          :taggable="true"
-        />
-      </b-form-group>
-    </b-form>
+  <div class="activity-list">
+    <div class="pt-2 mb-5 pb-5">
+      <section class="SectionStyle">
+        <b-container>
+          <b-card class="mx-auto border-warning">
+            <h2 class="text-center">Invite users to your activity</h2><br>
+            <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
+              <b-list-group-item variant="warning">{{ item.username }}
+                <b-link
+                  v-b-tooltip.hover.top
+                  title="Invite user"
+                  class="apply-icon float-right"
+                  @click="userInvite"
+                >
+                  <i class="float-right far fa-check-circle"/>
+                </b-link>
+              </b-list-group-item>
+            </b-list-group>
+          </b-card>
+        </b-container>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
   import UserApi from '@/services/userDetailsApi';
+  import ActivityService from '../../services/activityApi';
 
   export default {
     data: () => ({
@@ -28,6 +37,22 @@
         .then((response) => {
           this.form = response.data;
         });
+      // ActivityService.inviteUser(this.$route.params.activityId);
+    },
+    methods: {
+      userInvite() {
+        ActivityService.inviteUser(this.form.id)
+          .then(() => {
+            this.$toast.open({
+              message: 'User invited with success!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+      },
     },
   };
 </script>
+

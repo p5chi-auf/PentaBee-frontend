@@ -3,12 +3,13 @@ import Home from '@/views/TheHome';
 import Login from '@/components/auth/Login';
 import Registration from '@/components/auth/Registration';
 import Profile from '@/components/user/VProfile';
-import Edit from '@/views/EditProfile';
+import Edit from '@/views/VEdit';
 import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from '../components/activity/ActivityList';
-import  ActivityEdit from '@/components/activity/EditActivity';
+import ActivityEdit from '@/components/activity/EditActivity';
+import Invite from '@/components/activity/UsersList';
 
 import Vue from 'vue';
 import store from '../store';
@@ -74,6 +75,14 @@ const router = new Router({
       },
     },
     {
+      path: '/activity/:activityId/invite',
+      name: 'invite',
+      component: Invite,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
       path: '/activity-create',
       name: 'createActivity',
       component: CreateActivity,
@@ -87,7 +96,7 @@ const router = new Router({
       component: ActivityEdit,
       meta: {
         requiresAuth: true,
-      }
+      },
     },
   ],
 });

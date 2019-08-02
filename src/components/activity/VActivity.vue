@@ -18,7 +18,6 @@
                     >
                   </b-card-text>
                 </div>
-
                 <hr class="line">
 
                 <div>
@@ -85,7 +84,7 @@
                     v-b-tooltip.hover.top
                     title="Invite users"
                     class="float-right ml-2 mr-2"
-                    to="/invite"
+                    @click="invite"
                   >
                     <i class="fas fa-user-plus"/>
                   </b-link>
@@ -130,7 +129,7 @@
                   :adaptive="true"
                 >
                   <div class="example-modal-content text-center mt-5">
-                    Do you want to apply for this activity?
+                    Do you want to apply to this activity?
                   </div>
                   <div class="row mt-5 ml-3">
                     <b-btn class="col-md-5" variant="dark" @click="cancel">Cancel</b-btn>
@@ -163,11 +162,9 @@
       ...mapGetters('account', ['userId']),
     },
     created() {
-      ActivityService.getActivityDetails(this.$route.params.activityId).then((response) => {
-        this.activity = response.data;
-      })
-        .catch(error => {
-          console.log(error);
+      ActivityService.getActivityDetails(this.$route.params.activityId)
+        .then((response) => {
+          this.activity = response.data;
         });
     },
     methods: {
@@ -193,31 +190,34 @@
             });
           });
         this.$modal.hide('apply-activity');
-        return 0
+        return 0;
       },
-      showApplyModal(){
+      showApplyModal() {
         this.$modal.show('apply-activity');
       },
-      setActivityEditId () {
-        this.$router.push ({name: 'activityEdit', params: {activityEditId: this.activity.id}});
+      invite() {
+        this.$router.push({ name: 'invite', params: { activityEditId: this.activity.id } });
       },
-      showDeleteModal(){
+      setActivityEditId() {
+        this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } });
+      },
+      showDeleteModal() {
         this.$modal.show('delete-activity');
       },
-      cancel () {
+      cancel() {
         this.$modal.hide('delete-activity');
         this.$modal.hide('apply-activity');
-        return 0
+        return 0;
       },
       deleteActivity() {
         ActivityService.deleteActivity(this.$route.params.activityId)
           .then(() => {
-          alert('Deleted successful!');
-          this.$router.push('/activity-list');
-        })
-      .catch (() => {
-          alert ("You d'ont have permission")
-        })
+            alert('Deleted successful!');
+            this.$router.push('/activity-list');
+          })
+          .catch(() => {
+            alert('You d\'ont have permission');
+          });
       },
     },
   };

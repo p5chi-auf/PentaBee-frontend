@@ -19,6 +19,12 @@
     text-overflow: ellipsis;
   }
 
+  .description-aria-height {
+    height: 60px;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
   .technology-name {
     font-size: initial;
   }
@@ -31,9 +37,40 @@
     -moz-transition: all 0.3s ease-in;
   }
 
+  .activity-image {
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    position: relative;
+    height: 40px;
+    width: 40px;
+  }
+
+  .owner-username-styles {
+    color: #000000;
+    font-weight: bold;
+  }
+
   .description-styles {
     text-indent: 2em;
     font-weight: initial;
+  }
+
+  .create-activity-icon {
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+    font-size: 40px;
+    cursor: pointer;
+    background: var(--mainGradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .create-activity-icon:hover {
+    background: var(--yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .SectionStyle .card:hover {
@@ -64,14 +101,17 @@
     font-size: initial;
     padding: 0;
   }
-  .delete-icon{
+
+  .delete-icon {
     color: #ff1100;
   }
-  .edit-icon{
+
+  .edit-icon {
     color: #006b00;
   }
-  .apply-icon{
+
+  .apply-icon {
     color: #F57C00;
-    font-size: 25px;
+    font-size: 20px;
   }
 }

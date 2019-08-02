@@ -1,6 +1,6 @@
 header {
   &.header-attributes {
-    background-color: #2e2e2d;
+    background-color: var(--headerBackground);
     position: fixed;
     width: 100%;
     z-index: 999;
@@ -42,7 +42,7 @@ header {
   .inner .top-bar-violet,
   .inner .top-bar-blue,
   .inner .top-bar-green,
-  .inner .top-bar-bluesky {
+  .inner .top-bar-blueSky {
     width: 20%;
     float: left;
     height: inherit;
@@ -64,7 +64,7 @@ header {
     background: #aabcbd;
   }
 
-  .top-bar-bluesky {
+  .top-bar-blueSky {
     background: #9bd6e7;
   }
 

@@ -7,7 +7,7 @@
   box-shadow: 3px 0 0 0 #ffda00 inset;
 }
 
-.v-sidebar-menu .vsm-mobile-bg{background: linear-gradient(to right, #ffda00 0%, #F57C00 80%, #ffbc1d 100%);}
+.v-sidebar-menu .vsm-mobile-bg{background: var(--mainGradient);}
 
 @media screen and (max-width: 414px) {
   .v-sidebar-menu {
