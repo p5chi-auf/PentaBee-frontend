@@ -1,45 +1,3 @@
-<!--          <div class="text-center">-->
-<!--            <b-btn-->
-<!--              v-if="userId !== activity.owner.id"-->
-<!--              variant="warning"-->
-<!--              class="btn btn-1 col-3"-->
-<!--              pill-->
-<!--              @click="apply(activity.id)"-->
-<!--            >-->
-<!--              Apply-->
-<!--            </b-btn>-->
-<!--            <b-btn-->
-<!--              variant="warning"-->
-<!--              class="btn btn-1 col-3"-->
-<!--              pill-->
-<!--              to="/invite"-->
-<!--            >-->
-<!--              Invite-->
-<!--            </b-btn>-->
-
-<!--            <b-btn-->
-<!--              variant="warning"-->
-<!--              class="btn btn-1 col-3"-->
-<!--              pill-->
-<!--            >-->
-<!--              Edit-->
-<!--            </b-btn>-->
-
-<!--            <b-btn-->
-<!--              v-if="userId === activity.owner.id"-->
-<!--              variant="warning"-->
-<!--              class="btn btn-1 col-3 btn-delete"-->
-<!--              pill-->
-<!--              @click="deleteActivity"-->
-<!--            >-->
-<!--              Delete activity-->
-<!--            </b-btn>-->
-<!--          </div>-->
-<!--        </b-card>-->
-<!--      </section>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
 <template>
   <div class="activity-list">
     <div class="pt-2 mb-5 pb-5">
@@ -90,8 +48,8 @@
                     <p class="col-md-4 ml-4 application-deadline">
                       Date: {{ activity.application_deadline | formatDate }}
                     </p>
-                    <p class="col-md-4  ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime
-                    }}</p>
+                    <p class="col-md-4  ml-4 application-deadline">
+                      Time: {{ activity.application_deadline | formatTime }}</p>
                   </h5>
 
                   <h5 class="font-weight-bold col">
@@ -102,40 +60,45 @@
                 </div>
 
                 <div class="text-center">
-                  <b-btn
-                    v-if="userId !== activity.owner.id"
-                    variant="warning"
-                    class="btn btn-1 col-3"
-                    pill
-                    @click="apply(activity.id)"
-                  >
-                    Apply
-                  </b-btn>
-                  <b-btn
+                  <b-link
                     v-if="userId === activity.owner.id"
-                    variant="warning"
-                    class="btn btn-1 col-3"
-                    pill
-                    to="/invite"
-                  >
-                    Invite
-                  </b-btn>
-
-                  <b-btn
-                    v-if="userId === activity.owner.id"
-                    class="btn-success col-md-3 float-right ml-2 mr-2"
-                    @click="setActivityEditId"
-                  >
-                    Edit
-                  </b-btn>
-
-                  <b-btn
-                    v-if="userId === activity.owner.id"
-                    class="btn-danger col-md-3 float-right ml-2 mr-2"
+                    v-b-tooltip.hover.top
+                    title="Delete activity"
+                    class="delete-icon float-right ml-2 mr-2"
                     @click="showDeleteModal"
                   >
-                    Delete activity
-                  </b-btn>
+                    <i class="fas fa-trash-alt"/>
+                  </b-link>
+
+                  <b-link
+                    v-if="userId === activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Edit activity"
+                    class="edit-icon float-right ml-2 mr-2"
+                    @click="setActivityEditId"
+                  >
+                    <i class="fas fa-edit"/>
+                  </b-link>
+
+                  <b-link
+                    v-if="userId === activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Invite users"
+                    class="float-right ml-2 mr-2"
+                    to="/invite"
+                  >
+                    <i class="fas fa-user-plus"/>
+                  </b-link>
+
+                  <b-link
+                    v-if="userId !== activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Apply"
+                    class="apply-icon float-right ml-2 mr-2"
+                    @click="showApplyModal"
+                  >
+                    <i class="fas fa-check-circle"/>
+                  </b-link>
                 </div>
 
                 <modal
@@ -154,6 +117,24 @@
                   <div class="row mt-5 ml-3">
                     <b-btn class="col-md-5" variant="dark" @click="cancel">Cancel</b-btn>
                     <b-btn class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-btn>
+                  </div>
+                </modal>
+                <modal
+                  name="apply-activity"
+                  transition="nice-modal-fade"
+                  :min-width="100"
+                  :min-height="100"
+                  :max-width="300"
+                  :max-height="200"
+                  :delay="100"
+                  :adaptive="true"
+                >
+                  <div class="example-modal-content text-center mt-5">
+                    Do you want to apply for this activity?
+                  </div>
+                  <div class="row mt-5 ml-3">
+                    <b-btn class="col-md-5" variant="dark" @click="cancel">Cancel</b-btn>
+                    <b-btn class="col-md-5 ml-3" variant="warning" @click="apply(activity.id)">Apply</b-btn>
                   </div>
                 </modal>
               </div>
@@ -211,6 +192,11 @@
               dismissible: true,
             });
           });
+        this.$modal.hide('apply-activity');
+        return 0
+      },
+      showApplyModal(){
+        this.$modal.show('apply-activity');
       },
       setActivityEditId () {
         this.$router.push ({name: 'activityEdit', params: {activityEditId: this.activity.id}});
@@ -220,6 +206,7 @@
       },
       cancel () {
         this.$modal.hide('delete-activity');
+        this.$modal.hide('apply-activity');
         return 0
       },
       deleteActivity() {
