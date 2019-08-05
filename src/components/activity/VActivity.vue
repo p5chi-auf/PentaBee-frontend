@@ -5,7 +5,7 @@
         <b-card class="mx-auto border-warning">
           <div class="row">
             <div class="col-md-3">
-              <img src="../../assets/images/combs.jpg" class="round-image" alt="avatar"></div>
+              <img :src="avatarActivityUrl" class="round-image" alt="avatar"></div>
             <div class="col-md-9">
               <div class="row">
                 <b-card-title class="col-md-8 mx-auto row">
@@ -16,14 +16,10 @@
                   <img src="../../assets/images/user-image.png" class="user-image" alt="">
                 </b-card-text>
               </div>
+              
               <hr class="border line">
-              <b-alert
-                show
-                class="text-center"
-                variant="warning"
-                dismissible
-                fade
-              >
+              
+              <b-alert show class="text-center" variant="warning" dismissible fade>
                 <i class="fas fa-smile-wink"/>
                 All about activity
               </b-alert>
@@ -55,7 +51,8 @@
                   <p class="col-md-4 ml-4 application-deadline">
                     Date: {{ activity.application_deadline | formatDate }}
                   </p>
-                  <p class="col-md-4  ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime }}</p>
+                  <p class="col-md-4 ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime
+                  }}</p>
                 </h5>
                 
                 <h5 class="font-weight-bold col">
@@ -64,21 +61,35 @@
                   <p class="col-md-4 ml-4 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
                 </h5>
               </div>
-              <b-button
+              <b-btn
+                v-if="userId !== activity.owner.id"
+                variant="warning"
+                class="btn btn-1 col-3"
+                pill
+                @click="apply(activity.id)"
+              >
+                Apply
+              </b-btn>
+              
+              <b-btn variant="warning" class="btn btn-1 col-3" pill to="/invite"> Invite</b-btn>
+              
+              <i class="fas fa-users applicants-icon-button" @click="redirectToActivityApplicants(activity.id)"/>
+              
+              <b-btn
                 v-if="userId===activity.owner.id"
                 class="btn-danger col-md-3 float-right ml-2 mr-2"
                 @click="showDeleteModal"
               >
                 Delete activity
-              </b-button>
+              </b-btn>
               
-              <b-button
+              <b-btn
                 v-if="userId===activity.owner.id"
                 class="btn-success col-md-3 float-right ml-2 mr-2"
                 @click="setActivityEditId"
               >
                 Edit activity
-              </b-button>
+              </b-btn>
               
               <modal
                 name="delete-activity"
@@ -90,9 +101,8 @@
                 :delay="100"
                 :adaptive="true"
               >
-                <div class="example-modal-content text-center mt-5">
-                  Do you want to delete activity?
-                </div>
+                <div class="example-modal-content text-center mt-5">Do you want to delete activity?</div>
+                
                 <div class="row mt-5 ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">Cancel</b-button>
                   <b-button class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">Yes</b-button>
@@ -108,27 +118,33 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-  import UserApi from '@/services/userDetailsApi';
-  import { mapState } from 'vuex';
+  import {mapState, mapGetters} from 'vuex';
+
   export default {
     data () {
       return {
         activity: {
-          owner: {}
+          owner: {
+            avatar: {}
+          }
         },
-        delete: false
+        delete: false,
+        avatarActivityUrl: null
       }
     },
 
-    computed:{
-      ...mapState('account',['user', 'setUser']),
-      userId(){
-        return UserApi.getUserId();
-      },
+    computed: {
+      ...mapState ('account', ['user', 'setUser']),
+      ...mapGetters ('account', ['userId']),
     },
     mounted () {
       ActivityService.getActivityDetails (this.$route.params.activityId).then ((response) => {
         this.activity = response.data;
+        if (this.activity.owner.avatar) {
+          this.avatarActivityUrl = 'http://api.pentabee.local/' + this.activity.owner.avatar.original;
+        } else {
+          this.avatarActivityUrl = '/img/combs.jpg'
+        }
       })
         .catch (error => {
           console.log (error)
@@ -136,12 +152,26 @@
 
     },
     methods: {
-      showDeleteModal(){
-        this.$modal.show('delete-activity');
+      redirectToActivityApplicants (id) {
+        this.$router.push ({name: 'applicantsList', params: {idActivity: id}});
+      },
+      showDeleteModal () {
+        this.$modal.show ('delete-activity');
       },
       cancel () {
-        this.$modal.hide('delete-activity');
+        this.$modal.hide ('delete-activity');
         return 0
+      },
+      apply (id) {
+        ActivityService.applyActivity (id).then (() => {
+          this.$toast.open ({
+            message: 'You\'ve successfully applied to activity!',
+            type: 'success',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true,
+          });
+        })
       },
 
       setActivityEditId () {
@@ -159,9 +189,15 @@
 </script>
 
 <style>
+  .applicants-icon-button {
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
   .technology-name {
     font-size: initial;
   }
+  
   .SectionStyle .card {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #ffda00;
@@ -169,33 +205,40 @@
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
+  
   .description-styles {
     text-indent: 2em;
     font-weight: initial;
   }
+  
   .SectionStyle .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px #9e9e9e;
   }
+  
   .line {
     padding: 1px;
     background-image: linear-gradient(to right, #fff68d 0%, #ffda00, #fff68d 100%);
   }
+  
   .round-image {
     border-radius: 50%;
     height: 150px;
     width: 150px;
   }
+  
   .user-image {
     border-radius: 50%;
     height: 40px;
     width: 60px;
   }
+  
   .application-deadline {
     color: #006b00;
     font-size: initial;
     padding: 0;
   }
+  
   .deadline {
     color: red;
     font-size: initial;
