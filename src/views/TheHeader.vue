@@ -22,7 +22,7 @@
           right
         >
           <template slot="button-content">
-            <b-img class="user mr-1" :src="avatars"/>
+            <b-img class="user mr-1" :src="avatarImage"/>
 
             <span class="user-dropdown text-capitalize">{{ userData.name }} {{ userData.surname }}</span>
           </template>
@@ -79,22 +79,20 @@
           '40x40': '',
         },
       },
+      avatarImage: null,
     }),
     computed: {
       ...mapGetters('account', ['userId']),
-      avatars: function() {
-        let avatarUrl = (((this.userData || {}).avatar || {})['40x40'] || '');
-        if (avatarUrl === '') {
-          avatarUrl = '/img/person1.png';
-        } else {
-          avatarUrl = apiDomain + '/' + avatarUrl;
-        }
-        return avatarUrl;
-      },
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
         this.userData = response.data;
+        if (this.userData.avatar){
+          this.avatarImage = apiDomain + '/' + this.userData.avatar['40x40'];
+        }
+        else{
+          this.avatarImage = '/img/person1.png'
+        }
       });
     },
     methods: {

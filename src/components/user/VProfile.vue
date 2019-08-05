@@ -1,5 +1,5 @@
 <template>
-  <div class="edit profileCard home-content row">
+  <div class="edit profile-card home-content row">
     <div class="col-lg-6 col-md-6 col-xs-12">
       <h2 class="text-center pl-4 mb-5 my-4">Profile</h2>
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
@@ -16,7 +16,7 @@
                 <div class="greenIcon"/>
 
                 <div class="image-in-container">
-                  <b-img :src="avatars"/>
+                  <b-img :src="avatarImage"/>
                 </div>
               </div>
             </div>
@@ -88,24 +88,21 @@
           '40x40': '',
         },
       },
+      avatarImage: null,
     }),
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
       ...mapState('account', ['user']),
       ...mapGetters('account', ['userId']),
-      avatars: function() {
-        let avatarUrl = (((this.profileData || {}).avatar || {})['200x200'] || '');
-        if (avatarUrl === '') {
-          avatarUrl = '/img/person1.png';
-        } else {
-          avatarUrl = apiDomain + '/' + avatarUrl;
-        }
-        return avatarUrl;
-      },
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
         this.profileData = response.data;
+        if (this.profileData.avatar) {
+          this.avatarImage = apiDomain + '/' + this.profileData.avatar['200x200'];
+        } else {
+          this.avatarImage = '/img/person1.png';
+        }
       });
     },
   };

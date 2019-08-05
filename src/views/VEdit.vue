@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <div class="profileCard home-content">
+    <div class="profile-card home-content">
       <section id="card-outline">
         <b-container>
           <b-card-group deck>

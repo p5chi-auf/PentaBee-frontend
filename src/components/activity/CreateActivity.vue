@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <div class="profileCard home-content">
+    <div class="profile-card home-content">
       <section id="card-outline">
         <b-container class="col-md-9 mx-auto">
           <b-row align-h="center" class="mt-5">

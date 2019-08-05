@@ -26,8 +26,9 @@ footer {
   }
 
   .bottom-bar-yellow {
-    background: var(--mainGradient);
+    background: var(--yellowGradient);
   }
+
   @media screen and (max-width: 414px) {
     .footer {
       width: 100%;

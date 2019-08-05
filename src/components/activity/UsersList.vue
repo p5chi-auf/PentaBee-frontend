@@ -4,14 +4,16 @@
       <section class="SectionStyle">
         <b-container>
           <b-card class="mx-auto border-warning">
-            <h2 class="text-center">Invite users to your activity</h2><br>
+
+            <h2 class="text-center mb-3">Invite users to your activity</h2>
+
             <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
               <b-list-group-item variant="warning">{{ item.username }}
                 <b-link
                   v-b-tooltip.hover.top
                   title="Invite user"
                   class="apply-icon float-right"
-                  @click="userInvite"
+                  @click="userInvite(item.id)"
                 >
                   <i class="float-right far fa-check-circle"/>
                 </b-link>
@@ -26,7 +28,7 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-  import ActivityService from '../../services/activityApi';
+  import ActivityService from '@/services/activityApi';
 
   export default {
     data: () => ({
@@ -37,15 +39,24 @@
         .then((response) => {
           this.form = response.data;
         });
-      // ActivityService.inviteUser(this.$route.params.activityId);
     },
     methods: {
-      userInvite() {
-        ActivityService.inviteUser(this.form.id)
+      userInvite(id) {
+        ActivityService.inviteUser(this.$route.params.activityId, id)
           .then(() => {
             this.$toast.open({
               message: 'User invited with success!',
               type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          })
+          .catch((error) => {
+            let message = error.response.data.message;
+            this.$toast.open({
+              message: message,
+              type: 'error',
               position: 'top-right',
               duration: 3000,
               dismissible: true,
@@ -55,4 +66,3 @@
     },
   };
 </script>
-

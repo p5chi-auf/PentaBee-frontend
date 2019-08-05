@@ -2,8 +2,22 @@
   //************* Background Color Variables *****************//
   --headerBackground: #2e2e2d;
   --footerBackground: #161616;
+  --loginBackground: #121917;
 
-  --mainGradient: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
+  //************* Main Color Variables *****************//
   --yellow: #ffda00;
   --orange: #F57C00;
+  --black: #000;
+  --white: #fff;
+  --gray: #555;
+  --blue: #668994;
+  --green: #006b00;
+  --red: #ff1100;
+  --greenLight: #4cd137;
+
+  //****************** Gradients **************************//
+  --yellowGradient: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
+  --orangeGradient: linear-gradient(to right, #ff8100 0%, #F57C00 50%, #ffda00 100%);
+  --blueGradient: linear-gradient(to right, #668994 0%, #6f97a3 50%, #668994 100%);
+  --lineGradient: linear-gradient(to right, white, #F57C00, white);
 }
