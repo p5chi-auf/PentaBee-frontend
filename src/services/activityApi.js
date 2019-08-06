@@ -1,5 +1,5 @@
 import API from './';
-import { userEndpoints } from '@/constants/apiEndpoints';
+import { userEndpoints, basePath } from '@/constants/apiEndpoints';
 
 export default {
   getActivityList(filter){
@@ -18,7 +18,7 @@ export default {
     return API.post( userEndpoints.ACTIVITIES +'/' + id + '/edit', data)
   },
   getTypes() {
-    return API.get( 'http://api.pentabee.local/api/activity-types')
+    return API.get( basePath + '/activity-types')
   },
   applyActivity(id){
     return API.post(userEndpoints.ACTIVITIES +'/'+ id + '/apply')

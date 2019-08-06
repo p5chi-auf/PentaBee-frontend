@@ -37,7 +37,6 @@
       this.selectedTypes = this.types;
       ActivityService.getTypes().then((response) =>{
         this.formTypes = response.data;
-      }).catch(error =>{
       })
     },
     methods: {

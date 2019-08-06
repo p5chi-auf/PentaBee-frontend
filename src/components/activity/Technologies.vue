@@ -5,7 +5,8 @@
       v-model="technologies"
       placeholder="Search a technology"
       label="name"
-      track-by="id" :options="formTechnologies"
+      track-by="id"
+      :options="formTechnologies"
       :multiple="true"
       :taggable="true"
       class="row col-md-12"
@@ -14,36 +15,31 @@
   </b-form-group>
 </template>
 <script>
-  import UserApi from '@/services/userDetailsApi';
-  
-  export default {
-    model: {
-      prop: "technologies",
-      event: "changeTechnologiesList"
-    },
-    props: {technologies: Array},
-    data() {
-      return{
-        formTechnologies: [],
-        selectedTechnologies: []
-      }
-    },
-   created(){ this.selectedTechnologies = this.technologies},
-    mounted() {
-      this.selectedTechnologies = this.technologies;
-      UserApi.getTechnologies ().then ((response) => {
+import UserApi from '@/services/userDetailsApi';
+
+export default {
+  model: {
+    prop: 'technologies',
+    event: 'changeTechnologiesList',
+  },
+  props: { technologies: Array },
+  data() {
+    return {
+      formTechnologies: [],
+      selectedTechnologies: [],
+    };
+  },
+  mounted() {
+    this.selectedTechnologies = this.technologies;
+    UserApi.getTechnologies()
+      .then(response => {
         this.formTechnologies = response.data;
-      }).catch (error => {
-      });
+      })
+  },
+  methods: {
+    updateTechnologies(technologies) {
+      this.$emit('changeTechnologiesList', technologies);
     },
-    methods: {
-      updateTechnologies (technologies) {
-        this.$emit('changeTechnologiesList', technologies);
-      }
-    }
-  };
+  },
+};
 </script>
-<style>
-
-</style>
-

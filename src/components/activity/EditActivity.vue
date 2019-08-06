@@ -8,9 +8,9 @@
               <h4 class="text-center">
                 Edit activity
               </h4>
-              
-              <hr>
-              
+
+              <hr >
+
               <b-form class="row" @submit.prevent="editActivity()">
                 <b-form-group
                   id="input-group-1"
@@ -28,9 +28,11 @@
                     :class="{ 'is-invalid': errors.has('name') }"
                     @change="edited = true"
                   />
-                  <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
+                  <span v-if="errors.has('name')" class="invalid-feedback">{{
+                    errors.first('name')
+                  }}</span>
                 </b-form-group>
-                
+
                 <b-form-group class=" col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
@@ -38,7 +40,7 @@
                       name="some-radios"
                       :value="true"
                       class=" ml-3 col-md-5 mt-2 text-color-activity"
-                      @change="edited=true"
+                      @change="edited = true"
                     >
                       Public
                     </b-form-radio>
@@ -53,23 +55,20 @@
                     </b-form-radio>
                   </div>
                 </b-form-group>
-                
+
                 <technology-list
                   v-model="form.technologies"
                   class="col-md-6"
-                  @changeTechnologiesList="edited=true"
+                  @changeTechnologiesList="edited = true"
                 />
-                
+
                 <types-list
                   v-model="form.types"
                   class="col-md-6"
-                  @changeTypesList="edited=true"
+                  @changeTypesList="edited = true"
                 />
-                
-                <b-form-group
-                  id="input-group-3"
-                  class="col-md-6"
-                >
+
+                <b-form-group id="input-group-3" class="col-md-6">
                   <label class="ml-3 text-color-activity">Application deadline:</label>
                   <datetime
                     v-model="form.application_deadline"
@@ -78,29 +77,24 @@
                     type="datetime"
                     :min-datetime="form.application_deadline"
                     input-style="width: 185px"
-                    @click="edited=true"
+                    @click="edited = true"
                   />
                 </b-form-group>
-                
-                <b-form-group
-                  class="col-md-6"
-                >
+
+                <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Final deadline:</label>
                   <datetime
                     v-model="form.final_deadline"
                     name="final_deadline"
                     value-zone="UTC"
                     type="datetime"
-                    :min-datetime="timeStartDeadline"
+                    :min-datetime="form.application_deadline"
                     input-style="width: 185px"
-                    @click="edited=true"
+                    @click="edited = true"
                   />
                 </b-form-group>
-                
-                <b-form-group
-                  id="input-group-2"
-                  class="col-md-12 mx-auto"
-                >
+
+                <b-form-group id="input-group-2" class="col-md-12 mx-auto">
                   <label class="ml-3 text-color-activity">Description:</label>
                   <b-textarea
                     id="description"
@@ -110,15 +104,16 @@
                     type="text"
                     class="form-control"
                     :class="{ 'is-invalid': errors.has('description') }"
-                    @change="edited=true"
+                    @change="edited = true"
                   />
-                  
-                  <span v-if="errors.has('description')"
-                        class="invalid-feedback"
+
+                  <span
+                    v-if="errors.has('description')"
+                    class="invalid-feedback"
                   >{{ errors.first('description') }}</span>
                 </b-form-group>
               </b-form>
-              
+
               <div class="text-center button">
                 <b-btn
                   class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
@@ -140,11 +135,17 @@
                 :adaptive="true"
               >
                 <div class="example-modal-content text-center mt-5">
-                  <h6> Do you want to save changes for activity? </h6>
+                  <h6>Do you want to save changes for activity?</h6>
                 </div>
                 <div class="row mt-lg-5 ml-3">
-                  <b-button class="col-md-5" variant="dark" @click="cancel"> Cancel</b-button>
-                  <b-button class="col-md-5 ml-3" variant="warning" @click="editActivity()"> Save</b-button>
+                  <b-button class="col-md-5" variant="dark" @click="cancel">
+                    Cancel</b-button>
+                  <b-button
+                    class="col-md-5 ml-3"
+                    variant="warning"
+                    @click="editActivity()"
+                  >
+                    Save</b-button>
                 </div>
               </modal>
             </b-card>
@@ -155,74 +156,83 @@
   </div>
 </template>
 <script>
-  import ActivityService from '../../services/activityApi';
-  import {mapState} from 'vuex';
-  import moment, {unix} from 'moment';
-  import TechnologyList from './Technologies';
-  import TypesList from './Types';
+import ActivityService from '../../services/activityApi';
+import { mapState } from 'vuex';
+import moment, { unix } from 'moment';
+import TechnologyList from './Technologies';
+import TypesList from './Types';
 
-  export default {
-    components: {
-      TechnologyList: TechnologyList,
-      TypesList: TypesList
-    },
-    data () {
-      return {
-        form: {
-          name: '',
-          description: '',
-          application_deadline: '',
-          final_deadline: '',
-          status: 0,
-          public: true,
-          technologies: [
-            {id: null}
-          ],
-          types: [],
-        },
-        edited: false,
-        technologiesList: []
-      };
-    },
+export default {
+  components: {
+    TechnologyList: TechnologyList,
+    TypesList: TypesList
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        description: '',
+        application_deadline: '',
+        final_deadline: '',
+        status: 0,
+        public: true,
+        technologies: [{ id: null }],
+        types: [],
+      },
+      edited: false,
+      technologiesList: [],
+    };
+  },
 
-    computed: {
-      ...mapState ('account', ['user']),
-    },
-    mounted () {
-      ActivityService.getActivityDetails (this.$route.params.activityEditId).then ((response) => {
+  computed: {
+    ...mapState('account', ['user']),
+  },
+  mounted() {
+    ActivityService.getActivityDetails(this.$route.params.activityEditId)
+      .then(response => {
         this.form = response.data;
-        this.form.application_deadline = moment (unix (this.form.application_deadline)).toISOString ();
-        this.form.final_deadline = moment (unix (this.form.final_deadline)).toISOString ();
+        this.form.application_deadline = moment(
+          unix(this.form.application_deadline)
+        ).toISOString();
+        this.form.final_deadline = moment(
+          unix(this.form.final_deadline)
+        ).toISOString();
       })
-        .catch (error => {
-          console.log (error)
-        });
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  methods: {
+    show() {
+      this.$modal.show('edit-activity');
     },
-    methods: {
-      show () {
-        this.$modal.show ('edit-activity');
-      },
-      cancel () {
-        this.$modal.hide ('edit-activity');
-      },
-      editActivity () {
-        this.$modal.hide ('edit-activity');
-        let activity = JSON.parse (JSON.stringify (this.form));
+    cancel() {
+      this.$modal.hide('edit-activity');
+    },
+    editActivity() {
+      this.$modal.hide('edit-activity');
+      let activity = JSON.parse(JSON.stringify(this.form));
+      
+      activity.application_deadline = moment(
+        this.form.application_deadline
+      ).format('X');
+      activity.final_deadline = moment(this.form.final_deadline).format('X');
 
-        activity.application_deadline = moment (this.form.application_deadline).format ("X");
-        activity.final_deadline = moment (this.form.final_deadline).format ("X");
-
-        if (this.edited === true) {
-          ActivityService.editActivity (this.$route.params.activityEditId, activity).then (() => {
-            this.$router.push ('/activity-list');
+      if (this.edited === true) {
+        ActivityService.editActivity(
+          this.$route.params.activityEditId,
+          activity
+        )
+          .then(() => {
+            this.$router.push('/activity-list');
           })
-            .catch (() => {
-              alert ('your data are bad')
-            });
-        } else {
-          alert ('you need to make changes')
-        }
+          .catch(() => {
+            alert('your data are bad');
+          });
+      } else {
+        alert('you need to make changes');
       }
-    }
-  }
+    },
+  },
+};
 </script>
