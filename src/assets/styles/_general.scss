@@ -9,12 +9,6 @@ body {
     width: auto;
   }
 
-  @media screen and (max-width: 360px) {
-    .main {
-      padding-top: 150px;
-    }
-  }
-
   h2 {
     font-size: 30px;
     color: var(--gray);
@@ -86,7 +80,8 @@ body {
   }
 
   .page-item.active .page-link {
-    background: var(--gray);
+    background: var(--orangeGradient);
+    border-color: var(--orange);
   }
 
   .page-item a {

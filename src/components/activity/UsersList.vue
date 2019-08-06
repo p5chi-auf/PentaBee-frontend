@@ -1,7 +1,7 @@
 <template>
   <div class="activity-list">
     <div class="pt-2 mb-5 pb-5">
-      <section class="SectionStyle">
+      <section class="section-style">
         <b-container>
           <b-card class="mx-auto border-warning">
 

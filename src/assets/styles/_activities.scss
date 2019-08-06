@@ -29,7 +29,7 @@
     font-size: initial;
   }
 
-  .SectionStyle .card {
+  .section-style .card {
     border-radius: 15px;
     box-shadow: 5px 5px 5px var(--yellow);
     transition: all 0.3s ease-in;
@@ -73,7 +73,7 @@
     -webkit-text-fill-color: transparent;
   }
 
-  .SectionStyle .card:hover {
+  .section-style .card:hover {
     border-radius: 20px;
     box-shadow: 5px 5px 10px var(--gray);
   }

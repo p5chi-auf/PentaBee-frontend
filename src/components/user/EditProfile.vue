@@ -1,10 +1,7 @@
 <template>
   <div>
     <b-form class="row" @submit.prevent="edit()">
-      <b-form-group
-        class="col-md-6"
-        label-for="username"
-      >
+      <b-form-group class="col-md-6" label-for="username">
         <label class="typo__label ml-3">Username:</label>
 
         <b-form-input
@@ -17,10 +14,7 @@
         />
       </b-form-group>
 
-      <b-form-group
-        class="col-md-6"
-        label-for="email"
-      >
+      <b-form-group class="col-md-6" label-for="email">
         <label class="typo__label ml-3">Email:</label>
 
         <b-form-input
@@ -33,11 +27,7 @@
         />
       </b-form-group>
 
-      <b-form-group
-        id="input-group-3"
-        class="col-md-6"
-        label-for="firstName"
-      >
+      <b-form-group id="input-group-3" class="col-md-6" label-for="firstName">
         <label class="typo__label ml-3">First Name:</label>
 
         <b-form-input
@@ -50,13 +40,12 @@
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
-        <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
+        <span v-if="errors.has('name')" class="invalid-feedback">{{
+          errors.first('name')
+        }}</span>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-6"
-        label-for="lastName"
-      >
+      <b-form-group class="col-md-6" label-for="lastName">
         <label class="typo__label ml-3">Last Name:</label>
 
         <b-form-input
@@ -69,13 +58,12 @@
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
-        <span v-if="errors.has('surname')" class="invalid-feedback">{{ errors.first('surname') }}</span>
+        <span v-if="errors.has('surname')" class="invalid-feedback">{{
+          errors.first('surname')
+        }}</span>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-4"
-        label-for="position"
-      >
+      <b-form-group class="col-md-4" label-for="position">
         <label class="typo__label ml-3">Position:</label>
 
         <b-form-select v-model="form.position" :options="options3">
@@ -85,10 +73,7 @@
         </b-form-select>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-4"
-        label-for="seniority"
-      >
+      <b-form-group class="col-md-4" label-for="seniority">
         <label class="typo__label ml-3">Seniority:</label>
 
         <b-form-select v-model="form.seniority" :options="options1">
@@ -98,10 +83,7 @@
         </b-form-select>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-4"
-        label-for="location"
-      >
+      <b-form-group class="col-md-4" label-for="location">
         <label class="typo__label ml-3">Location:</label>
 
         <b-form-select v-model="form.location" :options="options2">
@@ -111,19 +93,13 @@
         </b-form-select>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-12"
-        label-for="technologies"
-      >
+      <b-form-group class="col-md-12" label-for="technologies">
         <label class="typo__label ml-3">Skills:</label>
 
         <technologies v-model="form.technologies"/>
       </b-form-group>
 
-      <b-form-group
-        class="col-md-12"
-        label-for="biography"
-      >
+      <b-form-group class="col-md-12" label-for="biography">
         <label class="typo__label ml-3">About me:</label>
 
         <b-form-textarea
@@ -136,11 +112,23 @@
     </b-form>
 
     <div class="text-center space">
-      <b-btn
-        class="float-none d-inline-block btn btn-1"
-        @click="edit()"
-      > Save changes
+      <b-btn class="float-none d-inline-block btn btn-1" @click="edit()">
+        Save changes
       </b-btn>
+    </div>
+    <p>*) Try To Upload Some Image~</p>
+
+    <file-base64 :multiple="true" :done="getFiles"/>
+
+    <div class="text-center">
+      <img v-for="img in files" alt="avatar" :src="img.base64">
+    </div>
+
+    <div v-if="files.length !== 0">
+      <h3 class="text-center mt-25">Callback Object</h3>
+      <div class="pre-container" align="left">
+        <pre>{{ files }}</pre>
+      </div>
     </div>
   </div>
 </template>
@@ -149,9 +137,10 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
   import Technologies from '../activity/Technologies';
+  import fileBase64 from './vue-file-base64.vue';
 
   export default {
-    components: { Technologies },
+    components: { Technologies, fileBase64 },
 
     data: () => ({
       form: {
@@ -170,6 +159,7 @@
           },
         ],
       },
+      files: [],
       loginError: '',
       formTechnologies: [],
       options1: [
@@ -203,16 +193,20 @@
       ...mapGetters('account', ['userId']),
     },
     mounted() {
-      UserApi.userInfo(this.userId).then((response) => {
-        this.form = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
-      UserApi.getTechnologies(this.userId).then((response) => {
-        this.formTechnologies = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
+      UserApi.userInfo(this.userId)
+        .then(response => {
+          this.form = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      UserApi.getTechnologies(this.userId)
+        .then(response => {
+          this.formTechnologies = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
@@ -241,6 +235,9 @@
               dismissible: true,
             });
           });
+      },
+      getFiles(files) {
+        this.files = files;
       },
     },
   };
