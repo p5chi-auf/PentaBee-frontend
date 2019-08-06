@@ -43,7 +43,6 @@
         ActivityService.getApplicantsList (this.$route.params.idActivity).then ((response) => {
           this.form.results = response.data.results;
           this.isBusy = false;
-          console.log (this.form.results)
         })
       }
     }

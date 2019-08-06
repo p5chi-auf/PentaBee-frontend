@@ -8,7 +8,7 @@ import NotFound from '@/views/NotFound';
 import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from '../components/activity/ActivityList';
-import  ActivityEdit from '@/components/activity/EditActivity';
+import ActivityEdit from '@/components/activity/EditActivity';
 import ApplicantsList from "../components/activity/ApplicantsList";
 
 import Vue from 'vue';

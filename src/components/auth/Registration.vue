@@ -5,8 +5,8 @@
         <b-card class="p-3">
           <h4 class="text-center">
             Create an PentaBee account
-            <hr class="line">
           </h4>
+          <hr class="line">
           <b-form class="row" @submit.prevent="registerIt()">
             <b-form-group
               id="input-group-1"
@@ -175,7 +175,7 @@
       registerIt() {
         this.$validator.validate();
         RegisterService.register(this.form)
-          .then(response => {
+          .then(() => {
             this.$toast.open({
               message: 'You\'ve successfully registered!',
               type: 'success',
@@ -184,7 +184,6 @@
               dismissible: true,
             });
             this.$router.push('/login');
-            console.log(response);
           })
           .catch(() => {
             this.$toast.open({

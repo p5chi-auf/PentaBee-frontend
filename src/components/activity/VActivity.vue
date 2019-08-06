@@ -12,7 +12,7 @@
                   {{ activity.name }}
                 </b-card-title>
                 <b-card-text class="col-md-4 text-right text-capitalize">
-                  {{ activity.owner.name +' ' + activity.owner.surname }}
+                  {{ activity.owner.name+' '+activity.owner.surname }}
                   <img src="../../assets/images/user-image.png" class="user-image" alt="">
                 </b-card-text>
               </div>
@@ -148,10 +148,6 @@
           this.avatarActivityUrl = '/img/combs.jpg'
         }
       })
-        .catch (error => {
-          console.log (error)
-        });
-
     },
     methods: {
       redirectToActivityApplicants (id) {
