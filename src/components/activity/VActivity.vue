@@ -47,12 +47,14 @@
               </div>
               
               <div class="row">
-                <h5 class="font-weight-bold col">Application till:
+                <h5 class="font-weight-bold col">
+                  Application till:
                   <p class="col-md-4 ml-4 application-deadline">
                     Date: {{ activity.application_deadline | formatDate }}
                   </p>
-                  <p class="col-md-4 ml-4 application-deadline">Time: {{ activity.application_deadline | formatTime
-                  }}</p>
+                  <p class="col-md-4 ml-4 application-deadline">
+                    Time: {{ activity.application_deadline | formatTime }}
+                  </p>
                 </h5>
                 
                 <h5 class="font-weight-bold col">
