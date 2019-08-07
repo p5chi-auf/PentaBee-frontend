@@ -30,23 +30,23 @@ export default {
         'email',
         'location',
         'seniority',
-        'position',
+        'position'
       ],
       isBusy: true,
       form: {
-        results: [],
+        results: []
       }
     }
   },
   mounted() {
-    this.getListApplicants();
+    this.getListApplicants()
   },
   methods: {
     getListApplicants() {
       ActivityService.getApplicantsList(this.$route.params.idActivity).then(
         response => {
           this.form.results = response.data.results;
-          this.isBusy = false;
+          this.isBusy = false
         }
       )
     }
