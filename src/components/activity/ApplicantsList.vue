@@ -35,12 +35,8 @@ export default {
       isBusy: true,
       form: {
         results: [],
-      },
-      window: {
-        width: 0,
-        height: 0,
-      },
-    };
+      }
+    }
   },
   mounted() {
     this.getListApplicants();
