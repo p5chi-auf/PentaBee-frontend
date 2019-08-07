@@ -1,11 +1,10 @@
-export const apiDomain = 'http://api.pentabee.local';
-export const basePath = `${apiDomain}/api`;
+export const basePath = 'http://api.pentabee.local';
 
 export const userEndpoints = {
-  USER: `${basePath}/user/`,
-  TECHNOLOGIES: `${basePath}/technologies`,
-  LOGIN: `${basePath}/login`,
-  REGISTER: `${basePath}/register`,
-  ACTIVITIES: `${basePath}/activities`,
-  TYPES: `${basePath}/activity-types`,
+  USER: `${basePath}/api/user/`,
+  TECHNOLOGIES: `${basePath}/api/technologies`,
+  LOGIN: `${basePath}/api/login`,
+  REGISTER: `${basePath}/api/register`,
+  ACTIVITIES: `${basePath}/api/activities`,
+  TYPES: `${basePath}/api/activity-types`,
 };

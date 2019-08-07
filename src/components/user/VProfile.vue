@@ -47,7 +47,7 @@
 
               <div class="mb-2">
                 <i class="ml-4 fas fa-map-marker-alt"/>
-                <b-link class="ml-2">{{ profileData.location }}</b-link>
+                <b-link class="ml-2">{{ profileData.location }}</b-link>;
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapState, mapGetters } from 'vuex';
   import Activities from './UserActivities';
-  import { apiDomain } from '@/constants/apiEndpoints';
+  import { basePath } from '@/constants/apiEndpoints';
 
   export default {
     components: { Activities },
@@ -97,7 +97,7 @@
       UserApi.userInfo(this.userId).then((response) => {
         this.profileData = response.data;
         if (this.profileData.avatar) {
-          this.avatarImage = apiDomain + '/' + this.profileData.avatar['200x200'];
+          this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
         } else {
           this.avatarImage = '/img/person1.png';
         }

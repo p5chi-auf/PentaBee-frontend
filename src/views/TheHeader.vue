@@ -67,7 +67,7 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapGetters } from 'vuex';
-  import { apiDomain } from '@/constants/apiEndpoints';
+  import { basePath } from '@/constants/apiEndpoints';
 
   export default {
     data: () => ({
@@ -88,7 +88,7 @@
       UserApi.userInfo(this.userId).then((response) => {
         this.userData = response.data;
         if (this.userData.avatar){
-          this.avatarImage = apiDomain + '/' + this.userData.avatar['40x40'];
+          this.avatarImage = basePath + '/' + this.userData.avatar['40x40'];
         }
         else{
           this.avatarImage = '/img/person1.png'

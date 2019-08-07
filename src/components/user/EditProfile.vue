@@ -113,8 +113,8 @@
       <b-form-group class="col-md-12" label-for="avatar">
         <label class="typo__label ml-3">Try To Upload Some Image:</label>
         <b-form-file accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+        <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
       </b-form-group>
-      <b-img :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
     </b-form>
 
     <div class="text-center space">
