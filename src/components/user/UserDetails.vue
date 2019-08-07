@@ -15,7 +15,7 @@
           disabled
         />
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-6"
         label="Email:"
@@ -30,7 +30,7 @@
           disabled
         />
       </b-form-group>
-
+      
       <b-form-group
         id="input-group-3"
         class="col-md-6"
@@ -46,12 +46,12 @@
           class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('name') }"
         />
-
+        
         <span v-if="errors.has('name')" class="invalid-feedback">
           {{ errors.first('name') }}
         </span>
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-6"
         label="Last Name:"
@@ -66,12 +66,12 @@
           class="form-control text-capitalize"
           :class="{ 'is-invalid': errors.has('surname') }"
         />
-
+        
         <span v-if="errors.has('surname')" class="invalid-feedback">
           {{ errors.first('surname') }}
         </span>
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-4"
         label="Position:"
@@ -85,7 +85,7 @@
           class="form-control"
         />
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-4"
         label="Seniority:"
@@ -97,7 +97,7 @@
           </template>
         </b-form-select>
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-4"
         label="Location:"
@@ -109,7 +109,7 @@
           </template>
         </b-form-select>
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-12"
         label="Skills:"
@@ -124,7 +124,7 @@
           :taggable="true"
         />
       </b-form-group>
-
+      
       <b-form-group
         class="col-md-12"
         label="About me:"
@@ -138,7 +138,7 @@
         />
       </b-form-group>
     </b-form>
-
+    
     <div class="text-center space">
       <b-btn
         class="col-md-5 float-none d-inline-block btn btn-1"

@@ -13,13 +13,13 @@
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
                 <div class="greenIcon"/>
-
+                
                 <div class="image-in-container">
                   <b-img :src="require('../../../public/img/person1.png')"/>
                 </div>
               </div>
             </div>
-
+            
             <h3 class="mt-1">{{ form.name }} {{ form.surname }}</h3>
             <h6 class="seniorityText mt-2" style="text-transform:uppercase">{{ form.position }} {{ seniorityList[form.seniority] }}</h6>
             <hr class="line">

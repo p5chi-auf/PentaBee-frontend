@@ -27,8 +27,8 @@
       UserApi.userList(this.form)
         .then((response) => {
           this.form = response.data;
-        });
-    },
-  };
+        })
+    }
+  }
 </script>
 
