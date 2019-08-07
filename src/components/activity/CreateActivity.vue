@@ -10,13 +10,7 @@
                 <hr class="line" >
               </h4>
 
-              <b-alert
-                show
-                class="text-center"
-                variant="warning"
-                dismissible
-                fade
-              >
+              <b-alert show class="text-center" variant="warning" dismissible fade>
                 <i class="fas fa-smile-wink" />
                 Add information about your Activity
               </b-alert>
@@ -26,6 +20,7 @@
                   <label class="ml-3 text-color-activity">
                     Name of activity:
                   </label>
+                  
                   <b-form-input
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
@@ -71,6 +66,7 @@
 
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Application deadline:</label>
+                  
                   <datetime
                     v-model="form.application_deadline"
                     :min-datetime="timeStartApplication"
@@ -84,6 +80,7 @@
 
                 <b-form-group class="col-md-5">
                   <label class="ml-3 text-color-activity">Final deadline:</label>
+                  
                   <datetime
                     v-model="form.final_deadline"
                     :min-datetime="timeStartDeadline"
@@ -144,7 +141,7 @@ import ActivityTypesList from './Types';
 export default {
   components: {
     TechnologyList: TechnologyList,
-    ActivityTypesList: ActivityTypesList,
+    ActivityTypesList: ActivityTypesList
   },
   data() {
     return {
@@ -156,11 +153,11 @@ export default {
         status: 0,
         public: true,
         technologies: [],
-        types: [],
+        types: []
       },
       timeStartApplication: '',
-      timeStartDeadline: '',
-    };
+      timeStartDeadline: ''
+    }
   },
   created() {
     let startTime = new Date();
@@ -168,30 +165,28 @@ export default {
     startTime.setDate(startTime.getDate() + 1);
     this.form.application_deadline = moment(startTime).toISOString();
     this.timeStartApplication = moment(startTime).toISOString();
-    this.setDeadline();
+    this.setDeadline()
   },
   methods: {
     setDeadline() {
       let deadline = moment(this.form.application_deadline).add(1, 'days');
 
       this.form.final_deadline = moment(deadline).toISOString();
-      this.timeStartDeadline = moment(deadline).toISOString();
+      this.timeStartDeadline = moment(deadline).toISOString()
     },
     createActivity() {
       let activity = JSON.parse(JSON.stringify(this.form));
 
-      activity.application_deadline = moment(
-        this.form.application_deadline
-      ).format('X');
+      activity.application_deadline = moment(this.form.application_deadline).format('X');
       activity.final_deadline = moment(this.form.final_deadline).format('X');
       RegisterService.createActivity(activity)
         .then(() => {
-          this.$router.push('/activity-list');
+          this.$router.push('/activity-list')
         })
         .catch(() => {
-          alert('yor data are bad');
-        });
-    },
-  },
-};
+          alert('yor data are bad')
+        })
+    }
+  }
+}
 </script>

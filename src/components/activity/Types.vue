@@ -25,24 +25,23 @@
       event: "changeTypesList"
     },
     props:{
-      types: Array,
+      types: Array
     },
     data () {
       return {
         formTypes: [],
         selectedTypes: []
-      };
+      }
     },
     mounted () {
       this.selectedTypes = this.types;
-      ActivityService.getTypes().then((response) =>{
-        this.formTypes = response.data;
-      })
+      ActivityService.getTypes()
+        .then((response) =>{this.formTypes = response.data})
     },
     methods: {
       updateTypes (types) {
-        this.$emit('changeTypesList', types);
+        this.$emit('changeTypesList', types)
       }
     }
-  };
+  }
 </script>

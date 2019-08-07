@@ -16,26 +16,21 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
+                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
                     <div class="row">
-                      <img
-                        src="../../assets/images/combs.jpg"
-                        class="activity-image mr-2"
-                      >
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+          
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
                     </div>
-
+        
                     <hr class="line-separator" >
-
-                    <b-card-text class="description-aria-height text-center">
+        
+                    <b-card-text class="description-height text-center">
                       {{ result.description | truncate(70, '...') }}
                     </b-card-text>
+        
                     <b-card-text class="ml-3 owner-username-styles">
                       {{ result.owner.username }}
                     </b-card-text>
@@ -52,26 +47,21 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
+                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
                     <div class="row">
-                      <img
-                        src="../../assets/images/combs.jpg"
-                        class="activity-image mr-2"
-                      >
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+          
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
                     </div>
-
+        
                     <hr class="line-separator" >
-
+        
                     <b-card-text class="description-height text-center">
                       {{ result.description | truncate(70, '...') }}
                     </b-card-text>
+        
                     <b-card-text class="ml-3 owner-username-styles">
                       {{ result.owner.username }}
                     </b-card-text>
@@ -88,16 +78,10 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
+                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
                     <div class="row">
-                      <img
-                        src="../../assets/images/combs.jpg"
-                        class=" activity-image mr-2"
-                      >
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                     
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
@@ -125,27 +109,21 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
+                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
                     <div class="row">
-                      <img
-                        src="../../assets/images/combs.jpg"
-                        class="activity-image mr-2"
-                      >
+                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+          
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
                     </div>
-
+        
                     <hr class="line-separator" >
-
+        
                     <b-card-text class="description-height text-center">
                       {{ result.description | truncate(70, '...') }}
                     </b-card-text>
-
+        
                     <b-card-text class="ml-3 owner-username-styles">
                       {{ result.owner.username }}
                     </b-card-text>
@@ -183,15 +161,15 @@ export default {
         currentPage: 1,
         per_page: 9,
         numPages: 1,
-        numResults: 1,
-      },
-    };
+        numResults: 1
+      }
+    }
   },
   mounted() {
-    this.getData();
+    this.getData()
   },
   computed: {
-    ...mapState('account', ['user']),
+    ...mapState('account', ['user'])
   },
   methods: {
     getData() {
@@ -201,16 +179,17 @@ export default {
         '&pagination[per_page]=' +
         this.pagination.per_page;
 
-      ActivityService.getActivityList(request).then(response => {
+      ActivityService.getActivityList(request)
+        .then(response => {
         this.results = response.data.results;
         this.pagination.numResults = response.data.numResults;
-      });
+      })
     },
     redirectToActivityDetails(id) {
-      this.$router.push({ name: 'activity', params: { activityId: id } });
-    },
-  },
-};
+      this.$router.push({ name: 'activity', params: { activityId: id } })
+    }
+  }
+}
 </script>
 
 <style>

@@ -14,31 +14,32 @@
     />
   </b-form-group>
 </template>
+
 <script>
 import UserApi from '@/services/userDetailsApi';
 
 export default {
   model: {
     prop: 'technologies',
-    event: 'changeTechnologiesList',
+    event: 'changeTechnologiesList'
   },
   props: { technologies: Array },
   data() {
     return {
       formTechnologies: [],
-      selectedTechnologies: [],
+      selectedTechnologies: []
     };
   },
   mounted() {
     this.selectedTechnologies = this.technologies;
     UserApi.getTechnologies()
       .then(response => {
-        this.formTechnologies = response.data;
+        this.formTechnologies = response.data
       })
   },
   methods: {
     updateTechnologies(technologies) {
-      this.$emit('changeTechnologiesList', technologies);
+      this.$emit('changeTechnologiesList', technologies)
     },
   },
 };

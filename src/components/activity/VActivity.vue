@@ -13,30 +13,23 @@
                 <b-card-title class="col-md-8 mx-auto row">
                   {{ activity.name }}
                 </b-card-title>
+                
                 <b-card-text class="col-md-4 text-right text-capitalize">
                   {{ activity.owner.name + ' ' + activity.owner.surname }}
-                  <img
-                    :src="ownerImageAvatarUrl"
-                    class="user-image"
-                  >
+                  <img :src="ownerImageAvatarUrl" class="user-image">
                 </b-card-text>
               </div>
 
               <hr class="border line" >
 
-              <b-alert
-                show
-                class="text-center"
-                variant="warning"
-                dismissible
-                fade
-              >
+              <b-alert show class="text-center" variant="warning" dismissible fade>
                 <i class="fas fa-smile-wink" />
                 All about activity
               </b-alert>
 
               <div>
                 <h5 class="font-weight-bold">Description:</h5>
+                
                 <p class="ml-1 description-styles">
                   {{ activity.description }}
                 </p>
@@ -53,6 +46,7 @@
 
                 <div class="col">
                   <h5 class="font-weight-bold">Types:</h5>
+                  
                   <ul v-for="item in activity.types" :key="item.id">
                     <li class="technology-name ml-3">{{ item.name }}</li>
                   </ul>
@@ -65,6 +59,7 @@
                   <p class="col-md-4 ml-4 application-deadline">
                     Date: {{ activity.application_deadline | formatDate }}
                   </p>
+                  
                   <p class="col-md-4 ml-4 application-deadline">
                     Time: {{ activity.application_deadline | formatTime }}
                   </p>
@@ -75,11 +70,13 @@
                   <p class="col-md-4 ml-4 deadline">
                     Date: {{ activity.final_deadline | formatDate }}
                   </p>
+                  
                   <p class="col-md-4 ml-4 deadline">
                     Time: {{ activity.final_deadline | formatTime }}
                   </p>
                 </h5>
               </div>
+              
               <b-btn
                 v-if="userId !== activity.owner.id"
                 variant="warning"
@@ -90,13 +87,9 @@
                 Apply
               </b-btn>
 
-              <b-btn
-                variant="warning"
-                class="btn btn-1 col-3"
-                pill
-                to="/invite"
-              >
-                Invite</b-btn>
+              <b-btn variant="warning" class="btn btn-1 col-3" pill to="/invite">
+                Invite
+              </b-btn>
 
               <i
                 class="fas fa-users applicants-icon-button"
@@ -135,11 +128,10 @@
 
                 <div class="row mt-5 ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">Cancel</b-button>
-                  <b-button
-                    class="col-md-5 ml-3"
-                    variant="warning"
-                    @click="deleteActivity()"
-                  >Yes</b-button>
+                  
+                  <b-button class="col-md-5 ml-3" variant="warning" @click="deleteActivity()">
+                    Yes
+                  </b-button>
                 </div>
               </modal>
             </div>
@@ -160,49 +152,49 @@ export default {
     return {
       activity: {
         owner: {
-          avatar: {},
+          avatar: {}
         },
-        cover: {},
+        cover: {}
       },
       delete: false,
       avatarActivityUrl: null,
       ownerImageAvatarUrl: null
-    };
+    }
   },
   mounted() {
-    ActivityService.getActivityDetails(this.$route.params.activityId).then(
-      response => {
+    ActivityService.getActivityDetails(this.$route.params.activityId)
+      .then(response => {
         this.activity = response.data;
-        console.log(this.activity.cover);
+        
         if (this.activity.cover) {
-          this.avatarActivityUrl =
-            apiDomain + '/' + this.activity.cover['150x150'];
-        } else {
-          this.avatarActivityUrl = '/img/combs.jpg';
-        }
-        if (this.activity.owner.avatar){
-          this.ownerImageAvatarUrl =  apiDomain + '/' + this.activity.owner.avatar['40x40'];
+          this.avatarActivityUrl = apiDomain + '/' + this.activity.cover['150x150']
         }
         else {
-          this.avatarActivityUrl = '/img/person1.png';
+          this.avatarActivityUrl = '/img/combs.jpg'
+        }
+        if (this.activity.owner.avatar){
+          this.ownerImageAvatarUrl =  apiDomain + '/' + this.activity.owner.avatar['40x40']
+        }
+        else {
+          this.avatarActivityUrl = '/img/person1.png'
         }
       }
     );
   },
   computed: {
     ...mapState('account', ['user', 'setUser']),
-    ...mapGetters('account', ['userId']),
+    ...mapGetters('account', ['userId'])
   },
   methods: {
     redirectToActivityApplicants(id) {
-      this.$router.push({ name: 'applicantsList', params: { idActivity: id } });
+      this.$router.push({ name: 'applicantsList', params: { idActivity: id } })
     },
     showDeleteModal() {
-      this.$modal.show('delete-activity');
+      this.$modal.show('delete-activity')
     },
     cancel() {
       this.$modal.hide('delete-activity');
-      return 0;
+      return 0
     },
     apply(id) {
       ActivityService.applyActivity(id).then(() => {
@@ -211,28 +203,25 @@ export default {
           type: 'success',
           position: 'top-right',
           duration: 3000,
-          dismissible: true,
-        });
-      });
+          dismissible: true
+        })
+      })
     },
 
     setActivityEditId() {
-      this.$router.push({
-        name: 'activityEdit',
-        params: { activityEditId: this.activity.id },
-      });
+      this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } })
     },
     deleteActivity() {
       ActivityService.deleteActivity(this.$route.params.activityId)
         .then(() => {
-          this.$router.push('/activity-list');
+          this.$router.push('/activity-list')
         })
         .catch(() => {
-          alert("You d'ont have permission");
-        });
-    },
-  },
-};
+          alert("You d'ont have permission")
+        })
+    }
+  }
+}
 </script>
 
 <style>

@@ -28,9 +28,9 @@
                     :class="{ 'is-invalid': errors.has('name') }"
                     @change="edited = true"
                   />
-                  <span v-if="errors.has('name')" class="invalid-feedback">{{
-                    errors.first('name')
-                  }}</span>
+                  <span v-if="errors.has('name')" class="invalid-feedback">
+                    {{ errors.first('name') }}
+                  </span>
                 </b-form-group>
 
                 <b-form-group class=" col-md-6">
@@ -124,6 +124,7 @@
                 >Edit Activity
                 </b-btn>
               </div>
+              
               <modal
                 name="edit-activity"
                 transition="nice-modal-fade"
@@ -137,6 +138,7 @@
                 <div class="example-modal-content text-center mt-5">
                   <h6>Do you want to save changes for activity?</h6>
                 </div>
+                
                 <div class="row mt-lg-5 ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">
                     Cancel</b-button>
@@ -155,6 +157,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import ActivityService from '../../services/activityApi';
 import { mapState } from 'vuex';
@@ -177,13 +180,13 @@ export default {
         status: 0,
         public: true,
         technologies: [{ id: null }],
-        types: [],
+        types: []
       },
       edited: false,
-      technologiesList: [],
-    };
+      technologiesList: []
+    }
   },
-
+  
   computed: {
     ...mapState('account', ['user']),
   },
@@ -191,48 +194,40 @@ export default {
     ActivityService.getActivityDetails(this.$route.params.activityEditId)
       .then(response => {
         this.form = response.data;
-        this.form.application_deadline = moment(
-          unix(this.form.application_deadline)
-        ).toISOString();
-        this.form.final_deadline = moment(
-          unix(this.form.final_deadline)
-        ).toISOString();
+        this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
+        this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
       })
       .catch(error => {
         console.log(error);
-      });
+      })
   },
   methods: {
     show() {
-      this.$modal.show('edit-activity');
+      this.$modal.show('edit-activity')
     },
     cancel() {
-      this.$modal.hide('edit-activity');
+      this.$modal.hide('edit-activity')
     },
     editActivity() {
       this.$modal.hide('edit-activity');
       let activity = JSON.parse(JSON.stringify(this.form));
       
-      activity.application_deadline = moment(
-        this.form.application_deadline
-      ).format('X');
+      activity.application_deadline = moment(this.form.application_deadline).format('X');
       activity.final_deadline = moment(this.form.final_deadline).format('X');
 
       if (this.edited === true) {
-        ActivityService.editActivity(
-          this.$route.params.activityEditId,
-          activity
-        )
+        ActivityService.editActivity(this.$route.params.activityEditId,activity)
           .then(() => {
-            this.$router.push('/activity-list');
+            this.$router.push('/activity-list')
           })
           .catch(() => {
-            alert('your data are bad');
+            alert('your data are bad')
           });
-      } else {
-        alert('you need to make changes');
       }
-    },
-  },
-};
+      else {
+        alert('you need to make changes')
+      }
+    }
+  }
+}
 </script>
