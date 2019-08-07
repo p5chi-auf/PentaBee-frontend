@@ -48,8 +48,8 @@ export default {
           this.form.results = response.data.results;
           this.isBusy = false;
         }
-      );
-    },
-  },
-};
+      )
+    }
+  }
+}
 </script>
