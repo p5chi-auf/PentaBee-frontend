@@ -17,7 +17,7 @@
           class="ml-4 fas fa-times mouse-type"
           @click="declineApplicant(row.item.id)"
         />
-        <i class="ml-4 fas fa-info-circle" @click="row.toggleDetails"/>
+        <i class="ml-4 fas fa-info-circle mouse-type" @click="row.toggleDetails"/>
       </template>
       <div slot="table-busy" class="text-center text-danger my-2">
         <b-spinner class="align-middle"/>
@@ -29,6 +29,7 @@
           Technologies:
           <p v-for="myTechnology in row.item.technologies" class="col">{{ myTechnology.name }}</p>
         </div>
+        <p>Stars:{{ row.item.stars }}</p>
       </template>
     </b-table>
   </div>
@@ -53,7 +54,8 @@
         isBusy: true,
         form: {
           results: [
-            { technologies: [] }
+            { technologies: [] },
+            {stars: null}
           ],
         },
         window: {
