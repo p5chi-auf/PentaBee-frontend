@@ -18,7 +18,7 @@
                 >
                   <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img src="../../assets/images/combs.jpg" class="activity-image mr-2">
           
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}

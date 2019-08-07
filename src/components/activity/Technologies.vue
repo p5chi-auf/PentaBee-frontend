@@ -39,8 +39,8 @@ export default {
   },
   methods: {
     updateTechnologies(technologies) {
-      this.$emit('changeTechnologiesList', technologies)
-    },
-  },
-};
+      this.$emit("changeTechnologiesList", technologies)
+    }
+  }
+}
 </script>

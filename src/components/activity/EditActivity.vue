@@ -186,10 +186,7 @@ export default {
       technologiesList: []
     }
   },
-  
-  computed: {
-    ...mapState('account', ['user']),
-  },
+
   mounted() {
     ActivityService.getActivityDetails(this.$route.params.activityEditId)
       .then(response => {
@@ -200,6 +197,9 @@ export default {
       .catch(error => {
         console.log(error);
       })
+  },
+  computed: {
+    ...mapState('account', ['user']),
   },
   methods: {
     show() {

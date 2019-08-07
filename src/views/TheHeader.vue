@@ -74,24 +74,24 @@
       form: {}
     }),
     computed: {
-      ...mapGetters ('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
-    mounted () {
-      UserApi.userInfo (this.userId).then ((response) => {
-        this.form = response.data;
+    mounted() {
+      UserApi.userInfo(this.userId).then((response) => {
+        this.form = response.data
       })
     },
     methods: {
-      onclick () {
-        window.localStorage.removeItem ('token');
-        this.$toast.open ({
+      onclick() {
+        window.localStorage.removeItem('token');
+        this.$toast.open({
           message: 'You\'ve been logged out!',
           type: 'error',
           position: 'top-right',
           duration: 3000,
-          dismissible: true,
+          dismissible: true
         });
-        this.$router.push ('/login');
+        this.$router.push('/login')
       }
     }
   }
