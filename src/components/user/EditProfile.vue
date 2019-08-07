@@ -129,6 +129,7 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
   import Technologies from '../activity/Technologies';
+  import { basePath } from '@/constants/apiEndpoints';
 
   export default {
     components: { Technologies },
@@ -186,6 +187,9 @@
       UserApi.userInfo(this.userId)
         .then(response => {
           this.form = response.data;
+          if (this.form.avatar) {
+            this.previewImage = basePath + '/' + this.form.avatar.original;
+          }
         });
       UserApi.getTechnologies(this.userId)
         .then(response => {
@@ -202,6 +206,7 @@
         reader.onload = e => {
           this.previewImage = e.target.result;
           this.form.avatar = this.previewImage;
+          console.log(this.previewImage);
         };
       },
       edit() {
@@ -209,6 +214,7 @@
           ...this.form,
           id: this.userId,
         };
+        console.log(this.form);
         UserApi.editUser(data)
           .then(() => {
             this.$toast.open({
