@@ -109,26 +109,18 @@
           rows="3"
         />
       </b-form-group>
+
+      <b-form-group class="col-md-12" label-for="avatar">
+        <label class="typo__label ml-3">Try To Upload Some Image:</label>
+        <b-form-file accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+      </b-form-group>
+      <b-img :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
     </b-form>
 
     <div class="text-center space">
       <b-btn class="float-none d-inline-block btn btn-1" @click="edit()">
         Save changes
       </b-btn>
-    </div>
-    <p>*) Try To Upload Some Image~</p>
-
-    <file-base64 :multiple="true" :done="getFiles"/>
-
-    <div class="text-center">
-      <img v-for="img in files" alt="avatar" :src="img.base64">
-    </div>
-
-    <div v-if="files.length !== 0">
-      <h3 class="text-center mt-25">Callback Object</h3>
-      <div class="pre-container" align="left">
-        <pre>{{ files }}</pre>
-      </div>
     </div>
   </div>
 </template>
@@ -137,16 +129,12 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapActions, mapState, mapGetters } from 'vuex';
   import Technologies from '../activity/Technologies';
-  import fileBase64 from './vue-file-base64.vue';
 
   export default {
-    components: { Technologies, fileBase64 },
+    components: { Technologies },
 
     data: () => ({
       form: {
-        id: null,
-        username: '',
-        email: '',
         position: '',
         seniority: null,
         name: '',
@@ -158,9 +146,11 @@
             id: null,
           },
         ],
+        avatar: {
+          original: '',
+        },
       },
-      files: [],
-      loginError: '',
+      previewImage: null,
       formTechnologies: [],
       options1: [
         { value: '0', text: 'JUNIOR' },
@@ -196,20 +186,24 @@
       UserApi.userInfo(this.userId)
         .then(response => {
           this.form = response.data;
-        })
-        .catch(error => {
-          console.log(error);
         });
       UserApi.getTechnologies(this.userId)
         .then(response => {
           this.formTechnologies = response.data;
-        })
-        .catch(error => {
-          console.log(error);
         });
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),
+      uploadImage(e) {
+        const image = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.readAsDataURL(image);
+        reader.onload = e => {
+          this.previewImage = e.target.result;
+          this.form.avatar = this.previewImage;
+        };
+      },
       edit() {
         const data = {
           ...this.form,
@@ -235,9 +229,6 @@
               dismissible: true,
             });
           });
-      },
-      getFiles(files) {
-        this.files = files;
       },
     },
   };

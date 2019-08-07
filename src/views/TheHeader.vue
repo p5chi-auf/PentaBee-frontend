@@ -15,20 +15,6 @@
 
       <div class="ml-auto">
         <b-dropdown
-          size="sm"
-          variant="warning"
-          toggle-class="text-decoration-none"
-          no-caret
-        >
-          <template slot="button-content">
-            <i class="far fa-bell notification"/>
-          </template>
-          <b-dropdown-item>
-            Lorem ipsum dolor sit amet.
-          </b-dropdown-item>
-        </b-dropdown>
-
-        <b-dropdown
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"

@@ -83,9 +83,7 @@
           },
         ],
         avatar: {
-          original: '',
           '200x200': '',
-          '40x40': '',
         },
       },
       avatarImage: null,

@@ -183,9 +183,10 @@
             });
             this.$router.push('/login');
           })
-          .catch(() => {
+          .catch((error) => {
+            let message = error.response.data.message;
             this.$toast.open({
-              message: 'Please complete all required fields',
+              message: message,
               type: 'error',
               position: 'top-right',
               duration: 3000,
