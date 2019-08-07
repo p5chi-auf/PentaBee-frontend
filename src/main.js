@@ -6,8 +6,9 @@ import './plugins';
 import Datetime from 'vue-datetime';
 import VueTruncate from 'vue-truncate-filter';
 import moment, {unix} from 'moment';
+import VModal from 'vue-js-modal';
+
 import './assets/main.scss';
-import VModal from 'vue-js-modal'
 
 Vue.use(VueTruncate);
 Vue.use(Datetime);

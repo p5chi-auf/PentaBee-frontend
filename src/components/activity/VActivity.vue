@@ -153,7 +153,7 @@
 <script>
 import ActivityService from '../../services/activityApi';
 import { mapState, mapGetters } from 'vuex';
-import { apiDomain } from '../../constants/apiEndpoints';
+import { userEndpoints } from '../../constants/apiEndpoints';
 
 export default {
   data() {
@@ -176,12 +176,12 @@ export default {
         console.log(this.activity.cover);
         if (this.activity.cover) {
           this.avatarActivityUrl =
-            apiDomain + '/' + this.activity.cover['150x150'];
+            userEndpoints.ImageUrl + '/' + this.activity.cover['150x150'];
         } else {
           this.avatarActivityUrl = '/img/combs.jpg';
         }
         if (this.activity.owner.avatar){
-          this.ownerImageAvatarUrl =  apiDomain + '/' + this.activity.owner.avatar['40x40'];
+          this.ownerImageAvatarUrl =  userEndpoints.ImageUrl + '/' + this.activity.owner.avatar['40x40'];
         }
         else {
           this.avatarActivityUrl = '/img/person1.png';

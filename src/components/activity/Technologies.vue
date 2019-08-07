@@ -14,6 +14,7 @@
     />
   </b-form-group>
 </template>
+
 <script>
 import UserApi from '@/services/userDetailsApi';
 

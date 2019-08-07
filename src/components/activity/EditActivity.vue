@@ -155,6 +155,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import ActivityService from '../../services/activityApi';
 import { mapState } from 'vuex';

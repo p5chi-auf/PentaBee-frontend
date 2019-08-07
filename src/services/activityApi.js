@@ -31,5 +31,8 @@ export default {
   },
   acceptApplicants(activityId, userId){
     return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/applicants/' + userId + '/accept')
+  },
+  declineApplicants(activityId, userId){
+    return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/applicants/' + userId + '/decline')
   }
 };

@@ -1,7 +1,7 @@
-export const apiDomain = 'http://api.pentabee.local';
-export const basePath = `${apiDomain}/api`;
+export const basePath = `http://api.pentabee.local/api`;
 
 export const userEndpoints = {
+  ImageUrl: `http://api.pentabee.local`,
   USER: `${basePath}/user/`,
   TECHNOLOGIES: `${basePath}/technologies`,
   LOGIN: `${basePath}/login`,
