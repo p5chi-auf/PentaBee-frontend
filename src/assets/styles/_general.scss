@@ -9,18 +9,18 @@ body {
     width: auto;
   }
 
-  @media screen and (max-width: 360px) {
-    .main {
-      padding-top: 150px;
-    }
+  h2 {
+    font-size: 30px;
+    color: var(--gray);
+    font-weight: bold;
   }
 
   h4 {
-    color: #000;
+    color: black;
   }
 
   .login-registration-background {
-    background-color: #121917;
+    background-color: var(--loginBackground);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -28,19 +28,15 @@ body {
   }
 
   p {
-    color: #565554;
+    color: var(--gray);
   }
 
   .button-padding {
     padding: 7px;
   }
 
-  .text-form {
-    color: #434747;
-  }
-
   .link-redirect {
-    color: #ffbc1d;
+    color: var(--blue);
   }
 
   .home-content {
@@ -48,21 +44,13 @@ body {
   }
 
   .btn-1 {
-    background-image: linear-gradient(to right, #ffda00 0%, #F57C00 50%, #ffbc1d 100%);
-    color: #1c0b00;
-    font-weight: bold;
-    text-shadow: 2px 1px #F57C00;
+    background-image: var(--blueGradient);
+    color: white;
     margin-left: 5px;
-  }
-
-  .btn-delete {
-    background-image: linear-gradient(to right, #ffda00 0%, #f54a00 50%, #ff0000 100%);
-    color: #800000;
   }
 
   .btn-1:hover {
     background-position: right center;
-    color: #fff;
   }
 
   .btn {
@@ -75,22 +63,33 @@ body {
 
   #card-outline .card {
     border-radius: 15px;
-    box-shadow: 5px 5px 5px #ffda00;
+    box-shadow: 5px 5px 5px var(--yellow);
     transition: all 0.3s ease-in;
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
   }
 
   #card-outline .card:hover {
-    box-shadow: 5px 5px 10px #9e9e9e;
+    box-shadow: 5px 5px 10px var(--gray);
     cursor: pointer;
   }
 
   .line {
     padding: 1px;
-    background-image: linear-gradient(to right, white, #F57C00, white);
+    background-image: var(--lineGradient);
   }
-  .text-color-activity{
+
+  .page-item.active .page-link {
+    background: var(--orangeGradient);
+    border-color: var(--orange);
+  }
+
+  .page-item a {
+    color: var(--gray);
+  }
+
+  .text-color-activity {
     color: #2d2d2d;
   }
+
 }

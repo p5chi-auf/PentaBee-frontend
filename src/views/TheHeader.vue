@@ -8,11 +8,11 @@
           alt="Responsive image"
         >
       </b-navbar-brand>
-      
+
       <b-navbar-nav small>
         <b-nav-item href="#">1.0.0</b-nav-item>
       </b-navbar-nav>
-      
+
       <div class="ml-auto">
         <b-dropdown
           size="lg"
@@ -22,29 +22,28 @@
           right
         >
           <template slot="button-content">
-            <img class="user mr-1" src="../../public/img/person1.png" alt="user image">
-            <span class="user-dropdown text-capitalize">
-              {{ form.name }} {{ form.surname }}
-            </span>
+            <b-img class="user mr-1" :src="avatarImage"/>
+
+            <span class="user-dropdown text-capitalize">{{ userData.surname }}</span>
           </template>
-          
-          <b-dropdown-item @click="$router.push({ name: 'profile', params: { userId: form.id } })">
+
+          <b-dropdown-item @click="$router.push({ name: 'profile', params: { userId: userData.id } })">
             <i class="fas fa-user mr-2"/>
             Profile
           </b-dropdown-item>
-          
-          <b-dropdown-item @click="$router.push({ name: 'edit', params: { userId: form.id } })">
+
+          <b-dropdown-item @click="$router.push({ name: 'edit', params: { userId: userData.id } })">
             <i class="fas fa-user-edit mr-1"/>
             Edit Profile
           </b-dropdown-item>
-          
+
           <b-dropdown-item to="/settings">
             <i class="fas fa-cog mr-2"/>
             Settings
           </b-dropdown-item>
-          
+
           <b-dropdown-divider/>
-          
+
           <b-dropdown-item @click="onclick">
             <i class="fas fa-sign-out-alt mr-2"/>
             Logout
@@ -52,14 +51,14 @@
         </b-dropdown>
       </div>
     </b-navbar>
-    
+
     <div class="top-bar">
       <div class="inner">
         <div class="top-bar-orange"/>
         <div class="top-bar-violet"/>
         <div class="top-bar-blue"/>
         <div class="top-bar-green"/>
-        <div class="top-bar-bluesky"/>
+        <div class="top-bar-blueSky"/>
       </div>
     </div>
   </header>
@@ -68,18 +67,33 @@
 <script>
   import UserApi from '@/services/userDetailsApi';
   import { mapGetters } from 'vuex';
+  import { basePath } from '@/constants/apiEndpoints';
 
   export default {
     data: () => ({
-      form: {}
+      userData: {
+        id: null,
+        avatar: {
+          original: '',
+          '200x200': '',
+          '40x40': '',
+        },
+      },
+      avatarImage: null,
     }),
     computed: {
-      ...mapGetters('account', ['userId'])
+      ...mapGetters('account', ['userId']),
     },
     mounted() {
       UserApi.userInfo(this.userId).then((response) => {
-        this.form = response.data
-      })
+        this.userData = response.data;
+        if (this.userData.avatar){
+          this.avatarImage = basePath + '/' + this.userData.avatar['40x40'];
+        }
+        else{
+          this.avatarImage = '/img/person1.png'
+        }
+      });
     },
     methods: {
       onclick() {
@@ -89,9 +103,10 @@
           type: 'error',
           position: 'top-right',
           duration: 3000,
-          dismissible: true
+          dismissible: true,
         });
-        this.$router.push('/login')
+
+        this.$router.push('/login');
       }
     }
   }

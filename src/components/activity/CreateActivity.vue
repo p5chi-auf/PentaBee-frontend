@@ -7,11 +7,11 @@
             <b-card class="p-3">
               <h4 class="text-center">
                 Create an activity
-                <hr class="line" >
+                <hr class="line">
               </h4>
 
               <b-alert show class="text-center" variant="warning" dismissible fade>
-                <i class="fas fa-smile-wink" />
+                <i class="fas fa-smile-wink"/>
                 Add information about your Activity
               </b-alert>
 
@@ -20,7 +20,7 @@
                   <label class="ml-3 text-color-activity">
                     Name of activity:
                   </label>
-                  
+
                   <b-form-input
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
@@ -57,16 +57,19 @@
                 </b-form-group>
 
                 <div class="col-md-6">
-                  <technology-list v-model="form.technologies" />
+                  <b-form-group>
+                    <label class="typo__label ml-3 text-color-activity">Technologies:</label>
+                    <technology-list v-model="form.technologies"/>
+                  </b-form-group>
                 </div>
 
                 <div class="col-md-6">
-                  <activity-types-list v-model="form.types" />
+                  <activity-types-list v-model="form.types"/>
                 </div>
 
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Application deadline:</label>
-                  
+
                   <datetime
                     v-model="form.application_deadline"
                     :min-datetime="timeStartApplication"
@@ -80,7 +83,7 @@
 
                 <b-form-group class="col-md-5">
                   <label class="ml-3 text-color-activity">Final deadline:</label>
-                  
+
                   <datetime
                     v-model="form.final_deadline"
                     :min-datetime="timeStartDeadline"
@@ -116,10 +119,7 @@
 
               <div class="text-center button">
                 <b-btn
-                  class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
-                  variant="warning"
-                  block
-                  pill
+                  class="float-none d-inline-block btn btn-1 mt-2"
                   @click="createActivity()"
                 >Create Activity
                 </b-btn>
@@ -133,60 +133,74 @@
 </template>
 
 <script>
-import RegisterService from '../../services/activityApi';
-import moment from 'moment';
-import TechnologyList from './Technologies';
-import ActivityTypesList from './Types';
+  import RegisterService from '../../services/activityApi';
+  import moment from 'moment';
+  import TechnologyList from './Technologies';
+  import ActivityTypesList from './Types';
 
-export default {
-  components: {
-    TechnologyList: TechnologyList,
-    ActivityTypesList: ActivityTypesList
-  },
-  data() {
-    return {
-      form: {
-        name: '',
-        description: '',
-        application_deadline: '',
-        final_deadline: '',
-        status: 0,
-        public: true,
-        technologies: [],
-        types: []
-      },
-      timeStartApplication: '',
-      timeStartDeadline: ''
-    }
-  },
-  created() {
-    let startTime = new Date();
-
-    startTime.setDate(startTime.getDate() + 1);
-    this.form.application_deadline = moment(startTime).toISOString();
-    this.timeStartApplication = moment(startTime).toISOString();
-    this.setDeadline()
-  },
-  methods: {
-    setDeadline() {
-      let deadline = moment(this.form.application_deadline).add(1, 'days');
-
-      this.form.final_deadline = moment(deadline).toISOString();
-      this.timeStartDeadline = moment(deadline).toISOString()
+  export default {
+    components: {
+      TechnologyList: TechnologyList,
+      ActivityTypesList: ActivityTypesList,
     },
-    createActivity() {
-      let activity = JSON.parse(JSON.stringify(this.form));
+    data() {
+      return {
+        form: {
+          name: '',
+          description: '',
+          application_deadline: '',
+          final_deadline: '',
+          status: 0,
+          public: true,
+          technologies: [],
+          types: []
+        },
+        timeStartApplication: '',
+        timeStartDeadline: ''
+      }
+    },
+    created() {
+      let startTime = new Date();
 
-      activity.application_deadline = moment(this.form.application_deadline).format('X');
-      activity.final_deadline = moment(this.form.final_deadline).format('X');
-      RegisterService.createActivity(activity)
-        .then(() => {
-          this.$router.push('/activity-list')
-        })
-        .catch(() => {
-          alert('yor data are bad')
-        })
+      startTime.setDate(startTime.getDate() + 1);
+      this.form.application_deadline = moment(startTime).toISOString();
+      this.timeStartApplication = moment(startTime).toISOString();
+      this.setDeadline();
+    },
+    methods: {
+      setDeadline() {
+        let deadline = moment(this.form.application_deadline).add(1, 'days');
+
+        this.form.final_deadline = moment(deadline).toISOString();
+        this.timeStartDeadline = moment(deadline).toISOString();
+      },
+      createActivity() {
+        let activity = JSON.parse(JSON.stringify(this.form));
+
+        activity.application_deadline = moment(this.form.application_deadline).format('X');
+        activity.final_deadline = moment(this.form.final_deadline).format('X');
+        RegisterService.createActivity(activity)
+          .then(() => {
+            this.$toast.open({
+              message: 'Activity successfully created!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+
+            this.$router.push('/activity-list');
+          })
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+      }
     }
   }
-}
 </script>

@@ -143,10 +143,8 @@
 
           <div class="text-center button">
             <b-btn
-              class="col-md-5 float-none d-inline-block btn btn-1"
-              variant="warning"
+              class="col-md-5 float-none d-inline-block btn btn-1 mb-2"
               block
-              pill
               @click="registerIt()"
             >Create your account
             </b-btn>
@@ -154,7 +152,7 @@
 
           <p class="text-center">
             Already have a
-            <b-link class="link-redirect">PentaBee</b-link>
+            <code class="link-redirect">PentaBee</code>
             account?
             <b-link class="link-redirect" to="/login">Log In</b-link>
           </p>
@@ -183,18 +181,21 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/login');
           })
-          .catch(() => {
+          .catch((error) => {
+            let message = error.response.data.message;
+
             this.$toast.open({
-              message: 'Please complete all required fields',
+              message: message,
               type: 'error',
               position: 'top-right',
               duration: 3000,
               dismissible: true,
             });
-          });
-      },
-    },
-  };
+          })
+      }
+    }
+  }
 </script>

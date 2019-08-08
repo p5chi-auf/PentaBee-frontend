@@ -52,10 +52,8 @@
 
             <div class="text-center button-padding">
               <b-btn
-                variant="warning"
                 class="btn btn-1"
                 block
-                pill
                 @click="onSubmit()"
               >Log In
               </b-btn>
@@ -63,7 +61,7 @@
 
             <p class="mt-3 text-center">
               Haven't got a
-              <b-link class="link-redirect" to="#">PentaBee</b-link>
+              <code class="link-redirect">PentaBee</code>
               account?
               <b-link class="link-redirect" to="/registration">Sign Up</b-link>
             </p>
@@ -90,6 +88,7 @@
       ...mapMutations('account', []),
       onSubmit() {
         this.$validator.validate();
+
         LoginService.login(this.form)
           .then(response => {
             const { token } = response.data;
@@ -102,6 +101,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/');
           })
           .catch(() => {
@@ -112,8 +112,8 @@
               duration: 3000,
               dismissible: true,
             });
-          });
-      },
-    },
-  };
+          })
+      }
+    }
+  }
 </script>

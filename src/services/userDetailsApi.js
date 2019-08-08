@@ -31,5 +31,12 @@ export default {
   },
   getTechnologies() {
     return API.get(userEndpoints.TECHNOLOGIES);
-  }
+  },
+  deleteAvatar(data) {
+    const { id } = data;
+    if (id) {
+      return API.delete(userEndpoints.USER + id + '/remove_avatar', data);
+    }
+    return Promise.reject('Id not found');
+  },
 };
