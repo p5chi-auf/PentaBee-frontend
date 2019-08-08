@@ -181,10 +181,12 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/login');
           })
           .catch((error) => {
             let message = error.response.data.message;
+
             this.$toast.open({
               message: message,
               type: 'error',
@@ -192,8 +194,8 @@
               duration: 3000,
               dismissible: true,
             });
-          });
-      },
-    },
-  };
+          })
+      }
+    }
+  }
 </script>

@@ -2,7 +2,8 @@
   <multiselect
     v-model="technologies"
     placeholder="Search a technology"
-    label="name" track-by="id"
+    label="name"
+    track-by="id"
     :options="formTechnologies"
     :multiple="true"
     :taggable="true"
@@ -16,28 +17,26 @@
   export default {
     model: {
       prop: 'technologies',
-      event: 'changeTechnologiesList',
+      event: 'changeTechnologiesList'
     },
     props: { technologies: Array },
     data() {
       return {
         formTechnologies: [],
-        selectedTechnologies: [],
-      };
-    },
-    created() {
-      this.selectedTechnologies = this.technologies;
+        selectedTechnologies: []
+      }
     },
     mounted() {
       this.selectedTechnologies = this.technologies;
-      UserApi.getTechnologies().then((response) => {
+      UserApi.getTechnologies()
+        .then((response) => {
         this.formTechnologies = response.data;
-      });
+      })
     },
     methods: {
       updateTechnologies(technologies) {
         this.$emit('changeTechnologiesList', technologies);
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

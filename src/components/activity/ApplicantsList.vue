@@ -30,13 +30,13 @@
           'email',
           'location',
           'seniority',
-          'position',
+          'position'
         ],
         isBusy: true,
         form: {
-          results: [],
-        },
-      };
+          results: []
+        }
+      }
     },
     mounted() {
       this.getListApplicants();
@@ -49,7 +49,7 @@
             this.isBusy = false;
           },
         );
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

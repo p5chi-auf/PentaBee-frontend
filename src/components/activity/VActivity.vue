@@ -29,11 +29,9 @@
 
                 <hr class="line">
 
-                <div>
-                  <h5 class="font-weight-bold">Description: </h5>
+                <h5 class="font-weight-bold">Description: </h5>
 
-                  <p class="ml-1 description-styles">{{ activity.description }}</p>
-                </div>
+                <p class="ml-1 description-styles">{{ activity.description }}</p>
 
                 <div class="row">
                   <div class="col">
@@ -53,18 +51,24 @@
                 </div>
 
                 <div class="row">
-                  <h5 class="font-weight-bold col">Application till:
+                  <h5 class="font-weight-bold col">
+                    Application till:
                     <p class="col-md-4 ml-4 application-deadline">
                       Date: {{ activity.application_deadline | formatDate }}
                     </p>
                     <p class="col-md-4  ml-4 application-deadline">
-                      Time: {{ activity.application_deadline | formatTime }}</p>
+                      Time: {{ activity.application_deadline | formatTime }}
+                    </p>
                   </h5>
 
                   <h5 class="font-weight-bold col">
                     Activity deadline:
-                    <p class="col-md-4 ml-4 deadline">Date: {{ activity.final_deadline | formatDate }}</p>
-                    <p class="col-md-4 ml-4 deadline">Time: {{ activity.final_deadline | formatTime }}</p>
+                    <p class="col-md-4 ml-4 deadline">
+                      Date: {{ activity.final_deadline | formatDate }}
+                    </p>
+                    <p class="col-md-4 ml-4 deadline">
+                      Time: {{ activity.final_deadline | formatTime }}
+                    </p>
                   </h5>
                 </div>
 
@@ -180,12 +184,12 @@
         },
         delete: false,
         avatarActivityUrl: null,
-        ownerImageAvatarUrl: null,
-      };
+        ownerImageAvatarUrl: null
+      }
     },
     computed: {
       ...mapState('account', ['user', 'setUser']),
-      ...mapGetters('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
     created() {
       ActivityService.getActivityDetails(this.$route.params.activityId)
@@ -203,13 +207,13 @@
             } else {
               this.avatarActivityUrl = '/img/combs.jpg';
             }
+
             if (this.activity.owner.avatar) {
               this.ownerImageAvatarUrl = basePath + '/' + this.activity.owner.avatar['40x40'];
             } else {
               this.ownerImageAvatarUrl = '/img/person1.png';
             }
-          },
-        );
+          });
     },
     methods: {
       apply(id) {
@@ -225,6 +229,7 @@
           })
           .catch((error) => {
             let message = error.response.data.message;
+
             this.$toast.open({
               message: message,
               type: 'error',
@@ -254,6 +259,7 @@
       cancel() {
         this.$modal.hide('delete-activity');
         this.$modal.hide('apply-activity');
+
         return 0;
       },
       deleteActivity() {
@@ -266,6 +272,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/activity-list');
           })
           .catch(() => {
@@ -277,7 +284,7 @@
               dismissible: true,
             });
           });
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

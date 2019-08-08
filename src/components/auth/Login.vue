@@ -88,6 +88,7 @@
       ...mapMutations('account', []),
       onSubmit() {
         this.$validator.validate();
+
         LoginService.login(this.form)
           .then(response => {
             const { token } = response.data;
@@ -100,6 +101,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/');
           })
           .catch(() => {
@@ -110,8 +112,8 @@
               duration: 3000,
               dismissible: true,
             });
-          });
-      },
-    },
-  };
+          })
+      }
+    }
+  }
 </script>

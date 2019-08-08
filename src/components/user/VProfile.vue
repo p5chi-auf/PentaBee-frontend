@@ -13,7 +13,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
-                <div class="greenIcon"/>
+                <div class="online-icon"/>
 
                 <div class="image-in-container">
                   <b-img :src="avatarImage"/>
@@ -23,7 +23,7 @@
 
             <h3 class="mt-1">{{ profileData.name }} {{ profileData.surname }}</h3>
 
-            <h6 class="seniorityText mt-2" style="text-transform:uppercase">
+            <h6 class="seniority-text mt-2" style="text-transform:uppercase">
               {{ profileData.position }} {{ seniorityList[profileData.seniority] }}
             </h6>
 
@@ -91,17 +91,18 @@
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
       ...mapState('account', ['user']),
-      ...mapGetters('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
     mounted() {
-      UserApi.userInfo(this.userId).then((response) => {
-        this.profileData = response.data;
-        if (this.profileData.avatar) {
-          this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
-        } else {
+      UserApi.userInfo(this.userId)
+        .then((response) => {
+          this.profileData = response.data;
+          if (this.profileData.avatar) {
+            this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
+          } else {
           this.avatarImage = '/img/person1.png';
         }
       });
-    },
-  };
+    }
+  }
 </script>

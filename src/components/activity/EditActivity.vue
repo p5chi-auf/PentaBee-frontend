@@ -179,14 +179,14 @@
           status: 0,
           public: true,
           technologies: [{ id: null }],
-          types: [],
+          types: []
         },
         edited: false,
-        technologiesList: [],
-      };
+        technologiesList: []
+      }
     },
     computed: {
-      ...mapState('account', ['user']),
+      ...mapState('account', ['user'])
     },
     mounted() {
       ActivityService.getActivityDetails(this.$route.params.activityEditId)
@@ -223,6 +223,7 @@
                 duration: 3000,
                 dismissible: true,
               });
+
               this.$router.push('/activity-list');
             })
             .catch(() => {
@@ -235,7 +236,7 @@
               });
             });
         }
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

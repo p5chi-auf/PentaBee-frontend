@@ -27,6 +27,6 @@
     font-size: 100px;
   }
   h1, p{
-    color: var(--white);
+    color: white;
   }
 </style>

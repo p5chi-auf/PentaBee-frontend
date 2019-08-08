@@ -2,7 +2,10 @@
   <div class="col home-content activity-list">
     <div class="mb-5">
       <b-card no-body>
-        <i class="fas fa-plus-circle create-activity-icon mt-1" @click="$router.push('/activity-create')"/>
+        <i
+          class="fas fa-plus-circle create-activity-icon mt-1"
+          @click="$router.push('/activity-create')"
+        />
         <b-tabs card>
           <section class="tab-section">
             <b-tab title="Mine" active>
@@ -13,9 +16,17 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class="activity-image mr-2" alt="image">
+                      <img
+                        src="../../assets/images/combs.jpg"
+                        class="activity-image mr-2"
+                        alt="image"
+                      >
 
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
@@ -44,9 +55,16 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img
+                        src="../../assets/images/combs.jpg"
+                        class=" activity-image mr-2"
+                      >
 
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
@@ -75,9 +93,16 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img
+                        src="../../assets/images/combs.jpg"
+                        class=" activity-image mr-2"
+                      >
 
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
@@ -106,9 +131,16 @@
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
-                  <b-card bg-variant="light" border-variant="warning" class="cards col-md-12 mt-3">
+                  <b-card
+                    bg-variant="light"
+                    border-variant="warning"
+                    class="cards col-md-12 mt-3"
+                  >
                     <div class="row">
-                      <img src="../../assets/images/combs.jpg" class=" activity-image mr-2">
+                      <img
+                        src="../../assets/images/combs.jpg"
+                        class=" activity-image mr-2"
+                      >
 
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
@@ -158,12 +190,12 @@
           currentPage: 1,
           per_page: 9,
           numPages: 1,
-          numResults: 1,
-        },
-      };
+          numResults: 1
+        }
+      }
     },
     computed: {
-      ...mapState('account', ['user']),
+      ...mapState('account', ['user'])
     },
     mounted() {
       this.getData();
@@ -175,15 +207,16 @@
           this.pagination.currentPage +
           '&pagination[per_page]=' +
           this.pagination.per_page;
+
         ActivityService.getActivityList(request)
           .then(response => {
             this.results = response.data.results;
             this.pagination.numResults = response.data.numResults;
-          });
+        });
       },
       redirectToActivityDetails(id) {
         this.$router.push({ name: 'activity', params: { activityId: id } });
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

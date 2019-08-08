@@ -153,14 +153,15 @@
           status: 0,
           public: true,
           technologies: [],
-          types: [],
+          types: []
         },
         timeStartApplication: '',
-        timeStartDeadline: '',
-      };
+        timeStartDeadline: ''
+      }
     },
     created() {
       let startTime = new Date();
+
       startTime.setDate(startTime.getDate() + 1);
       this.form.application_deadline = moment(startTime).toISOString();
       this.timeStartApplication = moment(startTime).toISOString();
@@ -169,11 +170,13 @@
     methods: {
       setDeadline() {
         let deadline = moment(this.form.application_deadline).add(1, 'days');
+
         this.form.final_deadline = moment(deadline).toISOString();
         this.timeStartDeadline = moment(deadline).toISOString();
       },
       createActivity() {
         let activity = JSON.parse(JSON.stringify(this.form));
+
         activity.application_deadline = moment(this.form.application_deadline).format('X');
         activity.final_deadline = moment(this.form.final_deadline).format('X');
         RegisterService.createActivity(activity)
@@ -185,6 +188,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/activity-list');
           })
           .catch(() => {
@@ -196,7 +200,7 @@
               dismissible: true,
             });
           });
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

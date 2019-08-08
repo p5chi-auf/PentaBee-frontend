@@ -39,9 +39,9 @@
           :class="{ 'is-invalid': errors.has('name') }"
         />
 
-        <span v-if="errors.has('name')" class="invalid-feedback">{{
-          errors.first('name')
-        }}</span>
+        <span v-if="errors.has('name')" class="invalid-feedback">
+          {{ errors.first('name') }}
+        </span>
       </b-form-group>
 
       <b-form-group class="col-md-6" label-for="lastName">
@@ -56,9 +56,9 @@
           :class="{ 'is-invalid': errors.has('surname') }"
         />
 
-        <span v-if="errors.has('surname')" class="invalid-feedback">{{
-          errors.first('surname')
-        }}</span>
+        <span v-if="errors.has('surname')" class="invalid-feedback">
+          {{ errors.first('surname') }}
+        </span>
       </b-form-group>
 
       <b-form-group class="col-md-4" label-for="position">
@@ -111,17 +111,17 @@
       <b-form-group class="col-md-12" label-for="avatar">
         <label class="typo__label ml-3">Try To Upload Some Image:</label>
 
-        <b-form-file class="col-md-11" accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+        <b-form-file accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+        <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
         <b-link
+          v-if="previewImage"
           v-b-tooltip.hover.top
           title="Delete image"
-          class="delete-icon col-md-1 ml-3"
+          class="ml-3"
           @click="deleteImage"
         >
-          <i class="fas fa-trash-alt" style="color: var(--red)"/>
+          <i class="fas fa-times" style="color: var(--red)"/>
         </b-link>
-
-        <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
       </b-form-group>
     </b-form>
 
@@ -151,9 +151,7 @@
         biography: '',
         location: '',
         technologies: [
-          {
-            id: null,
-          },
+          { id: null },
         ],
         avatar: {
           original: '',
@@ -179,17 +177,17 @@
         { value: 'IAS', text: 'IAS' },
         { value: 'HAN', text: 'HAN' },
         { value: 'GUA', text: 'GUA' },
-        { value: 'LYO', text: 'LYO' },
+        { value: 'LYO', text: 'LYO' }
       ],
       options3: [
         { value: 'DEV', text: 'DEV' },
         { value: 'PO', text: 'PO' },
-        { value: 'QA', text: 'QA' },
-      ],
+        { value: 'QA', text: 'QA' }
+      ]
     }),
     computed: {
       ...mapState('account', ['user']),
-      ...mapGetters('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
     mounted() {
       UserApi.userInfo(this.userId)
@@ -200,6 +198,7 @@
             this.form.avatar = null;
           }
         });
+
       UserApi.getTechnologies(this.userId)
         .then(response => {
           this.formTechnologies = response.data;
@@ -215,7 +214,6 @@
         reader.onload = e => {
           this.previewImage = e.target.result;
           this.form.avatar = this.previewImage;
-          console.log(this.previewImage);
         };
       },
       edit() {
@@ -223,7 +221,7 @@
           ...this.form,
           id: this.userId,
         };
-        console.log(this.form);
+
         UserApi.editUser(data)
           .then(() => {
             this.$toast.open({
@@ -233,6 +231,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push({ name: 'profile' });
           })
           .catch(() => {
@@ -250,6 +249,7 @@
           ...this.form,
           id: this.userId,
         };
+
         UserApi.deleteAvatar(data)
           .then(() => {
             this.$toast.open({
@@ -259,6 +259,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push({ name: 'profile' });
           })
           .catch(() => {
@@ -268,9 +269,9 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true,
-            });
-          });
-      },
-    },
-  };
+            })
+          })
+      }
+    }
+  }
 </script>

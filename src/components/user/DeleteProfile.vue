@@ -73,7 +73,7 @@
             window.localStorage.removeItem('token');
             this.$router.push('/login');
           })
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

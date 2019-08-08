@@ -4,7 +4,6 @@
       <section class="section-style">
         <b-container>
           <b-card class="mx-auto border-warning">
-
             <h2 class="text-center mb-3">Invite users to your activity</h2>
 
             <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
@@ -54,6 +53,7 @@
           })
           .catch((error) => {
             let message = error.response.data.message;
+
             this.$toast.open({
               message: message,
               type: 'error',
@@ -62,7 +62,7 @@
               dismissible: true,
             });
           });
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

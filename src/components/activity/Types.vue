@@ -4,7 +4,8 @@
     <multiselect
       v-model="types"
       placeholder="Search a type"
-      label="name" track-by="id"
+      label="name"
+      track-by="id"
       :options="formTypes"
       :multiple="true"
       :taggable="true"
@@ -19,28 +20,27 @@
   export default {
     model: {
       prop: 'types',
-      event: 'changeTypesList',
+      event: 'changeTypesList'
     },
-    props: {
-      types: Array,
-    },
+    props: {types: Array},
     data() {
       return {
         formTypes: [],
-        selectedTypes: [],
-      };
+        selectedTypes: []
+      }
     },
     mounted() {
       this.selectedTypes = this.types;
-      ActivityService.getTypes().then((response) => {
-        this.formTypes = response.data;
-      }).catch(error => {
-      });
+
+      ActivityService.getTypes()
+        .then((response) => {
+          this.formTypes = response.data;
+        })
     },
     methods: {
       updateTypes(types) {
-        this.$emit('changeTypesList', types);
-      },
-    },
-  };
+        this.$emit('changeTypesList', types)
+      }
+    }
+  }
 </script>
