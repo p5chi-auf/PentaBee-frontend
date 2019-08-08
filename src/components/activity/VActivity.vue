@@ -112,7 +112,7 @@
                     v-if="userId === activity.owner.id"
                     v-b-tooltip.hover.top
                     title="Applicants list"
-                    class="float-right ml-2 mr-2"
+                    class="applicants-icon float-right ml-2 mr-2"
                     @click="redirectToActivityApplicants(activity.id)"
                   >
                     <i class="fas fa-users"/>

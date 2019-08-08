@@ -110,7 +110,17 @@
 
       <b-form-group class="col-md-12" label-for="avatar">
         <label class="typo__label ml-3">Try To Upload Some Image:</label>
-        <b-form-file accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+
+        <b-form-file class="col-md-11" accept="image/jpeg, image/png, image/gif" @change="uploadImage"/>
+        <b-link
+          v-b-tooltip.hover.top
+          title="Delete image"
+          class="delete-icon col-md-1 ml-3"
+          @click="deleteImage"
+        >
+          <i class="fas fa-trash-alt" style="color: var(--red)"/>
+        </b-link>
+
         <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
       </b-form-group>
     </b-form>
@@ -146,8 +156,8 @@
           },
         ],
         avatar: {
-          original: ''
-        }
+          original: '',
+        },
       },
       previewImage: null,
       formTechnologies: [],
@@ -209,32 +219,58 @@
         };
       },
       edit() {
-          const data = {
-            ...this.form,
-            id: this.userId,
-          };
-          console.log(this.form);
-          UserApi.editUser(data)
-            .then(() => {
-              this.$toast.open({
-                message: 'You\'ve successfully updated your profile!',
-                type: 'success',
-                position: 'top-right',
-                duration: 3000,
-                dismissible: true,
-              });
-              this.$router.push({ name: 'profile' });
-            })
-            .catch(() => {
-              this.$toast.open({
-                message: 'Please complete all required fields',
-                type: 'error',
-                position: 'top-right',
-                duration: 3000,
-                dismissible: true,
-              });
+        const data = {
+          ...this.form,
+          id: this.userId,
+        };
+        console.log(this.form);
+        UserApi.editUser(data)
+          .then(() => {
+            this.$toast.open({
+              message: 'You\'ve successfully updated your profile!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
             });
-      }
+            this.$router.push({ name: 'profile' });
+          })
+          .catch(() => {
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+      },
+      deleteImage() {
+        const data = {
+          ...this.form,
+          id: this.userId,
+        };
+        UserApi.deleteAvatar(data)
+          .then(() => {
+            this.$toast.open({
+              message: 'Avatar successfully deleted!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+            this.$router.push({ name: 'profile' });
+          })
+          .catch(() => {
+            this.$toast.open({
+              message: 'Access denied!',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+      },
     },
   };
 </script>

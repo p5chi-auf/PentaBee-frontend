@@ -21,6 +21,7 @@
               <h2 class="text-center">
                 Edit Profile
               </h2>
+
               <hr class="line">
 
               <b-alert

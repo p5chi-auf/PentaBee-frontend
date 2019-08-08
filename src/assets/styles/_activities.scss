@@ -84,6 +84,7 @@
     height: 150px;
     width: 150px;
   }
+
   .image-in-container img {
     height: 40px;
     width: 40px;
@@ -103,16 +104,17 @@
     padding: 0;
   }
 
-  .delete-icon {
-    color: var(--red);
-  }
-
   .edit-icon {
     color: var(--green);
+  }
+
+  .applicants-icon {
+    color: var(--orange);
   }
 
   .apply-icon {
     color: var(--orange);
     font-size: 20px;
   }
+
 }

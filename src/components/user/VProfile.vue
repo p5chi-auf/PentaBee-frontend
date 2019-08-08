@@ -1,7 +1,7 @@
 <template>
   <div class="edit profile-card home-content row">
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h2 class="text-center pl-4 mb-5 my-4">Profile</h2>
+      <h2 class="text-center pl-4 my-4 profile-title">Profile</h2>
       <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
@@ -48,7 +48,6 @@
               <div class="mb-2">
                 <i class="ml-4 fas fa-map-marker-alt"/>
                 <b-link class="ml-2">{{ profileData.location }}</b-link>
-                ;
               </div>
             </div>
           </div>
