@@ -18,6 +18,7 @@
                   label-for="name"
                 >
                   <label class="ml-3 text-color-activity">Name of activity:</label>
+                  
                   <b-form-input
                     id="name"
                     v-model="form.name"
@@ -28,16 +29,16 @@
                     :class="{ 'is-invalid': errors.has('name') }"
                     @change="edited = true"
                   />
-                  <span v-if="errors.has('name')" class="invalid-feedback">{{
-                    errors.first('name')
-                  }}</span>
+                  
+                  <span v-if="errors.has('name')" class="invalid-feedback">
+                    {{ errors.first('name') }}
+                  </span>
                 </b-form-group>
 
                 <b-form-group class=" col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
                       v-model="form.public"
-                      name="some-radios"
                       :value="true"
                       class=" ml-3 col-md-5 mt-2 text-color-activity"
                       @change="edited = true"
@@ -93,6 +94,23 @@
                     @click="edited = true"
                   />
                 </b-form-group>
+               
+                <b-form-group class="col-md-12">
+                  <label class="ml-3 text-color-activity">Status:</label>
+                  <div class="row">
+                    <b-form-radio-group
+                      v-model="form.status"
+                      :options="statusesActivity"
+                      buttons
+                      button-variant="outline-secondary"
+                      size="lg"
+                      class="col"
+                      name="radio-btn-outline"
+                      @change="edited = true"
+                    />
+                  </div>
+                </b-form-group>
+              
 
                 <b-form-group id="input-group-2" class="col-md-12 mx-auto">
                   <label class="ml-3 text-color-activity">Description:</label>
@@ -182,7 +200,12 @@ export default {
       },
       edited: false,
       technologiesList: [],
-    };
+      statusesActivity: [
+        { text: 'New', value: '0' },
+        { text: 'Finished', value: '1' },
+        { text: 'Closed', value: '2' }
+      ]
+    }
   },
 
   computed: {

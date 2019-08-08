@@ -156,11 +156,11 @@ export default {
         status: 0,
         public: true,
         technologies: [],
-        types: [],
+        types: []
       },
       timeStartApplication: '',
-      timeStartDeadline: '',
-    };
+      timeStartDeadline: ''
+    }
   },
   created() {
     let startTime = new Date();

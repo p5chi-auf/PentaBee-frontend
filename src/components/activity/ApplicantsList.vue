@@ -3,35 +3,60 @@
     <b-table
       responsive
       striped
-      hover
-      :fields="fields"
+      :fields="neededFields"
       :items="form.results"
+      :current-page="form.currentPage"
+      :per-page="form.perPage"
       :busy="isBusy"
     >
       <template slot="Accept/Decline" slot-scope="row">
-        <i
-          class="ml-4 far fa-check-circle mouse-type"
-          @click="acceptApplicant(row.item.id)"
-        />
-        <i
-          class="ml-4 fas fa-times mouse-type"
-          @click="declineApplicant(row.item.id)"
-        />
+        <i class="ml-4 far fa-check-circle mouse-type" @click="acceptApplicant(row.item.id)"/>
+        
+        <i class="ml-4 fas fa-times mouse-type" @click="declineApplicant(row.item.id)"/>
+        
         <i class="ml-4 fas fa-info-circle mouse-type" @click="row.toggleDetails"/>
       </template>
+      
+      <template slot="seniority" slot-scope="row">
+        <p v-if="row.item.seniority === 0">Junior</p>
+        <p v-else-if="row.item.seniority === 1">Middle</p>
+        <p v-else-if="row.item.seniority === 2">Senior</p>
+      </template>
+      
       <div slot="table-busy" class="text-center text-danger my-2">
         <b-spinner class="align-middle"/>
+        
         <strong>Loading...</strong>
       </div>
       
       <template slot="row-details" slot-scope="row">
-        <div class="ml-sm-1 row">
+        <div class="row col-md-12">
           Technologies:
-          <p v-for="myTechnology in row.item.technologies" class="col">{{ myTechnology.name }}</p>
+          <p v-for="myTechnology in row.item.technologies" :key="myTechnology" class="col">{{ myTechnology.name }}</p>
         </div>
-        <p>Stars:{{ row.item.stars }}</p>
+        <div class="row col-md-12">
+          <div class="col-md-6 row">
+            Rating: <i v-for="star in row.item.stars" :key="star" class="fas fa-star ml-1"/>
+          </div>
+          <div class="col-md-6 row">
+            Email : <p>{{ row.item.email }}</p>
+          </div>
+        </div>
+        
       </template>
     </b-table>
+    <div class="row col-md-12">
+      <b-row class="mx-auto">
+        <b-col md="12" class="my-1">
+          <b-pagination
+            v-model="form.currentPage"
+            :total-rows="form.numResults"
+            :per-page="form.perPage"
+            class="my-0"
+          />
+        </b-col>
+      </b-row>
+    </div>
   </div>
 </template>
 
@@ -41,28 +66,23 @@
   export default {
     data() {
       return {
-        fields: [
+        neededFields: [
           { key: 'username', sortable: true },
           { key: 'name', sortable: true },
           { key: 'surname', sortable: true },
-          { key: 'email', sortable: true },
           { key: 'location', sortable: true },
-          { key: 'seniority', sortable: true },
           { key: 'position', sortable: true },
-          { key: 'Accept/Decline' },
+          { key: 'seniority', sortable: true},
+          { key: 'Accept/Decline' }
         ],
         isBusy: true,
         form: {
           results: [
             { technologies: [] },
-            {stars: null}
-          ],
-        },
-        window: {
-          width: 0,
-          height: 0,
-        },
-      };
+            { stars: null }
+          ]
+        }
+      }
     },
     mounted() {
       this.getListApplicants();
@@ -71,10 +91,13 @@
       getListApplicants() {
         ActivityService.getApplicantsList(this.$route.params.idActivity).then(
           response => {
+            this.form = response.data;
             this.form.results = response.data.results;
             this.isBusy = false;
+            this.form.perPage = 6;
+            this.form.numPages = this.form.numResults / this.form.perPage;
           }
-        );
+        )
       },
       acceptApplicant(applicantId) {
         ActivityService.acceptApplicants(
@@ -87,8 +110,8 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
+              dismissible: true
+            })
           })
           .catch(error => {
             this.$toast.open({
@@ -96,9 +119,9 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
-          });
+              dismissible: true
+            })
+          })
       },
       declineApplicant(applicantId) {
         ActivityService.declineApplicants(
@@ -112,7 +135,7 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true,
-            });
+            })
           })
           .catch(response => {
             this.$toast.open({
@@ -121,14 +144,18 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true,
-            });
-          });
-      },
-    },
-  };
+            })
+          })
+      }
+    }
+  }
 </script>
 <style>
   .mouse-type {
     cursor: pointer;
+  }
+  .border-info{
+    border: 1px #1c0b00;
+    
   }
 </style>

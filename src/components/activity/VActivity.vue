@@ -173,7 +173,6 @@ export default {
     ActivityService.getActivityDetails(this.$route.params.activityId).then(
       response => {
         this.activity = response.data;
-        console.log(this.activity.cover);
         if (this.activity.cover) {
           this.avatarActivityUrl =
             userEndpoints.ImageUrl + '/' + this.activity.cover['150x150'];
@@ -184,7 +183,7 @@ export default {
           this.ownerImageAvatarUrl =  userEndpoints.ImageUrl + '/' + this.activity.owner.avatar['40x40'];
         }
         else {
-          this.avatarActivityUrl = '/img/person1.png';
+          this.ownerImageAvatarUrl = '/img/person1.png';
         }
       }
     );
