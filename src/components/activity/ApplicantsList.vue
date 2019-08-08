@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-12 mb-5">
     <b-table
-      responsive
-      striped
-      :fields="neededFields"
-      :items="form.results"
-      :current-page="form.currentPage"
-      :per-page="form.perPage"
-      :busy="isBusy"
+            responsive
+            striped
+            :fields="neededFields"
+            :items="form.results"
+            :current-page="form.currentPage"
+            :per-page="form.perPage"
+            :busy="isBusy"
     >
       <template slot="Accept/Decline" slot-scope="row">
         <i class="ml-4 far fa-check-circle mouse-type" @click="acceptApplicant(row.item.id)"/>
@@ -42,17 +42,17 @@
             Email : <p>{{ row.item.email }}</p>
           </div>
         </div>
-        
+      
       </template>
     </b-table>
     <div class="row col-md-12">
       <b-row class="mx-auto">
         <b-col md="12" class="my-1">
           <b-pagination
-            v-model="form.currentPage"
-            :total-rows="form.numResults"
-            :per-page="form.perPage"
-            class="my-0"
+                  v-model="form.currentPage"
+                  :total-rows="form.numResults"
+                  :per-page="form.perPage"
+                  class="my-0"
           />
         </b-col>
       </b-row>

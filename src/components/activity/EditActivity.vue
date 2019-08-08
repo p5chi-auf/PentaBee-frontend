@@ -9,7 +9,7 @@
                 Edit activity
               </h4>
 
-              <hr >
+              <hr>
 
               <b-form class="row" @submit.prevent="editActivity()">
                 <b-form-group
@@ -135,13 +135,11 @@
               <div class="text-center button">
                 <b-btn
                   class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
-                  variant="warning"
-                  block
-                  pill
                   @click="show()"
                 >Edit Activity
                 </b-btn>
               </div>
+
               <modal
                 name="edit-activity"
                 transition="nice-modal-fade"
@@ -155,15 +153,18 @@
                 <div class="example-modal-content text-center mt-5">
                   <h6>Do you want to save changes for activity?</h6>
                 </div>
+
                 <div class="row mt-lg-5 ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">
-                    Cancel</b-button>
+                    Cancel
+                  </b-button>
                   <b-button
                     class="col-md-5 ml-3"
                     variant="warning"
                     @click="editActivity()"
                   >
-                    Save</b-button>
+                    Save
+                  </b-button>
                 </div>
               </modal>
             </b-card>
@@ -175,11 +176,11 @@
 </template>
 
 <script>
-import ActivityService from '../../services/activityApi';
-import { mapState } from 'vuex';
-import moment, { unix } from 'moment';
-import TechnologyList from './Technologies';
-import TypesList from './Types';
+  import ActivityService from '../../services/activityApi';
+  import { mapState } from 'vuex';
+  import moment, { unix } from 'moment';
+  import TechnologyList from './Technologies';
+  import TypesList from './Types';
 
 export default {
   components: {
@@ -207,7 +208,6 @@ export default {
       ]
     }
   },
-
   computed: {
     ...mapState('account', ['user']),
   },
@@ -215,12 +215,8 @@ export default {
     ActivityService.getActivityDetails(this.$route.params.activityEditId)
       .then(response => {
         this.form = response.data;
-        this.form.application_deadline = moment(
-          unix(this.form.application_deadline)
-        ).toISOString();
-        this.form.final_deadline = moment(
-          unix(this.form.final_deadline)
-        ).toISOString();
+        this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
+        this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
       })
       .catch(error => {
         console.log(error);
@@ -236,27 +232,33 @@ export default {
     editActivity() {
       this.$modal.hide('edit-activity');
       let activity = JSON.parse(JSON.stringify(this.form));
-      
-      activity.application_deadline = moment(
-        this.form.application_deadline
-      ).format('X');
+
+      activity.application_deadline = moment(this.form.application_deadline).format('X');
       activity.final_deadline = moment(this.form.final_deadline).format('X');
 
       if (this.edited === true) {
-        ActivityService.editActivity(
-          this.$route.params.activityEditId,
-          activity
-        )
+        ActivityService.editActivity(this.$route.params.activityEditId, activity)
           .then(() => {
+            this.$toast.open({
+              message: 'Activity successfully edited!',
+              type: 'success',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
             this.$router.push('/activity-list');
           })
           .catch(() => {
-            alert('your data are bad');
+            this.$toast.open({
+              message: 'Please complete all required fields',
+              type: 'error',
+              position: 'top-right',
+              duration: 3000,
+              dismissible: true,
+            });
           });
-      } else {
-        alert('you need to make changes');
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

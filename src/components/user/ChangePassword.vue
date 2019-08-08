@@ -4,9 +4,10 @@
       <b-form-group
         id="input-group-1"
         class="col-md-4"
-        label="Old Password:"
         label-for="old_password"
       >
+        <label class="typo__label ml-3">Old password:</label>
+
         <b-form-input
           id="old_password"
           v-model="form.old_password"
@@ -16,18 +17,19 @@
           class="form-control"
           :class="{ 'is-invalid': errors.has('old_password') }"
         />
-        
+
         <span v-if="errors.has('old_password')" class="invalid-feedback">
           {{ errors.first('old_password') }}
         </span>
       </b-form-group>
-      
+
       <b-form-group
         id="input-group-2"
         class="col-md-4"
-        label="New Password:"
         label-for="password"
       >
+        <label class="typo__label ml-3">New password:</label>
+
         <b-form-input
           id="password"
           ref="password"
@@ -42,13 +44,14 @@
           {{ errors.first('password') }}
         </span>
       </b-form-group>
-      
+
       <b-form-group
         id="input-group-3"
         class="col-md-4"
-        label="Repeat New Password:"
         label-for="confirmPassword"
       >
+        <label class="typo__label ml-3">Repeat new password:</label>
+
         <b-form-input
           id="confirmPassword"
           v-model="form.confirm_password"
@@ -59,21 +62,18 @@
           data-vv-as="password"
           :class="{'is-invalid': errors.has('confirm_password')}"
         />
-        
+
         <span v-if="errors.has('confirm_password')" class="invalid-feedback">
           {{ errors.first('confirm_password') }}
         </span>
       </b-form-group>
     </b-form>
-    
+
     <div class="text-center space card-body gradient-buttons">
       <b-btn
-        class="col-md-5 float-none d-inline-block btn btn-1"
-        variant="warning"
-        block
-        pill
+        class="float-none d-inline-block btn btn-1"
         @click="change()"
-      > Save Changes
+      > Save changes
       </b-btn>
     </div>
   </div>
@@ -113,6 +113,7 @@
               duration: 3000,
               dismissible: true,
             });
+
             this.$router.push('/login');
             window.localStorage.removeItem('token');
           })
@@ -125,7 +126,7 @@
               dismissible: true,
             });
           });
-      },
-    },
-  };
+      }
+    }
+  }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <div class="profileCard home-content">
+    <div class="profile-card home-content">
       <section id="card-outline">
         <b-container>
           <b-card-group deck>
@@ -18,9 +18,10 @@
                 </b-link>
               </div>
 
-              <h4 class="text-center">
+              <h2 class="text-center">
                 Edit Profile
-              </h4>
+              </h2>
+
               <hr class="line">
 
               <b-alert
@@ -60,7 +61,7 @@
 </template>
 
 <script>
-  import UserDetails from '../components/user/UserDetails';
+  import UserDetails from '../components/user/EditProfile';
   import ChangePassword from '../components/user/ChangePassword';
   import DeleteProfile from '../components/user/DeleteProfile';
 
