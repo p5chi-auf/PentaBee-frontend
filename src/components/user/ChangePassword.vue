@@ -17,12 +17,12 @@
           class="form-control"
           :class="{ 'is-invalid': errors.has('old_password') }"
         />
-
+        
         <span v-if="errors.has('old_password')" class="invalid-feedback">
           {{ errors.first('old_password') }}
         </span>
       </b-form-group>
-
+      
       <b-form-group
         id="input-group-2"
         class="col-md-4"
@@ -44,7 +44,7 @@
           {{ errors.first('password') }}
         </span>
       </b-form-group>
-
+      
       <b-form-group
         id="input-group-3"
         class="col-md-4"
@@ -62,13 +62,13 @@
           data-vv-as="password"
           :class="{'is-invalid': errors.has('confirm_password')}"
         />
-
+        
         <span v-if="errors.has('confirm_password')" class="invalid-feedback">
           {{ errors.first('confirm_password') }}
         </span>
       </b-form-group>
     </b-form>
-
+    
     <div class="text-center space card-body gradient-buttons">
       <b-btn
         class="float-none d-inline-block btn btn-1"

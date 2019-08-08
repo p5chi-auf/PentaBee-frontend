@@ -1,127 +1,127 @@
 <template>
-  <div class="edit">
-    <div class="profile-card home-content">
-      <section id="card-outline">
-        <b-container class="col-md-9 mx-auto">
-          <b-row align-h="center" class="mt-5">
-            <b-card class="ml-2 p-3">
-              <h4 class="text-center">
-                Create an activity
-                <hr>
-              </h4>
+	<div class="edit">
+		<div class="profile-card home-content">
+			<section id="card-outline">
+				<b-container class="col-md-9 mx-auto">
+					<b-row align-h="center" class="mt-5">
+						<b-card class="ml-2 p-3">
+							<h4 class="text-center">
+								Create an activity
+								<hr>
+							</h4>
 
-              <b-alert show class="text-center" variant="warning" dismissible fade>
-                <i class="fas fa-smile-wink"/>
-                Add information about your Activity
-              </b-alert>
+							<b-alert show class="text-center" variant="warning" dismissible fade>
+								<i class="fas fa-smile-wink"/>
+								Add information about your Activity
+							</b-alert>
 
-              <b-form class="row" @submit.prevent="createActivity()">
-                <b-form-group class="col-md-6">
-                  <label class="ml-3 text-color-activity">Name of activity:</label>
-                  <b-form-input
-                    v-model="form.name"
-                    v-validate.continues="'required|min:3|max:100'"
-                    :class="{ 'is-invalid': errors.has('name') }"
-                    name="name"
-                    placeholder="Name of activity"
-                    type="text"
-                    class="form-control"
-                  />
+							<b-form class="row" @submit.prevent="createActivity()">
+								<b-form-group class="col-md-6">
+									<label class="ml-3 text-color-activity">Name of activity:</label>
+									<b-form-input
+										v-model="form.name"
+										v-validate.continues="'required|min:3|max:100'"
+										:class="{ 'is-invalid': errors.has('name') }"
+										name="name"
+										placeholder="Name of activity"
+										type="text"
+										class="form-control"
+									/>
 
-                  <span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
-                </b-form-group>
+									<span v-if="errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</span>
+								</b-form-group>
 
-                <b-form-group class="col-md-6">
-                  <div class="row  mt-4">
-                    <b-form-radio
-                      v-model="form.public"
-                      :value="true"
-                      class="ml-3 col-md-5 mt-2 text-color-activity"
-                    >
-                      Public
-                    </b-form-radio>
+								<b-form-group class="col-md-6">
+									<div class="row  mt-4">
+										<b-form-radio
+											v-model="form.public"
+											:value="true"
+											class="ml-3 col-md-5 mt-2 text-color-activity"
+										>
+											Public
+										</b-form-radio>
 
-                    <b-form-radio
-                      v-model="form.public"
-                      :value="false"
-                      class="ml-3 col-md-5 mt-2 text-color-activity"
-                    >
-                      Private
-                    </b-form-radio>
-                  </div>
-                </b-form-group>
+										<b-form-radio
+											v-model="form.public"
+											:value="false"
+											class="ml-3 col-md-5 mt-2 text-color-activity"
+										>
+											Private
+										</b-form-radio>
+									</div>
+								</b-form-group>
 
-                <div class="col-md-6">
-                  <b-form-group>
-                    <label class="typo__label ml-3 text-color-activity">Technologies:</label>
-                    <technology-list v-model="form.technologies"/>
-                  </b-form-group>
-                </div>
+								<div class="col-md-6">
+									<b-form-group>
+										<label class="typo__label ml-3 text-color-activity">Technologies:</label>
+										<technology-list v-model="form.technologies"/>
+									</b-form-group>
+								</div>
 
-                <div class="col-md-6">
-                  <activity-types-list v-model="form.types"/>
-                </div>
+								<div class="col-md-6">
+									<activity-types-list v-model="form.types"/>
+								</div>
 
-                <b-form-group class="col-md-6">
-                  <label class="ml-3 text-color-activity">Application deadline:</label>
-                  <datetime
-                    v-model="form.application_deadline"
-                    :min-datetime="timeStartApplication"
-                    input-style="width: 185px"
-                    name="application_deadline"
-                    value-zone="UTC"
-                    type="datetime"
-                    @input="setDeadline"
-                  />
-                </b-form-group>
+								<b-form-group class="col-md-6">
+									<label class="ml-3 text-color-activity">Application deadline:</label>
+									<datetime
+										v-model="form.application_deadline"
+										:min-datetime="timeStartApplication"
+										input-style="width: 185px"
+										name="application_deadline"
+										value-zone="UTC"
+										type="datetime"
+										@input="setDeadline"
+									/>
+								</b-form-group>
 
-                <b-form-group class="col-md-5">
-                  <label class="ml-3 text-color-activity">Final deadline:</label>
-                  <datetime
-                    v-model="form.final_deadline"
-                    :min-datetime="timeStartDeadline"
-                    input-style="width: 185px"
-                    name="final_deadline"
-                    value-zone="UTC"
-                    type="datetime"
-                  />
-                </b-form-group>
+								<b-form-group class="col-md-5">
+									<label class="ml-3 text-color-activity">Final deadline:</label>
+									<datetime
+										v-model="form.final_deadline"
+										:min-datetime="timeStartDeadline"
+										input-style="width: 185px"
+										name="final_deadline"
+										value-zone="UTC"
+										type="datetime"
+									/>
+								</b-form-group>
 
-                <b-form-group
-                  class="col-md-12"
-                >
-                  <label class="ml-3 text-color-activity">Activity description:</label>
+								<b-form-group
+									class="col-md-12"
+								>
+									<label class="ml-3 text-color-activity">Activity description:</label>
 
-                  <b-textarea
-                    id="description"
-                    v-model="form.description"
-                    v-validate.continues="'required'"
-                    :class="{ 'is-invalid': errors.has('description') }"
-                    name="description"
-                    placeholder="Something about the project..."
-                    type="text"
-                    class="form-control"
-                  />
+									<b-textarea
+										id="description"
+										v-model="form.description"
+										v-validate.continues="'required'"
+										:class="{ 'is-invalid': errors.has('description') }"
+										name="description"
+										placeholder="Something about the project..."
+										type="text"
+										class="form-control"
+									/>
 
-                  <span v-if="errors.has('description')" class="invalid-feedback">
+									<span v-if="errors.has('description')" class="invalid-feedback">
                     {{ errors.first('description') }}
                   </span>
-                </b-form-group>
-              </b-form>
+								</b-form-group>
+							</b-form>
 
-              <div class="text-center button">
-                <b-btn
-                  class="float-none d-inline-block btn btn-1 mt-2"
-                  @click="createActivity()"
-                >Create Activity
-                </b-btn>
-              </div>
-            </b-card>
-          </b-row>
-        </b-container>
-      </section>
-    </div>
-  </div>
+							<div class="text-center button">
+								<b-btn
+									class="float-none d-inline-block btn btn-1 mt-2"
+									@click="createActivity()"
+								>Create Activity
+								</b-btn>
+							</div>
+						</b-card>
+					</b-row>
+				</b-container>
+			</section>
+		</div>
+	</div>
 </template>
 
 <script>
