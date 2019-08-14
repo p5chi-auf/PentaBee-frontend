@@ -22,13 +22,13 @@
                   </label>
                   
                   <b-form-input
-                          v-model="form.name"
-                          v-validate.continues="'required|min:3|max:100'"
-                          :class="{ 'is-invalid': errors.has('name') }"
-                          name="name"
-                          placeholder="Name of activity"
-                          type="text"
-                          class="form-control"
+                    v-model="form.name"
+                    v-validate.continues="'required|min:3|max:100'"
+                    :class="{ 'is-invalid': errors.has('name') }"
+                    name="name"
+                    placeholder="Name of activity"
+                    type="text"
+                    class="form-control"
                   />
                   
                   <span v-if="errors.has('name')" class="invalid-feedback">
@@ -39,17 +39,17 @@
                 <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
-                            v-model="form.public"
-                            :value="true"
-                            class="ml-3 col-md-5 mt-2 text-color-activity"
+                      v-model="form.public"
+                      :value="true"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Public
                     </b-form-radio>
                     
                     <b-form-radio
-                            v-model="form.public"
-                            :value="false"
-                            class="ml-3 col-md-5 mt-2 text-color-activity"
+                      v-model="form.public"
+                      :value="false"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
                     >
                       Private
                     </b-form-radio>
@@ -71,13 +71,13 @@
                   <label class="ml-3 text-color-activity">Application deadline:</label>
                   
                   <datetime
-                          v-model="form.application_deadline"
-                          :min-datetime="timeStartApplication"
-                          input-style="width: 185px"
-                          name="application_deadline"
-                          value-zone="UTC"
-                          type="datetime"
-                          @input="setDeadline"
+                    v-model="form.application_deadline"
+                    :min-datetime="timeStartApplication"
+                    input-style="width: 185px"
+                    name="application_deadline"
+                    value-zone="UTC"
+                    type="datetime"
+                    @input="setDeadline"
                   />
                 </b-form-group>
                 
@@ -85,12 +85,12 @@
                   <label class="ml-3 text-color-activity">Final deadline:</label>
                   
                   <datetime
-                          v-model="form.final_deadline"
-                          :min-datetime="timeStartDeadline"
-                          input-style="width: 185px"
-                          name="final_deadline"
-                          value-zone="UTC"
-                          type="datetime"
+                    v-model="form.final_deadline"
+                    :min-datetime="timeStartDeadline"
+                    input-style="width: 185px"
+                    name="final_deadline"
+                    value-zone="UTC"
+                    type="datetime"
                   />
                 </b-form-group>
                 
@@ -98,19 +98,19 @@
                   <label class="ml-3 text-color-activity">Activity description:</label>
                   
                   <b-textarea
-                          id="description"
-                          v-model="form.description"
-                          v-validate.continues="'required'"
-                          :class="{ 'is-invalid': errors.has('description') }"
-                          name="description"
-                          placeholder="Something about the project..."
-                          type="text"
-                          class="form-control"
+                    id="description"
+                    v-model="form.description"
+                    v-validate.continues="'required'"
+                    :class="{ 'is-invalid': errors.has('description') }"
+                    name="description"
+                    placeholder="Something about the project..."
+                    type="text"
+                    class="form-control"
                   />
                   
                   <span
-                          v-if="errors.has('description')"
-                          class="invalid-feedback"
+                    v-if="errors.has('description')"
+                    class="invalid-feedback"
                   >
                     {{ errors.first('description') }}
                   </span>
@@ -119,8 +119,8 @@
               
               <div class="text-center button">
                 <b-btn
-                        class="float-none d-inline-block btn btn-1 mt-2"
-                        @click="createActivity()"
+                  class="float-none d-inline-block btn btn-1 mt-2"
+                  @click="createActivity()"
                 >Create Activity
                 </b-btn>
               </div>

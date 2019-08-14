@@ -75,7 +75,7 @@ const router = new Router({
       path: '/activity/:activityEditId/edit',
       name: 'activityEdit',
       component: ActivityEdit,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true }
     },
     {
       path: '/activity-create',

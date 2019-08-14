@@ -12,7 +12,7 @@
               <div class="row">
                 <div
                   v-for="result in results"
-                  :key="result.id"
+                  :key="result"
                   class="col-md-4 row-eq-height"
                   @click="redirectToActivityDetails(result.id)"
                 >
@@ -23,9 +23,15 @@
                   >
                     <div class="row">
                       <img
-                        src="../../assets/images/combs.jpg"
+                        v-if="result.cover"
+                        :src="coverOriginPath + result.cover.original"
                         class="activity-image mr-2"
                         alt="image"
+                      >
+                      <img v-else
+                           src="../../assets/images/combs.jpg"
+                           class="activity-image mr-2"
+                           alt="image"
                       >
 
                       <b-card-text class="col-md-10 text-name">
@@ -62,8 +68,15 @@
                   >
                     <div class="row">
                       <img
-                        src="../../assets/images/combs.jpg"
-                        class=" activity-image mr-2"
+                        v-if="result.cover"
+                        :src="coverOriginPath + result.cover.original"
+                        class="activity-image mr-2"
+                        alt="image"
+                      >
+                      <img v-else
+                           src="../../assets/images/combs.jpg"
+                           class="activity-image mr-2"
+                           alt="image"
                       >
 
                       <b-card-text class="col-md-10 text-name">
@@ -100,8 +113,15 @@
                   >
                     <div class="row">
                       <img
-                        src="../../assets/images/combs.jpg"
-                        class=" activity-image mr-2"
+                        v-if="result.cover"
+                        :src="coverOriginPath + result.cover.original"
+                        class="activity-image mr-2"
+                        alt="image"
+                      >
+                      <img v-else
+                           src="../../assets/images/combs.jpg"
+                           class="activity-image mr-2"
+                           alt="image"
                       >
 
                       <b-card-text class="col-md-10 text-name">
@@ -138,8 +158,15 @@
                   >
                     <div class="row">
                       <img
-                        src="../../assets/images/combs.jpg"
-                        class=" activity-image mr-2"
+                        v-if="result.cover"
+                        :src="coverOriginPath + result.cover.original"
+                        class="activity-image mr-2"
+                        alt="image"
+                      >
+                      <img v-else
+                           src="../../assets/images/combs.jpg"
+                           class="activity-image mr-2"
+                           alt="image"
                       >
 
                       <b-card-text class="col-md-10 text-name">
@@ -180,6 +207,7 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import { mapState } from 'vuex';
+  import { basePath } from "../../constants/apiEndpoints";
 
   export default {
     data() {
@@ -191,7 +219,8 @@
           per_page: 9,
           numPages: 1,
           numResults: 1
-        }
+        },
+        coverOriginPath: basePath + '/'
       }
     },
     computed: {

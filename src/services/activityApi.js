@@ -1,11 +1,12 @@
 import API from './';
-import { userEndpoints } from '@/constants/apiEndpoints';
+import { userEndpoints, basePath } from '@/constants/apiEndpoints';
+
 
 export default {
   getActivityList(filter){
     return API.get(userEndpoints.ACTIVITIES + filter);
   },
-  getActivityDetails (id) {
+  getActivityDetails (id){
     return API.get(userEndpoints.ACTIVITIES + '/' + id);
   },
   deleteActivity(id){
@@ -17,7 +18,14 @@ export default {
   editActivity(id, data){
     return API.post( userEndpoints.ACTIVITIES +'/' + id + '/edit', data)
   },
-  getTypes() {
+  deleteCoverActivity(data){
+    const { id } = data;
+    if (id) {
+      return API.delete(userEndpoints.ACTIVITIES + '/' + id + '/remove_cover', data);
+    }
+    return Promise.reject('Id not found');
+  },
+  getTypes(){
     return API.get( userEndpoints.TYPES)
   },
   applyActivity(id){
@@ -34,5 +42,17 @@ export default {
   },
   declineApplicants(activityId, userId){
     return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/applicants/' + userId + '/decline')
+  },
+  getComments(activityId){
+    return API.get(userEndpoints.ACTIVITIES + '/' + activityId + '/comments')
+  },
+  editComments(activityId, commentId, data){
+    return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/edit_comment/' + commentId, data)
+  },
+  addComment(activityId, data){
+    return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/add_comment', data)
+  },
+  deleteComment(commentId){
+    return API.delete(basePath + '/api/comment/' + commentId + '/delete')
   }
 };

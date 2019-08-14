@@ -1,20 +1,21 @@
 <template>
   <div class="col-md-12 mb-5">
     <b-table
-            responsive
-            striped
-            :fields="neededFields"
-            :items="form.results"
-            :current-page="form.currentPage"
-            :per-page="form.perPage"
-            :busy="isBusy"
+      responsive
+      striped
+      :fields="neededFields"
+      :items="form.results"
+      :current-page="form.currentPage"
+      :per-page="form.perPage"
+      :busy="isBusy"
+      @row-selected="rowSelected"
     >
       <template slot="Accept/Decline" slot-scope="row">
-        <i class="ml-4 far fa-check-circle mouse-type" @click="acceptApplicant(row.item.id)"/>
+        <i class="ml-4 far fa-check-circle mouse-type-pointer" @click="acceptApplicant(row.item.id)"/>
         
-        <i class="ml-4 fas fa-times mouse-type" @click="declineApplicant(row.item.id)"/>
+        <i class="ml-4 fas fa-times mouse-type-pointer" @click="declineApplicant(row.item.id)"/>
         
-        <i class="ml-4 fas fa-info-circle mouse-type" @click="row.toggleDetails"/>
+        <i class="ml-4 fas fa-info-circle mouse-type-pointer" @click="row.toggleDetails"/>
       </template>
       
       <template slot="seniority" slot-scope="row">
@@ -23,36 +24,41 @@
         <p v-else-if="row.item.seniority === 2">Senior</p>
       </template>
       
+      <template slot="row-details" slot-scope="row">
+        <b-card class="border-info" @click="row.toggleDetails">
+          <div class="row col-md-12">
+            Technologies:
+            <div v-for="(myTechnology, comas) in row.item.technologies" :key="myTechnology">
+              <hdiv class="row ml-3">{{ myTechnology.name }}<p v-if="comas+1 < row.item.technologies.length">,  &nbsp;</p></hdiv>
+
+            </div>
+          </div>
+          <div class="row col-md-12">
+            <div class="row col-md-12">
+              Email : <p>{{ row.item.email }}</p>
+            </div>
+            
+            <div class="row col-md-12">
+              Rating: <i v-for="star in row.item.stars" :key="star" class="fas fa-star ml-1"/>
+            </div>
+          </div>
+        </b-card>
+      </template>
+  
       <div slot="table-busy" class="text-center text-danger my-2">
         <b-spinner class="align-middle"/>
-        
+    
         <strong>Loading...</strong>
       </div>
-      
-      <template slot="row-details" slot-scope="row">
-        <div class="row col-md-12">
-          Technologies:
-          <p v-for="myTechnology in row.item.technologies" :key="myTechnology" class="col">{{ myTechnology.name }}</p>
-        </div>
-        <div class="row col-md-12">
-          <div class="col-md-6 row">
-            Rating: <i v-for="star in row.item.stars" :key="star" class="fas fa-star ml-1"/>
-          </div>
-          <div class="col-md-6 row">
-            Email : <p>{{ row.item.email }}</p>
-          </div>
-        </div>
-      
-      </template>
     </b-table>
     <div class="row col-md-12">
       <b-row class="mx-auto">
         <b-col md="12" class="my-1">
           <b-pagination
-                  v-model="form.currentPage"
-                  :total-rows="form.numResults"
-                  :per-page="form.perPage"
-                  class="my-0"
+            v-model="form.currentPage"
+            :total-rows="form.numResults"
+            :per-page="form.perPage"
+            class="my-0"
           />
         </b-col>
       </b-row>
@@ -88,6 +94,9 @@
       this.getListApplicants();
     },
     methods: {
+      rowSelected(row) {
+        row.toggleDetails()
+      },
       getListApplicants() {
         ActivityService.getApplicantsList(this.$route.params.idActivity).then(
           response => {
@@ -95,7 +104,7 @@
             this.form.results = response.data.results;
             this.isBusy = false;
             this.form.perPage = 6;
-            this.form.numPages = this.form.numResults / this.form.perPage;
+            this.form.numPages = this.form.numResults / this.form.perPage
           }
         )
       },
@@ -134,7 +143,7 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             })
           })
           .catch(response => {
@@ -143,7 +152,7 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             })
           })
       }
@@ -151,11 +160,7 @@
   }
 </script>
 <style>
-  .mouse-type {
+  .mouse-type-pointer{
     cursor: pointer;
-  }
-  .border-info{
-    border: 1px #1c0b00;
-    
   }
 </style>

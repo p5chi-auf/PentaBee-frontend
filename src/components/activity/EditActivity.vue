@@ -131,6 +131,22 @@
                   >{{ errors.first('description') }}</span>
                 </b-form-group>
               </b-form>
+  
+              <b-form-group class="col-md-12" label-for="coverActivity">
+                <label class="typo__label ml-3">Try To Upload Some Image:</label>
+    
+                <b-form-file accept="image/jpeg, image/png" @change="uploadCoverActivity"/>
+                <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
+                <b-link
+                  v-if="previewImage"
+                  v-b-tooltip.hover.top
+                  title="Delete image"
+                  class="ml-3"
+                  @click="deleteCover()"
+                >
+                  <i class="fas fa-times" style="color: var(--red)"/>
+                </b-link>
+              </b-form-group>
 
               <div class="text-center button">
                 <b-btn
@@ -181,8 +197,9 @@
   import moment, { unix } from 'moment';
   import TechnologyList from './Technologies';
   import TypesList from './Types';
+  import { basePath } from "../../constants/apiEndpoints";
 
-export default {
+  export default {
   components: {
     TechnologyList: TechnologyList,
     TypesList: TypesList
@@ -190,6 +207,7 @@ export default {
   data() {
     return {
       form: {
+        id: null,
         name: '',
         description: '',
         application_deadline: '',
@@ -198,6 +216,7 @@ export default {
         public: true,
         technologies: [{ id: null }],
         types: [],
+        cover: ''
       },
       edited: false,
       technologiesList: [],
@@ -205,7 +224,8 @@ export default {
         { text: 'New', value: '0' },
         { text: 'Finished', value: '1' },
         { text: 'Closed', value: '2' }
-      ]
+      ],
+      previewImage: null
     }
   },
   computed: {
@@ -217,12 +237,27 @@ export default {
         this.form = response.data;
         this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
         this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
+        if (this.form.cover) {
+          this.previewImage = basePath + '/' + this.form.cover.original;
+          this.form.cover = null
+        }
       })
       .catch(error => {
         console.log(error);
       });
   },
   methods: {
+    uploadCoverActivity(e) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(image);
+      reader.onload = e => {
+        this.previewImage = e.target.result;
+        this.form.cover = this.previewImage;
+        this.edited = true
+      }
+    },
     show() {
       this.$modal.show('edit-activity');
     },
@@ -244,9 +279,9 @@ export default {
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             });
-            this.$router.push('/activity-list');
+            this.$router.push('/activity-list')
           })
           .catch(() => {
             this.$toast.open({
@@ -254,11 +289,48 @@ export default {
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
-          });
+              dismissible: true
+            })
+          })
       }
-    }
+      else {
+        this.$toast.open({
+          message: 'You must to make changes',
+          type: 'error',
+          position: 'top-right',
+          duration: 3000,
+          dismissible: true
+        })
+      }
+    },
+    deleteCover(){
+      const data = {
+        ...this.form,
+        id: this.form.id
+      };
+
+      ActivityService.deleteCoverActivity(data)
+        .then(() => {
+          this.$toast.open({
+            message: 'Cover successfully deleted!',
+            type: 'success',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true
+          });
+
+          this.$router.push({ name: 'activityList' })
+        })
+        .catch(() => {
+          this.$toast.open({
+            message: 'Access denied!',
+            type: 'error',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true
+          })
+        })
+    },
   }
 }
 </script>

@@ -85,17 +85,23 @@
       ...mapGetters('account', ['userId']),
     },
     mounted() {
-      UserApi.userInfo(this.userId).then((response) => {
-        this.userData = response.data;
-        if (this.userData.avatar){
-          this.avatarImage = basePath + '/' + this.userData.avatar['40x40'];
-        }
-        else{
-          this.avatarImage = '/img/person1.png'
-        }
-      });
+      this.getUserInfo();
+      this.$root.$on('editedAvatar', () => {
+        this.getUserInfo();
+      })
     },
     methods: {
+      getUserInfo(){
+        UserApi.userInfo(this.userId).then((response) => {
+          this.userData = response.data;
+          if (this.userData.avatar){
+            this.avatarImage = basePath + '/' + this.userData.avatar['40x40'];
+          }
+          else{
+            this.avatarImage = '/img/person1.png'
+          }
+        })
+      },
       onclick() {
         window.localStorage.removeItem('token');
         this.$toast.open({

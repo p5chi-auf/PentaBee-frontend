@@ -14,6 +14,12 @@ Vue.use(VueTruncate);
 Vue.use(Datetime);
 Vue.use(VModal);
 
+Vue.filter('formatDateTime', function(value) {
+  if (value) {
+    return moment(unix(value)).format('MM-DD-YYYY HH:mm')
+  }
+});
+
 Vue.filter('formatDate', function(value) {
   if (value) {
     return moment(unix(value)).format('MM-DD-YYYY')
@@ -22,7 +28,7 @@ Vue.filter('formatDate', function(value) {
 
 Vue.filter('formatTime', function(value) {
   if (value) {
-    return moment(unix(value)).format("hh:mm")
+    return moment(unix(value)).format("HH:mm")
   }
 });
 

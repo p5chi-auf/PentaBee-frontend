@@ -18,10 +18,10 @@
                   <b-card-text class="col-md-4 text-right text-capitalize">
                     <div class="image-in-container">
                       <img
-                              v-b-tooltip.hover
-                              :title="activity.owner.name + ' ' + activity.owner.surname"
-                              :src="ownerImageAvatarUrl"
-                              alt="avatar"
+                        v-b-tooltip.hover
+                        :title="activity.owner.name + ' ' + activity.owner.surname"
+                        :src="ownerImageAvatarUrl"
+                        alt="avatar"
                       >
                     </div>
                   </b-card-text>
@@ -74,64 +74,73 @@
                 
                 <div class="text-center">
                   <b-link
-                          v-if="userId === activity.owner.id"
-                          v-b-tooltip.hover.top
-                          title="Delete activity"
-                          class="delete-icon float-right ml-2 mr-2"
-                          @click="showDeleteModal"
+                    v-if="userId === activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Delete activity"
+                    class="delete-icon float-right ml-2 mr-2"
+                    @click="showDeleteModal"
                   >
                     <i class="fas fa-trash-alt"/>
                   </b-link>
                   
                   <b-link
-                          v-if="userId === activity.owner.id"
-                          v-b-tooltip.hover.top
-                          title="Edit activity"
-                          class="edit-icon float-right ml-2 mr-2"
-                          @click="setActivityEditId"
+                    v-if="userId === activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Edit activity"
+                    class="edit-icon float-right ml-2 mr-2"
+                    @click="setActivityEditId"
                   >
                     <i class="fas fa-edit"/>
                   </b-link>
                   
                   <b-link
-                          v-if="userId === activity.owner.id"
-                          v-b-tooltip.hover.top
-                          title="Invite users"
-                          class="float-right ml-2 mr-2"
-                          @click="invite"
+                    v-if="userId === activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Invite users"
+                    class="float-right ml-2 mr-2"
+                    @click="invite"
                   >
                     <i class="fas fa-user-plus"/>
                   </b-link>
                   
                   <b-link
-                          v-if="userId !== activity.owner.id"
-                          v-b-tooltip.hover.top
-                          title="Apply"
-                          class="apply-icon float-right ml-2 mr-2"
-                          @click="showApplyModal"
+                    v-if="userId !== activity.owner.id"
+                    v-b-tooltip.hover.top
+                    title="Apply"
+                    class="apply-icon float-right ml-2 mr-2"
+                    @click="showApplyModal"
                   >
                     <i class="fas fa-check-circle"/>
                   </b-link>
+                  
                   <b-link
-                          v-if="userId === activity.owner.id"
-                          v-b-tooltip.hover.top
-                          title="Applicants list"
-                          class="applicants-icon float-right ml-2 mr-2"
-                          @click="redirectToActivityApplicants(activity.id)"
+                    v-b-tooltip.hover.top
+                    title="Applicants list"
+                    class="applicants-icon float-right ml-2 mr-2"
+                    @click="redirectToActivityApplicants(activity.id)"
                   >
                     <i class="fas fa-users"/>
+                  </b-link>
+  
+                  <b-link
+                    v-b-tooltip.hover.top
+                    title="Comments"
+                    class="applicants-icon float-right ml-2 mr-2"
+                    @click="showComments = !showComments"
+                  >
+                    <i class="fas fa-comments"/>
                   </b-link>
                 </div>
                 
                 <modal
-                        name="delete-activity"
-                        transition="nice-modal-fade"
-                        :min-width="100"
-                        :min-height="100"
-                        :max-width="300"
-                        :max-height="200"
-                        :delay="100"
-                        :adaptive="true"
+                  name="delete-activity"
+                  transition="nice-modal-fade"
+                  :min-width="100"
+                  :min-height="100"
+                  :max-width="300"
+                  :max-height="200"
+                  :delay="100"
+                  :adaptive="true"
                 >
                   <div class="example-modal-content text-center mt-5">
                     Do you want to delete activity?
@@ -142,14 +151,14 @@
                   </div>
                 </modal>
                 <modal
-                        name="apply-activity"
-                        transition="nice-modal-fade"
-                        :min-width="100"
-                        :min-height="100"
-                        :max-width="300"
-                        :max-height="200"
-                        :delay="100"
-                        :adaptive="true"
+                  name="apply-activity"
+                  transition="nice-modal-fade"
+                  :min-width="100"
+                  :min-height="100"
+                  :max-width="300"
+                  :max-height="200"
+                  :delay="100"
+                  :adaptive="true"
                 >
                   <div class="example-modal-content text-center mt-5">
                     Do you want to apply to this activity?
@@ -161,6 +170,7 @@
                 </modal>
               </div>
             </div>
+            <comments-activity v-if="showComments === true" class="mt-4"/>
           </b-card>
         </b-container>
       </section>
@@ -172,8 +182,12 @@
   import ActivityService from '../../services/activityApi';
   import { mapState, mapGetters } from 'vuex';
   import { basePath } from '../../constants/apiEndpoints';
+  import CommentsActivity from '../comments/CommentsActivity';
 
   export default {
+    components:{
+      CommentsActivity: CommentsActivity
+    },
     data() {
       return {
         activity: {
@@ -184,7 +198,8 @@
         },
         delete: false,
         avatarActivityUrl: null,
-        ownerImageAvatarUrl: null
+        ownerImageAvatarUrl: null,
+        showComments: false
       }
     },
     computed: {
@@ -236,7 +251,7 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true,
-            });
+            })
           });
         this.$modal.hide('apply-activity');
         return 0;
