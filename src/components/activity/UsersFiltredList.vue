@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-12 mb-5">
+    <b-form-select v-model="filter" class="mt-2" :options="options" @change="getUsersListByFilter()"/>
     <b-table
       responsive
       striped
@@ -11,9 +12,9 @@
       @row-selected="rowSelected"
     >
       <template slot="Accept/Decline" slot-scope="row">
-        <i class="ml-4 far fa-check-circle mouse-type-pointer" @click="acceptApplicant(row.item.id)"/>
+        <i v-if="filter === '/users?filter[activityRole][]=1'" class="ml-4 far fa-check-circle mouse-type-pointer" @click="acceptApplicant(row.item.id)"/>
         
-        <i class="ml-4 fas fa-times mouse-type-pointer" @click="declineApplicant(row.item.id)"/>
+        <i v-if="filter === '/users?filter[activityRole][]=1'" class="ml-4 fas fa-times mouse-type-pointer" @click="declineApplicant(row.item.id)"/>
         
         <i class="ml-4 fas fa-info-circle mouse-type-pointer" @click="row.toggleDetails"/>
       </template>
@@ -87,18 +88,30 @@
             { technologies: [] },
             { stars: null }
           ]
-        }
+        },
+        filter: '/users',
+        options:[
+          {value: '/users', text:'All users are selected'},
+          {value:  '/users?filter[activityRole][]=0', text: 'Invited users'},
+          {value: '/users?filter[activityRole][]=1', text: 'Applied users'},
+          {value: '/users?filter[activityRole][]=2', text: 'Assigned users'},
+          {value: '/users?filter[activityRole][]=3', text: 'Declined users'},
+          {value: '/users?filter[activityRole][]=4', text: 'Rejected users'}
+        ]
       }
     },
     mounted() {
-      this.getListApplicants();
+      this.getUsersListByFilter();
     },
     methods: {
+      redirectToActivityApplicants() {
+        this.$router.push({ name: 'applicantsList', params: { idActivity: id } });
+      },
       rowSelected(row) {
         row.toggleDetails()
       },
-      getListApplicants() {
-        ActivityService.getApplicantsList(this.$route.params.idActivity).then(
+      getUsersListByFilter() {
+        ActivityService.getUsersListByFilter(this.$route.params.idActivity, this.filter).then(
           response => {
             this.form = response.data;
             this.form.results = response.data.results;
@@ -120,7 +133,8 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true
-            })
+            });
+              this.getUsersListByFilter()
           })
           .catch(error => {
             this.$toast.open({
@@ -159,7 +173,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .mouse-type-pointer{
     cursor: pointer;
   }

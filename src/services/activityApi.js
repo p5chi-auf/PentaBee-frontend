@@ -34,8 +34,8 @@ export default {
   inviteUser(activityId, userId){
     return API.post(userEndpoints.ACTIVITIES +'/'+ activityId +'/invite' +'/'+  userId)
   },
-  getApplicantsList(activityId) {
-    return API.get( userEndpoints.ACTIVITIES + '/' + activityId + '/applicants')
+  getUsersListByFilter(activityId, filter) {
+    return API.get( userEndpoints.ACTIVITIES + '/' + activityId + filter)
   },
   acceptApplicants(activityId, userId){
     return API.post(userEndpoints.ACTIVITIES + '/' + activityId + '/applicants/' + userId + '/accept')

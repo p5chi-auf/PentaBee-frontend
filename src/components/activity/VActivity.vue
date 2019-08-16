@@ -115,7 +115,7 @@
                   
                   <b-link
                     v-b-tooltip.hover.top
-                    title="Applicants list"
+                    title="Users list"
                     class="applicants-icon float-right ml-2 mr-2"
                     @click="redirectToActivityApplicants(activity.id)"
                   >
@@ -242,14 +242,12 @@
               dismissible: true,
             });
           })
-          .catch((error) => {
-            let message = error.response.data.message;
-
+          .catch(error => {
             this.$toast.open({
-              message: message,
+              message: error.response.data.message,
               type: 'error',
               position: 'top-right',
-              duration: 3000,
+              duration: 4000,
               dismissible: true,
             })
           });
@@ -288,7 +286,7 @@
               dismissible: true,
             });
 
-            this.$router.push('/activity-list');
+            this.$router.push('/activity-list/:filter');
           })
           .catch(() => {
             this.$toast.open({

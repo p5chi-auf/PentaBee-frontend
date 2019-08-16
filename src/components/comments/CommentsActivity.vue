@@ -5,7 +5,7 @@
       <p class="ml-4 mt-2">{{ comments.length }} &numsp; comments</p>
       <hr class="line-comments-height">
       <div v-for="(comment, index) in comments" :key="comment" class="row mt-2 ml-3 mr-5 mb-2 comment-background">
-        <div v-if="comment.parent === null" class="row col-md-12 ml-2 mt-4">
+        <div class="row col-md-12 ml-2 mt-4">
           <img
             v-if="comment.user.avatar"
             :src="backImage + '/' + comment.user.avatar['40x40']"

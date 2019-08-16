@@ -57,10 +57,7 @@
                 </b-form-group>
                 
                 <div class="col-md-6">
-                  <b-form-group>
-                    <label class="typo__label ml-3 text-color-activity">Technologies:</label>
-                    <technology-list v-model="form.technologies"/>
-                  </b-form-group>
+                  <technology-list v-model="form.technologies"/>
                 </div>
                 
                 <div class="col-md-6">
@@ -189,7 +186,7 @@
               dismissible: true,
             });
 
-            this.$router.push('/activity-list');
+            this.$router.push('/activity-list/:filter');
           })
           .catch(() => {
             this.$toast.open({

@@ -22,7 +22,7 @@ export default {
         icon: 'fa fa-home'
       },
       {
-        href: '/activity-list',
+        href: '/activity-list/:filter',
         title: 'Activities',
         icon: 'fa fa-list',
         child: [

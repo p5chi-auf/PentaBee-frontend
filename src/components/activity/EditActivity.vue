@@ -130,24 +130,23 @@
                     class="invalid-feedback"
                   >{{ errors.first('description') }}</span>
                 </b-form-group>
-              </b-form>
   
-              <b-form-group class="col-md-12" label-for="coverActivity">
-                <label class="typo__label ml-3">Try To Upload Some Image:</label>
+                <b-form-group class="col-md-12 mx-auto" label-for="coverActivity">
+                  <label class="typo__label ml-3">Try To Upload Some Image:</label>
     
-                <b-form-file accept="image/jpeg, image/png" @change="uploadCoverActivity"/>
-                <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
-                <b-link
-                  v-if="previewImage"
-                  v-b-tooltip.hover.top
-                  title="Delete image"
-                  class="ml-3"
-                  @click="deleteCover()"
-                >
-                  <i class="fas fa-times" style="color: var(--red)"/>
-                </b-link>
-              </b-form-group>
-
+                  <b-form-file accept="image/jpeg, image/png" @change="uploadCoverActivity"/>
+                  <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
+                  <b-link
+                    v-if="previewImage"
+                    v-b-tooltip.hover.top
+                    title="Delete image"
+                    class="ml-3"
+                    @click="deleteCover()"
+                  >
+                    <i class="fas fa-times" style="color: var(--red)"/>
+                  </b-link>
+                </b-form-group>
+              </b-form>
               <div class="text-center button">
                 <b-btn
                   class="col-md-5 float-none d-inline-block btn btn-1 mt-2"
@@ -281,7 +280,7 @@
               duration: 3000,
               dismissible: true
             });
-            this.$router.push('/activity-list')
+            this.$router.push('/activity-list/:filter')
           })
           .catch(() => {
             this.$toast.open({
