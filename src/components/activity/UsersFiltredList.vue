@@ -29,7 +29,9 @@
       
       <template slot="seniority" slot-scope="row">
         <p v-if="row.item.seniority === 0">Junior</p>
+        
         <p v-else-if="row.item.seniority === 1">Middle</p>
+        
         <p v-else-if="row.item.seniority === 2">Senior</p>
       </template>
       
@@ -38,10 +40,13 @@
           <div class="row col-md-12">
             Technologies:
             <div v-for="(myTechnology, comas) in row.item.technologies" :key="myTechnology">
-              <hdiv class="row ml-3">{{ myTechnology.name }}<p v-if="comas+1 < row.item.technologies.length">,  &nbsp;</p></hdiv>
-
+              <div class="row ml-3">{{ myTechnology.name }}
+                <p v-if="comas+1 < row.item.technologies.length">, &nbsp;
+                </p>
+              </div>
             </div>
           </div>
+          
           <div class="row col-md-12">
             <div class="row col-md-12">
               Email : <p>{{ row.item.email }}</p>
@@ -56,8 +61,9 @@
   
       <div slot="table-busy" class="text-center text-danger my-2">
         <b-spinner class="align-middle"/>
-    
-        <strong>Loading...</strong>
+        
+        <strong>Loading...
+        </strong>
       </div>
     </b-table>
     <div class="row col-md-12">
@@ -179,8 +185,3 @@
     }
   }
 </script>
-<style scoped>
-  .mouse-type-pointer{
-    cursor: pointer;
-  }
-</style>

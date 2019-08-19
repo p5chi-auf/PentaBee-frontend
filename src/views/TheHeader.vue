@@ -76,18 +76,18 @@
         avatar: {
           original: '',
           '200x200': '',
-          '40x40': '',
-        },
+          '40x40': ''
+        }
       },
-      avatarImage: null,
+      avatarImage: null
     }),
     computed: {
-      ...mapGetters('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
     mounted() {
       this.getUserInfo();
       this.$root.$on('editedAvatar', () => {
-        this.getUserInfo();
+        this.getUserInfo()
       })
     },
     methods: {
@@ -95,7 +95,7 @@
         UserApi.userInfo(this.userId).then((response) => {
           this.userData = response.data;
           if (this.userData.avatar){
-            this.avatarImage = basePath + '/' + this.userData.avatar['40x40'];
+            this.avatarImage = basePath + '/' + this.userData.avatar['40x40']
           }
           else{
             this.avatarImage = '/img/person1.png'
@@ -109,10 +109,10 @@
           type: 'error',
           position: 'top-right',
           duration: 3000,
-          dismissible: true,
+          dismissible: true
         });
 
-        this.$router.push('/login');
+        this.$router.push('/login')
       }
     }
   }

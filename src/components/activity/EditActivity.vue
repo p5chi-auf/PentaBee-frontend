@@ -15,12 +15,10 @@
                 <b-form-group
                   id="input-group-1"
                   class="col-md-6"
-                  label-for="name"
                 >
                   <label class="ml-3 text-color-activity">Name of activity:</label>
                   
                   <b-form-input
-                    id="name"
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
                     name="name"
@@ -47,7 +45,6 @@
                     </b-form-radio>
                     <b-form-radio
                       v-model="form.public"
-                      name="some-radios"
                       :value="false"
                       class="ml-3 col-md-5 mt-2 text-color-activity"
                       @change="edited = true"
@@ -105,7 +102,6 @@
                       button-variant="outline-secondary"
                       size="lg"
                       class="col"
-                      name="radio-btn-outline"
                       @change="edited = true"
                     />
                   </div>
@@ -228,7 +224,7 @@
     }
   },
   computed: {
-    ...mapState('account', ['user']),
+    ...mapState('account', ['user'])
   },
   mounted() {
     ActivityService.getActivityDetails(this.$route.params.activityEditId)
@@ -255,10 +251,10 @@
       }
     },
     show() {
-      this.$modal.show('edit-activity');
+      this.$modal.show('edit-activity')
     },
     cancel() {
-      this.$modal.hide('edit-activity');
+      this.$modal.hide('edit-activity')
     },
     editActivity() {
       this.$modal.hide('edit-activity');

@@ -12,10 +12,11 @@
       placeholder="Leave your comment..."
       class="col-10 ml-3"
     />
-    <i class="fas fa-plus-circle col-auto mt-5 icon-add-comment" @click="addComment()"/>
-  
+    
+    <i class="far fa-comment-dots col-auto mt-5 icon-add-comment" @click="addComment()"/>
   </div>
 </template>
+
 <script>
   import userDetailsApi from "../../services/userDetailsApi";
   import { mapGetters } from "vuex";
@@ -33,14 +34,14 @@
           comment: '',
           parent: 0
         },
-        renderComponent: true,
+        renderComponent: true
       }
     },
     computed: {
       ...mapGetters('account', ['userId'])
     },
     created() {
-      this.getUserInfo();
+      this.getUserInfo()
     },
     methods: {
       getUserInfo() {
@@ -58,7 +59,7 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             });
             this.$emit('isCommented', 'bye');
             this.parameters= {

@@ -79,10 +79,6 @@ body {
     cursor: pointer;
   }
 
-  .page-link{
-
-  }
-
   .line {
     padding: 1px;
     background-image: var(--lineGradient);
@@ -92,6 +88,7 @@ body {
     background: #5a6268;
     border-color: #545b62;
   }
+
   .page-item a {
     color: var(--gray);
   }
@@ -100,12 +97,11 @@ body {
     color: #2d2d2d;
   }
 
-  .custom-radio .custom-control-input:checked~.custom-control-label::before,
-  .custom-radio .custom-control-input:checked~.custom-control-label::after {
-    background-color: #6c757d;
-    border-radius: 50%;
-  }
   .icon-add-comment {
     font-size: 40px;
+  }
+
+  .mouse-type-pointer{
+    cursor: pointer;
   }
 }

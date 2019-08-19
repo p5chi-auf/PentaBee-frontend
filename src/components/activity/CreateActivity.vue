@@ -105,20 +105,15 @@
                     class="form-control"
                   />
                   
-                  <span
-                    v-if="errors.has('description')"
-                    class="invalid-feedback"
-                  >
+                  <span v-if="errors.has('description')" class="invalid-feedback">
                     {{ errors.first('description') }}
                   </span>
                 </b-form-group>
               </b-form>
               
               <div class="text-center button">
-                <b-btn
-                  class="float-none d-inline-block btn btn-1 mt-2"
-                  @click="createActivity()"
-                >Create Activity
+                <b-btn class="float-none d-inline-block btn btn-1 mt-2" @click="createActivity()">
+                  Create Activity
                 </b-btn>
               </div>
             </b-card>

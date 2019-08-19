@@ -20,10 +20,11 @@ export default {
   },
   deleteCoverActivity(data){
     const { id } = data;
+
     if (id) {
-      return API.delete(userEndpoints.ACTIVITIES + '/' + id + '/remove_cover', data);
+      return API.delete(userEndpoints.ACTIVITIES + '/' + id + '/remove_cover', data)
     }
-    return Promise.reject('Id not found');
+    return Promise.reject('Id not found')
   },
   getTypes(){
     return API.get( userEndpoints.TYPES)
