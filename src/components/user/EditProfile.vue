@@ -151,10 +151,10 @@
         biography: '',
         location: '',
         technologies: [
-          { id: null },
+          { id: null }
         ],
         avatar: {
-          original: '',
+          original: ''
         },
       },
       previewImage: null,
@@ -162,7 +162,7 @@
       options1: [
         { value: '0', text: 'JUNIOR' },
         { value: '1', text: 'MIDDLE' },
-        { value: '2', text: 'SENIOR' },
+        { value: '2', text: 'SENIOR' }
       ],
       options2: [
         { value: 'CHI', text: 'CHI' },
@@ -195,7 +195,7 @@
           this.form = response.data;
           if (this.form.avatar) {
             this.previewImage = basePath + '/' + this.form.avatar.original;
-            this.form.avatar = null;
+            this.form.avatar = null
           }
         });
 
@@ -213,13 +213,13 @@
         reader.readAsDataURL(image);
         reader.onload = e => {
           this.previewImage = e.target.result;
-          this.form.avatar = this.previewImage;
+          this.form.avatar = this.previewImage
         };
       },
       edit() {
         const data = {
           ...this.form,
-          id: this.userId,
+          id: this.userId
         };
 
         UserApi.editUser(data)
@@ -229,10 +229,10 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             });
-
-            this.$router.push({ name: 'profile' });
+            this.$root.$emit('editedAvatar');
+            this.$router.push({ name: 'profile' })
           })
           .catch(() => {
             this.$toast.open({
@@ -240,14 +240,14 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
-          });
+              dismissible: true
+            })
+          })
       },
       deleteImage() {
         const data = {
           ...this.form,
-          id: this.userId,
+          id: this.userId
         };
 
         UserApi.deleteAvatar(data)
@@ -257,10 +257,10 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             });
 
-            this.$router.push({ name: 'profile' });
+            this.$router.push({ name: 'profile' })
           })
           .catch(() => {
             this.$toast.open({
@@ -268,7 +268,7 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             })
           })
       }

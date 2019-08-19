@@ -21,6 +21,16 @@
           </b-card>
         </b-container>
       </section>
+      <div class="d-flex justify-content-center">
+        <b-pagination
+          v-model="form.currentPage"
+          bg-variant="dark"
+          :total-rows="form.numResults"
+          :per-page="form.perPage"
+          aria-controls="my-table"
+          @input="getUsersList"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -31,15 +41,23 @@
 
   export default {
     data: () => ({
-      form: {},
+      form: {
+        results: [],
+        currentPage: 1,
+        perPage: 10
+      }
     }),
     mounted() {
-      UserApi.userList(this.form)
-        .then((response) => {
-          this.form = response.data;
-        });
+      this.getUsersList()
     },
     methods: {
+      getUsersList(){
+        let data =  '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
+        UserApi.userList(data)
+          .then((response) => {
+            this.form = response.data
+          })
+      },
       userInvite(id) {
         ActivityService.inviteUser(this.$route.params.activityId, id)
           .then(() => {
@@ -48,8 +66,8 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
+              dismissible: true
+            })
           })
           .catch((error) => {
             let message = error.response.data.message;
@@ -59,9 +77,9 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
-          });
+              dismissible: true
+            })
+          })
       }
     }
   }

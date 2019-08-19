@@ -9,7 +9,7 @@ import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from '../components/activity/ActivityList';
 import ActivityEdit from '@/components/activity/EditActivity';
-import ApplicantsList from '../components/activity/ApplicantsList';
+import ApplicantsList from '../components/activity/UsersFiltredList';
 import Invite from '@/components/activity/UsersList';
 
 import Vue from 'vue';
@@ -54,7 +54,7 @@ const router = new Router({
       component: NotFound,
     },
     {
-      path: '/activity-list',
+      path: '/activity-list/:filter',
       name: 'activityList',
       component: ActivityList,
       meta: { requiresAuth: true },
@@ -75,7 +75,7 @@ const router = new Router({
       path: '/activity/:activityEditId/edit',
       name: 'activityEdit',
       component: ActivityEdit,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true }
     },
     {
       path: '/activity-create',

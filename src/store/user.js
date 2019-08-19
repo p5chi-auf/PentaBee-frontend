@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import userDetailsApi from "../services/userDetailsApi";
 
 const state = () => ({
   user: null,

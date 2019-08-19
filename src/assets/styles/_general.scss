@@ -2,7 +2,7 @@ body {
   font-family: 'Lato', sans-serif;
 
   .main {
-    padding-top: 90px;
+    padding-top: 80px;
     padding-left: 50px;
     transition: all 0.5s;
     height: auto;
@@ -80,8 +80,8 @@ body {
   }
 
   .page-item.active .page-link {
-    background: var(--orangeGradient);
-    border-color: var(--orange);
+    background: #5a6268;
+    border-color: #545b62;
   }
 
   .page-item a {
@@ -92,4 +92,11 @@ body {
     color: #2d2d2d;
   }
 
+  .icon-add-comment {
+    font-size: 40px;
+  }
+
+  .mouse-type-pointer{
+    cursor: pointer;
+  }
 }
