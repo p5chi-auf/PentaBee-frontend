@@ -12,9 +12,17 @@
       @row-selected="rowSelected"
     >
       <template slot="Accept/Decline" slot-scope="row">
-        <i v-if="filter === '/users?filter[activityRole][]=1'" class="ml-4 far fa-check-circle mouse-type-pointer" @click="acceptApplicant(row.item.id)"/>
+        <i
+          v-if="filter === '/users?filter[activityRole][]=1'"
+          class="ml-4 far fa-check-circle mouse-type-pointer"
+          @click="acceptApplicant(row.item.id)"
+        />
         
-        <i v-if="filter === '/users?filter[activityRole][]=1'" class="ml-4 fas fa-times mouse-type-pointer" @click="declineApplicant(row.item.id)"/>
+        <i
+          v-if="filter === '/users?filter[activityRole][]=1'"
+          class="ml-4 fas fa-times mouse-type-pointer"
+          @click="declineApplicant(row.item.id)"
+        />
         
         <i class="ml-4 fas fa-info-circle mouse-type-pointer" @click="row.toggleDetails"/>
       </template>
@@ -122,10 +130,7 @@
         )
       },
       acceptApplicant(applicantId) {
-        ActivityService.acceptApplicants(
-          this.$route.params.idActivity,
-          applicantId
-        )
+        ActivityService.acceptApplicants(this.$route.params.idActivity, applicantId)
           .then(() => {
             this.$toast.open({
               message: 'User successful accepted',
@@ -158,7 +163,8 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true
-            })
+            });
+            this.getUsersListByFilter()
           })
           .catch(response => {
             this.$toast.open({

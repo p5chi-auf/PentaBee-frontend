@@ -45,7 +45,7 @@
         results: [],
         currentPage: 1,
         perPage: 10
-      },
+      }
     }),
     mounted() {
       this.getUsersList()
@@ -55,7 +55,7 @@
         let data =  '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
         UserApi.userList(data)
           .then((response) => {
-            this.form = response.data;
+            this.form = response.data
           })
       },
       userInvite(id) {
@@ -66,8 +66,8 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
+              dismissible: true
+            })
           })
           .catch((error) => {
             let message = error.response.data.message;
@@ -77,9 +77,9 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
-          });
+              dismissible: true
+            })
+          })
       }
     }
   }

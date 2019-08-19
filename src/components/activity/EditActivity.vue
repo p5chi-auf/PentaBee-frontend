@@ -35,12 +35,12 @@
                   </span>
                 </b-form-group>
 
-                <b-form-group class=" col-md-6">
+                <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
                       v-model="form.public"
                       :value="true"
-                      class=" ml-3 col-md-5 mt-2 text-color-activity"
+                      class="ml-3 col-md-5 mt-2 text-color-activity"
                       @change="edited = true"
                     >
                       Public
@@ -241,9 +241,6 @@
           this.form.cover = null
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
   },
   methods: {
     uploadCoverActivity(e) {

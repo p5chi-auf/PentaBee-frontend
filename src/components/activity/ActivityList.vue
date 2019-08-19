@@ -149,7 +149,7 @@
       getTechnologies() {
         UserApi.getTechnologies()
           .then((response) => {
-            this.formTechnologies = response.data;
+            this.formTechnologies = response.data
           })
       },
       searchByName() {
@@ -168,12 +168,11 @@
           .then(response => {
             this.results = response.data.results;
             this.pagination.numResults = response.data.numResults;
-            this.requestFilter = '';
-           
-          });
+            this.requestFilter = ''
+          })
       },
       redirectToActivityDetails(id) {
-        this.$router.push({ name: 'activity', params: { activityId: id } });
+        this.$router.push({ name: 'activity', params: { activityId: id } })
       }
     }
   }

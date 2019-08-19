@@ -209,8 +209,8 @@
     created() {
       ActivityService.getActivityDetails(this.$route.params.activityId)
         .then((response) => {
-          this.activity = response.data;
-        });
+          this.activity = response.data
+        })
     },
     mounted() {
       ActivityService.getActivityDetails(this.$route.params.activityId)
@@ -218,15 +218,15 @@
           this.activity = response.data;
 
           if (this.activity.cover) {
-            this.avatarActivityUrl = basePath + '/' + this.activity.cover['150x150'];
+            this.avatarActivityUrl = basePath + '/' + this.activity.cover['150x150']
           } else {
-            this.avatarActivityUrl = '/img/combs.jpg';
+            this.avatarActivityUrl = '/img/combs.jpg'
           }
 
           if (this.activity.owner.avatar) {
-            this.ownerImageAvatarUrl = basePath + '/' + this.activity.owner.avatar['40x40'];
+            this.ownerImageAvatarUrl = basePath + '/' + this.activity.owner.avatar['40x40']
           } else {
-            this.ownerImageAvatarUrl = '/img/person1.png';
+            this.ownerImageAvatarUrl = '/img/person1.png'
           }
         });
     },
@@ -239,8 +239,8 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
-            });
+              dismissible: true
+            })
           })
           .catch(error => {
             this.$toast.open({
@@ -248,32 +248,32 @@
               type: 'error',
               position: 'top-right',
               duration: 4000,
-              dismissible: true,
+              dismissible: true
             })
           });
         this.$modal.hide('apply-activity');
-        return 0;
+        return 0
       },
       redirectToActivityApplicants(id) {
-        this.$router.push({ name: 'applicantsList', params: { idActivity: id } });
+        this.$router.push({ name: 'applicantsList', params: { idActivity: id } })
       },
       showApplyModal() {
-        this.$modal.show('apply-activity');
+        this.$modal.show('apply-activity')
       },
       invite() {
-        this.$router.push({ name: 'invite', params: { activityEditId: this.activity.id } });
+        this.$router.push({ name: 'invite', params: { activityEditId: this.activity.id } })
       },
       setActivityEditId() {
-        this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } });
+        this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } })
       },
       showDeleteModal() {
-        this.$modal.show('delete-activity');
+        this.$modal.show('delete-activity')
       },
       cancel() {
         this.$modal.hide('delete-activity');
         this.$modal.hide('apply-activity');
 
-        return 0;
+        return 0
       },
       deleteActivity() {
         ActivityService.deleteActivity(this.$route.params.activityId)
@@ -283,10 +283,10 @@
               type: 'success',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             });
 
-            this.$router.push('/activity-list/:filter');
+            this.$router.push('/activity-list/:filter')
           })
           .catch(() => {
             this.$toast.open({
@@ -294,7 +294,7 @@
               type: 'error',
               position: 'top-right',
               duration: 3000,
-              dismissible: true,
+              dismissible: true
             })
           })
       }
