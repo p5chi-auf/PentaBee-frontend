@@ -10,7 +10,8 @@ import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from '../components/activity/ActivityList';
 import ActivityEdit from '@/components/activity/EditActivity';
 import ApplicantsList from '../components/activity/ApplicantsList';
-import Invite from '@/components/activity/UsersList';
+import Invite from '@/components/activity/InviteUsers';
+import List from '@/components/user/UsersList';
 
 import Vue from 'vue';
 import store from '../store';
@@ -87,6 +88,12 @@ const router = new Router({
       path: '/activity/:idActivity/applicants',
       name: 'applicantsList',
       component: ApplicantsList,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/team',
+      name: 'usersList',
+      component: List,
       meta: { requiresAuth: true },
     },
   ],

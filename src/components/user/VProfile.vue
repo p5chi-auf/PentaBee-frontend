@@ -23,7 +23,7 @@
 
             <h3 class="mt-1">{{ profileData.name }} {{ profileData.surname }}</h3>
 
-            <h6 class="seniority-text mt-2" style="text-transform:uppercase">
+            <h6 class="seniority-text mt-2 text-uppercase">
               {{ profileData.position }} {{ seniorityList[profileData.seniority] }}
             </h6>
 
@@ -97,6 +97,7 @@
       UserApi.userInfo(this.userId)
         .then((response) => {
           this.profileData = response.data;
+
           if (this.profileData.avatar) {
             this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
           } else {

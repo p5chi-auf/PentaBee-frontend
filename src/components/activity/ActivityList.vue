@@ -162,6 +162,7 @@
             </b-tab>
           </section>
         </b-tabs>
+
         <div class="d-flex justify-content-center">
           <b-pagination
             v-model="pagination.currentPage"

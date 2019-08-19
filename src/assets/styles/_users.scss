@@ -1,0 +1,18 @@
+.users-list {
+  .img-in-container img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+  }
+
+  .text-name {
+    color: black;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px var(--gray);
+    height: available;
+  }
+  .card-color{
+    background-image: linear-gradient(to right, #FFEFBA 0%, #FFFFFF 50%);
+  }
+}

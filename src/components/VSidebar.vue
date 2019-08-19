@@ -22,6 +22,11 @@ export default {
         icon: 'fa fa-home'
       },
       {
+        href: '/team',
+        title: 'Team',
+        icon: 'fas fa-users'
+      },
+      {
         href: '/activity-list',
         title: 'Activities',
         icon: 'fa fa-list',
