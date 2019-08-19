@@ -26,8 +26,8 @@ export default {
     }
     return Promise.reject('Id not found');
   },
-  userList(data) {
-    return API.get( userEndpoints.USER + '/list', data);
+  userList(filter) {
+    return API.get( userEndpoints.USER + 'list'+ filter);
   },
   getTechnologies() {
     return API.get(userEndpoints.TECHNOLOGIES);

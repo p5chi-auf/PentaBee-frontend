@@ -1,0 +1,18 @@
+.comments-component{
+  .border-comments-field{
+    border: #2d2d2d;
+    border-radius: 10px;
+    padding: 5px;
+    -webkit-box-shadow: 0 0 3px 5px rgba(17,20,56,1);
+    -moz-box-shadow: 0 0 3px 5px rgba(17,20,56,1);
+    box-shadow: 0 0 3px 1px rgba(17,20,56,1);
+    flex: available;
+  }
+  .line-comments-height{
+    padding-top: 1px;
+    background-image: linear-gradient(to right, rgba(102, 137, 148, 0.56) 0%, #6f97a3 50%, rgba(102, 137, 148, 0.55) 100%);;
+  }
+  .comments-field-background{
+    background-color: rgba(100, 109, 109, 0.07);
+  }
+}

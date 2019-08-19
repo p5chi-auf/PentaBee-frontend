@@ -6,12 +6,19 @@ import './plugins';
 import Datetime from 'vue-datetime';
 import VueTruncate from 'vue-truncate-filter';
 import moment, {unix} from 'moment';
+import VModal from 'vue-js-modal';
+
 import './assets/main.scss';
-import VModal from 'vue-js-modal'
 
 Vue.use(VueTruncate);
 Vue.use(Datetime);
 Vue.use(VModal);
+
+Vue.filter('formatDateTime', function(value) {
+  if (value) {
+    return moment(unix(value)).format('MM-DD-YYYY HH:mm')
+  }
+});
 
 Vue.filter('formatDate', function(value) {
   if (value) {
@@ -21,7 +28,7 @@ Vue.filter('formatDate', function(value) {
 
 Vue.filter('formatTime', function(value) {
   if (value) {
-    return moment(unix(value)).format("hh:mm")
+    return moment(unix(value)).format("HH:mm")
   }
 });
 
