@@ -3,7 +3,7 @@
     <div class="pt-2 mb-5 pb-5">
       <section class="section-style">
         <b-container>
-          <h2 class="text-center mb-3">Invite users to your activity</h2>
+          <h2 class="text-center my-3 mb-3">Invite users to your activity</h2>
 
           <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
             <b-list-group-item variant="warning">{{ item.username }}
@@ -70,6 +70,7 @@
           })
           .catch((error) => {
             let message = error.response.data.message;
+
             this.$toast.open({
               message: message,
               type: 'error',

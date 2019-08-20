@@ -32,21 +32,21 @@
                   <i class="fas fa-graduation-cap"/> {{ item.position }} {{ seniorityList[item.seniority] }}
                 </b-card-text>
               </div>
-
             </b-card>
           </section>
         </div>
       </div>
-      <!--      <div class="d-flex justify-content-center my-4">-->
-      <!--        <b-pagination-->
-      <!--          v-model="form.currentPage"-->
-      <!--          bg-variant="dark"-->
-      <!--          :total-rows="form.numResults"-->
-      <!--          :per-page="form.perPage"-->
-      <!--          aria-controls="my-table"-->
-      <!--          @input="getUsersList"-->
-      <!--        />-->
-      <!--      </div>-->
+
+      <div class="d-flex justify-content-center my-4">
+        <b-pagination
+          v-model="form.currentPage"
+          bg-variant="dark"
+          :total-rows="form.numResults"
+          :per-page="form.per_page"
+          aria-controls="my-table"
+          @input="getUsersList"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -59,6 +59,9 @@
     data: () => ({
       form: {
         avatar: {},
+        results: [],
+        currentPage: 1,
+        per_page: 9
       },
       avatarPath: basePath + '/',
     }),
@@ -66,10 +69,20 @@
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
     },
     mounted() {
-      UserApi.userList(this.form)
+      UserApi.userList('')
         .then((response) => {
           this.form = response.data;
         });
+      this.getUsersList()
     },
+    methods: {
+      getUsersList() {
+        let data = '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
+        UserApi.userList(data)
+          .then((response) => {
+            this.form = response.data
+          })
+      },
+    }
   };
 </script>

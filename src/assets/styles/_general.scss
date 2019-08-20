@@ -2,7 +2,7 @@ body {
   font-family: 'Lato', sans-serif;
 
   .main {
-    padding-top: 80px;
+    padding-top: 90px;
     padding-left: 50px;
     transition: all 0.5s;
     height: auto;
@@ -80,7 +80,7 @@ body {
   }
 
   .page-item.active .page-link {
-    background: #5a6268;
+    background: var(--darkGray);
     border-color: #545b62;
   }
 
@@ -89,7 +89,7 @@ body {
   }
 
   .text-color-activity {
-    color: #2d2d2d;
+    color: var(--darkGray);
   }
 
   .icon-add-comment {

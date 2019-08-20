@@ -9,11 +9,9 @@ import Activity from '@/components/activity/VActivity';
 import CreateActivity from '@/components/activity/CreateActivity';
 import ActivityList from '../components/activity/ActivityList';
 import ActivityEdit from '@/components/activity/EditActivity';
-import ApplicantsList from '../components/activity/ApplicantsList';
-import Invite from '@/components/activity/InviteUsers';
 import List from '@/components/user/UsersList';
 import ApplicantsList from '../components/activity/UsersFiltredList';
-import Invite from '@/components/activity/UsersList';
+import Invite from '@/components/activity/InviteUsers';
 
 import Vue from 'vue';
 import store from '../store';
