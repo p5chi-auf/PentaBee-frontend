@@ -3,8 +3,11 @@
     <div class="mb-5">
       <b-card no-body>
         <div class="mt-2">
-          <b-dropdown id="dropdown-form" ref="dropdown" text="Filter for activity list"
-                      class="col-4 end align-content-end header-activity-list"
+          <b-dropdown
+            id="dropdown-form"
+            ref="dropdown"
+            text="Filter for activity list"
+            class="col-4 end align-content-end header-activity-list"
           >
             <b-dropdown-form>
               <b-form-group>

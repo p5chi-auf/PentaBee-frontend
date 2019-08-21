@@ -17,7 +17,7 @@
                   class="col-md-6"
                 >
                   <label class="ml-3 text-color-activity">Name of activity:</label>
-                  
+
                   <b-form-input
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
@@ -27,7 +27,7 @@
                     :class="{ 'is-invalid': errors.has('name') }"
                     @change="edited = true"
                   />
-                  
+
                   <span v-if="errors.has('name')" class="invalid-feedback">
                     {{ errors.first('name') }}
                   </span>
@@ -91,7 +91,7 @@
                     @click="edited = true"
                   />
                 </b-form-group>
-               
+
                 <b-form-group class="col-md-12">
                   <label class="ml-3 text-color-activity">Status:</label>
                   <div class="row">
@@ -106,7 +106,7 @@
                     />
                   </div>
                 </b-form-group>
-              
+
 
                 <b-form-group id="input-group-2" class="col-md-12 mx-auto">
                   <label class="ml-3 text-color-activity">Description:</label>
@@ -126,10 +126,10 @@
                     class="invalid-feedback"
                   >{{ errors.first('description') }}</span>
                 </b-form-group>
-  
+
                 <b-form-group class="col-md-12 mx-auto" label-for="coverActivity">
                   <label class="typo__label ml-3">Try To Upload Some Image:</label>
-    
+
                   <b-form-file accept="image/jpeg, image/png" @change="uploadCoverActivity"/>
                   <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
                   <b-link
