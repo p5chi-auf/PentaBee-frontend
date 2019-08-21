@@ -37,7 +37,7 @@
               <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
                 Clear all
               </b-button>
-              <b-button size="sm" variant="success" @click="ok()">
+              <b-button size="sm" variant="success" @click="searchByName">
                 Apply filter
               </b-button>
             </template>
@@ -91,7 +91,7 @@
           :total-rows="form.numResults"
           :per-page="usersPerPage"
           aria-controls="my-table"
-          @input="getUsersList"
+          @input="getData"
         />
       </div>
     </div>
@@ -120,23 +120,36 @@
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
     },
     mounted() {
-      this.getUsersList();
+      this.getData();
       this.getTechnologies();
     },
     methods: {
+      searchByName() {
+        this.currentPage = 1;
+        this.getData();
+      },
       getTechnologies() {
         UserApi.getTechnologies()
           .then((response) => {
             this.formTechnologies = response.data;
           });
       },
-      getUsersList() {
-        let data = '?pagination[page]=' + this.currentPage + '&pagination[per_page]=' + this.usersPerPage;
+      getData() {
+        let data = '?pagination[page]='
+          + this.currentPage
+          + '&pagination[per_page]='
+          + this.usersPerPage + this.requestFilter;
+
+        this.$router.push({ name: 'usersList', params: { filter: data } });
+
         UserApi.userList(data)
           .then((response) => {
             this.form = response.data;
+            this.numResults = response.data.numResults;
+            this.requestFilter = '';
           });
       }
     }
   }
 </script>
+
