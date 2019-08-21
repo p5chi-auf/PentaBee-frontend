@@ -8,13 +8,13 @@
               <div class="col-md-3">
                 <img :src="avatarActivityUrl" class="round-image" alt="avatar">
               </div>
-              
+
               <div class="col-md-9">
                 <div class="row">
                   <b-card-title class="col-md-8 mx-auto row">
                     {{ activity.name }}
                   </b-card-title>
-                  
+
                   <b-card-text class="col-md-4 text-right text-capitalize">
                     <div class="image-in-container">
                       <img
@@ -26,22 +26,22 @@
                     </div>
                   </b-card-text>
                 </div>
-                
+
                 <hr class="line">
-                
+
                 <h5 class="font-weight-bold">Description: </h5>
-                
+
                 <p class="ml-1 description-styles">{{ activity.description }}</p>
-                
+
                 <div class="row">
                   <div class="col">
                     <h5 class="font-weight-bold">Technologies:</h5>
-                    
+
                     <ul v-for="item in activity.technologies" :key="item.id">
                       <li class="technology-name ml-3">{{ item.name }}</li>
                     </ul>
                   </div>
-                  
+
                   <div class="col">
                     <h5 class="font-weight-bold">Types:</h5>
                     <ul v-for="item in activity.types" :key="item.id">
@@ -49,7 +49,7 @@
                     </ul>
                   </div>
                 </div>
-                
+
                 <div class="row">
                   <h5 class="font-weight-bold col">
                     Application till:
@@ -60,7 +60,7 @@
                       Time: {{ activity.application_deadline | formatTime }}
                     </p>
                   </h5>
-                  
+
                   <h5 class="font-weight-bold col">
                     Activity deadline:
                     <p class="col-md-4 ml-4 deadline">
@@ -71,7 +71,7 @@
                     </p>
                   </h5>
                 </div>
-                
+
                 <div class="text-center">
                   <b-link
                     v-if="userId === activity.owner.id"
@@ -82,7 +82,7 @@
                   >
                     <i class="fas fa-trash-alt"/>
                   </b-link>
-                  
+
                   <b-link
                     v-if="userId === activity.owner.id"
                     v-b-tooltip.hover.top
@@ -92,17 +92,17 @@
                   >
                     <i class="fas fa-edit"/>
                   </b-link>
-                  
+
                   <b-link
                     v-if="userId === activity.owner.id"
                     v-b-tooltip.hover.top
                     title="Invite users"
-                    class="float-right ml-2 mr-2"
+                    class="invite-icon float-right ml-2 mr-2"
                     @click="invite"
                   >
                     <i class="fas fa-user-plus"/>
                   </b-link>
-                  
+
                   <b-link
                     v-if="userId !== activity.owner.id"
                     v-b-tooltip.hover.top
@@ -112,7 +112,7 @@
                   >
                     <i class="fas fa-check-circle"/>
                   </b-link>
-                  
+
                   <b-link
                     v-b-tooltip.hover.top
                     title="Users list"
@@ -121,17 +121,17 @@
                   >
                     <i class="fas fa-users"/>
                   </b-link>
-  
+
                   <b-link
                     v-b-tooltip.hover.top
                     title="Comments"
-                    class="applicants-icon float-right ml-2 mr-2"
+                    class="float-right ml-2 mr-2"
                     @click="showComments = !showComments"
                   >
                     <i class="fas fa-comments"/>
                   </b-link>
                 </div>
-                
+
                 <modal
                   name="delete-activity"
                   transition="nice-modal-fade"

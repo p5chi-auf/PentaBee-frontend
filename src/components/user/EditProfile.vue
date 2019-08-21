@@ -231,7 +231,7 @@
               duration: 3000,
               dismissible: true
             });
-            this.$root.$emit('editedAvatar');
+            // this.$root.$emit('editedAvatar');
             this.$router.push({ name: 'profile' })
           })
           .catch(() => {

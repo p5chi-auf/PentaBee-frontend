@@ -1,48 +1,53 @@
 <template>
-  <div class="col home-content edit users-list">
+  <div class="col home-content users-list">
     <div class="mb-5">
-      <h2 class="text-center my-3 mb-3">Team</h2>
+      <div class="mt-2">
+        <section id="card-outline">
+          <h2 class="text-center my-3 mb-3">Team</h2>
 
-      <div class="row">
-        <div
-          v-for="item in form.results"
-          :key="item.id"
-          class="col-md-4"
-        >
-          <section class="card-outline">
-            <b-card
-              border-variant="warning"
-              class="card-color col-md-12 mt-3"
+          <b-row>
+            <div v-for="item in form.results"
+                 :key="item.id"
+                 class="container col-md-4 mb-2"
             >
-              <div class="row">
-                <div class="image-out-container">
-                  <div class="img-in-container">
-                    <b-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
-                    <b-img v-else :src="'/img/person1.png'"/>
-                  </div>
-                </div>
-                <b-card-text class="description-height text-center text-uppercase my-2">
-
-                  <p class="ml-5 my-3 text-name"> {{ item.name }} {{ item.surname }} </p>
-
-                  <i class="fas fa-map-marker-alt ml-4"/>
-
-                  <b-link class="ml-2 mr-2">{{ item.location }}</b-link>
-
-                  <i class="fas fa-graduation-cap"/> {{ item.position }} {{ seniorityList[item.seniority] }}
-                </b-card-text>
+              <div class="card-deck">
+                <b-card
+                  no-body
+                  class="card-color overflow-hidden"
+                  bg-variant="light"
+                  border-variant="warning"
+                >
+                  <b-row no-gutters>
+                    <b-col class="col-md-4">
+                      <div class="image-out-container">
+                        <div class="img-in-container">
+                          <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
+                          <b-card-img v-else :src="'/img/person1.png'"/>
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col class="col-md-8">
+                      <b-card-body :title=" item.name + ' ' + item.surname">
+                        <b-card-text class="text-uppercase">
+                          <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}
+                          <i class="fas fa-graduation-cap ml-2"/> {{ item.position }} {{ seniorityList[item.seniority] }}
+                        </b-card-text>
+                      </b-card-body>
+                    </b-col>
+                  </b-row>
+                </b-card>
               </div>
-            </b-card>
-          </section>
-        </div>
+            </div>
+          </b-row>
+        </section>
       </div>
 
       <div class="d-flex justify-content-center my-4">
         <b-pagination
-          v-model="form.currentPage"
+          v-model="currentPage"
           bg-variant="dark"
           :total-rows="form.numResults"
-          :per-page="form.per_page"
+          :per-page="usersPerPage"
           aria-controls="my-table"
           @input="getUsersList"
         />
@@ -58,31 +63,28 @@
   export default {
     data: () => ({
       form: {
-        avatar: {},
-        results: [],
-        currentPage: 1,
-        per_page: 9
+        results: [
+          { avatar: {} },
+        ],
       },
+      currentPage: 1,
+      usersPerPage: 12,
       avatarPath: basePath + '/',
     }),
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
     },
     mounted() {
-      UserApi.userList('')
-        .then((response) => {
-          this.form = response.data;
-        });
-      this.getUsersList()
+      this.getUsersList();
     },
     methods: {
       getUsersList() {
-        let data = '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
+        let data = '?pagination[page]=' + this.currentPage + '&pagination[per_page]=' + this.usersPerPage;
         UserApi.userList(data)
           .then((response) => {
-            this.form = response.data
-          })
+            this.form = response.data;
+          });
       },
-    }
+    },
   };
 </script>

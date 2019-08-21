@@ -13,8 +13,6 @@
           <div class="card-body">
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
-                <div class="online-icon"/>
-
                 <div class="image-in-container">
                   <b-img :src="avatarImage"/>
                 </div>

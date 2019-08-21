@@ -16,7 +16,7 @@
                   @change="requestFilter=requestFilter+'&filter[name]='+activityName"
                 />
               </b-form-group>
-              
+
               <b-form-group>
                 <multiselect
                   v-model="technologyChosen"
@@ -29,13 +29,13 @@
                   @input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
                 />
               </b-form-group>
-              
+
               <b-button variant="primary" size="sm" @click="searchByName">Filter</b-button>
             </b-dropdown-form>
             <b-dropdown-divider/>
           </b-dropdown>
         </div>
-        
+
         <i
           class="fas fa-plus-circle mt-1 create-activity-icon"
           @click="$router.push('/activity-create')"
@@ -43,11 +43,11 @@
         <b-tabs card>
           <section class="tab-section">
             <b-tab title="Mine" active/>
-            
+
             <b-tab title="Joined" active/>
-            
+
             <b-tab title="Finished" active/>
-            
+
             <b-tab title="All" active @click="getData">
               <div class="row">
                 <div
@@ -73,18 +73,18 @@
                            class="activity-image mr-2"
                            alt="image"
                       >
-                      
+
                       <b-card-text class="col-md-10 text-name">
                         {{ result.name | truncate(28, '...') }}
                       </b-card-text>
                     </div>
-                    
+
                     <hr class="line">
-                    
+
                     <b-card-text class="description-height text-center">
                       {{ result.description | truncate(60, '...') }}
                     </b-card-text>
-                    
+
                     <b-card-text class="ml-3 owner-username-styles">
                       {{ result.owner.username }}
                     </b-card-text>
@@ -162,7 +162,7 @@
           + this.pagination.currentPage
           + '&pagination[per_page]='
           + this.pagination.per_page + this.requestFilter;
-        
+
         this.$router.push({ name: 'activityList', params: { filter: filter } });
 
         ActivityService.getActivityList(this.$route.params.filter)
