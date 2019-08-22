@@ -161,11 +161,11 @@
                 :delay="100"
                 :adaptive="true"
               >
-                <div class="example-modal-content text-center mt-5">
-                  <h6>Do you want to save changes for activity?</h6>
+                <div class="example-modal-content text-center mt-5 mb-4">
+                  <h5>Do you want to save changes for activity?</h5>
                 </div>
 
-                <div class="row mt-lg-5 ml-3">
+                <div class="row ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">
                     Cancel
                   </b-button>
@@ -207,7 +207,7 @@
         description: '',
         application_deadline: '',
         final_deadline: '',
-        status: 0,
+        status: '',
         public: true,
         technologies: [{ id: null }],
         types: [],
@@ -216,9 +216,10 @@
       edited: false,
       technologiesList: [],
       statusesActivity: [
-        { text: 'New', value: '0' },
-        { text: 'Finished', value: '1' },
-        { text: 'Closed', value: '2' }
+        { value: '1', text: 'In Validation' },
+        { value: '2', text: 'New' },
+        { value: '3', text: 'Finished' },
+        { value: '4', text: 'Closed' }
       ],
       previewImage: null
     }

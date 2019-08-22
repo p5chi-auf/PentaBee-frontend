@@ -43,7 +43,7 @@
               <b-form-group>
                 <multiselect
                   v-model="technologyChosen"
-                  placeholder="Search a type"
+                  placeholder="Search by technology"
                   label="name"
                   track-by="id"
                   :options="formTechnologies"

@@ -21,7 +21,7 @@
               <b-form-group>
                 <multiselect
                   v-model="technologyChosen"
-                  placeholder="Search a type"
+                  placeholder="Search by technology"
                   label="name"
                   track-by="id"
                   :options="formTechnologies"
@@ -47,7 +47,7 @@
             <b-container
               v-for="item in form.results"
               :key="item.id"
-              class="col-md-4 mb-2"
+              class="col-md-4 mb-2 row-eq-height"
               @click="$bvModal.show('bv-modal-user')"
             >
               <div class="card-deck">
@@ -66,7 +66,7 @@
                       </div>
                     </b-col>
                     <b-col class="col-md-7">
-                      <b-card-body :title=" item.name + ' ' + item.surname">
+                      <b-card-body :title="item.name + ' ' + item.surname">
                         <b-card-text class="text-uppercase">
                           <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}
                           <i class="fas fa-graduation-cap ml-2"/> {{ item.position }} {{ seniorityList[item.seniority] }}
@@ -113,9 +113,7 @@
                     <div class="text-center my-3 row">
                       <div class="mb-2">
                         <i class="fas fa-envelope ml-2 mr-1"/>{{ item.email }}
-                      </div>
 
-                      <div class="mb-2">
                         <i class="fas fa-map-marker-alt ml-3 mr-1"/>{{ item.location }}
                       </div>
                     </div>

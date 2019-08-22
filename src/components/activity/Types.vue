@@ -3,7 +3,7 @@
     <label class="typo__label ml-3 text-color-activity">Types:</label>
     <multiselect
       v-model="types"
-      placeholder="Search a type"
+      placeholder="Search by technology"
       label="name"
       track-by="id"
       :options="formTypes"

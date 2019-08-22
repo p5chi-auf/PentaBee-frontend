@@ -28,7 +28,7 @@
                 </div>
 
                 <hr class="line">
-                <p>{{ activity.status }}</p>
+                <p>Status: {{ activityStatus[activity.status] }}</p>
                 <h5 class="font-weight-bold">Description: </h5>
 
                 <p class="ml-1 description-styles">{{ activity.description }}</p>
@@ -203,6 +203,7 @@
       }
     },
     computed: {
+      activityStatus: () => ['','In Validation', 'New', 'Finished', 'Closed'],
       ...mapState('account', ['user', 'setUser']),
       ...mapGetters('account', ['userId'])
     },
