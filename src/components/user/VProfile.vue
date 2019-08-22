@@ -39,13 +39,11 @@
 
             <div class="text-center my-3 row">
               <div class="mb-2">
-                <i class="ml-4 fas fa-envelope"/>
-                <b-link class="ml-2">{{ profileData.email }}</b-link>
+                <i class="fas fa-envelope ml-2 mr-1"/>{{ profileData.email }}
               </div>
 
               <div class="mb-2">
-                <i class="ml-4 fas fa-map-marker-alt"/>
-                <b-link class="ml-2">{{ profileData.location }}</b-link>
+                <i class="fas fa-map-marker-alt ml-2 mr-1"/>{{ profileData.location }}
               </div>
             </div>
           </div>

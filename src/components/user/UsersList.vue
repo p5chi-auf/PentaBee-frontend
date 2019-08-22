@@ -48,6 +48,7 @@
               v-for="item in form.results"
               :key="item.id"
               class="col-md-4 mb-2"
+              @click="$bvModal.show('bv-modal-user')"
             >
               <div class="card-deck">
                 <b-card
@@ -55,28 +56,72 @@
                   class="card-color overflow-hidden col-12"
                   bg-variant="light"
                   border-variant="warning"
+                  @click="clickedUserId = item.id"
                 >
                   <b-row no-gutters>
                     <b-col class="col-md-5">
-                      <div class="image-out-container">
-                        <div class="img-in-container">
-                          <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
-                          <b-card-img v-else :src="'/img/person1.png'"/>
-                        </div>
+                      <div class="image-out-container img-in-container">
+                        <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
+                        <b-card-img v-else-if="!item.avatar" :src="'/img/person1.png'"/>
                       </div>
                     </b-col>
                     <b-col class="col-md-7">
                       <b-card-body :title=" item.name + ' ' + item.surname">
                         <b-card-text class="text-uppercase">
                           <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}
-                          <i class="fas fa-graduation-cap ml-2"/> {{ item.position }} {{ seniorityList[item.seniority]
-                          }}
+                          <i class="fas fa-graduation-cap ml-2"/> {{ item.position }} {{ seniorityList[item.seniority] }}
                         </b-card-text>
                       </b-card-body>
                     </b-col>
                   </b-row>
                 </b-card>
               </div>
+
+              <b-modal
+                v-if="clickedUserId === item.id"
+                id="bv-modal-user"
+                ref="my-modal"
+                hide-footer
+              >
+                <template slot="modal-title">
+                  {{ item.username }}'s Profile
+                </template>
+
+                <div class="edit profile-card home-content">
+                  <section class="ml-4 mr-2 text-center card-body">
+                    <div class="d-flex justify-content-center h-100 image-out-container avatar-in-container">
+                      <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
+                      <b-card-img v-else-if="!item.avatar" :src="'/img/person1.png'"/>
+                    </div>
+
+                    <h3 class="mt-1">{{ item.name }} {{ item.surname }}</h3>
+
+                    <h6 class="seniority-text mt-2 text-uppercase">
+                      {{ item.position }} {{ seniorityList[item.seniority] }}
+                    </h6>
+
+                    <hr class="line">
+
+                    <h5 class="text-center mb-3">Skills:</h5>
+
+                    <div class="text-left row">
+                      <b-list-group v-for="items in item.technologies" :key="items.id" horizontal class="text-left">
+                        <div class="box text-left">{{ items.name }}</div>
+                      </b-list-group>
+                    </div>
+
+                    <div class="text-center my-3 row">
+                      <div class="mb-2">
+                        <i class="fas fa-envelope ml-2 mr-1"/>{{ item.email }}
+                      </div>
+
+                      <div class="mb-2">
+                        <i class="fas fa-map-marker-alt ml-3 mr-1"/>{{ item.location }}
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </b-modal>
             </b-container>
           </b-row>
         </section>
@@ -113,6 +158,7 @@
       currentPage: 1,
       usersPerPage: 12,
       avatarPath: basePath + '/',
+      clickedUserId: null
     }),
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
@@ -141,7 +187,7 @@
 
         this.$router.push({ name: 'usersList', params: { filter: data } });
 
-        UserApi.userList(data)
+        UserApi.userList(this.$route.params.filter)
           .then((response) => {
             this.form = response.data;
             this.numResults = response.data.numResults;
@@ -151,4 +197,3 @@
     }
   }
 </script>
-

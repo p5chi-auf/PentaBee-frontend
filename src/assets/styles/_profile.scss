@@ -76,6 +76,12 @@
     border-radius: 50%;
     border: 5px solid white;
   }
+  .avatar-in-container img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 2px solid gray;
+  }
 
   a {
     color: black;
