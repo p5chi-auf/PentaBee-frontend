@@ -3,13 +3,31 @@
     <div class="mb-5">
       <b-card no-body>
         <div class="mt-2">
-          <b-dropdown
-            id="dropdown-form"
-            ref="dropdown"
-            text="Filter for activity list"
-            class="col-4 end align-content-end header-activity-list"
+          <b-link
+            v-b-tooltip.hover.top
+            title="Create activity"
+            class="create-activity-icon float-right ml-2 mr-2"
+            @click="$router.push('/activity-create')"
           >
-            <b-dropdown-form>
+            <i class="fas fa-plus-circle"/>
+          </b-link>
+
+          <b-link
+            id="show-btn"
+            v-b-tooltip.hover.left
+            title="Add filter"
+            class="simple-icon float-right ml-2 mr-2"
+            @click="$bvModal.show('bv-modal-example')"
+          >
+            <i class="fas fa-filter"/>
+          </b-link>
+
+          <b-modal id="bv-modal-example" ref="my-modal">
+            <template slot="modal-title">
+              Filter
+            </template>
+            <div class="d-block text-center">
+              <h6>Search by name</h6>
               <b-form-group>
                 <b-form-input
                   v-model="activityName"
@@ -19,6 +37,8 @@
                   @change="requestFilter=requestFilter+'&filter[name]='+activityName"
                 />
               </b-form-group>
+
+              <h6>Search by known technologies</h6>
 
               <b-form-group>
                 <multiselect
@@ -32,17 +52,18 @@
                   @input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
                 />
               </b-form-group>
-
-              <b-button variant="primary" size="sm" @click="searchByName">Filter</b-button>
-            </b-dropdown-form>
-            <b-dropdown-divider/>
-          </b-dropdown>
+            </div>
+            <template slot="modal-footer" slot-scope="{ ok, cancel }">
+              <b-button size="sm" variant="danger" @click="cancel()">
+                Cancel
+              </b-button>
+              <b-button size="sm" variant="success" @click="searchByName">
+                Apply filter
+              </b-button>
+            </template>
+          </b-modal>
         </div>
 
-        <i
-          class="fas fa-plus-circle mt-1 create-activity-icon"
-          @click="$router.push('/activity-create')"
-        />
         <b-tabs card>
           <section class="tab-section">
             <b-tab title="Mine" active/>
@@ -117,7 +138,7 @@
   import ActivityService from '../../services/activityApi';
   import UserApi from '../../services/userDetailsApi';
   import { mapState } from 'vuex';
-  import { basePath } from "../../constants/apiEndpoints";
+  import { basePath } from '../../constants/apiEndpoints';
 
   export default {
     data() {
@@ -128,40 +149,37 @@
           currentPage: 1,
           per_page: 9,
           numPages: 1,
-          numResults: 1
+          numResults: 1,
         },
         coverOriginPath: basePath + '/',
         activityName: '',
         ownerName: '',
-        filters: {
-          activityNameFilter: '',
-          technologyFilter: ''
-        },
         technologyChosen: {},
         formTechnologies: [],
-        requestFilter: ''
-      }
+        requestFilter: '',
+      };
     },
     computed: {
-      ...mapState('account', ['user'])
+      ...mapState('account', ['user']),
     },
     mounted() {
       this.getData();
-      this.getTechnologies()
+      this.getTechnologies();
     },
     methods: {
       getTechnologies() {
         UserApi.getTechnologies()
           .then((response) => {
-            this.formTechnologies = response.data
-          })
+            this.formTechnologies = response.data;
+          });
       },
       searchByName() {
         this.pagination.currentPage = 1;
-        this.getData()
+        this.getData();
+        this.$refs['my-modal'].hide();
       },
       getData() {
-        let filter =  '?pagination[page]='
+        let filter = '?pagination[page]='
           + this.pagination.currentPage
           + '&pagination[per_page]='
           + this.pagination.per_page + this.requestFilter;
@@ -172,11 +190,11 @@
           .then(response => {
             this.results = response.data.results;
             this.pagination.numResults = response.data.numResults;
-            this.requestFilter = ''
-          })
+            this.requestFilter = '';
+          });
       },
       redirectToActivityDetails(id) {
-        this.$router.push({ name: 'activity', params: { activityId: id } })
+        this.$router.push({ name: 'activity', params: { activityId: id } });
       }
     }
   }

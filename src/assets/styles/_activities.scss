@@ -62,19 +62,9 @@
   }
 
   .create-activity-icon {
-    position: absolute;
-    right: 5px;
-    z-index: 1;
-    font-size: 40px;
-    cursor: pointer;
-    background: var(--yellowGradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    color: var(--orange);
     &:hover {
-      background: var(--yellow);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--yellow);
     }
   }
 
@@ -111,6 +101,10 @@
 
   .edit-icon {
     color: var(--green);
+  }
+
+  .simple-icon {
+    color: var(--gray);
   }
 
   .applicants-icon {

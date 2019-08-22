@@ -91,7 +91,7 @@ const router = new Router({
       meta: { requiresAuth: true },
     },
     {
-      path: '/team',
+      path: '/team/:filter',
       name: 'usersList',
       component: List,
       meta: { requiresAuth: true },

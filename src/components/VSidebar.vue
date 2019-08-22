@@ -22,7 +22,7 @@
           icon: 'fa fa-home'
         },
         {
-          href: '/team',
+          href: '/team/:filter',
           title: 'Team',
           icon: 'fas fa-users'
         },

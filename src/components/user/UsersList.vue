@@ -11,12 +11,13 @@
             @click="$bvModal.show('bv-modal-example')"
           />
 
-          <b-modal id="bv-modal-example">
+          <b-modal id="bv-modal-example" ref="my-modal">
             <template slot="modal-title">
               Filter
             </template>
             <div class="d-block text-center">
               <h6>Search by known technologies</h6>
+
               <b-form-group>
                 <multiselect
                   v-model="technologyChosen"
@@ -30,14 +31,11 @@
                 />
               </b-form-group>
             </div>
-            <template slot="modal-footer" slot-scope="{ ok, cancel, hide }">
+            <template slot="modal-footer" slot-scope="{ ok, cancel }">
               <b-button size="sm" variant="danger" @click="cancel()">
                 Cancel
               </b-button>
-              <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
-                Clear all
-              </b-button>
-              <b-button size="sm" variant="success" @click="searchByName">
+              <b-button size="sm" variant="success" @click="applyFilter">
                 Apply filter
               </b-button>
             </template>
@@ -54,12 +52,12 @@
               <div class="card-deck">
                 <b-card
                   no-body
-                  class="card-color overflow-hidden"
+                  class="card-color overflow-hidden col-12"
                   bg-variant="light"
                   border-variant="warning"
                 >
                   <b-row no-gutters>
-                    <b-col class="col-md-4">
+                    <b-col class="col-md-5">
                       <div class="image-out-container">
                         <div class="img-in-container">
                           <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
@@ -67,7 +65,7 @@
                         </div>
                       </div>
                     </b-col>
-                    <b-col class="col-md-8">
+                    <b-col class="col-md-7">
                       <b-card-body :title=" item.name + ' ' + item.surname">
                         <b-card-text class="text-uppercase">
                           <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}
@@ -124,9 +122,10 @@
       this.getTechnologies();
     },
     methods: {
-      searchByName() {
+      applyFilter() {
         this.currentPage = 1;
         this.getData();
+        this.$refs['my-modal'].hide();
       },
       getTechnologies() {
         UserApi.getTechnologies()

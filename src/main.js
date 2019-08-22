@@ -16,13 +16,13 @@ Vue.use(VModal);
 
 Vue.filter('formatDateTime', function(value) {
   if (value) {
-    return moment(unix(value)).format('MM-DD-YYYY HH:mm')
+    return moment(unix(value)).format('DD-MM-YYYY HH:mm')
   }
 });
 
 Vue.filter('formatDate', function(value) {
   if (value) {
-    return moment(unix(value)).format('MM-DD-YYYY')
+    return moment(unix(value)).format('DD-MM-YYYY')
   }
 });
 
