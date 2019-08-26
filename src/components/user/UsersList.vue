@@ -20,14 +20,14 @@
                 <label class="typo__label ml-3">Search by known technologies:</label>
 
                 <multiselect
-                  v-model="technologyChosen"
+                  v-model="ChooseTechnology"
                   placeholder="Search by technology"
                   label="name"
                   track-by="id"
                   :options="formTechnologies"
                   :multiple="false"
                   :taggable="true"
-                  @input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
+                  @input="requestFilter=requestFilter+'&filter[technology][]='+ChooseTechnology.id"
                 />
               </b-form-group>
             </div>
@@ -150,7 +150,7 @@
           { avatar: {} },
         ],
       },
-      technologyChosen: {},
+      ChooseTechnology: {},
       formTechnologies: [],
       requestFilter: '',
       currentPage: 1,

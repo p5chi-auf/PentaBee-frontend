@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <preloader/>
     <template v-if="!isAuth">
       <v-header/>
       <v-layout/>
@@ -17,13 +18,15 @@
   import VFooter from '@/views/TheFooter';
   import VSidebar from '@/components/VSidebar';
   import VLayout from '@/components/VLayout';
+  import Preloader from '@/components/Preloader.vue'
 
   export default {
     components: {
       VHeader,
       VFooter,
       VSidebar,
-      VLayout
+      VLayout,
+      Preloader
     },
     computed: {
       isAuth() {

@@ -26,9 +26,10 @@
             <template slot="modal-title">
               Filter
             </template>
-            <div class="d-block text-center">
-              <h6>Search by name</h6>
+            <div class="d-block">
               <b-form-group>
+                <label class="typo__label ml-3">Search by name:</label>
+
                 <b-form-input
                   v-model="activityName"
                   type="text"
@@ -38,9 +39,20 @@
                 />
               </b-form-group>
 
-              <h6>Search by known technologies</h6>
+              <b-form-group>
+                <label class="typo__label ml-3">Search by status:</label>
+
+                <b-form-radio-group
+                  v-model="activityStatus"
+                  :options="options"
+                  name="radio-options"
+                  @input="requestFilter=requestFilter+'&filter[status]='+activityStatus"
+                />
+              </b-form-group>
 
               <b-form-group>
+                <label class="typo__label ml-3">Search by known technologies:</label>
+
                 <multiselect
                   v-model="technologyChosen"
                   placeholder="Search by technology"
@@ -147,9 +159,16 @@
         coverOriginPath: basePath + '/',
         activityName: '',
         ownerName: '',
+        activityStatus: 1,
         technologyChosen: {},
         formTechnologies: [],
         requestFilter: '',
+        options: [
+          { value: 1, text: 'In Validation' },
+          { value: 2, text: 'New' },
+          { value: 3, text: 'Finished' },
+          { value: 4, text: 'Closed' }
+        ],
       };
     },
     computed: {

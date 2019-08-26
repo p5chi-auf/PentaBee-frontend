@@ -9,7 +9,7 @@
                 Edit activity
               </h4>
 
-              <hr>
+              <hr class="line">
 
               <b-form class="row" @submit.prevent="editActivity()">
                 <b-form-group
@@ -93,18 +93,14 @@
                 </b-form-group>
 
                 <b-form-group class="col-md-12">
-                  <label class="ml-3 text-color-activity">Status:</label>
-                  <div class="row">
-                    <b-form-radio-group
-                      v-model="form.status"
-                      :options="statusesActivity"
-                      buttons
-                      button-variant="outline-secondary"
-                      size="lg"
-                      class="col"
-                      @change="edited = true"
-                    />
-                  </div>
+                  <label class="ml-3 text-color-activity">Status:</label><br>
+
+                  <b-form-checkbox-group
+                    v-model="form.status"
+                    :options="statusesActivity"
+                    buttons
+                    @change="edited = true"
+                  />
                 </b-form-group>
 
 
