@@ -1,6 +1,7 @@
 <template>
   <div class="col-md-12 mb-5">
     <b-form-select v-model="filter" class="mt-2" :options="options" @change="getUsersListByFilter()"/>
+
     <b-table
       responsive
       striped
@@ -17,24 +18,24 @@
           class="ml-4 far fa-check-circle mouse-type-pointer"
           @click="acceptApplicant(row.item.id)"
         />
-        
+
         <i
           v-if="filter === '/users?filter[activityRole][]=1'"
           class="ml-4 fas fa-times mouse-type-pointer"
           @click="declineApplicant(row.item.id)"
         />
-        
+
         <i class="ml-4 fas fa-info-circle mouse-type-pointer" @click="row.toggleDetails"/>
       </template>
-      
+
       <template slot="seniority" slot-scope="row">
         <p v-if="row.item.seniority === 0">Junior</p>
-        
+
         <p v-else-if="row.item.seniority === 1">Middle</p>
-        
+
         <p v-else-if="row.item.seniority === 2">Senior</p>
       </template>
-      
+
       <template slot="row-details" slot-scope="row">
         <b-card class="border-info" @click="row.toggleDetails">
           <div class="row col-md-12">
@@ -46,22 +47,22 @@
               </div>
             </div>
           </div>
-          
+
           <div class="row col-md-12">
             <div class="row col-md-12">
               Email : <p>{{ row.item.email }}</p>
             </div>
-            
+
             <div class="row col-md-12">
               Rating: <i v-for="star in row.item.stars" :key="star" class="fas fa-star ml-1"/>
             </div>
           </div>
         </b-card>
       </template>
-  
+
       <div slot="table-busy" class="text-center text-danger my-2">
         <b-spinner class="align-middle"/>
-        
+
         <strong>Loading...
         </strong>
       </div>

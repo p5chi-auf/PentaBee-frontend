@@ -15,10 +15,10 @@
             <template slot="modal-title">
               Filter
             </template>
-            <div class="d-block text-center">
-              <h6>Search by known technologies</h6>
-
+            <div class="d-block">
               <b-form-group>
+                <label class="typo__label ml-3">Search by known technologies:</label>
+
                 <multiselect
                   v-model="technologyChosen"
                   placeholder="Search by technology"
@@ -181,9 +181,10 @@
         let data = '?pagination[page]='
           + this.currentPage
           + '&pagination[per_page]='
-          + this.usersPerPage + this.requestFilter;
+          + this.usersPerPage
+          + this.requestFilter;
 
-        this.$router.push({ name: 'usersList', params: { filter: data } });
+        this.$router.push({ name: 'usersList', params: { filter: data }});
 
         UserApi.userList(this.$route.params.filter)
           .then((response) => {

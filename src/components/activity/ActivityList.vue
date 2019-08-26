@@ -33,7 +33,7 @@
                   v-model="activityName"
                   type="text"
                   size="sm"
-                  placeholder="Activity Name"
+                  placeholder="Activity name"
                   @change="requestFilter=requestFilter+'&filter[name]='+activityName"
                 />
               </b-form-group>
@@ -64,62 +64,55 @@
           </b-modal>
         </div>
 
-        <b-tabs card>
+        <b-container class="col-12 bv-example-row">
           <section class="tab-section">
-            <b-tab title="Mine" active/>
-
-            <b-tab title="Joined" active/>
-
-            <b-tab title="Finished" active/>
-
-            <b-tab title="All" active @click="getData">
-              <div class="row">
-                <div
-                  v-for="result in results"
-                  :key="result.id"
-                  class="col-md-4 row-eq-height"
-                  @click="redirectToActivityDetails(result.id)"
+            <b-row>
+              <div
+                v-for="result in results"
+                :key="result.id"
+                class="col-md-4 row-eq-height"
+                @click="redirectToActivityDetails(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="cards col-md-12 mt-3"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                  >
-                    <div class="row">
-                      <img
-                        v-if="result.cover"
-                        :src="coverOriginPath+result.cover.original"
-                        class="activity-image mr-2"
-                        alt="image"
-                      >
-                      <img v-else
-                           src="../../assets/images/combs.jpg"
-                           class="activity-image mr-2"
-                           alt="image"
-                      >
+                  <div class="row">
+                    <img
+                      v-if="result.cover"
+                      :src="coverOriginPath+result.cover.original"
+                      class="activity-image mr-2"
+                      alt="image"
+                    >
+                    <img v-else
+                         src="../../assets/images/combs.jpg"
+                         class="activity-image mr-2"
+                         alt="image"
+                    >
 
-                      <b-card-text class="col-md-10 text-name">
-                        {{ result.name | truncate(28, '...') }}
-                      </b-card-text>
-                    </div>
-
-                    <hr class="line">
-
-                    <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(60, '...') }}
+                    <b-card-text class="col-md-10 text-name">
+                      {{ result.name | truncate(28, '...') }}
                     </b-card-text>
+                  </div>
 
-                    <b-card-text class="ml-3 owner-username-styles">
-                      {{ result.owner.username }}
-                    </b-card-text>
-                  </b-card>
-                </div>
+                  <hr class="line">
+
+                  <b-card-text class="description-height text-center">
+                    {{ result.description | truncate(60, '...') }}
+                  </b-card-text>
+
+                  <b-card-text class="ml-3 owner-username-styles">
+                    {{ result.owner.username }}
+                    <p>Status: {{ typesStatus[result.status] }}</p>
+                  </b-card-text>
+                </b-card>
               </div>
-            </b-tab>
+            </b-row>
           </section>
-        </b-tabs>
+        </b-container>
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center my-4">
           <b-pagination
             v-model="pagination.currentPage"
             bg-variant="dark"
@@ -160,6 +153,7 @@
       };
     },
     computed: {
+      typesStatus: () => ['','In Validation', 'New', 'Finished', 'Closed'],
       ...mapState('account', ['user']),
     },
     mounted() {
@@ -183,7 +177,6 @@
           + this.pagination.currentPage
           + '&pagination[per_page]='
           + this.pagination.per_page + this.requestFilter;
-
         this.$router.push({ name: 'activityList', params: { filter: filter } });
 
         ActivityService.getActivityList(this.$route.params.filter)
