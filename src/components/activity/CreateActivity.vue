@@ -142,7 +142,6 @@
           description: '',
           application_deadline: '',
           final_deadline: '',
-          status: 0,
           public: true,
           technologies: [],
           types: []

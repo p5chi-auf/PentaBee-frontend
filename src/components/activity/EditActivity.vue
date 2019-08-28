@@ -216,9 +216,10 @@
       edited: false,
       technologiesList: [],
       statusesActivity: [
-        { text: 'New', value: '0' },
-        { text: 'Finished', value: '1' },
-        { text: 'Closed', value: '2' }
+        { text: 'New', value: '1' },
+        { text: 'Finished', value: '2' },
+        { text: 'Closed', value: '3' },
+        { text: 'fdsadfsfsdfsdf', value: '4' }
       ],
       previewImage: null
     }

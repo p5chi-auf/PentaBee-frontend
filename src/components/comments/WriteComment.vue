@@ -1,5 +1,5 @@
 <template>
-  <div class="row mx-auto">
+  <div class="row mx-auto col-md-12">
     <img
       :src="userAvatarURL"
       class="mt-1 rounded-circle col-auto"
@@ -10,10 +10,11 @@
     <b-form-textarea
       v-model="parameters.comment"
       placeholder="Leave your comment..."
-      class="col-10 ml-3"
+      class="col-10"
+      @keyup.enter="addComment()"
     />
     
-    <i class="far fa-comment-dots col-auto mt-5 icon-add-comment" @click="addComment()"/>
+    <i class="far fa-comment-dots col-1 mt-5 icon-add-comment" @click="addComment()"/>
   </div>
 </template>
 
@@ -25,7 +26,7 @@
 
   export default {
     props:{
-      comment: String('')
+      parentId: Number()
     },
     data() {
       return {
@@ -51,7 +52,9 @@
           })
       },
       addComment() {
+        this.parameters.parent = this.parentId;
         let message = this.parameters;
+        
         ActivityService.addComment(this.$route.params.activityId, message)
           .then(responses => {
             this.$toast.open({
