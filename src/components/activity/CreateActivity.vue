@@ -9,18 +9,18 @@
                 Create an activity
                 <hr class="line">
               </h4>
-              
+
               <b-alert show class="text-center" variant="warning" dismissible fade>
                 <i class="fas fa-smile-wink"/>
                 Add information about your Activity
               </b-alert>
-              
+
               <b-form class="row" @submit.prevent="createActivity()">
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">
                     Name of activity:
                   </label>
-                  
+
                   <b-form-input
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
@@ -30,12 +30,12 @@
                     type="text"
                     class="form-control"
                   />
-                  
+
                   <span v-if="errors.has('name')" class="invalid-feedback">
                     {{ errors.first('name') }}
                   </span>
                 </b-form-group>
-                
+
                 <b-form-group class="col-md-6">
                   <div class="row  mt-4">
                     <b-form-radio
@@ -45,7 +45,7 @@
                     >
                       Public
                     </b-form-radio>
-                    
+
                     <b-form-radio
                       v-model="form.public"
                       :value="false"
@@ -55,18 +55,18 @@
                     </b-form-radio>
                   </div>
                 </b-form-group>
-                
+
                 <div class="col-md-6">
                   <technology-list v-model="form.technologies"/>
                 </div>
-                
+
                 <div class="col-md-6">
                   <activity-types-list v-model="form.types"/>
                 </div>
-                
+
                 <b-form-group class="col-md-6">
                   <label class="ml-3 text-color-activity">Application deadline:</label>
-                  
+
                   <datetime
                     v-model="form.application_deadline"
                     :min-datetime="timeStartApplication"
@@ -77,10 +77,10 @@
                     @input="setDeadline"
                   />
                 </b-form-group>
-                
+
                 <b-form-group class="col-md-5">
                   <label class="ml-3 text-color-activity">Final deadline:</label>
-                  
+
                   <datetime
                     v-model="form.final_deadline"
                     :min-datetime="timeStartDeadline"
@@ -90,10 +90,10 @@
                     type="datetime"
                   />
                 </b-form-group>
-                
+
                 <b-form-group class="col-md-12">
                   <label class="ml-3 text-color-activity">Activity description:</label>
-                  
+
                   <b-textarea
                     id="description"
                     v-model="form.description"
@@ -104,13 +104,13 @@
                     type="text"
                     class="form-control"
                   />
-                  
+
                   <span v-if="errors.has('description')" class="invalid-feedback">
                     {{ errors.first('description') }}
                   </span>
                 </b-form-group>
               </b-form>
-              
+
               <div class="text-center button">
                 <b-btn class="float-none d-inline-block btn btn-1 mt-2" @click="createActivity()">
                   Create Activity
@@ -142,7 +142,7 @@
           description: '',
           application_deadline: '',
           final_deadline: '',
-          status: 0,
+          status: '',
           public: true,
           technologies: [],
           types: []

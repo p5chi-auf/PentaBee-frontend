@@ -50,7 +50,7 @@
               class="col-md-4 mb-2 row-eq-height"
               @click="$bvModal.show('bv-modal-user')"
             >
-              <div class="card-deck">
+              <div class="card-deck cards">
                 <b-card
                   no-body
                   class="card-color overflow-hidden col-12"

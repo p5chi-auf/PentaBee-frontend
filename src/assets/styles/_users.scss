@@ -24,4 +24,11 @@
       display: flex;
     }
   }
+  @media (min-width: 576px) {
+    .cards {
+      margin-right: -15px;
+      margin-left: -35px;
+      padding-left: 15px;
+    }
+  }
 }

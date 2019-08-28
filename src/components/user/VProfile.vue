@@ -1,8 +1,8 @@
 <template>
   <div class="edit profile-card home-content row">
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h2 class="text-center pl-4 my-4 profile-title">Profile</h2>
-      <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
+      <h2 class="text-center ml-2 my-4 profile-title">Profile</h2>
+      <section id="card-outline" class="ml-2 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
           <div class="text-right">
             <b-link @click="$router.push({ name: 'edit', params: { userId: profileData.id } })">

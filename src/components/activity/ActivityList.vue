@@ -83,12 +83,12 @@
                 v-for="result in results"
                 :key="result.id"
                 class="col-md-4 row-eq-height"
-                @click="redirectToActivityDetails(result.id)"
               >
                 <b-card
                   bg-variant="light"
                   border-variant="warning"
-                  class="cards col-md-12 mt-3"
+                  class="col-md-12 mt-3 cards"
+                  @click="redirectToActivityDetails(result.id)"
                 >
                   <div class="row">
                     <img
@@ -159,7 +159,7 @@
         coverOriginPath: basePath + '/',
         activityName: '',
         ownerName: '',
-        activityStatus: 1,
+        activityStatus: '',
         technologyChosen: {},
         formTechnologies: [],
         requestFilter: '',
@@ -206,7 +206,7 @@
           });
       },
       redirectToActivityDetails(id) {
-        this.$router.push({ name: 'activity', params: { activityId: id } });
+          this.$router.push({ name: 'activity', params: { activityId: id } });
       }
     }
   }

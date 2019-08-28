@@ -36,7 +36,7 @@
       showToggle(){
         setTimeout(() => {
           this.show = false
-          }, 700)
+          }, 1000)
       }
     }
   }

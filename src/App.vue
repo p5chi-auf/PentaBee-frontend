@@ -3,6 +3,7 @@
     <preloader/>
     <template v-if="!isAuth">
       <v-header/>
+      <mobile-menu/>
       <v-layout/>
       <v-sidebar/>
       <v-footer/>
@@ -19,6 +20,7 @@
   import VSidebar from '@/components/VSidebar';
   import VLayout from '@/components/VLayout';
   import Preloader from '@/components/Preloader.vue'
+  import MobileMenu from '@/views/MobileMenu.vue'
 
   export default {
     components: {
@@ -26,7 +28,8 @@
       VFooter,
       VSidebar,
       VLayout,
-      Preloader
+      Preloader,
+      MobileMenu
     },
     computed: {
       isAuth() {
