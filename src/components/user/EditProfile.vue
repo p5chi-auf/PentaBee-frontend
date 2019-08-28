@@ -138,6 +138,7 @@
   import { mapActions, mapState, mapGetters } from 'vuex';
   import Technologies from '../activity/Technologies';
   import { basePath } from '@/constants/apiEndpoints';
+
   export default {
     components: { Technologies },
     data: () => ({
@@ -196,6 +197,7 @@
             this.form.avatar = null
           }
         });
+
       UserApi.getTechnologies(this.userId)
         .then(response => {
           this.formTechnologies = response.data;
@@ -206,6 +208,7 @@
       uploadImage(e) {
         const image = e.target.files[0];
         const reader = new FileReader();
+
         reader.readAsDataURL(image);
         reader.onload = e => {
           this.previewImage = e.target.result;
@@ -217,6 +220,7 @@
           ...this.form,
           id: this.userId
         };
+
         UserApi.editUser(data)
           .then(() => {
             this.$toast.open({
@@ -244,6 +248,7 @@
           ...this.form,
           id: this.userId
         };
+
         UserApi.deleteAvatar(data)
           .then(() => {
             this.$toast.open({
@@ -253,6 +258,7 @@
               duration: 3000,
               dismissible: true
             });
+            this.$root.$emit('editedAvatar');
             this.$router.push({ name: 'profile' })
           })
           .catch(() => {
