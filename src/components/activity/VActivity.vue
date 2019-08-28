@@ -121,15 +121,6 @@
                   >
                     <i class="fas fa-users"/>
                   </b-link>
-  
-                  <b-link
-                    v-b-tooltip.hover.top
-                    title="Comments"
-                    class="applicants-icon float-right ml-2 mr-2"
-                    @click="showComments = !showComments"
-                  >
-                    <i class="fas fa-comments"/>
-                  </b-link>
                 </div>
                 
                 <modal
@@ -170,7 +161,7 @@
                 </modal>
               </div>
             </div>
-            <comments-activity v-if="showComments === true" class="mt-4"/>
+            <comments-activity class="mt-4"/>
           </b-card>
         </b-container>
       </section>

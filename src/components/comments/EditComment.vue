@@ -8,13 +8,13 @@
     >
     
     <b-form-textarea
-      v-model="parameters.comment"
+      v-model="commentMessage"
       placeholder="Leave your comment..."
       class="col-10"
-      @keyup.enter="addComment()"
+      @keyup.enter="editComments"
     />
     
-    <i class="far fa-comment-dots col-1 mt-5 icon-add-comment" @click="addComment()"/>
+    <i class="far fa-comment-dots col-1 mt-5 icon-add-comment" @click="editComment(idToEdit, commentMessage)"/>
   </div>
 </template>
 
@@ -26,36 +26,31 @@
 
   export default {
     props:{
-      parentId: Number()
+      idToEdit: Number(),
+      commentMessage: String()
+
     },
-    data() {
-      return {
-        userAvatarURL: '/img/person1.png',
-        parameters: {
-          comment: '',
-          parent: 0
-        },
-        renderComponent: true
-      }
-    },
+    data:() =>({
+      userAvatarURL: '/img/person1.png',
+    }),
     computed: {
       ...mapGetters('account', ['userId'])
     },
     created() {
       this.getUserInfo()
     },
-    methods: {
+    methods:{
       getUserInfo() {
         userDetailsApi.userInfo(this.userId)
           .then(response => {
             this.userAvatarURL = basePath + '/' + response.data.avatar["40x40"]
           })
       },
-      addComment() {
-        this.parameters.parent = this.parentId;
-        let message = this.parameters;
-        
-        ActivityService.addComment(this.$route.params.activityId, message)
+      editComment(commentId, commentMessage) {
+        let DataComment={
+          comment: commentMessage
+        };
+        ActivityService.editComments(this.$route.params.activityId, commentId, DataComment)
           .then(responses => {
             this.$toast.open({
               message: responses.data.message,
@@ -64,13 +59,9 @@
               duration: 3000,
               dismissible: true
             });
-            this.$emit('isCommented', 'bye');
-            this.parameters= {
-              comment: '',
-              parent: 0
-            }
+            this.$emit('CommentEdited')
           })
-      }
+      },
     }
   }
 </script>
