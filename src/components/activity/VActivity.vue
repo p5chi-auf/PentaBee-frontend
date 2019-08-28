@@ -1,6 +1,8 @@
 <template>
   <div class="activity-list">
-    <div class="pt-2 mb-5 pb-5">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+
+    <div v-else class="pt-2 mb-5 pb-5">
       <section class="tab-section">
         <b-container>
           <b-card class="mx-auto border-warning">
@@ -185,49 +187,49 @@
   import CommentsActivity from '../comments/CommentsActivity';
 
   export default {
-    components:{
-      CommentsActivity: CommentsActivity
-    },
+    components: { CommentsActivity: CommentsActivity },
     data() {
       return {
         activity: {
           owner: {
-            avatar: {},
+            avatar: {}
           },
-          cover: {},
+          cover: {}
         },
         delete: false,
         avatarActivityUrl: null,
         ownerImageAvatarUrl: null,
-        showComments: false
-      }
+        showComments: false,
+        spinner: true
+      };
     },
     computed: {
-      activityStatus: () => ['','In Validation', 'New', 'Finished', 'Closed'],
+      activityStatus: () => ['', 'In Validation', 'New', 'Finished', 'Closed'],
       ...mapState('account', ['user', 'setUser']),
       ...mapGetters('account', ['userId'])
     },
     created() {
       ActivityService.getActivityDetails(this.$route.params.activityId)
         .then((response) => {
-          this.activity = response.data
-        })
+          this.activity = response.data;
+        });
     },
     mounted() {
       ActivityService.getActivityDetails(this.$route.params.activityId)
         .then(response => {
           this.activity = response.data;
+          this.spinner = false;
 
           if (this.activity.cover) {
-            this.avatarActivityUrl = basePath + '/' + this.activity.cover['150x150']
+            this.avatarActivityUrl = basePath + '/' + this.activity.cover['150x150'];
           } else {
-            this.avatarActivityUrl = '/img/combs.jpg'
+            this.avatarActivityUrl = '/img/combs.jpg';
           }
 
           if (this.activity.owner.avatar) {
-            this.ownerImageAvatarUrl = basePath + '/' + this.activity.owner.avatar['40x40']
+            this.ownerImageAvatarUrl = basePath + '/' + this.activity.owner.avatar['40x40'];
           } else {
-            this.ownerImageAvatarUrl = '/img/person1.png'
+            this.ownerImageAvatarUrl = '/img/person1.png';
           }
         });
     },
@@ -241,7 +243,7 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true
-            })
+            });
           })
           .catch(error => {
             this.$toast.open({
@@ -250,31 +252,31 @@
               position: 'top-right',
               duration: 4000,
               dismissible: true
-            })
+            });
           });
         this.$modal.hide('apply-activity');
-        return 0
+        return 0;
       },
       redirectToActivityApplicants(id) {
-        this.$router.push({ name: 'applicantsList', params: { idActivity: id } })
+        this.$router.push({ name: 'applicantsList', params: { idActivity: id } });
       },
       showApplyModal() {
-        this.$modal.show('apply-activity')
+        this.$modal.show('apply-activity');
       },
       invite() {
-        this.$router.push({ name: 'invite', params: { activityEditId: this.activity.id } })
+        this.$router.push({ name: 'invite', params: { activityEditId: this.activity.id } });
       },
       setActivityEditId() {
-        this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } })
+        this.$router.push({ name: 'activityEdit', params: { activityEditId: this.activity.id } });
       },
       showDeleteModal() {
-        this.$modal.show('delete-activity')
+        this.$modal.show('delete-activity');
       },
       cancel() {
         this.$modal.hide('delete-activity');
         this.$modal.hide('apply-activity');
 
-        return 0
+        return 0;
       },
       deleteActivity() {
         ActivityService.deleteActivity(this.$route.params.activityId)
@@ -287,7 +289,7 @@
               dismissible: true
             });
 
-            this.$router.push('/activity-list/:filter')
+            this.$router.push('/activity-list/:filter');
           })
           .catch(() => {
             this.$toast.open({
@@ -296,8 +298,8 @@
               position: 'top-right',
               duration: 3000,
               dismissible: true
-            })
-          })
+            });
+          });
       }
     }
   }

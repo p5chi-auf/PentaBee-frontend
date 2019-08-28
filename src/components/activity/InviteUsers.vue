@@ -1,5 +1,6 @@
 <template>
   <div class="activity-list">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
     <div class="pt-2 mb-5 pb-5">
       <section class="section-style">
         <b-container>
@@ -44,7 +45,8 @@
         results: [],
         currentPage: 1,
         perPage: 10
-      }
+      },
+      spinner: true
     }),
     mounted() {
       this.getUsersList()
@@ -54,7 +56,8 @@
         let data =  '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
         UserApi.userList(data)
           .then((response) => {
-            this.form = response.data
+            this.form = response.data;
+            this.spinner =  false;
           })
       },
       userInvite(id) {

@@ -1,6 +1,7 @@
 <template>
   <div class="col home-content users-list">
-    <div class="mb-5">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="mb-5">
       <div class="mt-2">
         <section id="card-outline">
           <i
@@ -156,7 +157,8 @@
       currentPage: 1,
       usersPerPage: 12,
       avatarPath: basePath + '/',
-      clickedUserId: null
+      clickedUserId: null,
+      spinner: true
     }),
     computed: {
       seniorityList: () => ['JUNIOR', 'MIDDLE', 'SENIOR'],
@@ -191,6 +193,7 @@
             this.form = response.data;
             this.numResults = response.data.numResults;
             this.requestFilter = '';
+            this.spinner = false;
           });
       }
     }

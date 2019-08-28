@@ -1,6 +1,7 @@
 <template>
   <div class="edit">
-    <div class="profileCard home-content">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="profileCard home-content">
       <section id="card-outline">
         <b-container class="col-md-9">
           <b-row align-h="center" class="mt-5">
@@ -209,6 +210,7 @@
         types: [],
         cover: ''
       },
+      spinner: true,
       edited: false,
       technologiesList: [],
       statusesActivity: [
@@ -227,6 +229,7 @@
     ActivityService.getActivityDetails(this.$route.params.activityEditId)
       .then(response => {
         this.form = response.data;
+        this.spinner = false;
         this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
         this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
         if (this.form.cover) {

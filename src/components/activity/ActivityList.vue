@@ -1,6 +1,7 @@
 <template>
   <div class="col home-content activity-list">
-    <div class="mb-5">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="mb-5">
       <b-card no-body>
         <div class="mt-2">
           <b-link
@@ -83,12 +84,12 @@
                 v-for="result in results"
                 :key="result.id"
                 class="col-md-4 row-eq-height"
+                @click="redirectToActivityDetails(result.id)"
               >
                 <b-card
                   bg-variant="light"
                   border-variant="warning"
                   class="col-md-12 mt-3 cards"
-                  @click="redirectToActivityDetails(result.id)"
                 >
                   <div class="row">
                     <img
@@ -163,6 +164,7 @@
         technologyChosen: {},
         formTechnologies: [],
         requestFilter: '',
+        spinner: true,
         options: [
           { value: 1, text: 'In Validation' },
           { value: 2, text: 'New' },
@@ -203,6 +205,7 @@
             this.results = response.data.results;
             this.pagination.numResults = response.data.numResults;
             this.requestFilter = '';
+            this.spinner = false;
           });
       },
       redirectToActivityDetails(id) {

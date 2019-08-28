@@ -1,5 +1,7 @@
 <template>
   <div class="edit profile-card home-content row">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+
     <div class="col-lg-6 col-md-6 col-xs-12">
       <h2 class="text-center ml-2 my-4 profile-title">Profile</h2>
       <section id="card-outline" class="ml-2 mr-2 mb-1 text-center">
@@ -82,6 +84,7 @@
           '200x200': '',
         },
       },
+      spinner: true,
       avatarImage: null,
     }),
     computed: {
@@ -93,6 +96,7 @@
       UserApi.userInfo(this.userId)
         .then((response) => {
           this.profileData = response.data;
+          this.spinner = false;
 
           if (this.profileData.avatar) {
             this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
