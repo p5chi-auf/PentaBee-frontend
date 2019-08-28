@@ -1,144 +1,144 @@
 <template>
-	<div class="col home-content activity-list">
-		<b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
-		<div v-else class="mb-5">
-			<b-card no-body>
-				<div class="mt-2">
-					<b-link
-						v-b-tooltip.hover.top
-						title="Create activity"
-						class="create-activity-icon float-right ml-2 mr-2"
-						@click="$router.push('/activity-create')"
-					>
-						<i class="fas fa-plus-circle"/>
-					</b-link>
+  <div class="col home-content activity-list">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="mb-5">
+      <b-card no-body>
+        <div class="mt-2">
+          <b-link
+            v-b-tooltip.hover.top
+            title="Create activity"
+            class="create-activity-icon float-right ml-2 mr-2"
+            @click="$router.push('/activity-create')"
+          >
+            <i class="fas fa-plus-circle"/>
+          </b-link>
 
-					<b-link
-						id="show-btn"
-						v-b-tooltip.hover.left
-						title="Add filter"
-						class="simple-icon float-right ml-2 mr-2"
-						@click="$bvModal.show('bv-modal-example')"
-					>
-						<i class="fas fa-filter"/>
-					</b-link>
+          <b-link
+            id="show-btn"
+            v-b-tooltip.hover.left
+            title="Add filter"
+            class="simple-icon float-right ml-2 mr-2"
+            @click="$bvModal.show('bv-modal-example')"
+          >
+            <i class="fas fa-filter"/>
+          </b-link>
 
-					<b-modal id="bv-modal-example" ref="my-modal">
-						<template slot="modal-title">
-							Filter
-						</template>
-						<div class="d-block">
-							<b-form-group>
-								<label class="typo__label ml-3">Search by name:</label>
+          <b-modal id="bv-modal-example" ref="my-modal">
+            <template slot="modal-title">
+              Filter
+            </template>
+            <div class="d-block">
+              <b-form-group>
+                <label class="typo__label ml-3">Search by name:</label>
 
-								<b-form-input
-									v-model="activityName"
-									type="text"
-									size="sm"
-									placeholder="Activity name"
-									@change="requestFilter=requestFilter+'&filter[name]='+activityName"
-								/>
-							</b-form-group>
+                <b-form-input
+                  v-model="activityName"
+                  type="text"
+                  size="sm"
+                  placeholder="Activity name"
+                  @change="requestFilter=requestFilter+'&filter[name]='+activityName"
+                />
+              </b-form-group>
 
-							<b-form-group>
-								<label class="typo__label ml-3">Search by status:</label>
+              <b-form-group>
+                <label class="typo__label ml-3">Search by status:</label>
 
-								<b-form-radio-group
-									v-model="activityStatus"
-									:options="options"
-									name="radio-options"
-									@input="requestFilter=requestFilter+'&filter[status]='+activityStatus"
-								/>
-							</b-form-group>
+                <b-form-radio-group
+                  v-model="activityStatus"
+                  :options="options"
+                  name="radio-options"
+                  @input="requestFilter=requestFilter+'&filter[status]='+activityStatus"
+                />
+              </b-form-group>
 
-							<b-form-group>
-								<label class="typo__label ml-3">Search by known technologies:</label>
+              <b-form-group>
+                <label class="typo__label ml-3">Search by known technologies:</label>
 
-								<multiselect
-									v-model="technologyChosen"
-									placeholder="Search by technology"
-									label="name"
-									track-by="id"
-									:options="formTechnologies"
-									:multiple="false"
-									:taggable="true"
-									@input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
-								/>
-							</b-form-group>
-						</div>
-						<template slot="modal-footer" slot-scope="{ ok, cancel }">
-							<b-button size="sm" variant="danger" @click="cancel()">
-								Cancel
-							</b-button>
-							<b-button size="sm" variant="success" @click="searchByName">
-								Apply filter
-							</b-button>
-						</template>
-					</b-modal>
-				</div>
+                <multiselect
+                  v-model="technologyChosen"
+                  placeholder="Search by technology"
+                  label="name"
+                  track-by="id"
+                  :options="formTechnologies"
+                  :multiple="false"
+                  :taggable="true"
+                  @input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
+                />
+              </b-form-group>
+            </div>
+            <template slot="modal-footer" slot-scope="{ ok, cancel }">
+              <b-button size="sm" variant="danger" @click="cancel()">
+                Cancel
+              </b-button>
+              <b-button size="sm" variant="success" @click="searchByName">
+                Apply filter
+              </b-button>
+            </template>
+          </b-modal>
+        </div>
 
-				<b-container class="col-12 bv-example-row">
-					<section class="tab-section">
-						<b-row>
-							<div
-								v-for="result in results"
-								:key="result.id"
-								class="col-md-4 row-eq-height"
-								@click="redirectToActivityDetails(result.id)"
-							>
-								<b-card
-									bg-variant="light"
-									border-variant="warning"
-									class="col-md-12 mt-3 cards"
-									@click="denyAccessToActivity = result.status, redirectToActivityDetails(result.id)"
-								>
-									<div class="row">
-										<img
-											v-if="result.cover"
-											:src="coverOriginPath+result.cover.original"
-											class="activity-image mr-2"
-											alt="image"
-										>
-										<img v-else
-												 src="../../assets/images/combs.jpg"
-												 class="activity-image mr-2"
-												 alt="image"
-										>
+        <b-container class="col-12 bv-example-row">
+          <section class="tab-section">
+            <b-row>
+              <div
+                v-for="result in results"
+                :key="result.id"
+                class="col-md-4 row-eq-height"
+                @click="redirectToActivityDetails(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="col-md-12 mt-3 cards"
+                  @click="denyAccessToActivity = result.status, redirectToActivityDetails(result.id)"
+                >
+                  <div class="row">
+                    <img
+                      v-if="result.cover"
+                      :src="coverOriginPath+result.cover.original"
+                      class="activity-image mr-2"
+                      alt="image"
+                    >
+                    <img v-else
+                         src="../../assets/images/combs.jpg"
+                         class="activity-image mr-2"
+                         alt="image"
+                    >
 
-										<b-card-text class="col-md-10 text-name">
-											{{ result.name | truncate(28, '...') }}
-										</b-card-text>
-									</div>
+                    <b-card-text class="col-md-10 text-name">
+                      {{ result.name | truncate(28, '...') }}
+                    </b-card-text>
+                  </div>
 
-									<hr class="line">
+                  <hr class="line">
 
-									<b-card-text class="description-height text-center">
-										{{ result.description | truncate(60, '...') }}
-									</b-card-text>
+                  <b-card-text class="description-height text-center">
+                    {{ result.description | truncate(60, '...') }}
+                  </b-card-text>
 
-									<b-card-text class="ml-3 owner-username-styles">
-										{{ result.owner.username }}
-										<p>Status: {{ typesStatus[result.status] }}</p>
-									</b-card-text>
-								</b-card>
-							</div>
-						</b-row>
-					</section>
-				</b-container>
+                  <b-card-text class="ml-3 owner-username-styles">
+                    {{ result.owner.username }}
+                    <p>Status: {{ typesStatus[result.status] }}</p>
+                  </b-card-text>
+                </b-card>
+              </div>
+            </b-row>
+          </section>
+        </b-container>
 
-				<div class="d-flex justify-content-center my-4">
-					<b-pagination
-						v-model="pagination.currentPage"
-						bg-variant="dark"
-						:total-rows="pagination.numResults"
-						:per-page="pagination.per_page"
-						aria-controls="my-table"
-						@input="getData"
-					/>
-				</div>
-			</b-card>
-		</div>
-	</div>
+        <div class="d-flex justify-content-center my-4">
+          <b-pagination
+            v-model="pagination.currentPage"
+            bg-variant="dark"
+            :total-rows="pagination.numResults"
+            :per-page="pagination.per_page"
+            aria-controls="my-table"
+            @input="getData"
+          />
+        </div>
+      </b-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -213,7 +213,7 @@
       redirectToActivityDetails(id) {
         this.$router.push({ name: 'activity', params: { activityId: id } });
 
-        if (this.denyAccessToActivity != 1){
+        if (this.denyAccessToActivity !== 1){
         this.$router.push({ name: 'activity', params: { activityId: id } });
           this.$toast.open({
             message: 'All information about activity',

@@ -60,13 +60,13 @@
                   @click="clickedUserId = item.id"
                 >
                   <b-row no-gutters>
-                    <b-col class="col-md-5">
+                    <b-col class="col-md-4">
                       <div class="image-out-container img-in-container">
                         <b-card-img v-if="item.avatar" :src="avatarPath + item.avatar['200x200']"/>
                         <b-card-img v-else-if="!item.avatar" :src="'/img/person1.png'"/>
                       </div>
                     </b-col>
-                    <b-col class="col-md-7">
+                    <b-col class="col-md-8">
                       <b-card-body :title="item.name + ' ' + item.surname">
                         <b-card-text class="text-uppercase">
                           <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}

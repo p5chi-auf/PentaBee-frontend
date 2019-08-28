@@ -55,7 +55,8 @@
     text-indent: 2em;
     font-weight: initial;
   }
-  .header-activity-list{
+
+  .header-activity-list {
     position: absolute;
     right: 40px;
     z-index: 1;
@@ -63,6 +64,7 @@
 
   .create-activity-icon {
     color: var(--orange);
+
     &:hover {
       color: var(--yellow);
     }
@@ -99,10 +101,6 @@
     padding: 0;
   }
 
-  .edit-icon {
-    color: var(--green);
-  }
-
   .simple-icon {
     color: var(--gray);
   }
@@ -115,12 +113,11 @@
     color: var(--orange);
     font-size: 20px;
   }
-  .delete-icon {
-    color: var(--red);
-  }
+
   .invite-icon {
     color: var(--blue);
   }
+
   @media only screen and (max-width: 600px) {
     .header-activity-list {
       margin-top: 50px;
