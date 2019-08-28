@@ -54,12 +54,12 @@
                   v-for="result in results"
                   :key="result.id"
                   class="col-md-4 row-eq-height"
-                  @click="redirectToActivityDetails(result.id)"
                 >
                   <b-card
                     bg-variant="light"
                     border-variant="warning"
                     class="cards col-md-12 mt-3"
+                    @click="denyAccessToActivity = result.status, redirectToActivityDetails(result.id)"
                   >
                     <div class="row">
                       <img
@@ -135,7 +135,8 @@
         },
         technologyChosen: {},
         formTechnologies: [],
-        requestFilter: ''
+        requestFilter: '',
+        denyAccessToActivity: null
       }
     },
     computed: {
@@ -172,7 +173,25 @@
           })
       },
       redirectToActivityDetails(id) {
-        this.$router.push({ name: 'activity', params: { activityId: id } })
+        if (this.denyAccessToActivity != 1){
+        this.$router.push({ name: 'activity', params: { activityId: id } });
+          this.$toast.open({
+            message: 'All information about activity',
+            type: 'success',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true
+          })
+        }
+        else{
+          this.$toast.open({
+            message: 'Activity in validation, you can\'t  access it',
+            type: 'error',
+            position: 'top-right',
+            duration: 4000,
+            dismissible: true
+          })
+        }
       }
     }
   }

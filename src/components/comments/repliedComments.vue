@@ -26,12 +26,12 @@
       </div>
       
       <div class="row col-md-12 ml-5 justify-content-left">
-        <i class="fas fa-reply-all mt-2 ml-2" @click="clickedComment = nodes.id, editComments = !editComments"/>
+        <i class="fas fa-reply-all mt-2 ml-2" @click="clickedComment = nodes.id, replyComments = !replyComments"/>
   
         <i
           v-if="nodes.user.id === userId"
           class="fas fa-edit mt-2 ml-2"
-          @click="editComment(nodes.id, nodes.comment)"
+          @click="clickedComment = nodes.id, editComments = !editComments"
         />
         
         <i v-if="nodes.user.id === userId"
@@ -43,10 +43,19 @@
       </div>
       
       <div
+        v-if="clickedComment === nodes.id && replyComments === true"
+        class="mt-3 row col-md-12 mb-3"
+      >
+        <p class="mx-auto">Reply</p>
+        <write-comment :parent-id="nodes.id" @isCommented="sendReloadCommentsEvent()"/>
+      </div>
+      
+      <div
         v-if="clickedComment === nodes.id && editComments === true"
         class="mt-3 row col-md-12 mb-3"
       >
-        <write-comment class="mt-4" :parent-id="nodes.id" @isCommented="sendRepliedEvent()"/>
+        <p class="mx-auto">Edit</p>
+        <edit-comment :id-to-edit="nodes.id" :comment-message="nodes.comment" @CommentEdited="sendReloadCommentsEvent()"/>
       </div>
     </div>
     <div v-if="expanded || depth === 0 ">
@@ -64,13 +73,15 @@
 <script>
   import WriteComment from './WriteComment';
   import ActivityService from '../../services/activityApi';
+  import EditComment from './EditComment';
   import { basePath } from "../../constants/apiEndpoints";
   import { mapGetters } from 'vuex';
 
   export default {
     name: 'RepliedComments',
     components:{
-      WriteComment: WriteComment
+      WriteComment: WriteComment,
+      EditComment: EditComment
     },
     props: {
       nodes: Object(null),
@@ -84,27 +95,16 @@
       reply: false,
       expanded: false,
       clickedComment: Number,
-      editComments: false
+      editComments: false,
+      replyComments: false
     }),
 
     computed: {
       ...mapGetters('account', ['userId']),
     },
     methods: {
-      sendRepliedEvent() {
+      sendReloadCommentsEvent() {
         this.$root.$emit('isReplied');
-      },
-      editComment(commentId, commentMessage) {
-        ActivityService.editComments(this.$route.params.activityId, commentId, commentMessage)
-          .then(responses => {
-            this.$toast.open({
-              message: responses.data.message,
-              type: 'success',
-              position: 'top-right',
-              duration: 3000,
-              dismissible: true
-            })
-          })
       },
       deleteComment(commentId) {
         ActivityService.deleteComment(commentId)

@@ -5,7 +5,7 @@
       
       <p class="ml-4 mt-2">{{ comments.length }} &numsp; comments</p>
       
-      <replied-comments :nodes="commentsShow" @isReplied="Test()"/>
+      <replied-comments :nodes="commentsShow" />
     </div>
   </div>
 </template>
@@ -43,9 +43,6 @@
       this.getCommentsActivity()
     },
     methods:{
-      Test(){
-        console.log('sghdfjasdfjhg')
-      },
       getCommentsActivity(){
         this.commentsShow= {
           comment: 'Children Component',
