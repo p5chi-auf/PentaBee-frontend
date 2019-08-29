@@ -12,6 +12,7 @@ import ActivityEdit from '@/components/activity/EditActivity';
 import List from '@/components/user/UsersList';
 import ApplicantsList from '../components/activity/UsersFiltredList';
 import Invite from '@/components/activity/InviteUsers';
+import Validation from '@/components/activity/ValidateActivity';
 
 import Vue from 'vue';
 import store from '../store';
@@ -94,6 +95,12 @@ const router = new Router({
       path: '/team/:filter',
       name: 'usersList',
       component: List,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/activities/validation',
+      name: 'validation',
+      component: Validation,
       meta: { requiresAuth: true },
     },
   ],

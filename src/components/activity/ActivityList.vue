@@ -22,6 +22,15 @@
           >
             <i class="fas fa-filter"/>
           </b-link>
+          <b-link
+            v-if="userId === 27"
+            v-b-tooltip.hover.left
+            title="Validate activities"
+            class="simple-icon float-right ml-2 mr-2"
+            @click="$router.push('/activities/validation')"
+          >
+            <i class="fas fa-check-double"/>
+          </b-link>
 
           <b-modal id="bv-modal-example" ref="my-modal">
             <template slot="modal-title">
@@ -90,7 +99,7 @@
                   bg-variant="light"
                   border-variant="warning"
                   class="col-md-12 mt-3 cards"
-                  @click="denyAccessToActivity = result.status, redirectToActivityDetails(result.id)"
+                  @click="denyAccessToActivity = result.status"
                 >
                   <div class="row">
                     <img
@@ -144,7 +153,7 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import UserApi from '../../services/userDetailsApi';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
   import { basePath } from '../../constants/apiEndpoints';
 
   export default {
@@ -177,7 +186,8 @@
     },
     computed: {
       typesStatus: () => ['','In Validation', 'New', 'Finished', 'Closed'],
-      ...mapState('account', ['user']),
+      ...mapState('account', ['user', 'setUser']),
+      ...mapGetters('account', ['userId'])
     },
     mounted() {
       this.getData();
@@ -214,7 +224,6 @@
         this.$router.push({ name: 'activity', params: { activityId: id } });
 
         if (this.denyAccessToActivity !== 1){
-        this.$router.push({ name: 'activity', params: { activityId: id } });
           this.$toast.open({
             message: 'All information about activity',
             type: 'success',

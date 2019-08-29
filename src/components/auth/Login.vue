@@ -8,7 +8,7 @@
             <hr class="line">
           </h4>
 
-          <b-form @submit.prevent="onSubmit()">
+          <b-form @submit.prevent="onSubmit()" @keyup.enter="onSubmit()">
             <b-form-group
               id="input-group-1"
               label="Username:"
