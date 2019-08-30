@@ -26,7 +26,7 @@
       </div>
 
       <div class="row col-md-12 ml-5 justify-content-left">
-        <i class="fas fa-reply-all mt-2 ml-2" @click="clickedComment = nodes.id, replyComments = !replyComments"/>
+        <i class="invite-icon fas fa-reply-all mt-2 ml-2" @click="clickedComment = nodes.id, replyComments = !replyComments"/>
 
         <i
           v-if="nodes.user.id === userId"
@@ -76,7 +76,6 @@
   import EditComment from './EditComment';
   import { basePath } from "../../constants/apiEndpoints";
   import { mapGetters } from 'vuex';
-
   export default {
     name: 'RepliedComments',
     components:{
@@ -98,7 +97,6 @@
       editComments: false,
       replyComments: false
     }),
-
     computed: {
       ...mapGetters('account', ['userId']),
     },
@@ -116,6 +114,7 @@
               duration: 3000,
               dismissible: true
             });
+            this.sendReloadCommentsEvent()
           })
       }
     }

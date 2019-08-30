@@ -5,7 +5,7 @@
 
       <p class="ml-4 mt-2">{{ comments.length }} &numsp; comments</p>
 
-      <replied-comments :nodes="commentsShow" />
+      <replied-comments :nodes="commentsShow" @isDeletedComment="getCommentsActivity"/>
     </div>
   </div>
 </template>
@@ -66,6 +66,7 @@
             this.commentsShow.children.push(node);
           }
         }
+        console.log(this.commentsShow);
         return this.commentsShow.children;
       }
     }

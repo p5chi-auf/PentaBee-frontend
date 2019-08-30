@@ -6,12 +6,13 @@
       <h2 class="text-center ml-2 my-4 profile-title">Profile</h2>
       <section id="card-outline" class="ml-2 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
-          <div class="text-right">
+          <div class="text-right mb-2">
             <b-link @click="$router.push({ name: 'edit', params: { userId: profileData.id } })">
               <i v-b-tooltip.hover title="Edit profile" class="icon-size fas fa-edit"/>
             </b-link>
           </div>
 
+          <feedback/>
           <div class="card-body">
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
@@ -60,10 +61,11 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapState, mapGetters } from 'vuex';
   import Activities from './UserActivities';
+  import Feedback from './VFeedback';
   import { basePath } from '@/constants/apiEndpoints';
 
   export default {
-    components: { Activities },
+    components: { Activities, Feedback },
     data: () => ({
       profileData: {
         id: null,

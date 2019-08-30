@@ -3,7 +3,7 @@
     <label class="typo__label ml-3 text-color-activity">Types:</label>
     <multiselect
       v-model="types"
-      placeholder="Search by technology"
+      placeholder="Search a type"
       label="name"
       track-by="id"
       :options="formTypes"
@@ -16,13 +16,12 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-
   export default {
     model: {
       prop: 'types',
       event: 'changeTypesList'
     },
-    props: {types: Array},
+    props: {types: Array()},
     data() {
       return {
         formTypes: [],
@@ -31,7 +30,6 @@
     },
     mounted() {
       this.selectedTypes = this.types;
-
       ActivityService.getTypes()
         .then((response) => {
           this.formTypes = response.data;

@@ -69,7 +69,7 @@
                     <b-col class="col-md-8">
                       <b-card-body :title="item.name + ' ' + item.surname">
                         <b-card-text class="text-uppercase">
-                          <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }}
+                          <i class="fas fa-map-marker-alt mr-1 my-2"/>{{ item.location }} {{ item.id }}
                           <i class="fas fa-graduation-cap ml-2"/> {{ item.position }} {{ seniorityList[item.seniority] }}
                         </b-card-text>
                       </b-card-body>
@@ -95,7 +95,7 @@
                       <b-card-img v-else-if="!item.avatar" :src="'/img/person1.png'"/>
                     </div>
 
-                    <h3 class="mt-1">{{ item.name }} {{ item.surname }}</h3>
+                    <h3 class="mt-1">{{ item.name }} {{ item.surname }} </h3>
 
                     <h6 class="seniority-text mt-2 text-uppercase">
                       {{ item.position }} {{ seniorityList[item.seniority] }}
