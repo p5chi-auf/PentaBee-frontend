@@ -55,5 +55,11 @@ export default {
   },
   deleteComment(commentId){
     return API.delete(basePath + '/api/comment/' + commentId + '/delete')
+  },
+  getActivities(data){
+    return API.get(userEndpoints.ACTIVITIES + '/validation', data)
+  },
+  validateActivity(id){
+    return API.post(userEndpoints.ACTIVITIES + '/' + id + '/validate')
   }
 };

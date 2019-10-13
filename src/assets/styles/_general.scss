@@ -80,7 +80,7 @@ body {
   }
 
   .page-item.active .page-link {
-    background: #5a6268;
+    background: var(--darkGray);
     border-color: #545b62;
   }
 
@@ -89,7 +89,7 @@ body {
   }
 
   .text-color-activity {
-    color: #2d2d2d;
+    color: var(--darkGray);
   }
 
   .icon-add-comment {
@@ -98,5 +98,30 @@ body {
 
   .mouse-type-pointer{
     cursor: pointer;
+  }
+  .logo-loader {
+    opacity: 1;
+    display: block;
+    height: auto;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+    width: 300px;
+    position: center;
+    margin-left: -50px;
+  }
+  .loading-text{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .spinner{
+    margin-left: 5px;
+  }
+  .edit-icon {
+    color: var(--green);
+  }
+  .delete-icon {
+    color: var(--red);
   }
 }

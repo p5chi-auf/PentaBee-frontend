@@ -141,7 +141,6 @@
 
   export default {
     components: { Technologies },
-
     data: () => ({
       form: {
         position: '',

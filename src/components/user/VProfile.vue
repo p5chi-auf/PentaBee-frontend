@@ -1,20 +1,21 @@
 <template>
   <div class="edit profile-card home-content row">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h2 class="text-center pl-4 my-4 profile-title">Profile</h2>
-      <section id="card-outline" class="ml-4 mr-2 mb-1 text-center">
+      <h2 class="text-center ml-2 my-4 profile-title">Profile</h2>
+      <section id="card-outline" class="ml-2 mr-2 mb-1 text-center">
         <b-card border-variant="warning">
-          <div class="text-right">
+          <div class="text-right mb-2">
             <b-link @click="$router.push({ name: 'edit', params: { userId: profileData.id } })">
               <i v-b-tooltip.hover title="Edit profile" class="icon-size fas fa-edit"/>
             </b-link>
           </div>
 
+          <feedback/>
           <div class="card-body">
             <div class="d-flex justify-content-center h-100">
               <div class="image-out-container">
-                <div class="online-icon"/>
-
                 <div class="image-in-container">
                   <b-img :src="avatarImage"/>
                 </div>
@@ -23,7 +24,7 @@
 
             <h3 class="mt-1">{{ profileData.name }} {{ profileData.surname }}</h3>
 
-            <h6 class="seniority-text mt-2" style="text-transform:uppercase">
+            <h6 class="seniority-text mt-2 text-uppercase">
               {{ profileData.position }} {{ seniorityList[profileData.seniority] }}
             </h6>
 
@@ -41,13 +42,11 @@
 
             <div class="text-center my-3 row">
               <div class="mb-2">
-                <i class="ml-4 fas fa-envelope"/>
-                <b-link class="ml-2">{{ profileData.email }}</b-link>
+                <i class="fas fa-envelope ml-2 mr-1"/>{{ profileData.email }}
               </div>
 
               <div class="mb-2">
-                <i class="ml-4 fas fa-map-marker-alt"/>
-                <b-link class="ml-2">{{ profileData.location }}</b-link>
+                <i class="fas fa-map-marker-alt ml-2 mr-1"/>{{ profileData.location }}
               </div>
             </div>
           </div>
@@ -62,10 +61,11 @@
   import UserApi from '@/services/userDetailsApi';
   import { mapState, mapGetters } from 'vuex';
   import Activities from './UserActivities';
+  import Feedback from './VFeedback';
   import { basePath } from '@/constants/apiEndpoints';
 
   export default {
-    components: { Activities },
+    components: { Activities, Feedback },
     data: () => ({
       profileData: {
         id: null,
@@ -86,6 +86,7 @@
           '200x200': '',
         },
       },
+      spinner: true,
       avatarImage: null,
     }),
     computed: {
@@ -97,6 +98,8 @@
       UserApi.userInfo(this.userId)
         .then((response) => {
           this.profileData = response.data;
+          this.spinner = false;
+
           if (this.profileData.avatar) {
             this.avatarImage = basePath + '/' + this.profileData.avatar['200x200'];
           } else {

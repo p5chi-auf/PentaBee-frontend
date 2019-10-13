@@ -1,27 +1,27 @@
 <template>
   <div class="activity-list">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
     <div class="pt-2 mb-5 pb-5">
       <section class="section-style">
         <b-container>
-          <b-card class="mx-auto border-warning">
-            <h2 class="text-center mb-3">Invite users to your activity</h2>
+          <h2 class="text-center my-3 mb-3">Invite users to your activity</h2>
 
-            <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
-              <b-list-group-item variant="warning">{{ item.username }}
-                <b-link
-                  v-b-tooltip.hover.top
-                  title="Invite user"
-                  class="apply-icon float-right"
-                  @click="userInvite(item.id)"
-                >
-                  <i class="float-right far fa-check-circle"/>
-                </b-link>
-              </b-list-group-item>
-            </b-list-group>
-          </b-card>
+          <b-list-group v-for="item in form.results" :key="item.id" class="mr-2">
+            <b-list-group-item variant="warning">{{ item.username }}
+              <b-link
+                v-b-tooltip.hover.top
+                title="Invite user"
+                class="apply-icon float-right"
+                @click="userInvite(item.id)"
+              >
+                <i class="float-right far fa-check-circle"/>
+              </b-link>
+            </b-list-group-item>
+          </b-list-group>
         </b-container>
       </section>
-      <div class="d-flex justify-content-center">
+
+      <div class="d-flex justify-content-center my-4">
         <b-pagination
           v-model="form.currentPage"
           bg-variant="dark"
@@ -45,7 +45,8 @@
         results: [],
         currentPage: 1,
         perPage: 10
-      }
+      },
+      spinner: true
     }),
     mounted() {
       this.getUsersList()
@@ -55,7 +56,8 @@
         let data =  '?pagination[page]=' + this.form.currentPage + '&pagination[per_page]=' + this.form.per_page;
         UserApi.userList(data)
           .then((response) => {
-            this.form = response.data
+            this.form = response.data;
+            this.spinner =  false;
           })
       },
       userInvite(id) {

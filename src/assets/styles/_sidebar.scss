@@ -11,20 +11,17 @@
   background: var(--yellowGradient);
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 500px) {
   .v-sidebar-menu {
-    height: calc(100vh - 131px);
+    display: none ! important;
+  }
+  .home-content {
+    margin-left: -10px;
   }
 }
 
-@media screen and (min-width: 415px) {
-  .v-sidebar-menu {
-    height: calc(100vh - 147px);
-  }
-}
-
-@media screen and (min-width: 444px) {
-  .v-sidebar-menu {
-    height: calc(100vh - 122px);
+@media screen and (min-width: 501px) {
+  .mobile-menu {
+    display: none ! important;
   }
 }

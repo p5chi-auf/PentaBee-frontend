@@ -16,13 +16,12 @@
 
 <script>
   import UserApi from '@/services/userDetailsApi';
-
   export default {
     model: {
       prop: 'technologies',
       event: 'changeTechnologiesList'
     },
-    props: { technologies: Array },
+    props: { technologies: Array()},
     data() {
       return {
         formTechnologies: [],
@@ -33,8 +32,8 @@
       this.selectedTechnologies = this.technologies;
       UserApi.getTechnologies()
         .then((response) => {
-        this.formTechnologies = response.data;
-      })
+          this.formTechnologies = response.data;
+        })
     },
     methods: {
       updateTechnologies(technologies) {

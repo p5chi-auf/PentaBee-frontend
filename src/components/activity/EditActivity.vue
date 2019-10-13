@@ -1,6 +1,7 @@
 <template>
   <div class="edit">
-    <div class="profileCard home-content">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="profileCard home-content">
       <section id="card-outline">
         <b-container class="col-md-9">
           <b-row align-h="center" class="mt-5">
@@ -9,7 +10,7 @@
                 Edit activity
               </h4>
 
-              <hr>
+              <hr class="line">
 
               <b-form class="row" @submit.prevent="editActivity()">
                 <b-form-group
@@ -17,7 +18,7 @@
                   class="col-md-6"
                 >
                   <label class="ml-3 text-color-activity">Name of activity:</label>
-                  
+
                   <b-form-input
                     v-model="form.name"
                     v-validate.continues="'required|min:3|max:100'"
@@ -27,7 +28,7 @@
                     :class="{ 'is-invalid': errors.has('name') }"
                     @change="edited = true"
                   />
-                  
+
                   <span v-if="errors.has('name')" class="invalid-feedback">
                     {{ errors.first('name') }}
                   </span>
@@ -91,22 +92,18 @@
                     @click="edited = true"
                   />
                 </b-form-group>
-               
+
                 <b-form-group class="col-md-12">
-                  <label class="ml-3 text-color-activity">Status:</label>
-                  <div class="row">
-                    <b-form-radio-group
-                      v-model="form.status"
-                      :options="statusesActivity"
-                      buttons
-                      button-variant="outline-secondary"
-                      size="lg"
-                      class="col"
-                      @change="edited = true"
-                    />
-                  </div>
+                  <label class="ml-3 text-color-activity">Status:</label><br>
+
+                  <b-form-checkbox-group
+                    v-model="form.status"
+                    :options="statusesActivity"
+                    buttons
+                    @change="edited = true"
+                  />
                 </b-form-group>
-              
+
 
                 <b-form-group id="input-group-2" class="col-md-12 mx-auto">
                   <label class="ml-3 text-color-activity">Description:</label>
@@ -126,10 +123,10 @@
                     class="invalid-feedback"
                   >{{ errors.first('description') }}</span>
                 </b-form-group>
-  
+
                 <b-form-group class="col-md-12 mx-auto" label-for="coverActivity">
                   <label class="typo__label ml-3">Try To Upload Some Image:</label>
-    
+
                   <b-form-file accept="image/jpeg, image/png" @change="uploadCoverActivity"/>
                   <b-img v-if="previewImage" :src="previewImage" class="uploading-image ml-3 mt-2" height="150"/>
                   <b-link
@@ -161,11 +158,11 @@
                 :delay="100"
                 :adaptive="true"
               >
-                <div class="example-modal-content text-center mt-5">
-                  <h6>Do you want to save changes for activity?</h6>
+                <div class="example-modal-content text-center mt-5 mb-4">
+                  <h5>Do you want to save changes for activity?</h5>
                 </div>
 
-                <div class="row mt-lg-5 ml-3">
+                <div class="row ml-3">
                   <b-button class="col-md-5" variant="dark" @click="cancel">
                     Cancel
                   </b-button>
@@ -195,135 +192,137 @@
   import { basePath } from "../../constants/apiEndpoints";
 
   export default {
-  components: {
-    TechnologyList: TechnologyList,
-    TypesList: TypesList
-  },
-  data() {
-    return {
-      form: {
-        id: null,
-        name: '',
-        description: '',
-        application_deadline: '',
-        final_deadline: '',
-        status: 0,
-        public: true,
-        technologies: [{ id: null }],
-        types: [],
-        cover: ''
-      },
-      edited: false,
-      technologiesList: [],
-      statusesActivity: [
-        { text: 'New', value: '1' },
-        { text: 'Finished', value: '2' },
-        { text: 'Closed', value: '3' },
-        { text: 'fdsadfsfsdfsdf', value: '4' }
-      ],
-      previewImage: null
-    }
-  },
-  computed: {
-    ...mapState('account', ['user'])
-  },
-  mounted() {
-    ActivityService.getActivityDetails(this.$route.params.activityEditId)
-      .then(response => {
-        this.form = response.data;
-        this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
-        this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
-        if (this.form.cover) {
-          this.previewImage = basePath + '/' + this.form.cover.original;
-          this.form.cover = null
-        }
-      })
-  },
-  methods: {
-    uploadCoverActivity(e) {
-      const image = e.target.files[0];
-      const reader = new FileReader();
-
-      reader.readAsDataURL(image);
-      reader.onload = e => {
-        this.previewImage = e.target.result;
-        this.form.cover = this.previewImage;
-        this.edited = true
+    components: {
+      TechnologyList: TechnologyList,
+      TypesList: TypesList
+    },
+    data() {
+      return {
+        form: {
+          id: null,
+          name: '',
+          description: '',
+          application_deadline: '',
+          final_deadline: '',
+          status: '',
+          public: true,
+          technologies: [{ id: null }],
+          types: [],
+          cover: ''
+        },
+        spinner: true,
+        edited: false,
+        technologiesList: [],
+        statusesActivity: [
+          { value: '1', text: 'In Validation' },
+          { value: '2', text: 'New' },
+          { value: '3', text: 'Finished' },
+          { value: '4', text: 'Closed' }
+        ],
+        previewImage: null
       }
     },
-    show() {
-      this.$modal.show('edit-activity')
+    computed: {
+      ...mapState('account', ['user'])
     },
-    cancel() {
-      this.$modal.hide('edit-activity')
+    mounted() {
+      ActivityService.getActivityDetails(this.$route.params.activityEditId)
+        .then(response => {
+          this.form = response.data;
+          this.spinner = false;
+          this.form.application_deadline = moment(unix(this.form.application_deadline)).toISOString();
+          this.form.final_deadline = moment(unix(this.form.final_deadline)).toISOString();
+          if (this.form.cover) {
+            this.previewImage = basePath + '/' + this.form.cover.original;
+            this.form.cover = null
+          }
+        })
     },
-    editActivity() {
-      this.$modal.hide('edit-activity');
-      let activity = JSON.parse(JSON.stringify(this.form));
+    methods: {
+      uploadCoverActivity(e) {
+        const image = e.target.files[0];
+        const reader = new FileReader();
 
-      activity.application_deadline = moment(this.form.application_deadline).format('X');
-      activity.final_deadline = moment(this.form.final_deadline).format('X');
+        reader.readAsDataURL(image);
+        reader.onload = e => {
+          this.previewImage = e.target.result;
+          this.form.cover = this.previewImage;
+          this.edited = true
+        }
+      },
+      show() {
+        this.$modal.show('edit-activity')
+      },
+      cancel() {
+        this.$modal.hide('edit-activity')
+      },
+      editActivity() {
+        this.$modal.hide('edit-activity');
+        let activity = JSON.parse(JSON.stringify(this.form));
 
-      if (this.edited === true) {
-        ActivityService.editActivity(this.$route.params.activityEditId, activity)
+        activity.application_deadline = moment(this.form.application_deadline).format('X');
+        activity.final_deadline = moment(this.form.final_deadline).format('X');
+
+        if (this.edited === true) {
+          ActivityService.editActivity(this.$route.params.activityEditId, activity)
+            .then(() => {
+              this.$toast.open({
+                message: 'Activity successfully edited!',
+                type: 'success',
+                position: 'top-right',
+                duration: 3000,
+                dismissible: true
+              });
+              this.$router.push('/activity-list/:filter')
+            })
+            .catch(() => {
+              this.$toast.open({
+                message: 'Please complete all required fields',
+                type: 'error',
+                position: 'top-right',
+                duration: 3000,
+                dismissible: true
+              })
+            })
+        }
+        else {
+          this.$toast.open({
+            message: 'You must to make changes',
+            type: 'error',
+            position: 'top-right',
+            duration: 3000,
+            dismissible: true
+          })
+        }
+      },
+      deleteCover(){
+        const data = {
+          ...this.form,
+          id: this.form.id
+        };
+
+        ActivityService.deleteCoverActivity(data)
           .then(() => {
             this.$toast.open({
-              message: 'Activity successfully edited!',
+              message: 'Cover successfully deleted!',
               type: 'success',
               position: 'top-right',
               duration: 3000,
               dismissible: true
             });
-            this.$router.push('/activity-list/:filter')
+
+            this.$router.push({ name: 'activityList' })
           })
           .catch(() => {
             this.$toast.open({
-              message: 'Please complete all required fields',
+              message: 'Access denied!',
               type: 'error',
               position: 'top-right',
               duration: 3000,
               dismissible: true
             })
           })
-      }
-      else {
-        this.$toast.open({
-          message: 'You must to make changes',
-          type: 'error',
-          position: 'top-right',
-          duration: 3000,
-          dismissible: true
-        })
-      }
-    },
-    deleteCover(){
-      const data = {
-        ...this.form,
-        id: this.form.id
-      };
-
-      ActivityService.deleteCoverActivity(data)
-        .then(() => {
-          this.$toast.open({
-            message: 'Cover successfully deleted!',
-            type: 'success',
-            position: 'top-right',
-            duration: 3000,
-            dismissible: true
-          });
-
-          this.$router.push({ name: 'activityList' })
-        })
-        .catch(() => {
-          this.$toast.open({
-            message: 'Access denied!',
-            type: 'error',
-            position: 'top-right',
-            duration: 3000,
-            dismissible: true
-          })
-        })
-    },
+      },
+    }
   }
-}
 </script>

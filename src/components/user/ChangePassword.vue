@@ -93,7 +93,7 @@
     }),
     computed: {
       ...mapState('account', ['user']),
-      ...mapGetters('account', ['userId']),
+      ...mapGetters('account', ['userId'])
     },
     methods: {
       ...mapActions('account', ['login', 'logout']),

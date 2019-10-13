@@ -1,0 +1,34 @@
+.users-list {
+  .img-in-container img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+    margin-top: 10px;
+  }
+
+  .text-name {
+    color: orange;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px var(--gray);
+    height: available;
+  }
+  .card-color{
+    background-image: linear-gradient(to right, #FFEFBA 0%, #FFFFFF 50%);
+  }
+  @media screen and (max-width: 1300px) and (min-width: 768px) {
+    .row-eq-height {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  @media (min-width: 576px) {
+    .cards {
+      margin-right: -15px;
+      margin-left: -35px;
+      padding-left: 15px;
+    }
+  }
+}

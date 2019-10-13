@@ -1,10 +1,9 @@
 import jwtDecode from 'jwt-decode';
-import userDetailsApi from "../services/userDetailsApi";
 
 const state = () => ({
   user: null,
   token: localStorage.getItem('token') || '',
-  idUser: null
+  idUser: null,
 });
 
 const actions = {
@@ -44,7 +43,7 @@ const getters = {
       return id;
     }
     return null;
-  }
+  },
 };
 
 export default {

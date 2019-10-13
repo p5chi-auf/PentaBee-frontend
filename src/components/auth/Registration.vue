@@ -7,7 +7,8 @@
             Create an PentaBee account
           </h4>
           <hr class="line">
-          <b-form class="row" @submit.prevent="registerIt()">
+
+          <b-form class="row" @submit.prevent="registerIt()" @keyup.enter="registerIt()">
             <b-form-group
               id="input-group-1"
               class="col-md-6"

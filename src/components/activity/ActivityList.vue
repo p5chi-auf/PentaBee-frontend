@@ -1,26 +1,71 @@
 <template>
   <div class="col home-content activity-list">
-    <div class="mb-5">
+    <b-spinner v-if="spinner===true" class="spinner" variant="warning" label="Loading..."/>
+    <div v-else class="mb-5">
       <b-card no-body>
         <div class="mt-2">
-          <b-dropdown id="dropdown-form" ref="dropdown" text="Filter for activity list"
-                      class="col-4 end align-content-end header-activity-list"
+          <b-link
+            v-b-tooltip.hover.top
+            title="Create activity"
+            class="create-activity-icon float-right ml-2 mr-2"
+            @click="$router.push('/activity-create')"
           >
-            <b-dropdown-form>
+            <i class="fas fa-plus-circle"/>
+          </b-link>
+
+          <b-link
+            id="show-btn"
+            v-b-tooltip.hover.left
+            title="Add filter"
+            class="simple-icon float-right ml-2 mr-2"
+            @click="$bvModal.show('bv-modal-example')"
+          >
+            <i class="fas fa-filter"/>
+          </b-link>
+          <b-link
+            v-if="userId === 27"
+            v-b-tooltip.hover.left
+            title="Validate activities"
+            class="simple-icon float-right ml-2 mr-2"
+            @click="$router.push('/activities/validation')"
+          >
+            <i class="fas fa-check-double"/>
+          </b-link>
+
+          <b-modal id="bv-modal-example" ref="my-modal">
+            <template slot="modal-title">
+              Filter
+            </template>
+            <div class="d-block">
               <b-form-group>
+                <label class="typo__label ml-3">Search by name:</label>
+
                 <b-form-input
                   v-model="activityName"
                   type="text"
                   size="sm"
-                  placeholder="Activity Name"
+                  placeholder="Activity name"
                   @change="requestFilter=requestFilter+'&filter[name]='+activityName"
                 />
               </b-form-group>
-              
+
               <b-form-group>
+                <label class="typo__label ml-3">Search by status:</label>
+
+                <b-form-radio-group
+                  v-model="activityStatus"
+                  :options="options"
+                  name="radio-options"
+                  @input="requestFilter=requestFilter+'&filter[status]='+activityStatus"
+                />
+              </b-form-group>
+
+              <b-form-group>
+                <label class="typo__label ml-3">Search by known technologies:</label>
+
                 <multiselect
                   v-model="technologyChosen"
-                  placeholder="Search a type"
+                  placeholder="Search by technology"
                   label="name"
                   track-by="id"
                   :options="formTechnologies"
@@ -29,72 +74,68 @@
                   @input="requestFilter=requestFilter+'&filter[technology][]='+technologyChosen.id"
                 />
               </b-form-group>
-              
-              <b-button variant="primary" size="sm" @click="searchByName">Filter</b-button>
-            </b-dropdown-form>
-            <b-dropdown-divider/>
-          </b-dropdown>
+            </div>
+            <template slot="modal-footer" slot-scope="{ ok, cancel }">
+              <b-button size="sm" variant="danger" @click="cancel()">
+                Cancel
+              </b-button>
+              <b-button size="sm" variant="success" @click="searchByName">
+                Apply filter
+              </b-button>
+            </template>
+          </b-modal>
         </div>
-        
-        <i
-          class="fas fa-plus-circle mt-1 create-activity-icon"
-          @click="$router.push('/activity-create')"
-        />
-        <b-tabs card>
+
+        <b-container class="col-12 bv-example-row">
           <section class="tab-section">
-            <b-tab title="Mine" active/>
-            
-            <b-tab title="Joined" active/>
-            
-            <b-tab title="Finished" active/>
-            
-            <b-tab title="All" active @click="getData">
-              <div class="row">
-                <div
-                  v-for="result in results"
-                  :key="result.id"
-                  class="col-md-4 row-eq-height"
+            <b-row>
+              <div
+                v-for="result in results"
+                :key="result.id"
+                class="col-md-4 row-eq-height"
+                @click="redirectToActivityDetails(result.id)"
+              >
+                <b-card
+                  bg-variant="light"
+                  border-variant="warning"
+                  class="col-md-12 mt-3 cards"
+                  @click="denyAccessToActivity = result.status"
                 >
-                  <b-card
-                    bg-variant="light"
-                    border-variant="warning"
-                    class="cards col-md-12 mt-3"
-                    @click="denyAccessToActivity = result.status, redirectToActivityDetails(result.id)"
-                  >
-                    <div class="row">
-                      <img
-                        v-if="result.cover"
-                        :src="coverOriginPath+result.cover.original"
-                        class="activity-image mr-2"
-                        alt="image"
-                      >
-                      <img v-else
-                           src="../../assets/images/combs.jpg"
-                           class="activity-image mr-2"
-                           alt="image"
-                      >
-                      
-                      <b-card-text class="col-md-10 text-name">
-                        {{ result.name | truncate(28, '...') }}
-                      </b-card-text>
-                    </div>
-                    
-                    <hr class="line">
-                    
-                    <b-card-text class="description-height text-center">
-                      {{ result.description | truncate(60, '...') }}
+                  <div class="row">
+                    <img
+                      v-if="result.cover"
+                      :src="coverOriginPath+result.cover.original"
+                      class="activity-image mr-2"
+                      alt="image"
+                    >
+                    <img v-else
+                         src="../../assets/images/combs.jpg"
+                         class="activity-image mr-2"
+                         alt="image"
+                    >
+
+                    <b-card-text class="col-md-10 text-name">
+                      {{ result.name | truncate(28, '...') }}
                     </b-card-text>
-                    
-                    <b-card-text class="ml-3 owner-username-styles">
-                      {{ result.owner.username }}
-                    </b-card-text>
-                  </b-card>
-                </div>
+                  </div>
+
+                  <hr class="line">
+
+                  <b-card-text class="description-height text-center">
+                    {{ result.description | truncate(60, '...') }}
+                  </b-card-text>
+
+                  <b-card-text class="ml-3 owner-username-styles">
+                    {{ result.owner.username }}
+                    <p>Status: {{ typesStatus[result.status] }}</p>
+                  </b-card-text>
+                </b-card>
               </div>
-            </b-tab>
+            </b-row>
           </section>
-        </b-tabs>
-        <div class="d-flex justify-content-center">
+        </b-container>
+
+        <div class="d-flex justify-content-center my-4">
           <b-pagination
             v-model="pagination.currentPage"
             bg-variant="dark"
@@ -112,8 +153,8 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import UserApi from '../../services/userDetailsApi';
-  import { mapState } from 'vuex';
-  import { basePath } from "../../constants/apiEndpoints";
+  import { mapState, mapGetters } from 'vuex';
+  import { basePath } from '../../constants/apiEndpoints';
 
   export default {
     data() {
@@ -124,57 +165,65 @@
           currentPage: 1,
           per_page: 9,
           numPages: 1,
-          numResults: 1
+          numResults: 1,
         },
         coverOriginPath: basePath + '/',
         activityName: '',
         ownerName: '',
-        filters: {
-          activityNameFilter: '',
-          technologyFilter: ''
-        },
+        activityStatus: '',
         technologyChosen: {},
         formTechnologies: [],
+        denyAccessToActivity: null,
         requestFilter: '',
-        denyAccessToActivity: null
-      }
+        spinner: true,
+        options: [
+          { value: 1, text: 'In Validation' },
+          { value: 2, text: 'New' },
+          { value: 3, text: 'Finished' },
+          { value: 4, text: 'Closed' }
+        ],
+      };
     },
     computed: {
-      ...mapState('account', ['user'])
+      typesStatus: () => ['','In Validation', 'New', 'Finished', 'Closed'],
+      ...mapState('account', ['user', 'setUser']),
+      ...mapGetters('account', ['userId'])
     },
     mounted() {
       this.getData();
-      this.getTechnologies()
+      this.getTechnologies();
     },
     methods: {
       getTechnologies() {
         UserApi.getTechnologies()
           .then((response) => {
-            this.formTechnologies = response.data
-          })
+            this.formTechnologies = response.data;
+          });
       },
       searchByName() {
         this.pagination.currentPage = 1;
-        this.getData()
+        this.getData();
+        this.$refs['my-modal'].hide();
       },
       getData() {
-        let filter =  '?pagination[page]='
+        let filter = '?pagination[page]='
           + this.pagination.currentPage
           + '&pagination[per_page]='
           + this.pagination.per_page + this.requestFilter;
-        
         this.$router.push({ name: 'activityList', params: { filter: filter } });
 
         ActivityService.getActivityList(this.$route.params.filter)
           .then(response => {
             this.results = response.data.results;
             this.pagination.numResults = response.data.numResults;
-            this.requestFilter = ''
-          })
+            this.requestFilter = '';
+            this.spinner = false;
+          });
       },
       redirectToActivityDetails(id) {
-        if (this.denyAccessToActivity != 1){
         this.$router.push({ name: 'activity', params: { activityId: id } });
+
+        if (this.denyAccessToActivity !== 1){
           this.$toast.open({
             message: 'All information about activity',
             type: 'success',

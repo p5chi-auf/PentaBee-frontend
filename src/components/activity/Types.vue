@@ -16,13 +16,12 @@
 
 <script>
   import ActivityService from '../../services/activityApi';
-
   export default {
     model: {
       prop: 'types',
       event: 'changeTypesList'
     },
-    props: {types: Array},
+    props: {types: Array()},
     data() {
       return {
         formTypes: [],
@@ -31,7 +30,6 @@
     },
     mounted() {
       this.selectedTypes = this.types;
-
       ActivityService.getTypes()
         .then((response) => {
           this.formTypes = response.data;

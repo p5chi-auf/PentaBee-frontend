@@ -2,10 +2,10 @@
   <div class="comments-component">
     <div class="border-comments-field">
       <write-comment class="row ml-4 mt-4" @isCommented="getCommentsActivity"/>
-      
+
       <p class="ml-4 mt-2">{{ comments.length }} &numsp; comments</p>
-      
-      <replied-comments :nodes="commentsShow" />
+
+      <replied-comments :nodes="commentsShow" @isDeletedComment="getCommentsActivity"/>
     </div>
   </div>
 </template>
@@ -13,8 +13,7 @@
 <script>
   import ActivityService from '../../services/activityApi';
   import WriteComment from './WriteComment';
-  import RepliedComments from './repliedComments';
-
+  import RepliedComments from './RepliedComments';
   export default {
     components:{
       WriteComment: WriteComment,
@@ -22,13 +21,13 @@
     },
     data(){
       return{
-      comments:[
-        {
-          user:{},
-          created_at: 1232343545,
-          updated_at: 4234324234
-        }
-      ],
+        comments:[
+          {
+            user:{},
+            created_at: 1232343545,
+            updated_at: 4234324234
+          }
+        ],
         commentToEdit: null,
         commentsShow: {
           comment: 'Children Component',
@@ -46,10 +45,10 @@
       getCommentsActivity(){
         this.commentsShow= {
           comment: 'Children Component',
-            children: []
+          children: []
         };
         ActivityService.getComments(this.$route.params.activityId).then(response =>{
-        this.comments = response.data;
+          this.comments = response.data;
           this.makeTree(this.comments);
         })
       },
